@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		193D489719EBCEAF00B6E14E /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D489619EBCEAF00B6E14E /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		193D489A19EBCF1900B6E14E /* LoadingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D489919EBCF1900B6E14E /* LoadingIndicatorView.m */; };
+		193D489F19EBCF7800B6E14E /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D489C19EBCF7800B6E14E /* SGFocusImageFrame.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		193D48A019EBCF7800B6E14E /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D489E19EBCF7800B6E14E /* SGFocusImageItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		193D48A319EBCFB000B6E14E /* NewHuandengView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D48A219EBCFB000B6E14E /* NewHuandengView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		193D48A619EBCFE400B6E14E /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D48A519EBCFE400B6E14E /* SMPageControl.m */; };
+		193D48A919EBD09600B6E14E /* ComprehensiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D48A819EBD09600B6E14E /* ComprehensiveViewController.m */; };
+		193D48AC19EBD16600B6E14E /* SzkLoadData.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D48AB19EBD16600B6E14E /* SzkLoadData.m */; };
+		193D48B219EBD24200B6E14E /* CompreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D48B119EBD24200B6E14E /* CompreTableViewCell.m */; };
+		193D48B519EBD25C00B6E14E /* NewMainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D48B419EBD25C00B6E14E /* NewMainViewModel.m */; };
+		193D48B819EBD33C00B6E14E /* GuanggaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D48B719EBD33C00B6E14E /* GuanggaoViewController.m */; };
 		19FF0E2219E7D28500D5DC6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF0E2119E7D28500D5DC6A /* main.m */; };
 		19FF0E2519E7D28500D5DC6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF0E2419E7D28500D5DC6A /* AppDelegate.m */; };
 		19FF0E2819E7D28500D5DC6A /* fblifebbs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19FF0E2619E7D28500D5DC6A /* fblifebbs.xcdatamodeld */; };
@@ -330,6 +341,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		193D489519EBCEAF00B6E14E /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		193D489619EBCEAF00B6E14E /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		193D489819EBCF1900B6E14E /* LoadingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingIndicatorView.h; sourceTree = "<group>"; };
+		193D489919EBCF1900B6E14E /* LoadingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingIndicatorView.m; sourceTree = "<group>"; };
+		193D489B19EBCF7800B6E14E /* SGFocusImageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageFrame.h; sourceTree = "<group>"; };
+		193D489C19EBCF7800B6E14E /* SGFocusImageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageFrame.m; sourceTree = "<group>"; };
+		193D489D19EBCF7800B6E14E /* SGFocusImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageItem.h; sourceTree = "<group>"; };
+		193D489E19EBCF7800B6E14E /* SGFocusImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageItem.m; sourceTree = "<group>"; };
+		193D48A119EBCFB000B6E14E /* NewHuandengView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewHuandengView.h; sourceTree = "<group>"; };
+		193D48A219EBCFB000B6E14E /* NewHuandengView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewHuandengView.m; sourceTree = "<group>"; };
+		193D48A419EBCFE400B6E14E /* SMPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPageControl.h; sourceTree = "<group>"; };
+		193D48A519EBCFE400B6E14E /* SMPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPageControl.m; sourceTree = "<group>"; };
+		193D48A719EBD09600B6E14E /* ComprehensiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComprehensiveViewController.h; sourceTree = "<group>"; };
+		193D48A819EBD09600B6E14E /* ComprehensiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComprehensiveViewController.m; sourceTree = "<group>"; };
+		193D48AA19EBD16600B6E14E /* SzkLoadData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SzkLoadData.h; sourceTree = "<group>"; };
+		193D48AB19EBD16600B6E14E /* SzkLoadData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SzkLoadData.m; sourceTree = "<group>"; };
+		193D48B019EBD24200B6E14E /* CompreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompreTableViewCell.h; sourceTree = "<group>"; };
+		193D48B119EBD24200B6E14E /* CompreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompreTableViewCell.m; sourceTree = "<group>"; };
+		193D48B319EBD25C00B6E14E /* NewMainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMainViewModel.h; sourceTree = "<group>"; };
+		193D48B419EBD25C00B6E14E /* NewMainViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMainViewModel.m; sourceTree = "<group>"; };
+		193D48B619EBD33C00B6E14E /* GuanggaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuanggaoViewController.h; sourceTree = "<group>"; };
+		193D48B719EBD33C00B6E14E /* GuanggaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuanggaoViewController.m; sourceTree = "<group>"; };
 		19FF0E1C19E7D28500D5DC6A /* fblifebbs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fblifebbs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19FF0E2019E7D28500D5DC6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19FF0E2119E7D28500D5DC6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -873,6 +906,10 @@
 		19FF0E5219E7D2D700D5DC6A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				193D48B619EBD33C00B6E14E /* GuanggaoViewController.h */,
+				193D48B719EBD33C00B6E14E /* GuanggaoViewController.m */,
+				193D48A719EBD09600B6E14E /* ComprehensiveViewController.h */,
+				193D48A819EBD09600B6E14E /* ComprehensiveViewController.m */,
 				19FF0E6219E7D3B500D5DC6A /* MainViewController.h */,
 				19FF0E6319E7D3B500D5DC6A /* MainViewController.m */,
 				19FF0E6419E7D3B500D5DC6A /* MainViewController.xib */,
@@ -883,6 +920,8 @@
 		19FF0E5319E7D2D700D5DC6A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				193D48B319EBD25C00B6E14E /* NewMainViewModel.h */,
+				193D48B419EBD25C00B6E14E /* NewMainViewModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -890,6 +929,8 @@
 		19FF0E5419E7D2D700D5DC6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				193D48B019EBD24200B6E14E /* CompreTableViewCell.h */,
+				193D48B119EBD24200B6E14E /* CompreTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1338,6 +1379,20 @@
 		5668E1BC19EB70580091A4B0 /* SZK */ = {
 			isa = PBXGroup;
 			children = (
+				193D48AA19EBD16600B6E14E /* SzkLoadData.h */,
+				193D48AB19EBD16600B6E14E /* SzkLoadData.m */,
+				193D48A419EBCFE400B6E14E /* SMPageControl.h */,
+				193D48A519EBCFE400B6E14E /* SMPageControl.m */,
+				193D48A119EBCFB000B6E14E /* NewHuandengView.h */,
+				193D48A219EBCFB000B6E14E /* NewHuandengView.m */,
+				193D489B19EBCF7800B6E14E /* SGFocusImageFrame.h */,
+				193D489C19EBCF7800B6E14E /* SGFocusImageFrame.m */,
+				193D489D19EBCF7800B6E14E /* SGFocusImageItem.h */,
+				193D489E19EBCF7800B6E14E /* SGFocusImageItem.m */,
+				193D489819EBCF1900B6E14E /* LoadingIndicatorView.h */,
+				193D489919EBCF1900B6E14E /* LoadingIndicatorView.m */,
+				193D489519EBCEAF00B6E14E /* EGORefreshTableHeaderView.h */,
+				193D489619EBCEAF00B6E14E /* EGORefreshTableHeaderView.m */,
 				5668E1BD19EB70670091A4B0 /* downloadtool.h */,
 				5668E1BE19EB70670091A4B0 /* downloadtool.m */,
 			);
@@ -1900,10 +1955,15 @@
 				5668E1BA19EB70170091A4B0 /* zsnApi.m in Sources */,
 				19FF0E7419E7D40400D5DC6A /* BBSViewController.m in Sources */,
 				19FF0E2819E7D28500D5DC6A /* fblifebbs.xcdatamodeld in Sources */,
+				193D489F19EBCF7800B6E14E /* SGFocusImageFrame.m in Sources */,
 				5668E1AF19EB69CF0091A4B0 /* ZhuCeViewController.m in Sources */,
+				193D48A319EBCFB000B6E14E /* NewHuandengView.m in Sources */,
+				193D48B219EBD24200B6E14E /* CompreTableViewCell.m in Sources */,
+				193D48A019EBCF7800B6E14E /* SGFocusImageItem.m in Sources */,
 				5668E1B519EB69DF0091A4B0 /* VerificationViewController.m in Sources */,
 				5637232E19E905D100BEF45C /* LRefreshTableHeaderView.m in Sources */,
 				5668E21719EBAE990091A4B0 /* CustomMessageCell.m in Sources */,
+				193D489A19EBCF1900B6E14E /* LoadingIndicatorView.m in Sources */,
 				19FF0E6519E7D3B500D5DC6A /* MainViewController.m in Sources */,
 				5637232819E9029300BEF45C /* SliderForumCollectionModel.m in Sources */,
 				5668E1CF19EB7A070091A4B0 /* AlertRePlaceView.m in Sources */,
@@ -1912,8 +1972,10 @@
 				5668E1AD19EB69CF0091A4B0 /* LogInViewController.m in Sources */,
 				5646FC3319E7E30000AA35E0 /* SNViewController.m in Sources */,
 				19FF0E2519E7D28500D5DC6A /* AppDelegate.m in Sources */,
+				193D48A919EBD09600B6E14E /* ComprehensiveViewController.m in Sources */,
 				5668E21A19EBAF500091A4B0 /* MessageInfo.m in Sources */,
 				5668E1B419EB69DF0091A4B0 /* MyPhoneNumViewController.m in Sources */,
+				193D48B819EBD33C00B6E14E /* GuanggaoViewController.m in Sources */,
 				5668E21419EBAACC0091A4B0 /* MessageTableView.m in Sources */,
 				19FF0E6019E7D38200D5DC6A /* FindViewController.m in Sources */,
 				5668E22419EBB0740091A4B0 /* FullyLoaded.m in Sources */,
@@ -1922,8 +1984,12 @@
 				5668E1D019EB7A070091A4B0 /* loadingimview.m in Sources */,
 				19FF0E2B19E7D28500D5DC6A /* ViewController.m in Sources */,
 				19FF0E2219E7D28500D5DC6A /* main.m in Sources */,
+				193D48AC19EBD16600B6E14E /* SzkLoadData.m in Sources */,
+				193D48B519EBD25C00B6E14E /* NewMainViewModel.m in Sources */,
+				193D489719EBCEAF00B6E14E /* EGORefreshTableHeaderView.m in Sources */,
 				5668E1AE19EB69CF0091A4B0 /* ZhaoHuiViewController.m in Sources */,
 				19FF0E6A19E7D3D300D5DC6A /* MessageViewController.m in Sources */,
+				193D48A619EBCFE400B6E14E /* SMPageControl.m in Sources */,
 				19FF0E6F19E7D3EF00D5DC6A /* MineViewController.m in Sources */,
 				5668E1BF19EB70670091A4B0 /* downloadtool.m in Sources */,
 				5668E21E19EBAFCB0091A4B0 /* AsyncImageView.m in Sources */,

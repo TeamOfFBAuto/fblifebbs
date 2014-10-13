@@ -10,14 +10,14 @@
 	<string>fblifebbs</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>3F595C2628D76C6E7B952E0D29299449E4FCBB78</key>
+		<key>68FC690C3962DAEA53D3EA11296F41B5267481D9</key>
 		<string>https://github.com/TeamOfFBAuto/FBLIFEBBS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>fblifebbs/fblifebbs.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>3F595C2628D76C6E7B952E0D29299449E4FCBB78</key>
+		<key>68FC690C3962DAEA53D3EA11296F41B5267481D9</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3F595C2628D76C6E7B952E0D29299449E4FCBB78</string>
+	<string>68FC690C3962DAEA53D3EA11296F41B5267481D9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3F595C2628D76C6E7B952E0D29299449E4FCBB78</string>
+			<string>68FC690C3962DAEA53D3EA11296F41B5267481D9</string>
 			<key>IDESourceControlWCCName</key>
 			<string>FBLIFEBBS</string>
 		</dict>

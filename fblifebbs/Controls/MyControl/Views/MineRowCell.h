@@ -1,5 +1,5 @@
 //
-//  MineViewController.h
+//  MineRowCell.h
 //  fblifebbs
 //
 //  Created by lichaowei on 14-10-13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MineViewController : UITableViewController
+@interface MineRowCell : UITableViewCell
 
 @end

@@ -316,6 +316,18 @@
 		5668E27719EBC14B0091A4B0 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E25019EBC14B0091A4B0 /* line@2x.png */; };
 		5668E27819EBC14B0091A4B0 /* sixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E25119EBC14B0091A4B0 /* sixin@2x.png */; };
 		5668E27919EBC14B0091A4B0 /* yiguanzhu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E25219EBC14B0091A4B0 /* yiguanzhu@2x.png */; };
+		5668E28F19EBE38C0091A4B0 /* SliderRankingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E27D19EBE38C0091A4B0 /* SliderRankingListViewController.m */; };
+		5668E29019EBE38C0091A4B0 /* bbs_rankinglist_chexing1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E27F19EBE38C0091A4B0 /* bbs_rankinglist_chexing1@2x.png */; };
+		5668E29119EBE38C0091A4B0 /* bbs_rankinglist_chexing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E28019EBE38C0091A4B0 /* bbs_rankinglist_chexing@2x.png */; };
+		5668E29219EBE38C0091A4B0 /* bbs_rankinglist_dadui1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E28119EBE38C0091A4B0 /* bbs_rankinglist_dadui1@2x.png */; };
+		5668E29319EBE38C0091A4B0 /* bbs_rankinglist_dadui@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E28219EBE38C0091A4B0 /* bbs_rankinglist_dadui@2x.png */; };
+		5668E29419EBE38C0091A4B0 /* bbs_rankinglist_guanzhu1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E28319EBE38C0091A4B0 /* bbs_rankinglist_guanzhu1@2x.png */; };
+		5668E29519EBE38C0091A4B0 /* bbs_rankinglist_guanzhu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E28419EBE38C0091A4B0 /* bbs_rankinglist_guanzhu@2x.png */; };
+		5668E29619EBE38C0091A4B0 /* bbs_rankinglist_zhuti1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E28519EBE38C0091A4B0 /* bbs_rankinglist_zhuti1@2x.png */; };
+		5668E29719EBE38C0091A4B0 /* bbs_rankinglist_zhuti@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E28619EBE38C0091A4B0 /* bbs_rankinglist_zhuti@2x.png */; };
+		5668E29819EBE38C0091A4B0 /* RankingListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E28919EBE38C0091A4B0 /* RankingListModel.m */; };
+		5668E29919EBE38C0091A4B0 /* RankingListCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E28C19EBE38C0091A4B0 /* RankingListCustomCell.m */; };
+		5668E29A19EBE38C0091A4B0 /* RankingListSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E28E19EBE38C0091A4B0 /* RankingListSegmentView.m */; };
 		59029663F3D14A6C8ED7D166 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC1C7F5CF2B45F2827965E6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -676,6 +688,22 @@
 		5668E25019EBC14B0091A4B0 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
 		5668E25119EBC14B0091A4B0 /* sixin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sixin@2x.png"; sourceTree = "<group>"; };
 		5668E25219EBC14B0091A4B0 /* yiguanzhu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yiguanzhu@2x.png"; sourceTree = "<group>"; };
+		5668E27C19EBE38C0091A4B0 /* SliderRankingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderRankingListViewController.h; sourceTree = "<group>"; };
+		5668E27D19EBE38C0091A4B0 /* SliderRankingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderRankingListViewController.m; sourceTree = "<group>"; };
+		5668E27F19EBE38C0091A4B0 /* bbs_rankinglist_chexing1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_rankinglist_chexing1@2x.png"; sourceTree = "<group>"; };
+		5668E28019EBE38C0091A4B0 /* bbs_rankinglist_chexing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_rankinglist_chexing@2x.png"; sourceTree = "<group>"; };
+		5668E28119EBE38C0091A4B0 /* bbs_rankinglist_dadui1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_rankinglist_dadui1@2x.png"; sourceTree = "<group>"; };
+		5668E28219EBE38C0091A4B0 /* bbs_rankinglist_dadui@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_rankinglist_dadui@2x.png"; sourceTree = "<group>"; };
+		5668E28319EBE38C0091A4B0 /* bbs_rankinglist_guanzhu1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_rankinglist_guanzhu1@2x.png"; sourceTree = "<group>"; };
+		5668E28419EBE38C0091A4B0 /* bbs_rankinglist_guanzhu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_rankinglist_guanzhu@2x.png"; sourceTree = "<group>"; };
+		5668E28519EBE38C0091A4B0 /* bbs_rankinglist_zhuti1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_rankinglist_zhuti1@2x.png"; sourceTree = "<group>"; };
+		5668E28619EBE38C0091A4B0 /* bbs_rankinglist_zhuti@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_rankinglist_zhuti@2x.png"; sourceTree = "<group>"; };
+		5668E28819EBE38C0091A4B0 /* RankingListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingListModel.h; sourceTree = "<group>"; };
+		5668E28919EBE38C0091A4B0 /* RankingListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingListModel.m; sourceTree = "<group>"; };
+		5668E28B19EBE38C0091A4B0 /* RankingListCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingListCustomCell.h; sourceTree = "<group>"; };
+		5668E28C19EBE38C0091A4B0 /* RankingListCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingListCustomCell.m; sourceTree = "<group>"; };
+		5668E28D19EBE38C0091A4B0 /* RankingListSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingListSegmentView.h; sourceTree = "<group>"; };
+		5668E28E19EBE38C0091A4B0 /* RankingListSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingListSegmentView.m; sourceTree = "<group>"; };
 		64B86ABD37B84DCF95542AF2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8CC1C7F5CF2B45F2827965E6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -942,6 +970,7 @@
 		19FF0E5A19E7D2D700D5DC6A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5668E27A19EBE38C0091A4B0 /* SliderRankingListControl */,
 				19FF0E7119E7D40400D5DC6A /* BBSViewController.h */,
 				19FF0E7219E7D40400D5DC6A /* BBSViewController.m */,
 				19FF0E7319E7D40400D5DC6A /* BBSViewController.xib */,
@@ -1481,6 +1510,61 @@
 			path = FblifeBBSpersonal;
 			sourceTree = "<group>";
 		};
+		5668E27A19EBE38C0091A4B0 /* SliderRankingListControl */ = {
+			isa = PBXGroup;
+			children = (
+				5668E27B19EBE38C0091A4B0 /* SliderRankingListControllers */,
+				5668E27E19EBE38C0091A4B0 /* SliderRankingListImages */,
+				5668E28719EBE38C0091A4B0 /* SliderRankingListModel */,
+				5668E28A19EBE38C0091A4B0 /* SliderRankingListViews */,
+			);
+			path = SliderRankingListControl;
+			sourceTree = "<group>";
+		};
+		5668E27B19EBE38C0091A4B0 /* SliderRankingListControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5668E27C19EBE38C0091A4B0 /* SliderRankingListViewController.h */,
+				5668E27D19EBE38C0091A4B0 /* SliderRankingListViewController.m */,
+			);
+			path = SliderRankingListControllers;
+			sourceTree = "<group>";
+		};
+		5668E27E19EBE38C0091A4B0 /* SliderRankingListImages */ = {
+			isa = PBXGroup;
+			children = (
+				5668E27F19EBE38C0091A4B0 /* bbs_rankinglist_chexing1@2x.png */,
+				5668E28019EBE38C0091A4B0 /* bbs_rankinglist_chexing@2x.png */,
+				5668E28119EBE38C0091A4B0 /* bbs_rankinglist_dadui1@2x.png */,
+				5668E28219EBE38C0091A4B0 /* bbs_rankinglist_dadui@2x.png */,
+				5668E28319EBE38C0091A4B0 /* bbs_rankinglist_guanzhu1@2x.png */,
+				5668E28419EBE38C0091A4B0 /* bbs_rankinglist_guanzhu@2x.png */,
+				5668E28519EBE38C0091A4B0 /* bbs_rankinglist_zhuti1@2x.png */,
+				5668E28619EBE38C0091A4B0 /* bbs_rankinglist_zhuti@2x.png */,
+			);
+			path = SliderRankingListImages;
+			sourceTree = "<group>";
+		};
+		5668E28719EBE38C0091A4B0 /* SliderRankingListModel */ = {
+			isa = PBXGroup;
+			children = (
+				5668E28819EBE38C0091A4B0 /* RankingListModel.h */,
+				5668E28919EBE38C0091A4B0 /* RankingListModel.m */,
+			);
+			path = SliderRankingListModel;
+			sourceTree = "<group>";
+		};
+		5668E28A19EBE38C0091A4B0 /* SliderRankingListViews */ = {
+			isa = PBXGroup;
+			children = (
+				5668E28B19EBE38C0091A4B0 /* RankingListCustomCell.h */,
+				5668E28C19EBE38C0091A4B0 /* RankingListCustomCell.m */,
+				5668E28D19EBE38C0091A4B0 /* RankingListSegmentView.h */,
+				5668E28E19EBE38C0091A4B0 /* RankingListSegmentView.m */,
+			);
+			path = SliderRankingListViews;
+			sourceTree = "<group>";
+		};
 		6FBE2BA0A2534BEA81E69BF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1622,6 +1706,7 @@
 				5637253219E9232900BEF45C /* telephoto@2x.png in Resources */,
 				5637240F19E922D800BEF45C /* sharemail@2x.png in Resources */,
 				5637253919E9232900BEF45C /* weibo_detai_line@2x.png in Resources */,
+				5668E29319EBE38C0091A4B0 /* bbs_rankinglist_dadui@2x.png in Resources */,
 				5637254619E9232900BEF45C /* writeWeiBoImage@2x.png in Resources */,
 				563724B619E9232900BEF45C /* earth_logo@2x.png in Resources */,
 				563724E319E9232900BEF45C /* 113@2x.png in Resources */,
@@ -1633,6 +1718,7 @@
 				563724FE19E9232900BEF45C /* ios7_refresh4139@2x.png in Resources */,
 				5668E27719EBC14B0091A4B0 /* line@2x.png in Resources */,
 				5637254119E9232900BEF45C /* weibo_write_image@2x.png in Resources */,
+				5668E29619EBE38C0091A4B0 /* bbs_rankinglist_zhuti1@2x.png in Resources */,
 				19FF0E3319E7D28500D5DC6A /* LaunchScreen.xib in Resources */,
 				5637256719E9247800BEF45C /* bbs_forum_jiaoyi@2x.png in Resources */,
 				5668E1CE19EB7A070091A4B0 /* 308_223@2x.png in Resources */,
@@ -1697,6 +1783,7 @@
 				5637252419E9232900BEF45C /* llongInBackImage@2x.png in Resources */,
 				5637251919E9232900BEF45C /* ios7_newssearch@2x.png in Resources */,
 				5668E27119EBC14B0091A4B0 /* youxiang@2x.png in Resources */,
+				5668E29719EBE38C0091A4B0 /* bbs_rankinglist_zhuti@2x.png in Resources */,
 				5637250419E9232900BEF45C /* selectbbsright297_57@2x.png in Resources */,
 				5637250119E9232900BEF45C /* ios7_zuijinliulanunselect@2x.png in Resources */,
 				19FF0E6B19E7D3D300D5DC6A /* MessageViewController.xib in Resources */,
@@ -1707,6 +1794,7 @@
 				5668E26B19EBC14B0091A4B0 /* lishijilu@2x.png in Resources */,
 				563724D419E9232900BEF45C /* ios7_on34_38@2x.png in Resources */,
 				563724E519E9232900BEF45C /* 114@2x.png in Resources */,
+				5668E29219EBE38C0091A4B0 /* bbs_rankinglist_dadui1@2x.png in Resources */,
 				5668E26219EBC14B0091A4B0 /* friend@2x.png in Resources */,
 				563723F619E922D800BEF45C /* bolang@2x.png in Resources */,
 				5637252619E9232900BEF45C /* logoInLogo@2x.png in Resources */,
@@ -1745,6 +1833,7 @@
 				5668E26A19EBC14B0091A4B0 /* jiantou@2x.png in Resources */,
 				563724EC19E9232900BEF45C /* ios7_commit3839@2x1.png in Resources */,
 				5637254819E9232900BEF45C /* zc_resendimage@2x.png in Resources */,
+				5668E29519EBE38C0091A4B0 /* bbs_rankinglist_guanzhu@2x.png in Resources */,
 				5637240919E922D800BEF45C /* our37_34@2x.png in Resources */,
 				563724B419E9232900BEF45C /* chose.png in Resources */,
 				5637250E19E9232900BEF45C /* ios7_fbselected@2x.png in Resources */,
@@ -1801,11 +1890,13 @@
 				5637251E19E9232900BEF45C /* ios7_nonecomment121_114@2x.png in Resources */,
 				5637253E19E9232900BEF45C /* weibo_detail_wurenpinglun@2x.png in Resources */,
 				563724C019E9232900BEF45C /* ios7_back@2x.png in Resources */,
+				5668E29119EBE38C0091A4B0 /* bbs_rankinglist_chexing@2x.png in Resources */,
 				563724C319E9232900BEF45C /* ios7_fengmianlogo2@2x.png in Resources */,
 				5637254019E9232900BEF45C /* weibo_implace@2x.png in Resources */,
 				5637252119E9232900BEF45C /* ios7_webviewbar@2x.png in Resources */,
 				5637250319E9232900BEF45C /* searchbbs297_57@2x.png in Resources */,
 				5668E25E19EBC14B0091A4B0 /* baocun@2x.png in Resources */,
+				5668E29419EBE38C0091A4B0 /* bbs_rankinglist_guanzhu1@2x.png in Resources */,
 				5637240719E922D800BEF45C /* newscollect44_43@2x.png in Resources */,
 				563724BA19E9232900BEF45C /* filmios7@2x.png in Resources */,
 				5668E27919EBC14B0091A4B0 /* yiguanzhu@2x.png in Resources */,
@@ -1829,6 +1920,7 @@
 				5668E26519EBC14B0091A4B0 /* news@2x.png in Resources */,
 				5668E25319EBC14B0091A4B0 /* bankuai-1@2x.png in Resources */,
 				5668E27019EBC14B0091A4B0 /* woman@2x.png in Resources */,
+				5668E29019EBE38C0091A4B0 /* bbs_rankinglist_chexing1@2x.png in Resources */,
 				563724CF19E9232900BEF45C /* ios7_help5959@2x.png in Resources */,
 				5637253119E9232900BEF45C /* talk2@2x.png in Resources */,
 				563724D719E9232900BEF45C /* ios7_trash5959@2x.png in Resources */,
@@ -1901,10 +1993,13 @@
 				19FF0E7419E7D40400D5DC6A /* BBSViewController.m in Sources */,
 				19FF0E2819E7D28500D5DC6A /* fblifebbs.xcdatamodeld in Sources */,
 				5668E1AF19EB69CF0091A4B0 /* ZhuCeViewController.m in Sources */,
+				5668E29819EBE38C0091A4B0 /* RankingListModel.m in Sources */,
 				5668E1B519EB69DF0091A4B0 /* VerificationViewController.m in Sources */,
 				5637232E19E905D100BEF45C /* LRefreshTableHeaderView.m in Sources */,
 				5668E21719EBAE990091A4B0 /* CustomMessageCell.m in Sources */,
+				5668E29919EBE38C0091A4B0 /* RankingListCustomCell.m in Sources */,
 				19FF0E6519E7D3B500D5DC6A /* MainViewController.m in Sources */,
+				5668E28F19EBE38C0091A4B0 /* SliderRankingListViewController.m in Sources */,
 				5637232819E9029300BEF45C /* SliderForumCollectionModel.m in Sources */,
 				5668E1CF19EB7A070091A4B0 /* AlertRePlaceView.m in Sources */,
 				5637232519E8FF6500BEF45C /* RefreshTableView.m in Sources */,
@@ -1917,6 +2012,7 @@
 				5668E21419EBAACC0091A4B0 /* MessageTableView.m in Sources */,
 				19FF0E6019E7D38200D5DC6A /* FindViewController.m in Sources */,
 				5668E22419EBB0740091A4B0 /* FullyLoaded.m in Sources */,
+				5668E29A19EBE38C0091A4B0 /* RankingListSegmentView.m in Sources */,
 				5646FC3D19E7E64F00AA35E0 /* SliderBBSTitleView.m in Sources */,
 				5668E22119EBB0330091A4B0 /* personal.m in Sources */,
 				5668E1D019EB7A070091A4B0 /* loadingimview.m in Sources */,

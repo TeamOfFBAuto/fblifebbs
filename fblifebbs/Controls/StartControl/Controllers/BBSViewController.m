@@ -242,7 +242,7 @@
         
         NSString * fullUrl = [NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumsbycategory.php?categorytype=%@&formattype=json&authocode=%@",[forum_title_array objectAtIndex:i],AUTHKEY];
         
-        NSLog(@"请求版块接口-----%@",fullUrl);
+       // NSLog(@"请求版块接口-----%@",fullUrl);
         
         ASIHTTPRequest * request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullUrl]];
         

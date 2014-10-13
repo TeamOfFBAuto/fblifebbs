@@ -25,6 +25,7 @@
 #import "AsyncImageView.h"
 #import "personal.h"
 #import "LogInViewController.h"
+#import "LTools.h"
 
 
 #pragma mark - 自定义的宏，方便调动

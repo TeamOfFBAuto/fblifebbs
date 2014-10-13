@@ -21,6 +21,9 @@
 #import "LogInViewController.h"
 
 
+#import "ComprehensiveViewController.h"
+
+
 @interface AppDelegate ()
 
 @end
@@ -75,7 +78,7 @@
 -(void)setTabbarViewcontroller{
 
    
-    MainViewController * mainVC = [[MainViewController alloc] init];
+    ComprehensiveViewController * mainVC = [[ComprehensiveViewController alloc] init];
     
     BBSViewController * microBBSVC = [[BBSViewController alloc] init];
     
@@ -96,15 +99,15 @@
     UINavigationController * navc5 = [[UINavigationController alloc] initWithRootViewController:mineVC];
     
     
-    navc1.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"主页" image:[UIImage imageNamed:@"bike.png"] selectedImage:[UIImage imageNamed:@"bike.png"]];
+    navc1.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"主页" image:[UIImage imageNamed:@"home-1.png"] selectedImage:[UIImage imageNamed:@"home-1.png"]];
     
-    navc2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"版块" image:[UIImage imageNamed:@"history.png"] selectedImage:[UIImage imageNamed:@"history.png"]];
+    navc2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"版块" image:[UIImage imageNamed:@"bankuai-1.png"] selectedImage:[UIImage imageNamed:@"bankuai-1.png"]];
     
-    navc3.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:[UIImage imageNamed:@"start.png"] selectedImage:[UIImage imageNamed:@"start.png"]];
+    navc3.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:[UIImage imageNamed:@"find-1.png"] selectedImage:[UIImage imageNamed:@"find-1.png"]];
     
-    navc4.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"消息" image:[UIImage imageNamed:@"find.png"] selectedImage:[UIImage imageNamed:@"find.png"]];
+    navc4.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"消息" image:[UIImage imageNamed:@"xiaoxi-1"] selectedImage:[UIImage imageNamed:@"xiaoxi-1.png"]];
     
-    navc5.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[UIImage imageNamed:@"mine.png"] selectedImage:[UIImage imageNamed:@"mine.png"]];
+    navc5.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[UIImage imageNamed:@"me-1.png"] selectedImage:[UIImage imageNamed:@"me-1.png"]];
     
     
     UITabBarController * tabbarVC = [[UITabBarController alloc] init];

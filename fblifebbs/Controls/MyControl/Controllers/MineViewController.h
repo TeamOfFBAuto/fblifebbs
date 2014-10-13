@@ -2,12 +2,12 @@
 //  MineViewController.h
 //  fblifebbs
 //
-//  Created by szk on 14-10-10.
+//  Created by lichaowei on 14-10-13.
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface MineViewController : UIViewController
+@interface MineViewController : UITableViewController
 
 @end

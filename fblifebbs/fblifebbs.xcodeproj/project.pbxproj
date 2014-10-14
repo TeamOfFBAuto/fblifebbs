@@ -2097,11 +2097,8 @@
 				5637253219E9232900BEF45C /* telephoto@2x.png in Resources */,
 				5637240F19E922D800BEF45C /* sharemail@2x.png in Resources */,
 				5637253919E9232900BEF45C /* weibo_detai_line@2x.png in Resources */,
-<<<<<<< HEAD
-=======
 				193D48F419ECC4DE00B6E14E /* UMShareEditViewControlleriPad.xib in Resources */,
 				5668E29319EBE38C0091A4B0 /* bbs_rankinglist_dadui@2x.png in Resources */,
->>>>>>> FETCH_HEAD
 				5637254619E9232900BEF45C /* writeWeiBoImage@2x.png in Resources */,
 				563724B619E9232900BEF45C /* earth_logo@2x.png in Resources */,
 				562DE03019ECE5A900CAF790 /* bbs_rankinglist_dadui@2x.png in Resources */,
@@ -2441,11 +2438,8 @@
 				19FF0E6019E7D38200D5DC6A /* FindViewController.m in Sources */,
 				562DE03919ECE5B800CAF790 /* RankingListCustomCell.m in Sources */,
 				5668E22419EBB0740091A4B0 /* FullyLoaded.m in Sources */,
-<<<<<<< HEAD
-=======
 				5668E29A19EBE38C0091A4B0 /* RankingListSegmentView.m in Sources */,
 				193D48FC19ECEE1D00B6E14E /* ShareView.m in Sources */,
->>>>>>> FETCH_HEAD
 				130C24A019EBDB3500044F51 /* UIView+Frame.m in Sources */,
 				5646FC3D19E7E64F00AA35E0 /* SliderBBSTitleView.m in Sources */,
 				5668E22119EBB0330091A4B0 /* personal.m in Sources */,

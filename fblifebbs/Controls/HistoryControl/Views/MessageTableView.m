@@ -20,14 +20,20 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        _myTableView = [[RefreshTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
-        _myTableView.delegate = self;
-        _myTableView.dataSource = self;
-        _myTableView.refreshDelegate = self;
-        [self addSubview:_myTableView];
+        [self setup];
         
     }
     return self;
+}
+
+-(void)setup
+{
+    _myTableView = [[RefreshTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
+    _myTableView.delegate = self;
+    _myTableView.dataSource = self;
+    _myTableView.refreshDelegate = self;
+    _myTableView.separatorInset = UIEdgeInsetsZero;
+    [self addSubview:_myTableView];
 }
 
 -(void)setData_array:(NSMutableArray *)data_array
@@ -80,8 +86,16 @@
     return cell;
 }
 
-
-
+///下拉加载
+- (void)loadNewData
+{
+    
+}
+///上拉更多
+- (void)loadMoreData
+{
+    
+}
 
 
 

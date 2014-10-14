@@ -11,7 +11,7 @@
 #import "SliderForumCollectionModel.h"
 #import "SliderBBSForumSegmentView.h"
 #import "ASINetworkQueue.h"
-#import "SliderRankingListViewController.h"
+#import "BBSRankingView.h"
 
 
 @interface SliderBBSForumModel ()
@@ -146,11 +146,11 @@
     
     _myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH+20,DEVICE_HEIGHT-64-49)];
     _myScrollView.delegate = self;
-    _myScrollView.bounces = YES;
+    _myScrollView.bounces = NO;
     _myScrollView.showsHorizontalScrollIndicator = NO;
     _myScrollView.showsVerticalScrollIndicator = NO;
     _myScrollView.pagingEnabled = YES;
-    _myScrollView.backgroundColor = [UIColor redColor];
+    _myScrollView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_myScrollView];
     _myScrollView.contentSize = CGSizeMake((DEVICE_WIDTH+20)*2,0);
     
@@ -178,11 +178,42 @@
     
     
     ///排行榜部分
-    _myTableView2 = [[RefreshTableView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH+20,63,DEVICE_WIDTH,_myScrollView.frame.size.height-63)];
+    _myTableView2 = [[RefreshTableView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH+20,0,DEVICE_WIDTH,_myScrollView.frame.size.height)];
     _myTableView2.delegate = self;
     _myTableView2.dataSource = self;
     _myTableView2.separatorStyle = UITableViewCellSeparatorStyleNone;
    // [_myScrollView addSubview:_myTableView2];
+    
+    BBSRankingView * rangkingView = [[BBSRankingView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH+20,0,DEVICE_WIDTH,_myScrollView.frame.size.height)];
+    [_myScrollView addSubview:rangkingView];
+    
+    
+    [rangkingView setRangkingBlock:^(int index, id object){
+         NSLog(@"index--------%d",index);
+        
+        switch (index) {
+            case 0:///bbsdetail
+            {
+                
+            }
+                break;
+            case 1:///bbsfendui
+            {
+                
+            }
+                break;
+            case 2:///login
+            {
+                LogInViewController * logIn = [LogInViewController sharedManager];
+                [bself presentViewController:logIn animated:YES completion:nil];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    
     
     ///数据请求
     [self loadAllForums];

@@ -150,6 +150,8 @@
 {
     if (type == 0)
     {
+        NSLog(@"-=-=-=-=-=-=-  %@ -=-=-=-=-=-  %@",info.from_uid,[[NSUserDefaults standardUserDefaults] objectForKey:USER_UID]);
+        
         if ([info.from_uid isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USER_UID]])
         {
             [_headImageView loadImageFromURL:[zsnApi returnUrl:info.to_uid] withPlaceholdImage:[personal getImageWithName:@"touxiang"]];

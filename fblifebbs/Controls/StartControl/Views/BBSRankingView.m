@@ -1,91 +1,55 @@
 //
-//  SliderRankingListViewController.m
-//  越野e族
+//  BBSRankingView.m
+//  fblifebbs
 //
-//  Created by soulnear on 14-7-9.
-//  Copyright (c) 2014年 soulnear. All rights reserved.
+//  Created by soulnear on 14-10-14.
+//  Copyright (c) 2014年 szk. All rights reserved.
 //
 
-#import "SliderRankingListViewController.h"
+#import "BBSRankingView.h"
 #import "RankingListSegmentView.h"
 #import "RankingListModel.h"
 //#import "bbsdetailViewController.h"
 //#import "BBSfenduiViewController.h"
 #import "SliderForumCollectionModel.h"
 
-@interface SliderRankingListViewController ()
-{
-    RankingListSegmentView * ranking_segment;
-    
-    RankingListModel * myModel;
-}
-
-@end
-
-@implementation SliderRankingListViewController
+@implementation BBSRankingView
 @synthesize myTableView = _myTableView;
 @synthesize data_array = _data_array;
 @synthesize currentPage = _currentPage;
 @synthesize bbs_forum_collection_array = _bbs_forum_collection_array;
 @synthesize bbs_post_collection_array = _bbs_post_collection_array;
+@synthesize rangkingBlock = _rangkingBlock;
 
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        [self setup];
     }
     return self;
 }
 
--(void)viewWillAppear:(BOOL)animated
+///创建视图
+-(void)setup
 {
-    [super viewWillAppear:animated];
-    
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        //iOS 5 new UINavigationBar custom background
-        
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?@"sliderBBSNavigationBarImage":@"sliderBBSNavigationBarImage_ios6"] forBarMetrics: UIBarMetricsDefault];
-    }
-    
-
-    [self.myTableView reloadData];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
-    
-    self.title = @"排行榜";
-    
-    
     _data_array = [NSMutableArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],nil];
-    
-    
-    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,(iPhone5?568:480)-64) style:UITableViewStylePlain];
-    
+    _myTableView = [[RefreshTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
     _myTableView.delegate = self;
-    
     _myTableView.dataSource = self;
-    
     _myTableView.separatorColor = RGBCOLOR(223,223,223);
-    
     if (MY_MACRO_NAME) {
         _myTableView.separatorInset = UIEdgeInsetsZero;
     }
-    
-    [self.view addSubview:_myTableView];
+    [self addSubview:_myTableView];
     
     __weak typeof(self) bself = self;
     
     _currentPage = 1;
     
-    ranking_segment = [[RankingListSegmentView alloc] initWithFrame:CGRectMake(0,0,320,56.5) WithBlock:^(int index) {
+    ranking_segment = [[RankingListSegmentView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width,56.5) WithBlock:^(int index) {
         
         bself.currentPage = index + 1;
         
@@ -97,18 +61,15 @@
         }
     }];
     
-    _myTableView.tableHeaderView = ranking_segment;
-    
-    
     [self loadRankingListDataWithIndex:_currentPage];
     
     [self loadAllBBSPostData];
     
-}
-
--(void)leftButtonTap:(UIButton *)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
+    _myTableView.tableHeaderView = ranking_segment;
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogIn:) name:@"LogIn" object:nil];
 }
 
 #pragma mark - 请求排行榜数据
@@ -123,37 +84,34 @@
     __weak typeof(self) bself = self;
     
     [myModel loadRankingListDataWithType:index WithComplicationBlock:^(NSMutableArray *array)
-    {
-        [bself.data_array replaceObjectAtIndex:index-1 withObject:array];
-        
-        [bself.myTableView reloadData];
-        
-    } WithFailedBlock:^(NSString *errinfo) {
-        
-    }];
+     {
+         [bself.data_array replaceObjectAtIndex:index-1 withObject:array];
+         
+         [bself.myTableView reloadData];
+         
+     } WithFailedBlock:^(NSString *errinfo) {
+         
+     }];
 }
 
+#pragma mark - 登陆成功代理方法
+-(void)successLogIn:(NSNotification *)notification
+{
+    [self loadAllBBSPostData];
+}
 
 #pragma mark - 请求收藏的所有的帖子
 
 
 -(void)loadAllBBSPostData
 {
-    
-    
-//    BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
-//    
-//    
-//    if (!isLogin) {
-//        LogInViewController * logIn = [LogInViewController sharedManager];
-//        
-//        [self presentViewController:logIn animated:YES completion:NULL];
-//        
-//        return;
-//    }
-    
+    BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
 
-    
+    if (!isLogin)
+    {
+//        rangking_block(2,nil);
+        return;
+    }
     
     
     if (!_bbs_post_collection_array) {
@@ -174,7 +132,7 @@
     __weak typeof(self) bself = self;
     
     [request setCompletionBlock:^{
-       
+        
         @try
         {
             NSDictionary * allDic = [bbs_request.responseString objectFromJSONString];
@@ -217,8 +175,6 @@
 }
 
 
-
-
 #pragma mark - UITableViewDelegate
 
 
@@ -253,9 +209,7 @@
     RankingListModel * model = [[_data_array objectAtIndex:_currentPage-1] objectAtIndex:indexPath.row];
     
     [cell setInfoWith:indexPath.row + 1 WithModel:model WithType:self.currentPage];
-    
-    NSLog(@"---=--=-----  %@",self.bbs_forum_collection_array);
-    
+        
     cell.collection_button.selected = [self.currentPage==1?self.bbs_post_collection_array:self.bbs_forum_collection_array containsObject:model.ranking_id];
     
     return cell;
@@ -268,29 +222,23 @@
         RankingListModel * model = [[_data_array objectAtIndex:_currentPage-1] objectAtIndex:indexPath.row];
         
 //        bbsdetailViewController * detail = [[bbsdetailViewController alloc] init];
-//        
 //        detail.bbsdetail_tid = model.ranking_id;
-//        
 //        detail.collection_array = self.bbs_post_collection_array;
-//        
 //        [self.navigationController pushViewController:detail animated:YES];
+        rangking_block(0,model);
+        
     }else
     {
-        
         if ([[_data_array objectAtIndex:_currentPage-1] count] > 0)
         {
             RankingListModel * model = [[_data_array objectAtIndex:_currentPage-1] objectAtIndex:indexPath.row];
             
 //            BBSfenduiViewController * detail = [[BBSfenduiViewController alloc] init];
-//            
 //            detail.string_id = model.ranking_id;
-//            
 //            detail.string_name = model.ranking_title;
-//            
 //            detail.collection_array = self.bbs_forum_collection_array;
-//            
 //            [self.navigationController pushViewController:detail animated:YES];
-            
+            rangking_block(1,model);
         }
     }
 }
@@ -306,16 +254,11 @@
     
     BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
     
-    
     if (!isLogin) {
-        LogInViewController * logIn = [LogInViewController sharedManager];
-        
-        [self presentViewController:logIn animated:YES completion:NULL];
-        
+        rangking_block(2,nil);
         return;
     }
     
-
     
     NSIndexPath * indexPath = [_myTableView indexPathForCell:cell];
     
@@ -328,7 +271,7 @@
     if (self.currentPage == 1)
     {
         isCollected = [self.bbs_post_collection_array containsObject:model.ranking_id];
-                
+        
         if (!isCollected)
         {
             fullUrl = [NSString stringWithFormat:COLLECTION_BBS_POST_URL,AUTHKEY,model.ranking_id];
@@ -376,10 +319,10 @@
                 }
             }else
             {
-//                if ([bself.bbs_forum_collection_array containsObject:model.ranking_id])
-//                {
-//                    [bself.bbs_forum_collection_array removeObject:model.ranking_id];
-//                }
+                //                if ([bself.bbs_forum_collection_array containsObject:model.ranking_id])
+                //                {
+                //                    [bself.bbs_forum_collection_array removeObject:model.ranking_id];
+                //                }
                 
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
@@ -395,10 +338,10 @@
                 }
             }else
             {
-//                if (![bself.bbs_forum_collection_array containsObject:model.ranking_id])
-//                {
-//                    [bself.bbs_forum_collection_array addObject:model.ranking_id];
-//                }
+                //                if (![bself.bbs_forum_collection_array containsObject:model.ranking_id])
+                //                {
+                //                    [bself.bbs_forum_collection_array addObject:model.ranking_id];
+                //                }
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
             }
@@ -414,22 +357,20 @@
 }
 
 
-
-
-- (void)didReceiveMemoryWarning
+#pragma mark - 点击事件触发方法
+-(void)setRangkingBlock:(BBSRankingViewBlock)rangkingBlock
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    rangking_block = rangkingBlock;
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
 }
 */
 

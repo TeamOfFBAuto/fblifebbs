@@ -15,12 +15,32 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hop-94-Ze6">
-                        <rect key="frame" x="13" y="5" width="46" height="41"/>
+                        <rect key="frame" x="13" y="15" width="24" height="24"/>
                         <color key="backgroundColor" red="0.83721975140000005" green="1" blue="0.96394129490000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilh-0y-I6q">
+                        <rect key="frame" x="45" y="16" width="130" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zw0-rM-ZUm">
+                        <rect key="frame" x="13" y="54" width="307" height="1"/>
+                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jiantou.png" translatesAutoresizingMaskIntoConstraints="NO" id="09C-4e-agm">
+                        <rect key="frame" x="300" y="20" width="7" height="13"/>
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="aTitleLabel" destination="ilh-0y-I6q" id="vub-yM-0n8"/>
+                <outlet property="iconImage" destination="hop-94-Ze6" id="tJx-p1-L4M"/>
+            </connections>
             <point key="canvasLocation" x="140" y="154"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="jiantou.png" width="7" height="12"/>
+    </resources>
 </document>

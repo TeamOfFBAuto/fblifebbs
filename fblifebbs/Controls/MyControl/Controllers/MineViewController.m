@@ -11,6 +11,10 @@
 #import "MineRowCell.h"
 
 @interface MineViewController ()
+{
+    NSArray *images_arr;
+    NSArray *names_arr;
+}
 
 @end
 
@@ -24,11 +28,23 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
+    
+    images_arr = @[@"",@"",@"",@"shoucang@2x.png",@"tiezi@2x.png",@"friend@2x.png",@"",@"mingpian@2x.png",@"youxiang@2x.png",@"lishijilu@2x.png"];
+    names_arr = @[@"",@"",@"",@"我的收藏",@"我的帖子",@"我的好友",@"",@"我的名片",@"草稿箱",@"历史浏览"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 网络请求
+
+- (void)getUserInfo
+{
+//    NSString *url = [NSString stringWithFormat:URL_USERMESSAGE,];
 }
 
 #pragma mark - Table view data source
@@ -70,6 +86,9 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"MineRowCell" owner:self options:nil]objectAtIndex:0];
     }
+    
+    cell.iconImage.image = [UIImage imageNamed:[images_arr objectAtIndex:indexPath.row]];
+    cell.aTitleLabel.text = [names_arr objectAtIndex:indexPath.row];
     
     return cell;
     

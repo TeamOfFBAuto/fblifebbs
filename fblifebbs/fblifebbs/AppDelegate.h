@@ -20,8 +20,5 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
-///判断跳转方向(type=login到登陆;type=root到主界面)
--(void)showRootViewWith:(NSString *)type;
-
 @end
 

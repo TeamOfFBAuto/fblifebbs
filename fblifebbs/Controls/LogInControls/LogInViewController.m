@@ -7,7 +7,6 @@
 //
 
 #import "LogInViewController.h"
-#import "AppDelegate.h"
 @interface LogInViewController ()
 {
     downloadtool *tool1;
@@ -449,9 +448,7 @@
                 
                 [self loadDown];
                 
-//                [self dismissViewControllerAnimated:YES completion:NULL];
-                
-                [self successLogin];
+                [self dismissViewControllerAnimated:YES completion:NULL];
                 
             }else
             {
@@ -485,8 +482,7 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:USER_AUTHOD object:[dictionary objectForKey:@"bbsinfo"]];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"clearolddata" object:nil];
                 
-//                [self dismissViewControllerAnimated:YES completion:NULL];
-                [self successLogin];
+                [self dismissViewControllerAnimated:YES completion:NULL];
             }else
             {
                 NSLog(@"开通时候的dic=%@",dic);
@@ -606,16 +602,6 @@
     
     return YES;
 }
-
-
-#pragma mark - 登陆成功
--(void)successLogin
-{
-    AppDelegate * app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app showRootViewWith:@"root"];
-}
-
-
 
 - (void)didReceiveMemoryWarning
 {

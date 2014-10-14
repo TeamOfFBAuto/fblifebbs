@@ -45,6 +45,21 @@
     return YES;
 }
 
+
+-(void)showRootViewWith:(NSString *)type
+{
+//    if ([type isEqualToString:@"login"])///登陆
+//    {
+//        LogInViewController * logIn = [LogInViewController sharedManager];
+//        self.window.rootViewController = logIn;
+//        
+//    }else///主视图
+//    {
+        [self setTabbarViewcontroller];
+//    }
+}
+
+
 #pragma mark-设置tabbarViewC
 
 -(void)setTabbarViewcontroller{

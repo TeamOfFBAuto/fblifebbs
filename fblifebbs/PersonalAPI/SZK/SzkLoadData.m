@@ -81,6 +81,8 @@
       NSLog(@"dicinfo==%@",self.mydicinfo);
     
     
+//     NSArray *dicinfo=[_data objectFromJSONData];
+//    self.mydicinfo=[_data objectFromJSONData];
     
    self.xxxxbloc(self.mydicinfo,0);
  

@@ -80,6 +80,7 @@
 		19FF0E6B19E7D3D300D5DC6A /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19FF0E6919E7D3D300D5DC6A /* MessageViewController.xib */; };
 		19FF0E7419E7D40400D5DC6A /* BBSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF0E7219E7D40400D5DC6A /* BBSViewController.m */; };
 		19FF0E7519E7D40400D5DC6A /* BBSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19FF0E7319E7D40400D5DC6A /* BBSViewController.xib */; };
+		562DE00719ECBDBB00CAF790 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5668E1D419EB9A460091A4B0 /* CFNetwork.framework */; };
 		5637232519E8FF6500BEF45C /* RefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5637232419E8FF6500BEF45C /* RefreshTableView.m */; };
 		5637232819E9029300BEF45C /* SliderForumCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5637232719E9029300BEF45C /* SliderForumCollectionModel.m */; };
 		5637232B19E9059400BEF45C /* SliderBBSForumSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5637232A19E9059400BEF45C /* SliderBBSForumSegmentView.m */; };
@@ -301,7 +302,6 @@
 		5668E1D019EB7A070091A4B0 /* loadingimview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E1CC19EB7A070091A4B0 /* loadingimview.m */; };
 		5668E1D119EB7A070091A4B0 /* tishijizai308_223@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E1CD19EB7A070091A4B0 /* tishijizai308_223@2x.png */; };
 		5668E1D319EB9A390091A4B0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5668E1D219EB9A390091A4B0 /* QuartzCore.framework */; };
-		5668E1D519EB9A460091A4B0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5668E1D419EB9A460091A4B0 /* CFNetwork.framework */; };
 		5668E1D719EB9A520091A4B0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5668E1D619EB9A520091A4B0 /* SystemConfiguration.framework */; };
 		5668E1D919EB9A5C0091A4B0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5668E1D819EB9A5C0091A4B0 /* libsqlite3.0.dylib */; };
 		5668E1DB19EB9B380091A4B0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5668E1DA19EB9B380091A4B0 /* MobileCoreServices.framework */; };
@@ -544,6 +544,7 @@
 		19FF0E7119E7D40400D5DC6A /* BBSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSViewController.h; sourceTree = "<group>"; };
 		19FF0E7219E7D40400D5DC6A /* BBSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSViewController.m; sourceTree = "<group>"; };
 		19FF0E7319E7D40400D5DC6A /* BBSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSViewController.xib; sourceTree = "<group>"; };
+		562DE00819ECC4E300CAF790 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		5637232319E8FF6500BEF45C /* RefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTableView.h; sourceTree = "<group>"; };
 		5637232419E8FF6500BEF45C /* RefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshTableView.m; sourceTree = "<group>"; };
 		5637232619E9029300BEF45C /* SliderForumCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderForumCollectionModel.h; sourceTree = "<group>"; };
@@ -888,6 +889,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				562DE00719ECBDBB00CAF790 /* CFNetwork.framework in Frameworks */,
 				5668E20119EBA3860091A4B0 /* Foundation.framework in Frameworks */,
 				193D48EE19ECC4DE00B6E14E /* libUMSocial_Sdk_2.2.1.a in Frameworks */,
 				5668E1FF19EBA37D0091A4B0 /* CoreGraphics.framework in Frameworks */,
@@ -914,7 +916,6 @@
 				5668E1DB19EB9B380091A4B0 /* MobileCoreServices.framework in Frameworks */,
 				5668E1D919EB9A5C0091A4B0 /* libsqlite3.0.dylib in Frameworks */,
 				5668E1D719EB9A520091A4B0 /* SystemConfiguration.framework in Frameworks */,
-				5668E1D519EB9A460091A4B0 /* CFNetwork.framework in Frameworks */,
 				5668E1D319EB9A390091A4B0 /* QuartzCore.framework in Frameworks */,
 				5668E1C619EB73570091A4B0 /* libUMFeedback.a in Frameworks */,
 				59029663F3D14A6C8ED7D166 /* libPods.a in Frameworks */,
@@ -1963,6 +1964,7 @@
 		6FBE2BA0A2534BEA81E69BF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				562DE00819ECC4E300CAF790 /* SenTestingKit.framework */,
 				5668E20019EBA3860091A4B0 /* Foundation.framework */,
 				5668E1FE19EBA37D0091A4B0 /* CoreGraphics.framework */,
 				5668E1FC19EBA3760091A4B0 /* UIKit.framework */,
@@ -2547,7 +2549,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = armv7;
+				ARCHS = (
+					armv7,
+					armv7s,
+					arm64,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2564,6 +2570,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2592,7 +2602,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = armv7;
+				ARCHS = (
+					armv7,
+					armv7s,
+					arm64,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2610,6 +2624,10 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -2635,6 +2653,12 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Framework",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)Frameworks/SenTestingKit.framework/SenTestingKit",
+					"$(inherited)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/fblifebbs/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				INFOPLIST_FILE = fblifebbs/Info.plist;
@@ -2647,10 +2671,13 @@
 					"$(PROJECT_DIR)/PublicClasses/社会化分享/UMSocial_Sdk_2.2.1",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lxml2.2",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
-				VALID_ARCHS = "armv7 armv7s armv64";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -2661,6 +2688,12 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Framework",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)Frameworks/SenTestingKit.framework/SenTestingKit",
+					"$(inherited)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/fblifebbs/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				INFOPLIST_FILE = fblifebbs/Info.plist;
@@ -2673,10 +2706,13 @@
 					"$(PROJECT_DIR)/PublicClasses/社会化分享/UMSocial_Sdk_2.2.1",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lxml2.2",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
-				VALID_ARCHS = "armv7 armv7s armv64";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};

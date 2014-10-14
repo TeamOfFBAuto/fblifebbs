@@ -159,7 +159,7 @@
     _myTableView1.delegate = self;
     _myTableView1.dataSource = self;
     _myTableView1.separatorStyle = UITableViewCellSeparatorStyleNone;
-  //  [_myScrollView addSubview:_myTableView1];
+    [_myScrollView addSubview:_myTableView1];
     
     SliderBBSForumSegmentView * forumSegmentView = [[SliderBBSForumSegmentView alloc] initWithFrame:CGRectMake(340,0,320,63)];
     
@@ -183,14 +183,6 @@
     _myTableView2.dataSource = self;
     _myTableView2.separatorStyle = UITableViewCellSeparatorStyleNone;
    // [_myScrollView addSubview:_myTableView2];
-    
-    
-    SliderRankingListViewController * ranking = [[SliderRankingListViewController alloc] init];
-    
-    [_myScrollView addSubview:ranking.view];
-    
-    
-    
     
     ///数据请求
     [self loadAllForums];

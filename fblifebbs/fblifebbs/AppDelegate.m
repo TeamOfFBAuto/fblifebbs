@@ -40,21 +40,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     
-    BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
-    NSLog(@"登陆没有呢 ----  %d",isLogIn);
-    if (isLogIn)
-    {
-        [self showRootViewWith:@"root"];
-    }else
-    {
-        [self showRootViewWith:@"login"];
-    }
-    
-    
-    //[self setTabbarViewcontroller];
-    
-    
-    
+    [self setTabbarViewcontroller];
     
     return YES;
 }
@@ -72,6 +58,7 @@
         [self setTabbarViewcontroller];
 //    }
 }
+
 
 #pragma mark-设置tabbarViewC
 

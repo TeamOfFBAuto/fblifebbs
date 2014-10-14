@@ -49,7 +49,7 @@
     
     _myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH+20,DEVICE_HEIGHT-64-49)];
     _myScrollView.delegate = self;
-    _myScrollView.bounces = YES;
+    _myScrollView.bounces = NO;
     _myScrollView.showsHorizontalScrollIndicator = NO;
     _myScrollView.showsVerticalScrollIndicator = NO;
     _myScrollView.pagingEnabled = YES;
@@ -57,11 +57,8 @@
     [self.view addSubview:_myScrollView];
     _myScrollView.contentSize = CGSizeMake((DEVICE_WIDTH+20)*2,0);
     
-    
     message_tableView = [[MessageTableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,_myScrollView.frame.size.height)];
     [_myScrollView addSubview:message_tableView];
-    
-    
     
     
     [self initHttpRequest];

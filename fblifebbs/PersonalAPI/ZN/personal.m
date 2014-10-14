@@ -724,6 +724,12 @@
 
 }
 
++(NSString *)getMyUid
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:USER_UID];
+}
+
+
 
 //
 //#pragma mark--播放系统声音

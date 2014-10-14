@@ -64,9 +64,11 @@
 
 -(NSString *)mds:(NSString *)str;
 
-//获取自己的authoeky
-
+///获取自己的authoeky
 +(NSString *)getMyAuthkey;
+///获取自己的uid
++(NSString *)getMyUid;
+
 
 
 #define HERONEWSPUSH @"heronewspushtypesanshi"

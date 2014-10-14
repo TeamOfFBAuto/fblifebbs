@@ -10,7 +10,7 @@
 
 //#import "UIImageView+LBBlurredImage.h"
 
-
+#import "fbWebViewController.h"
 
 //#import "LeftViewController.h"
 //
@@ -65,6 +65,13 @@
     }
     return self;
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self setHidesBottomBarWhenPushed:NO];
+    [super viewDidDisappear:animated];
+}
+
+
 - (NSString *)md5:(NSString *)str
 {
     const char *cStr = [str UTF8String];
@@ -196,6 +203,10 @@
     
 self.edgesForExtendedLayout = UIRectEdgeNone;
 
+    
+    [self turnToguanggao];
+
+    
     [self panduanIsNewVersion];
 //  NSLog(@"shizhongkun转化成MD5加密后的字符串为=%@",[self md5:@"shizhongkun"])  ;
     
@@ -225,7 +236,6 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
      addObserver:self selector:@selector(jiaSshuaxin) name:@"refreshcompre" object:nil];//点击了广告
 
     
-    [self turnToguanggao];
 
     
     self.view.backgroundColor=[UIColor whiteColor];
@@ -279,13 +289,14 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
     
     
 //    
-//    fbWebViewController *fbweb=[[fbWebViewController alloc]init];
-//    fbweb.urlstring=[NSString stringWithFormat:@"%@",[sender.userInfo objectForKey:@"link"]];
-//    [fbweb viewWillAppear:YES];
-//    
-//    [self.navigationController pushViewController:fbweb animated:YES];
-//
-//    NSLog(@"sender.object===%@",sender.userInfo);
+    fbWebViewController *fbweb=[[fbWebViewController alloc]init];
+    fbweb.urlstring=[NSString stringWithFormat:@"%@",[sender.userInfo objectForKey:@"link"]];
+    [fbweb viewWillAppear:YES];
+    [self setHidesBottomBarWhenPushed:YES];
+
+    [self.navigationController pushViewController:fbweb animated:YES];
+
+    NSLog(@"sender.object===%@",sender.userInfo);
 
 
 }
@@ -413,6 +424,8 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
     [super viewWillAppear:NO];
     
     
+    
+    [self setHidesBottomBarWhenPushed:NO];
 //    [XTSideMenuManager resetSideMenuRecognizerEnable:YES];
     
     
@@ -445,6 +458,7 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
     
     NSString *str_search=[NSString stringWithFormat:@"http://cmsweb.fblife.com/ajax.php?c=newstwo&a=newsslide&classname=zuixin&type=json"];
     
+  
     [loaddata SeturlStr:str_search mytest:^(NSDictionary *dicinfo, int errcode) {
         
         

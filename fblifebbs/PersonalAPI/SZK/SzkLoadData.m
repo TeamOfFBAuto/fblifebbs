@@ -9,7 +9,7 @@
 
 #import "SzkLoadData.h"
 
-
+#import "JSONKit.h"
 
 @interface SzkLoadData (){
     
@@ -51,6 +51,9 @@
 }
 //连接接受响应，表示成功建立连接
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    
+    
+    
     _data = [NSMutableData data];
 }
 //连接接受数据
@@ -63,9 +66,23 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     
     // NSArray *dicinfo=[_data objectFromJSONData];
-    self.mydicinfo=[_data objectFromJSONData];
+    NSError *error;
+
     
-    self.xxxxbloc(self.mydicinfo,0);
+    
+//    self.mydicinfo=(NSDictionary *)[_data ];
+    
+    
+    self.mydicinfo=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingMutableLeaves error:&error];
+    
+    
+    
+    
+      NSLog(@"dicinfo==%@",self.mydicinfo);
+    
+    
+    
+   self.xxxxbloc(self.mydicinfo,0);
  
         
     

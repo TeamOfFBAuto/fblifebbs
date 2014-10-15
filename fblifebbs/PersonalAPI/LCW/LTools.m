@@ -90,6 +90,23 @@
     [connection cancel];
 }
 
++ (NSString *)checkNetWork
+{
+    Reachability *reachAble = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+    switch ([reachAble currentReachabilityStatus]) {
+        case NotReachable:
+            return @"NONetWork";
+            break;
+        case ReachableViaWWAN:
+            return @"3G";
+            break;
+        case ReachableViaWiFi:
+            return @"WiFi";
+            break;
+    }
+    return @"NONetWork";
+}
+
 #pragma mark - 版本更新信息
 
 + (void)versionForAppid:(NSString *)appid Block:(void(^)(BOOL isNewVersion,NSString *updateUrl,NSString *updateContent))version//是否有新版本、新版本更新下地址
@@ -265,14 +282,14 @@
             if ([dic isKindOfClass:[NSDictionary class]]) {
                 
                 int erroCode = [[dic objectForKey:@"errcode"]intValue];
-                NSString *erroInfo = [dic objectForKey:@"errinfo"];
+//                NSString *erroInfo = [dic objectForKey:@"errinfo"];
                 
 
 
                 if (erroCode != 0) { //0代表无错误,  && erroCode != 1 1代表无结果
 
 
-                    NSDictionary *failDic = @{ERROR_INFO:erroInfo,@"errcode":[NSString stringWithFormat:@"%d",erroCode]};
+                    NSDictionary *failDic = @{ERROR_INFO:@"lllllll",@"errcode":[NSString stringWithFormat:@"%d",erroCode]};
                     failBlock(failDic,connectionError);
                     
                     return ;

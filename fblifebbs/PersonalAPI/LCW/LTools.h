@@ -78,6 +78,8 @@ typedef void(^versionBlock)(BOOL isNewVersion,NSString *updateUrl,NSString *upda
 
 - (void)cancelRequest;
 
+
++ (NSString *)checkNetWork;
 /**
  *  版本更新
  */

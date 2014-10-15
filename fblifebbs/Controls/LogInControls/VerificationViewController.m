@@ -247,7 +247,7 @@
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    HUD.mode = MBProgressHUDModeText;
+//    HUD.mode= MBProgressHUDModeText;
     HUD.labelText = @"发送成功";
     [HUD hide:YES afterDelay:1.5];
     

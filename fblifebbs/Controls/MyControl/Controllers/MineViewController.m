@@ -10,15 +10,34 @@
 #import "MineHeaderCell.h"
 #import "MineRowCell.h"
 
+#import "personal.h"
+
+#import "UserModel.h"
+
 @interface MineViewController ()
 {
     NSArray *images_arr;
     NSArray *names_arr;
+    
+    MineHeaderCell *headerCell;
 }
 
 @end
 
 @implementation MineViewController
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (![[NSUserDefaults standardUserDefaults]boolForKey:USER_IN]) {
+        
+        LogInViewController *login = [LogInViewController sharedManager];
+        
+        [self presentViewController:login animated:YES completion:nil];
+    }
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +52,9 @@
     
     images_arr = @[@"",@"",@"",@"shoucang@2x.png",@"tiezi@2x.png",@"friend@2x.png",@"",@"mingpian@2x.png",@"youxiang@2x.png",@"lishijilu@2x.png"];
     names_arr = @[@"",@"",@"",@"我的收藏",@"我的帖子",@"我的好友",@"",@"我的名片",@"草稿箱",@"历史浏览"];
+    
+    
+    [self getUserInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +66,44 @@
 
 - (void)getUserInfo
 {
-//    NSString *url = [NSString stringWithFormat:URL_USERMESSAGE,];
+    NSString *url = [NSString stringWithFormat:URL_USERMESSAGE,[personal getMyUid],[personal getMyAuthkey]];
+    LTools *tool = [[LTools alloc]initWithUrl:url isPost:NO postData:nil];
+    
+    [tool requestSpecialCompletion:^(NSDictionary *result, NSError *erro) {
+        
+        NSDictionary *data = [result objectForKey:@"data"];
+        NSDictionary *dic = [data objectForKey:[personal getMyUid]];
+        if ([dic isKindOfClass:[NSDictionary class]]) {
+            
+            UserModel *user = [[UserModel alloc]initWithDictionary:dic];
+            
+            [headerCell.headImage setImageWithURL:[NSURL URLWithString:user.face_small] placeholderImage:nil];
+            headerCell.nameLabel.text = user.username;
+            
+            headerCell.nameLabel.width = [LTools widthForText:user.username font:16];
+            
+            if ([user.gender integerValue] == 0) {
+                NSLog(@"man");
+                
+            }else
+            {
+                NSLog(@"women");
+                
+                headerCell.genderImage.selected = YES;
+                
+            }
+            headerCell.genderImage.left = headerCell.nameLabel.right + 10;
+            headerCell.descriptionLabel.text = user.aboutme.length ? user.aboutme : @"无";
+            headerCell.tiezi_num_label.text = user.topic_count;
+            headerCell.fans_num_label.text = user.fans_count;
+            headerCell.guanzhu_num_label.text =  user.follow_count;
+            
+        }
+        
+        
+    } failBlock:^(NSDictionary *failDic, NSError *erro) {
+        ;
+    }];
 }
 
 #pragma mark - Table view data source
@@ -74,12 +133,12 @@
     }
     
     if (indexPath.row == 1) {
-        MineHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineHeaderCell"];
-        if (!cell) {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"MineHeaderCell" owner:self options:nil]objectAtIndex:0];
+        headerCell = [tableView dequeueReusableCellWithIdentifier:@"MineHeaderCell"];
+        if (!headerCell) {
+            headerCell = [[[NSBundle mainBundle]loadNibNamed:@"MineHeaderCell" owner:self options:nil]objectAtIndex:0];
         }
 
-        return cell;
+        return headerCell;
     }
     
     MineRowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineRowCell"];

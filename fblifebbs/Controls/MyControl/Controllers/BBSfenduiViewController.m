@@ -69,6 +69,11 @@
 {
     
     [super viewDidLoad];
+    
+    if (MY_MACRO_NAME) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
     _isloadingIv=[[loadingimview alloc]initWithFrame:CGRectMake(100, 200, 150, 100) labelString:@"正在加载"];
     [[UIApplication sharedApplication].keyWindow
      addSubview:_isloadingIv];

@@ -98,6 +98,10 @@
     zanNumber=0;
 
     
+    if (MY_MACRO_NAME) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
     self.thezkingAlertV=[[ZkingAlert alloc]initWithFrame:CGRectMake(0, 0, 320, 480) labelString:@""];
     _thezkingAlertV.hidden=YES;
     [[UIApplication sharedApplication].keyWindow

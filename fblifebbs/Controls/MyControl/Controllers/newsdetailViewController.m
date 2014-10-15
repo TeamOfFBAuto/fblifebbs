@@ -131,6 +131,10 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 
     
+    
+    if (MY_MACRO_NAME) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 //    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
     //commentNumberaddandadd
     

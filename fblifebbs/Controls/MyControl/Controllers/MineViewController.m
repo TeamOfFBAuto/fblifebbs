@@ -25,6 +25,11 @@
 
 #import "NewMineViewController.h"
 
+#import "SliderRightSettingViewController.h"
+//#define k_User_Name @"k_User_Name"
+//#define <#macro#>(<#args#>)
+
+
 @interface MineViewController ()<FriendListViewControllerDelegate>
 {
     NSArray *images_arr;
@@ -63,6 +68,15 @@
     
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
     
+//    UIBarButtonItem * spaceButton1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    spaceButton1.width = MY_MACRO_NAME?-13:5;
+    
+    UIButton *settings=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? -5:5,8,40,44)];
+    [settings addTarget:self action:@selector(clickToSettings:) forControlEvents:UIControlEventTouchUpInside];
+    [settings setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:settings];
+    self.navigationItem.rightBarButtonItem = back_item;
+    
     images_arr = @[@"",@"",@"",@"shoucang@2x.png",@"tiezi@2x.png",@"friend@2x.png",@"",@"mingpian@2x.png",@"youxiang@2x.png",@"lishijilu@2x.png"];
     names_arr = @[@"",@"",@"",@"我的收藏",@"我的帖子",@"我的好友",@"",@"我的名片",@"草稿箱",@"历史浏览"];
     
@@ -93,6 +107,8 @@
             
             [headerCell.headImage setImageWithURL:[NSURL URLWithString:user.face_small] placeholderImage:nil];
             headerCell.nameLabel.text = user.username;
+            
+            [LTools cache:user.username ForKey:@""];
             
             headerCell.nameLabel.width = [LTools widthForText:user.username font:16];
             
@@ -134,6 +150,14 @@
     [self returnUserName:nil Uid:userId];
 }
 
+- (void)clickToSettings:(UIButton *)sender
+{
+    SliderRightSettingViewController * settingVC = [[SliderRightSettingViewController alloc] init];
+    
+    settingVC.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:settingVC animated:YES];
+}
 
 #pragma mark - Table view data source
 

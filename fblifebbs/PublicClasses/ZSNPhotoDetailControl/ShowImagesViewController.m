@@ -648,10 +648,6 @@
 {
     [super viewDidLoad];
     
-    if (MY_MACRO_NAME) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
-    
     
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     

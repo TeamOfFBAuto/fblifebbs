@@ -37,6 +37,48 @@
 		130C24F819EBE80D00044F51 /* MineRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 130C24F619EBE80D00044F51 /* MineRowCell.xib */; };
 		1315144919EE607E00F31595 /* MyWriteAndCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315144819EE607E00F31595 /* MyWriteAndCommentViewController.m */; };
 		1315144F19EE687900F31595 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315144E19EE687900F31595 /* MyViewController.m */; };
+		1315145519EE70FF00F31595 /* AtlasSavedPraAndCollModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1315145119EE70FF00F31595 /* AtlasSavedPraAndCollModel.xcdatamodeld */; };
+		1315145919EE7DF400F31595 /* SliderRightSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315145819EE7DF400F31595 /* SliderRightSettingViewController.m */; };
+		1315146C19EE7E4E00F31595 /* libUMAppNetwork_3.5.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1315145B19EE7E4E00F31595 /* libUMAppNetwork_3.5.6.a */; };
+		1315146D19EE7E4E00F31595 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315145E19EE7E4E00F31595 /* UMTableViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1315146E19EE7E4E00F31595 /* UMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315146019EE7E4E00F31595 /* UMTableViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1315146F19EE7E4E00F31595 /* UMTableViewLoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315146219EE7E4E00F31595 /* UMTableViewLoadingCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1315147019EE7E4E00F31595 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1315146319EE7E4E00F31595 /* UMUFP.bundle */; };
+		1315149619EE7EAF00F31595 /* UMEGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315147419EE7EAE00F31595 /* UMEGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1315149719EE7EAF00F31595 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315147619EE7EAE00F31595 /* background@2x.png */; };
+		1315149819EE7EAF00F31595 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315147719EE7EAE00F31595 /* blueArrow@2x.png */; };
+		1315149919EE7EAF00F31595 /* icon_rightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315147819EE7EAE00F31595 /* icon_rightArrow@2x.png */; };
+		1315149A19EE7EAF00F31595 /* icon_rightArrow_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315147919EE7EAE00F31595 /* icon_rightArrow_selected@2x.png */; };
+		1315149B19EE7EAF00F31595 /* item_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315147A19EE7EAE00F31595 /* item_cancel@2x.png */; };
+		1315149C19EE7EAF00F31595 /* item_cancel_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315147B19EE7EAE00F31595 /* item_cancel_selected@2x.png */; };
+		1315149D19EE7EAF00F31595 /* item_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315147C19EE7EAE00F31595 /* item_ok@2x.png */; };
+		1315149E19EE7EAF00F31595 /* item_ok_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315147D19EE7EAE00F31595 /* item_ok_selected@2x.png */; };
+		1315149F19EE7EAF00F31595 /* messages_left_bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315147E19EE7EAE00F31595 /* messages_left_bubble@2x.png */; };
+		131514A019EE7EAF00F31595 /* messages_right_bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315147F19EE7EAE00F31595 /* messages_right_bubble@2x.png */; };
+		131514A119EE7EAF00F31595 /* messages_tableview_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148019EE7EAE00F31595 /* messages_tableview_background.png */; };
+		131514A219EE7EAF00F31595 /* messages_tableview_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148119EE7EAE00F31595 /* messages_tableview_background@2x.png */; };
+		131514A319EE7EAF00F31595 /* messages_toolbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148219EE7EAE00F31595 /* messages_toolbar_background.png */; };
+		131514A419EE7EAF00F31595 /* messages_toolbar_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148319EE7EAE00F31595 /* messages_toolbar_background@2x.png */; };
+		131514A519EE7EAF00F31595 /* nav_bar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148419EE7EAF00F31595 /* nav_bar_bg@2x.png */; };
+		131514A619EE7EAF00F31595 /* nav_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148519EE7EAF00F31595 /* nav_bg.png */; };
+		131514A719EE7EAF00F31595 /* nav_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148619EE7EAF00F31595 /* nav_btn_bg.png */; };
+		131514A819EE7EAF00F31595 /* nav_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148719EE7EAF00F31595 /* nav_btn_bg@2x.png */; };
+		131514A919EE7EAF00F31595 /* nav_btn_bg_lighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148819EE7EAF00F31595 /* nav_btn_bg_lighted@2x.png */; };
+		131514AA19EE7EAF00F31595 /* send1sss@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148919EE7EAF00F31595 /* send1sss@2x.png */; };
+		131514AB19EE7EAF00F31595 /* send_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148A19EE7EAF00F31595 /* send_selected@2x.png */; };
+		131514AC19EE7EAF00F31595 /* umeng_logo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315148B19EE7EAF00F31595 /* umeng_logo1.png */; };
+		131514AD19EE7EAF00F31595 /* UMContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315148D19EE7EAF00F31595 /* UMContactViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		131514AE19EE7EAF00F31595 /* UMContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1315148E19EE7EAF00F31595 /* UMContactViewController.xib */; };
+		131514AF19EE7EAF00F31595 /* UMFeedbackTableViewCellLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315149019EE7EAF00F31595 /* UMFeedbackTableViewCellLeft.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		131514B019EE7EAF00F31595 /* UMFeedbackTableViewCellRight.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315149219EE7EAF00F31595 /* UMFeedbackTableViewCellRight.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		131514B119EE7EAF00F31595 /* UMFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315149419EE7EAF00F31595 /* UMFeedbackViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		131514B219EE7EAF00F31595 /* UMFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1315149519EE7EAF00F31595 /* UMFeedbackViewController.xib */; };
+		1315154019EE7EEB00F31595 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 131514B519EE7EEB00F31595 /* AboutViewController.m */; };
+		1315159719EE829D00F31595 /* 20130502_fabiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315159419EE829D00F31595 /* 20130502_fabiao.png */; };
+		1315159819EE829D00F31595 /* 20130502_pinglun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315159519EE829D00F31595 /* 20130502_pinglun@2x.png */; };
+		1315159919EE829D00F31595 /* 20130502_shubiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315159619EE829D00F31595 /* 20130502_shubiao.png */; };
+		1315159C19EE831B00F31595 /* newAboultIphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315159A19EE831B00F31595 /* newAboultIphone5@2x.png */; };
+		1315159D19EE831B00F31595 /* newAbout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1315159B19EE831B00F31595 /* newAbout@2x.png */; };
 		1386258819EE058000E3563B /* ShoucangSeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 1386258719EE058000E3563B /* ShoucangSeg.m */; };
 		1386258B19EE059100E3563B /* FinalshoucangView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1386258A19EE059100E3563B /* FinalshoucangView.m */; };
 		1386258E19EE05D500E3563B /* NewshoucangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1386258D19EE05D500E3563B /* NewshoucangTableViewCell.m */; };
@@ -668,6 +710,67 @@
 		1315144819EE607E00F31595 /* MyWriteAndCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWriteAndCommentViewController.m; sourceTree = "<group>"; };
 		1315144D19EE687900F31595 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		1315144E19EE687900F31595 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		1315145219EE70FF00F31595 /* AtlasSavedPraAndCollModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AtlasSavedPraAndCollModel.xcdatamodel; sourceTree = "<group>"; };
+		1315145719EE7DF400F31595 /* SliderRightSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderRightSettingViewController.h; sourceTree = "<group>"; };
+		1315145819EE7DF400F31595 /* SliderRightSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderRightSettingViewController.m; sourceTree = "<group>"; };
+		1315145B19EE7E4E00F31595 /* libUMAppNetwork_3.5.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork_3.5.6.a; sourceTree = "<group>"; };
+		1315145D19EE7E4E00F31595 /* UMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTableViewCell.h; sourceTree = "<group>"; };
+		1315145E19EE7E4E00F31595 /* UMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTableViewCell.m; sourceTree = "<group>"; };
+		1315145F19EE7E4E00F31595 /* UMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTableViewController.h; sourceTree = "<group>"; };
+		1315146019EE7E4E00F31595 /* UMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTableViewController.m; sourceTree = "<group>"; };
+		1315146119EE7E4E00F31595 /* UMTableViewLoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTableViewLoadingCell.h; sourceTree = "<group>"; };
+		1315146219EE7E4E00F31595 /* UMTableViewLoadingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTableViewLoadingCell.m; sourceTree = "<group>"; };
+		1315146319EE7E4E00F31595 /* UMUFP.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMUFP.bundle; sourceTree = "<group>"; };
+		1315146419EE7E4E00F31595 /* UMUFPBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBadgeView.h; sourceTree = "<group>"; };
+		1315146519EE7E4E00F31595 /* UMUFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBannerView.h; sourceTree = "<group>"; };
+		1315146619EE7E4E00F31595 /* UMUFPGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridCell.h; sourceTree = "<group>"; };
+		1315146719EE7E4E00F31595 /* UMUFPGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridView.h; sourceTree = "<group>"; };
+		1315146819EE7E4E00F31595 /* UMUFPHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPHandleView.h; sourceTree = "<group>"; };
+		1315146919EE7E4E00F31595 /* UMUFPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPImageView.h; sourceTree = "<group>"; };
+		1315146A19EE7E4E00F31595 /* UMUFPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTableView.h; sourceTree = "<group>"; };
+		1315146B19EE7E4E00F31595 /* UMUFPWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPWebView.h; sourceTree = "<group>"; };
+		1315147319EE7EAE00F31595 /* UMEGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMEGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		1315147419EE7EAE00F31595 /* UMEGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMEGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		1315147619EE7EAE00F31595 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		1315147719EE7EAE00F31595 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		1315147819EE7EAE00F31595 /* icon_rightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_rightArrow@2x.png"; sourceTree = "<group>"; };
+		1315147919EE7EAE00F31595 /* icon_rightArrow_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_rightArrow_selected@2x.png"; sourceTree = "<group>"; };
+		1315147A19EE7EAE00F31595 /* item_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item_cancel@2x.png"; sourceTree = "<group>"; };
+		1315147B19EE7EAE00F31595 /* item_cancel_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item_cancel_selected@2x.png"; sourceTree = "<group>"; };
+		1315147C19EE7EAE00F31595 /* item_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item_ok@2x.png"; sourceTree = "<group>"; };
+		1315147D19EE7EAE00F31595 /* item_ok_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item_ok_selected@2x.png"; sourceTree = "<group>"; };
+		1315147E19EE7EAE00F31595 /* messages_left_bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messages_left_bubble@2x.png"; sourceTree = "<group>"; };
+		1315147F19EE7EAE00F31595 /* messages_right_bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messages_right_bubble@2x.png"; sourceTree = "<group>"; };
+		1315148019EE7EAE00F31595 /* messages_tableview_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messages_tableview_background.png; sourceTree = "<group>"; };
+		1315148119EE7EAE00F31595 /* messages_tableview_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messages_tableview_background@2x.png"; sourceTree = "<group>"; };
+		1315148219EE7EAE00F31595 /* messages_toolbar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messages_toolbar_background.png; sourceTree = "<group>"; };
+		1315148319EE7EAE00F31595 /* messages_toolbar_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messages_toolbar_background@2x.png"; sourceTree = "<group>"; };
+		1315148419EE7EAF00F31595 /* nav_bar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_bar_bg@2x.png"; sourceTree = "<group>"; };
+		1315148519EE7EAF00F31595 /* nav_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_bg.png; sourceTree = "<group>"; };
+		1315148619EE7EAF00F31595 /* nav_btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_btn_bg.png; sourceTree = "<group>"; };
+		1315148719EE7EAF00F31595 /* nav_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_btn_bg@2x.png"; sourceTree = "<group>"; };
+		1315148819EE7EAF00F31595 /* nav_btn_bg_lighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_btn_bg_lighted@2x.png"; sourceTree = "<group>"; };
+		1315148919EE7EAF00F31595 /* send1sss@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send1sss@2x.png"; sourceTree = "<group>"; };
+		1315148A19EE7EAF00F31595 /* send_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_selected@2x.png"; sourceTree = "<group>"; };
+		1315148B19EE7EAF00F31595 /* umeng_logo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = umeng_logo1.png; sourceTree = "<group>"; };
+		1315148C19EE7EAF00F31595 /* UMContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMContactViewController.h; sourceTree = "<group>"; };
+		1315148D19EE7EAF00F31595 /* UMContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMContactViewController.m; sourceTree = "<group>"; };
+		1315148E19EE7EAF00F31595 /* UMContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMContactViewController.xib; sourceTree = "<group>"; };
+		1315148F19EE7EAF00F31595 /* UMFeedbackTableViewCellLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedbackTableViewCellLeft.h; sourceTree = "<group>"; };
+		1315149019EE7EAF00F31595 /* UMFeedbackTableViewCellLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMFeedbackTableViewCellLeft.m; sourceTree = "<group>"; };
+		1315149119EE7EAF00F31595 /* UMFeedbackTableViewCellRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedbackTableViewCellRight.h; sourceTree = "<group>"; };
+		1315149219EE7EAF00F31595 /* UMFeedbackTableViewCellRight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMFeedbackTableViewCellRight.m; sourceTree = "<group>"; };
+		1315149319EE7EAF00F31595 /* UMFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedbackViewController.h; sourceTree = "<group>"; };
+		1315149419EE7EAF00F31595 /* UMFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMFeedbackViewController.m; sourceTree = "<group>"; };
+		1315149519EE7EAF00F31595 /* UMFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMFeedbackViewController.xib; sourceTree = "<group>"; };
+		131514B419EE7EEB00F31595 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		131514B519EE7EEB00F31595 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		131514B619EE7EEB00F31595 /* AboutViewControllerMarco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewControllerMarco.h; sourceTree = "<group>"; };
+		1315159419EE829D00F31595 /* 20130502_fabiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 20130502_fabiao.png; sourceTree = "<group>"; };
+		1315159519EE829D00F31595 /* 20130502_pinglun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20130502_pinglun@2x.png"; sourceTree = "<group>"; };
+		1315159619EE829D00F31595 /* 20130502_shubiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 20130502_shubiao.png; sourceTree = "<group>"; };
+		1315159A19EE831B00F31595 /* newAboultIphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newAboultIphone5@2x.png"; sourceTree = "<group>"; };
+		1315159B19EE831B00F31595 /* newAbout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newAbout@2x.png"; sourceTree = "<group>"; };
 		1386258619EE058000E3563B /* ShoucangSeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoucangSeg.h; sourceTree = "<group>"; };
 		1386258719EE058000E3563B /* ShoucangSeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoucangSeg.m; sourceTree = "<group>"; };
 		1386258919EE059100E3563B /* FinalshoucangView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalshoucangView.h; sourceTree = "<group>"; };
@@ -1450,6 +1553,7 @@
 				5668E1E719EBA2AD0091A4B0 /* MessageUI.framework in Frameworks */,
 				562DE00719ECBDBB00CAF790 /* CFNetwork.framework in Frameworks */,
 				5668E20119EBA3860091A4B0 /* Foundation.framework in Frameworks */,
+				1315146C19EE7E4E00F31595 /* libUMAppNetwork_3.5.6.a in Frameworks */,
 				193D48EE19ECC4DE00B6E14E /* libUMSocial_Sdk_2.2.1.a in Frameworks */,
 				5668E1FF19EBA37D0091A4B0 /* CoreGraphics.framework in Frameworks */,
 				5668E1FD19EBA3760091A4B0 /* UIKit.framework in Frameworks */,
@@ -1592,6 +1696,7 @@
 		130C24E719EBE0B600044F51 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				131514B319EE7EEB00F31595 /* MoreViewController */,
 				13D42D9F19ED304D00261D69 /* MyChatViewController.h */,
 				13D42DA019ED304D00261D69 /* MyChatViewController.m */,
 				13D42D9C19ED302900261D69 /* FBMapViewController.h */,
@@ -1608,6 +1713,8 @@
 				13D42D3519ED2B2000261D69 /* NewMineViewController.m */,
 				13D42E2D19ED314600261D69 /* BBSfenduiViewController.h */,
 				13D42E2E19ED314600261D69 /* BBSfenduiViewController.m */,
+				1315145719EE7DF400F31595 /* SliderRightSettingViewController.h */,
+				1315145819EE7DF400F31595 /* SliderRightSettingViewController.m */,
 				13D42D9919ED300E00261D69 /* mydetailViewController.h */,
 				13D42D9A19ED300E00261D69 /* mydetailViewController.m */,
 				13D42D0E19ED29CC00261D69 /* DraftBoxViewController.h */,
@@ -1702,6 +1809,124 @@
 				130C24F619EBE80D00044F51 /* MineRowCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1315145019EE70FF00F31595 /* 存储图集赞收藏数据 */ = {
+			isa = PBXGroup;
+			children = (
+				1315145119EE70FF00F31595 /* AtlasSavedPraAndCollModel.xcdatamodeld */,
+			);
+			path = "存储图集赞收藏数据";
+			sourceTree = "<group>";
+		};
+		1315145A19EE7E4E00F31595 /* UMtui推广 */ = {
+			isa = PBXGroup;
+			children = (
+				1315145B19EE7E4E00F31595 /* libUMAppNetwork_3.5.6.a */,
+				1315145C19EE7E4E00F31595 /* TableView */,
+				1315146319EE7E4E00F31595 /* UMUFP.bundle */,
+				1315146419EE7E4E00F31595 /* UMUFPBadgeView.h */,
+				1315146519EE7E4E00F31595 /* UMUFPBannerView.h */,
+				1315146619EE7E4E00F31595 /* UMUFPGridCell.h */,
+				1315146719EE7E4E00F31595 /* UMUFPGridView.h */,
+				1315146819EE7E4E00F31595 /* UMUFPHandleView.h */,
+				1315146919EE7E4E00F31595 /* UMUFPImageView.h */,
+				1315146A19EE7E4E00F31595 /* UMUFPTableView.h */,
+				1315146B19EE7E4E00F31595 /* UMUFPWebView.h */,
+			);
+			path = "UMtui推广";
+			sourceTree = "<group>";
+		};
+		1315145C19EE7E4E00F31595 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				1315145D19EE7E4E00F31595 /* UMTableViewCell.h */,
+				1315145E19EE7E4E00F31595 /* UMTableViewCell.m */,
+				1315145F19EE7E4E00F31595 /* UMTableViewController.h */,
+				1315146019EE7E4E00F31595 /* UMTableViewController.m */,
+				1315146119EE7E4E00F31595 /* UMTableViewLoadingCell.h */,
+				1315146219EE7E4E00F31595 /* UMTableViewLoadingCell.m */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		1315147119EE7EAE00F31595 /* chat */ = {
+			isa = PBXGroup;
+			children = (
+				1315147219EE7EAE00F31595 /* EGO_Refresh */,
+				1315147519EE7EAE00F31595 /* Images */,
+				1315148C19EE7EAF00F31595 /* UMContactViewController.h */,
+				1315148D19EE7EAF00F31595 /* UMContactViewController.m */,
+				1315148E19EE7EAF00F31595 /* UMContactViewController.xib */,
+				1315148F19EE7EAF00F31595 /* UMFeedbackTableViewCellLeft.h */,
+				1315149019EE7EAF00F31595 /* UMFeedbackTableViewCellLeft.m */,
+				1315149119EE7EAF00F31595 /* UMFeedbackTableViewCellRight.h */,
+				1315149219EE7EAF00F31595 /* UMFeedbackTableViewCellRight.m */,
+				1315149319EE7EAF00F31595 /* UMFeedbackViewController.h */,
+				1315149419EE7EAF00F31595 /* UMFeedbackViewController.m */,
+				1315149519EE7EAF00F31595 /* UMFeedbackViewController.xib */,
+			);
+			path = chat;
+			sourceTree = "<group>";
+		};
+		1315147219EE7EAE00F31595 /* EGO_Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				1315147319EE7EAE00F31595 /* UMEGORefreshTableHeaderView.h */,
+				1315147419EE7EAE00F31595 /* UMEGORefreshTableHeaderView.m */,
+			);
+			path = EGO_Refresh;
+			sourceTree = "<group>";
+		};
+		1315147519EE7EAE00F31595 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1315147619EE7EAE00F31595 /* background@2x.png */,
+				1315147719EE7EAE00F31595 /* blueArrow@2x.png */,
+				1315147819EE7EAE00F31595 /* icon_rightArrow@2x.png */,
+				1315147919EE7EAE00F31595 /* icon_rightArrow_selected@2x.png */,
+				1315147A19EE7EAE00F31595 /* item_cancel@2x.png */,
+				1315147B19EE7EAE00F31595 /* item_cancel_selected@2x.png */,
+				1315147C19EE7EAE00F31595 /* item_ok@2x.png */,
+				1315147D19EE7EAE00F31595 /* item_ok_selected@2x.png */,
+				1315147E19EE7EAE00F31595 /* messages_left_bubble@2x.png */,
+				1315147F19EE7EAE00F31595 /* messages_right_bubble@2x.png */,
+				1315148019EE7EAE00F31595 /* messages_tableview_background.png */,
+				1315148119EE7EAE00F31595 /* messages_tableview_background@2x.png */,
+				1315148219EE7EAE00F31595 /* messages_toolbar_background.png */,
+				1315148319EE7EAE00F31595 /* messages_toolbar_background@2x.png */,
+				1315148419EE7EAF00F31595 /* nav_bar_bg@2x.png */,
+				1315148519EE7EAF00F31595 /* nav_bg.png */,
+				1315148619EE7EAF00F31595 /* nav_btn_bg.png */,
+				1315148719EE7EAF00F31595 /* nav_btn_bg@2x.png */,
+				1315148819EE7EAF00F31595 /* nav_btn_bg_lighted@2x.png */,
+				1315148919EE7EAF00F31595 /* send1sss@2x.png */,
+				1315148A19EE7EAF00F31595 /* send_selected@2x.png */,
+				1315148B19EE7EAF00F31595 /* umeng_logo1.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		131514B319EE7EEB00F31595 /* MoreViewController */ = {
+			isa = PBXGroup;
+			children = (
+				131514B419EE7EEB00F31595 /* AboutViewController.h */,
+				131514B519EE7EEB00F31595 /* AboutViewController.m */,
+				131514B619EE7EEB00F31595 /* AboutViewControllerMarco.h */,
+			);
+			path = MoreViewController;
+			sourceTree = "<group>";
+		};
+		1315159319EE822E00F31595 /* FBMoreImages */ = {
+			isa = PBXGroup;
+			children = (
+				1315159A19EE831B00F31595 /* newAboultIphone5@2x.png */,
+				1315159B19EE831B00F31595 /* newAbout@2x.png */,
+				1315159419EE829D00F31595 /* 20130502_fabiao.png */,
+				1315159519EE829D00F31595 /* 20130502_pinglun@2x.png */,
+				1315159619EE829D00F31595 /* 20130502_shubiao.png */,
+			);
+			path = FBMoreImages;
 			sourceTree = "<group>";
 		};
 		13D42C4D19ED251200261D69 /* psview */ = {
@@ -2445,6 +2670,9 @@
 		5637232119E8FF3600BEF45C /* PublicClasses */ = {
 			isa = PBXGroup;
 			children = (
+				1315147119EE7EAE00F31595 /* chat */,
+				1315145A19EE7E4E00F31595 /* UMtui推广 */,
+				1315145019EE70FF00F31595 /* 存储图集赞收藏数据 */,
 				13D42EA319ED389F00261D69 /* AtlasModel */,
 				13D42EA619ED38A000261D69 /* AtlasViews */,
 				13D42D8D19ED2F7400261D69 /* MyTextViewForForward.h */,
@@ -2487,6 +2715,7 @@
 		563723D319E9229E00BEF45C /* allImages */ = {
 			isa = PBXGroup;
 			children = (
+				1315159319EE822E00F31595 /* FBMoreImages */,
 				562DE02419ECE5A900CAF790 /* SliderRankingListImages */,
 				5668E22619EBC14A0091A4B0 /* FblifeBBSbbs */,
 				5668E23219EBC14A0091A4B0 /* FblifeBBSbbs_changePic */,
@@ -3131,6 +3360,7 @@
 				56F6D7EC19EBFA5200B99CAC /* MainViewController.m in Resources */,
 				5637240519E922D800BEF45C /* menewz37_36@2x.png in Resources */,
 				193D48EC19ECC4DE00B6E14E /* UMSocialLocalizable.strings in Resources */,
+				131514A519EE7EAF00F31595 /* nav_bar_bg@2x.png in Resources */,
 				13D42DF819ED30DA00261D69 /* bubble-default-incoming-green.png in Resources */,
 				13D42E1219ED30DA00261D69 /* input-bar.png in Resources */,
 				13D42DFA19ED30DA00261D69 /* bubble-default-incoming-selected.png in Resources */,
@@ -3159,6 +3389,7 @@
 				563724FF19E9232900BEF45C /* ios7_zhuti@2x.png in Resources */,
 				563724E019E9232900BEF45C /* 111_1@2x.png in Resources */,
 				130C24DC19EBDCBD00044F51 /* emotionImage.plist in Resources */,
+				1315149A19EE7EAF00F31595 /* icon_rightArrow_selected@2x.png in Resources */,
 				563724F319E9232900BEF45C /* ios7_bankuaisoucangselected@2x.png in Resources */,
 				5637250019E9232900BEF45C /* ios7_zuijinliulanselected@2x.png in Resources */,
 				5637253219E9232900BEF45C /* telephoto@2x.png in Resources */,
@@ -3172,6 +3403,8 @@
 				562DE03019ECE5A900CAF790 /* bbs_rankinglist_dadui@2x.png in Resources */,
 				13D42E7719ED32AD00261D69 /* write_blog_at@2x.png in Resources */,
 				563724E319E9232900BEF45C /* 113@2x.png in Resources */,
+				131514A619EE7EAF00F31595 /* nav_bg.png in Resources */,
+				131514A219EE7EAF00F31595 /* messages_tableview_background@2x.png in Resources */,
 				5637253D19E9232900BEF45C /* weibo_detail_talk@2x.png in Resources */,
 				5668E27619EBC14B0091A4B0 /* guanzhu@2x.png in Resources */,
 				5637252719E9232900BEF45C /* MessageSend@2x.png in Resources */,
@@ -3205,6 +3438,7 @@
 				5637256F19E9247800BEF45C /* sliderBBSNavigationBarImage@2x.png in Resources */,
 				5637256D19E9247800BEF45C /* slider_bbs_me@2x.png in Resources */,
 				5668E25819EBC14B0091A4B0 /* home-1@2x.png in Resources */,
+				1315159D19EE831B00F31595 /* newAbout@2x.png in Resources */,
 				563724F919E9232900BEF45C /* ios7_jiaoyi@2x.png in Resources */,
 				5637253019E9232900BEF45C /* talk1@2x.png in Resources */,
 				5637250A19E9232900BEF45C /* ios7_bbsunselect@2x.png in Resources */,
@@ -3223,10 +3457,12 @@
 				13D42C6419ED251200261D69 /* 20130502_notselect.png in Resources */,
 				13D42E6419ED32AD00261D69 /* 20130502_phone_camera@2x.png in Resources */,
 				5637251719E9232900BEF45C /* ios7_loading61_12_4@2x.png in Resources */,
+				131514AB19EE7EAF00F31595 /* send_selected@2x.png in Resources */,
 				13D42E6619ED32AD00261D69 /* 20130502_tiezi@2x.png in Resources */,
 				563724B719E9232900BEF45C /* eva@2x.png in Resources */,
 				5637251619E9232900BEF45C /* ios7_loading61_12_3@2x.png in Resources */,
 				563724BC19E9232900BEF45C /* image_dowoland@2x.png in Resources */,
+				1315159719EE829D00F31595 /* 20130502_fabiao.png in Resources */,
 				563724D919E9232900BEF45C /* ios7_xiaoxi5959@2x.png in Resources */,
 				5637250619E9232900BEF45C /* selectsearchright295_55@2x.png in Resources */,
 				5668E26C19EBC14B0091A4B0 /* man@2x.png in Resources */,
@@ -3243,8 +3479,10 @@
 				5637253419E9232900BEF45C /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				563724B319E9232900BEF45C /* choosepictureOk@2x.png in Resources */,
 				13D42E6E19ED32AD00261D69 /* dingwei_bg@2x.png in Resources */,
+				1315149819EE7EAF00F31595 /* blueArrow@2x.png in Resources */,
 				5637240E19E922D800BEF45C /* sharefriendquan@2x.png in Resources */,
 				5637251F19E9232900BEF45C /* ios7_talk38_36@2x.png in Resources */,
+				1315149919EE7EAF00F31595 /* icon_rightArrow@2x.png in Resources */,
 				563723FB19E922D800BEF45C /* fenlei36_33@2x.png in Resources */,
 				5668E27419EBC14B0091A4B0 /* man@2x.png in Resources */,
 				13D42E7619ED32AD00261D69 /* write_blog_add_more@2x.png in Resources */,
@@ -3270,6 +3508,7 @@
 				13D42E0C19ED30DA00261D69 /* bubble-typing.png in Resources */,
 				5668E1D119EB7A070091A4B0 /* tishijizai308_223@2x.png in Resources */,
 				13D42DFC19ED30DA00261D69 /* bubble-default-incoming.png in Resources */,
+				131514A019EE7EAF00F31595 /* messages_right_bubble@2x.png in Resources */,
 				5637252419E9232900BEF45C /* llongInBackImage@2x.png in Resources */,
 				5637251919E9232900BEF45C /* ios7_newssearch@2x.png in Resources */,
 				5668E27119EBC14B0091A4B0 /* youxiang@2x.png in Resources */,
@@ -3298,6 +3537,7 @@
 				563723F619E922D800BEF45C /* bolang@2x.png in Resources */,
 				5637252619E9232900BEF45C /* logoInLogo@2x.png in Resources */,
 				5637250C19E9232900BEF45C /* ios7_commentkuang421_58@2x.png in Resources */,
+				1315159819EE829D00F31595 /* 20130502_pinglun@2x.png in Resources */,
 				13D42D0719ED297F00261D69 /* takePhoto@2x.png in Resources */,
 				563724CB19E9232900BEF45C /* ios7_erweima533_700@2x.png in Resources */,
 				13D42E1D19ED30DA00261D69 /* url_image_loading@2x.png in Resources */,
@@ -3310,6 +3550,7 @@
 				563724F519E9232900BEF45C /* ios7_camerom_write51_37@2x.png in Resources */,
 				5668E26019EBC14B0091A4B0 /* change@2x.png in Resources */,
 				563724D019E9232900BEF45C /* ios7_home5959@2x.png in Resources */,
+				131514A319EE7EAF00F31595 /* messages_toolbar_background.png in Resources */,
 				5637255F19E9247800BEF45C /* bbs_forum_collect1@2x.png in Resources */,
 				5637240619E922D800BEF45C /* newcommentpic20_19@2x.png in Resources */,
 				5637240A19E922D800BEF45C /* redheart42_37@2x.png in Resources */,
@@ -3320,6 +3561,7 @@
 				5637253B19E9232900BEF45C /* weibo_detail_pinglun@2x.png in Resources */,
 				563723FF19E922D800BEF45C /* louzhu38_52@2x.png in Resources */,
 				19FF0E7519E7D40400D5DC6A /* BBSViewController.xib in Resources */,
+				131514A419EE7EAF00F31595 /* messages_toolbar_background@2x.png in Resources */,
 				13D42E7419ED32AD00261D69 /* talk_write@2x.png in Resources */,
 				13D42E7919ED32AD00261D69 /* write_blog_key@2x.png in Resources */,
 				563724CE19E9232900BEF45C /* ios7_headimplace@2x.png in Resources */,
@@ -3333,6 +3575,7 @@
 				5637256C19E9247800BEF45C /* slider_bbs_home@2x.png in Resources */,
 				5637240819E922D800BEF45C /* newsuncollect44_43@2x.png in Resources */,
 				563724E819E9232900BEF45C /* ios7_bbs_up20_12@2x.png in Resources */,
+				131514A919EE7EAF00F31595 /* nav_btn_bg_lighted@2x.png in Resources */,
 				5668E25619EBC14B0091A4B0 /* find-1@2x.png in Resources */,
 				5637255D19E9247800BEF45C /* bbs_forum_car-1@2x.png in Resources */,
 				5668E26A19EBC14B0091A4B0 /* jiantou@2x.png in Resources */,
@@ -3341,6 +3584,8 @@
 				5637240919E922D800BEF45C /* our37_34@2x.png in Resources */,
 				563724B419E9232900BEF45C /* chose.png in Resources */,
 				5637250E19E9232900BEF45C /* ios7_fbselected@2x.png in Resources */,
+				131514A119EE7EAF00F31595 /* messages_tableview_background.png in Resources */,
+				1315147019EE7E4E00F31595 /* UMUFP.bundle in Resources */,
 				563724CA19E9232900BEF45C /* ios7_change5959@2x.png in Resources */,
 				13D42DF519ED30DA00261D69 /* back-receive@2x.png in Resources */,
 				5637241119E922D800BEF45C /* shareweixin@2x.png in Resources */,
@@ -3353,6 +3598,7 @@
 				5637240B19E922D800BEF45C /* roundblue@2x.png in Resources */,
 				562DE03319ECE5A900CAF790 /* bbs_rankinglist_zhuti1@2x.png in Resources */,
 				563724EE19E9232900BEF45C /* ios7_sanjiaolan@2x.png in Resources */,
+				1315149719EE7EAF00F31595 /* background@2x.png in Resources */,
 				5637256B19E9247800BEF45C /* bbs_forum_zhuti@2x.png in Resources */,
 				563724DC19E9232900BEF45C /* ios7eva320_44@2x.png in Resources */,
 				563724FB19E9232900BEF45C /* ios7_luntanjingxuanunselect@2x.png in Resources */,
@@ -3366,6 +3612,7 @@
 				562DE02E19ECE5A900CAF790 /* bbs_rankinglist_chexing@2x.png in Resources */,
 				5668E26719EBC14B0091A4B0 /* shangcheng@2x.png in Resources */,
 				563723FA19E922D800BEF45C /* fblifelogo102_38_@2x.png in Resources */,
+				1315149C19EE7EAF00F31595 /* item_cancel_selected@2x.png in Resources */,
 				563724EA19E9232900BEF45C /* ios7_collectselect@2x.png in Resources */,
 				5637251419E9232900BEF45C /* ios7_loading61_12_1@2x.png in Resources */,
 				13D42E9719ED32D400261D69 /* content_bg560X180.png in Resources */,
@@ -3380,8 +3627,12 @@
 				563724C919E9232900BEF45C /* ios7_caogao59x59@2x.png in Resources */,
 				13D42E7519ED32AD00261D69 /* where_write@2x.png in Resources */,
 				5637254919E9232900BEF45C /* zc_xieyi@2x.png in Resources */,
+				131514A719EE7EAF00F31595 /* nav_btn_bg.png in Resources */,
 				563724C619E9232900BEF45C /* 140CA14B-8EF9-4A0F-A5D2-F350294A131E.jpg in Resources */,
+				1315149E19EE7EAF00F31595 /* item_ok_selected@2x.png in Resources */,
 				563724D519E9232900BEF45C /* ios7_right1628@2x.png in Resources */,
+				1315149F19EE7EAF00F31595 /* messages_left_bubble@2x.png in Resources */,
+				1315159919EE829D00F31595 /* 20130502_shubiao.png in Resources */,
 				5637252319E9232900BEF45C /* userselected@2x.png in Resources */,
 				5637254719E9232900BEF45C /* zc_phoneNum@2x.png in Resources */,
 				5637256E19E9247800BEF45C /* sliderBBSNavigationBarImage_ios6@2x.png in Resources */,
@@ -3425,11 +3676,14 @@
 				13D42E1519ED30DA00261D69 /* input-field@2x.png in Resources */,
 				563724C019E9232900BEF45C /* ios7_back@2x.png in Resources */,
 				13D42E9519ED32D400261D69 /* 640x82.png in Resources */,
+				131514A819EE7EAF00F31595 /* nav_btn_bg@2x.png in Resources */,
 				563724C319E9232900BEF45C /* ios7_fengmianlogo2@2x.png in Resources */,
+				131514AE19EE7EAF00F31595 /* UMContactViewController.xib in Resources */,
 				5637254019E9232900BEF45C /* weibo_implace@2x.png in Resources */,
 				5637252119E9232900BEF45C /* ios7_webviewbar@2x.png in Resources */,
 				5637250319E9232900BEF45C /* searchbbs297_57@2x.png in Resources */,
 				13D42E7019ED32AD00261D69 /* gengduotupiankuang@2x.png in Resources */,
+				1315149B19EE7EAF00F31595 /* item_cancel@2x.png in Resources */,
 				5668E25E19EBC14B0091A4B0 /* baocun@2x.png in Resources */,
 				13D42E6719ED32AD00261D69 /* 20130502_xiaolian@2x.png in Resources */,
 				5637240719E922D800BEF45C /* newscollect44_43@2x.png in Resources */,
@@ -3455,11 +3709,14 @@
 				5637252B19E9232900BEF45C /* searchbbs150_57@2x.png in Resources */,
 				5637256619E9247800BEF45C /* bbs_forum_jiaoyi-1@2x.png in Resources */,
 				5637252819E9232900BEF45C /* MessageSendback@2x.png in Resources */,
+				131514AA19EE7EAF00F31595 /* send1sss@2x.png in Resources */,
+				1315159C19EE831B00F31595 /* newAboultIphone5@2x.png in Resources */,
 				13D42E9419ED32D400261D69 /* 20130502_face.png in Resources */,
 				5637253F19E9232900BEF45C /* weibo_detail_zhuanfa@2x.png in Resources */,
 				13D42D0219ED297F00261D69 /* QBImagePickerController.bundle in Resources */,
 				130C24DB19EBDCBD00044F51 /* emotion.plist in Resources */,
 				13D42D0919ED297F00261D69 /* 确认80_78(1)@2x.png in Resources */,
+				131514B219EE7EAF00F31595 /* UMFeedbackViewController.xib in Resources */,
 				13D42E6919ED32AD00261D69 /* camerom_write@2x.png in Resources */,
 				193D48F719ECC4DE00B6E14E /* UMSShareListController.xib in Resources */,
 				563723FD19E922D800BEF45C /* likes21_19@2x.png in Resources */,
@@ -3474,6 +3731,7 @@
 				13D42CFE19ED297F00261D69 /* 640_146@2x.png in Resources */,
 				563724CF19E9232900BEF45C /* ios7_help5959@2x.png in Resources */,
 				5637253119E9232900BEF45C /* talk2@2x.png in Resources */,
+				1315149D19EE7EAF00F31595 /* item_ok@2x.png in Resources */,
 				563724D719E9232900BEF45C /* ios7_trash5959@2x.png in Resources */,
 				13D42E0919ED30DA00261D69 /* bubble-square-outgoing-selected@2x.png in Resources */,
 				563724BB19E9232900BEF45C /* HotCarType@2x.png in Resources */,
@@ -3491,6 +3749,7 @@
 				563724CC19E9232900BEF45C /* ios7_erweima5959@2x.png in Resources */,
 				13D42E6A19ED32AD00261D69 /* cancell_button@2x.png in Resources */,
 				5637255E19E9247800BEF45C /* bbs_forum_car@2x.png in Resources */,
+				131514AC19EE7EAF00F31595 /* umeng_logo1.png in Resources */,
 				5668E25D19EBC14B0091A4B0 /* xiaoxi@2x.png in Resources */,
 				5668E25A19EBC14B0091A4B0 /* me-1@2x.png in Resources */,
 				193D48F919ECC4DE00B6E14E /* UMSocialSDKResourcesNew.bundle in Resources */,
@@ -3562,6 +3821,7 @@
 				13D42C6819ED251200261D69 /* FaceView.m in Sources */,
 				19FF0E2819E7D28500D5DC6A /* fblifebbs.xcdatamodeld in Sources */,
 				130C24B719EBDB6900044F51 /* LNineImagesView.m in Sources */,
+				1315146F19EE7E4E00F31595 /* UMTableViewLoadingCell.m in Sources */,
 				193D489F19EBCF7800B6E14E /* SGFocusImageFrame.m in Sources */,
 				5668E1AF19EB69CF0091A4B0 /* ZhuCeViewController.m in Sources */,
 				193D48A319EBCFB000B6E14E /* NewHuandengView.m in Sources */,
@@ -3571,6 +3831,7 @@
 				13D42D8319ED2F1600261D69 /* NewWeiBoDetailViewController.m in Sources */,
 				193D48A019EBCF7800B6E14E /* SGFocusImageItem.m in Sources */,
 				130C24F719EBE80D00044F51 /* MineRowCell.m in Sources */,
+				1315145519EE70FF00F31595 /* AtlasSavedPraAndCollModel.xcdatamodeld in Sources */,
 				13D42D6C19ED2E7C00261D69 /* WeiBoInfo.m in Sources */,
 				13D42C6C19ED251200261D69 /* newscellview.m in Sources */,
 				13D42E2919ED310B00261D69 /* ChatInfo.m in Sources */,
@@ -3594,6 +3855,7 @@
 				13D42D2C19ED2AA500261D69 /* DataBase1.m in Sources */,
 				13D42D3619ED2B2000261D69 /* NewMineViewController.m in Sources */,
 				5668E1CF19EB7A070091A4B0 /* AlertRePlaceView.m in Sources */,
+				1315154019EE7EEB00F31595 /* AboutViewController.m in Sources */,
 				13D42D3F19ED2B8500261D69 /* NewUserMessageTop.m in Sources */,
 				13D42D9B19ED300E00261D69 /* mydetailViewController.m in Sources */,
 				5637232519E8FF6500BEF45C /* RefreshTableView.m in Sources */,
@@ -3608,6 +3870,7 @@
 				13D42D9519ED2FD800261D69 /* ImagesViewController.m in Sources */,
 				13D42C6719ED251200261D69 /* FaceScrollView.m in Sources */,
 				13D42D2F19ED2AA500261D69 /* newslooked.m in Sources */,
+				1315146E19EE7E4E00F31595 /* UMTableViewController.m in Sources */,
 				13D42CD019ED289200261D69 /* ATMProgressLayer.m in Sources */,
 				130C24F219EBE17300044F51 /* MineHeaderCell.m in Sources */,
 				13D42C3D19ED1B6500261D69 /* UserModel.m in Sources */,
@@ -3652,8 +3915,10 @@
 				13D42D9219ED2FB700261D69 /* NewWeiBoCommentViewController.m in Sources */,
 				13D42CB319ED27BB00261D69 /* SDWebImageDecoder.m in Sources */,
 				13D42CFF19ED297F00261D69 /* QBAssetCollectionViewController.m in Sources */,
+				1315145919EE7DF400F31595 /* SliderRightSettingViewController.m in Sources */,
 				13D42DF119ED30DA00261D69 /* JSMessageSoundEffect.m in Sources */,
 				13D42CDE19ED292200261D69 /* keyboardtopview.m in Sources */,
+				1315149619EE7EAF00F31595 /* UMEGORefreshTableHeaderView.m in Sources */,
 				13D42D7619ED2EB800261D69 /* WeiBoSpecialView.m in Sources */,
 				13D42D8619ED2F3000261D69 /* DetailBottomView.m in Sources */,
 				5668E21419EBAACC0091A4B0 /* MessageTableView.m in Sources */,
@@ -3685,6 +3950,7 @@
 				13D42E2F19ED314600261D69 /* BBSfenduiViewController.m in Sources */,
 				13D42E2319ED30DA00261D69 /* UIView+AnimationOptionsForCurve.m in Sources */,
 				5646FC3D19E7E64F00AA35E0 /* SliderBBSTitleView.m in Sources */,
+				1315146D19EE7E4E00F31595 /* UMTableViewCell.m in Sources */,
 				1386258B19EE059100E3563B /* FinalshoucangView.m in Sources */,
 				13D42CB819ED27BB00261D69 /* UIImageView+WebCache.m in Sources */,
 				13D42D0619ED297F00261D69 /* QBImagePickerVideoInfoView.m in Sources */,
@@ -3695,6 +3961,7 @@
 				13D42D9819ED2FEF00261D69 /* ImagesCell.m in Sources */,
 				13D42E3519ED317C00261D69 /* AdvertisingimageView.m in Sources */,
 				13D42D6619ED2E7C00261D69 /* DataBase.m in Sources */,
+				131514B019EE7EAF00F31595 /* UMFeedbackTableViewCellRight.m in Sources */,
 				13D42EA119ED32D400261D69 /* SSWBViewController.m in Sources */,
 				1315144F19EE687900F31595 /* MyViewController.m in Sources */,
 				13D42DF019ED30DA00261D69 /* JSMessageInputView.m in Sources */,
@@ -3704,6 +3971,7 @@
 				5668E1D019EB7A070091A4B0 /* loadingimview.m in Sources */,
 				130C24CA19EBDC8F00044F51 /* WeiBoFaceScrollView.m in Sources */,
 				13D42D0319ED297F00261D69 /* QBImagePickerController.m in Sources */,
+				131514B119EE7EAF00F31595 /* UMFeedbackViewController.m in Sources */,
 				130C24B419EBDB6900044F51 /* LBaseViewController.m in Sources */,
 				13D42D0B19ED297F00261D69 /* FBQuanAlertView.m in Sources */,
 				13D42D5319ED2E5400261D69 /* FMResultSet.m in Sources */,
@@ -3715,6 +3983,8 @@
 				193D490219ECEFDD00B6E14E /* bottombarview.m in Sources */,
 				13D42CCE19ED289200261D69 /* ATMHudQueueItem.m in Sources */,
 				193D48B519EBD25C00B6E14E /* NewMainViewModel.m in Sources */,
+				131514AF19EE7EAF00F31595 /* UMFeedbackTableViewCellLeft.m in Sources */,
+				131514AD19EE7EAF00F31595 /* UMContactViewController.m in Sources */,
 				13D42EAB19ED38A000261D69 /* AtlasModel.m in Sources */,
 				193D489719EBCEAF00B6E14E /* EGORefreshTableHeaderView.m in Sources */,
 				13D42EAD19ED38A000261D69 /* CustomInputView.m in Sources */,
@@ -3903,6 +4173,8 @@
 					"$(PROJECT_DIR)/PublicClasses/社会化分享/libWeiboSDK",
 					"$(PROJECT_DIR)/PublicClasses/社会化分享/UMSocial_Sdk_2.2.1/frameworks/Wechat",
 					"$(PROJECT_DIR)/PublicClasses/社会化分享/UMSocial_Sdk_2.2.1",
+					"$(PROJECT_DIR)/PublicClasses/UMtui推广",
+					"$(PROJECT_DIR)/Controls/MyControl/Controllers/MoreViewController/zbarSDK/ZBarSDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -3938,6 +4210,8 @@
 					"$(PROJECT_DIR)/PublicClasses/社会化分享/libWeiboSDK",
 					"$(PROJECT_DIR)/PublicClasses/社会化分享/UMSocial_Sdk_2.2.1/frameworks/Wechat",
 					"$(PROJECT_DIR)/PublicClasses/社会化分享/UMSocial_Sdk_2.2.1",
+					"$(PROJECT_DIR)/PublicClasses/UMtui推广",
+					"$(PROJECT_DIR)/Controls/MyControl/Controllers/MoreViewController/zbarSDK/ZBarSDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -4017,6 +4291,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		1315145119EE70FF00F31595 /* AtlasSavedPraAndCollModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1315145219EE70FF00F31595 /* AtlasSavedPraAndCollModel.xcdatamodel */,
+			);
+			currentVersion = 1315145219EE70FF00F31595 /* AtlasSavedPraAndCollModel.xcdatamodel */;
+			path = AtlasSavedPraAndCollModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		19FF0E2619E7D28500D5DC6A /* fblifebbs.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

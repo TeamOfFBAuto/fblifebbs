@@ -10,23 +10,23 @@
 
 typedef enum
 {
-    MyViewControllerLeftbuttonTypeBack=0,
-    MyViewControllerLeftbuttonTypelogo=1,
-    MyViewControllerLeftbuttonTypeOther=2,
-    MyViewControllerLeftbuttonTypeNull=3,
-    MyViewControllerLeftbuttonTypeText = 4
+    SNViewControllerLeftbuttonTypeBack=0,
+    SNViewControllerLeftbuttonTypelogo=1,
+    SNViewControllerLeftbuttonTypeOther=2,
+    SNViewControllerLeftbuttonTypeNull=3,
+    SNViewControllerLeftbuttonTypeText = 4
 }SNViewControllerLeftbuttonType;
 
 
 typedef enum
 {
-    MyViewControllerRightbuttonTypeRefresh=0,
-    MyViewControllerRightbuttonTypeSearch=1,
-    MyViewControllerRightbuttonTypeText=2,
-    MyViewControllerRightbuttonTypePerson=3,
-    MyViewControllerRightbuttonTypeDelete=4,
-    MyViewControllerRightbuttonTypeNull=5,
-    MyViewControllerRightbuttonTypeOther
+    SNViewControllerRightbuttonTypeRefresh=0,
+    SNViewControllerRightbuttonTypeSearch=1,
+    SNViewControllerRightbuttonTypeText=2,
+    SNViewControllerRightbuttonTypePerson=3,
+    SNViewControllerRightbuttonTypeDelete=4,
+    SNViewControllerRightbuttonTypeNull=5,
+    SNViewControllerRightbuttonTypeOther
 }SNViewControllerRightbuttonType;
 
 

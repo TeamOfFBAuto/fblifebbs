@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QrcodeViewController : SNViewController<AsyncImageDelegate>{
+@interface QrcodeViewController : MyViewController<AsyncImageDelegate>{
     AsyncImageView *qrimageview;
     NSString *stringurl;
 }

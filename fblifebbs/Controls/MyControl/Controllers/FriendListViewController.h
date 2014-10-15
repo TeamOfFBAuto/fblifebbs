@@ -25,7 +25,7 @@
 #import "ATMHud.h"
 
 
-@interface FriendListViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate,AlertRePlaceViewDelegate,UITextFieldDelegate>
+@interface FriendListViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate,AlertRePlaceViewDelegate,UITextFieldDelegate>
 {
     int pageCount;
     id<FriendListViewControllerDelegate>delegate;

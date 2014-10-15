@@ -419,7 +419,7 @@
     
     self.leftImageName = @"logIn_close.png";
     
-    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeOther WithRightButtonType:MyViewControllerRightbuttonTypeOther];
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeOther WithRightButtonType:MyViewControllerRightbuttonTypeOther];
     
     
     

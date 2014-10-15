@@ -35,6 +35,8 @@
 		130C24F319EBE17300044F51 /* MineHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 130C24F119EBE17300044F51 /* MineHeaderCell.xib */; };
 		130C24F719EBE80D00044F51 /* MineRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 130C24F519EBE80D00044F51 /* MineRowCell.m */; };
 		130C24F819EBE80D00044F51 /* MineRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 130C24F619EBE80D00044F51 /* MineRowCell.xib */; };
+		1315144919EE607E00F31595 /* MyWriteAndCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315144819EE607E00F31595 /* MyWriteAndCommentViewController.m */; };
+		1315144F19EE687900F31595 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315144E19EE687900F31595 /* MyViewController.m */; };
 		1386258819EE058000E3563B /* ShoucangSeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 1386258719EE058000E3563B /* ShoucangSeg.m */; };
 		1386258B19EE059100E3563B /* FinalshoucangView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1386258A19EE059100E3563B /* FinalshoucangView.m */; };
 		1386258E19EE05D500E3563B /* NewshoucangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1386258D19EE05D500E3563B /* NewshoucangTableViewCell.m */; };
@@ -662,6 +664,10 @@
 		130C24F419EBE80D00044F51 /* MineRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineRowCell.h; sourceTree = "<group>"; };
 		130C24F519EBE80D00044F51 /* MineRowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineRowCell.m; sourceTree = "<group>"; };
 		130C24F619EBE80D00044F51 /* MineRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineRowCell.xib; sourceTree = "<group>"; };
+		1315144719EE607E00F31595 /* MyWriteAndCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWriteAndCommentViewController.h; sourceTree = "<group>"; };
+		1315144819EE607E00F31595 /* MyWriteAndCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWriteAndCommentViewController.m; sourceTree = "<group>"; };
+		1315144D19EE687900F31595 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		1315144E19EE687900F31595 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		1386258619EE058000E3563B /* ShoucangSeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoucangSeg.h; sourceTree = "<group>"; };
 		1386258719EE058000E3563B /* ShoucangSeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoucangSeg.m; sourceTree = "<group>"; };
 		1386258919EE059100E3563B /* FinalshoucangView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalshoucangView.h; sourceTree = "<group>"; };
@@ -1622,6 +1628,8 @@
 				13D42E3F19ED32AD00261D69 /* 发送微博界面 */,
 				13D42E3619ED319100261D69 /* MerchantsInfoViewController.h */,
 				13D42E3719ED319100261D69 /* MerchantsInfoViewController.m */,
+				1315144719EE607E00F31595 /* MyWriteAndCommentViewController.h */,
+				1315144819EE607E00F31595 /* MyWriteAndCommentViewController.m */,
 				13D42E3C19ED31DA00261D69 /* QrcodeViewController.h */,
 				13D42E3D19ED31DA00261D69 /* QrcodeViewController.m */,
 				130C24EA19EBE0E400044F51 /* MineViewController.h */,
@@ -2802,6 +2810,8 @@
 		5668E1B619EB6FFA0091A4B0 /* PersonalAPI */ = {
 			isa = PBXGroup;
 			children = (
+				1315144D19EE687900F31595 /* MyViewController.h */,
+				1315144E19EE687900F31595 /* MyViewController.m */,
 				5668E1BB19EB70230091A4B0 /* DefaultConstant.h */,
 				130C249519EBDA9600044F51 /* LCW */,
 				5668E1BC19EB70580091A4B0 /* SZK */,
@@ -3546,6 +3556,7 @@
 				5668E1BA19EB70170091A4B0 /* zsnApi.m in Sources */,
 				19FF0E7419E7D40400D5DC6A /* BBSViewController.m in Sources */,
 				13D42D7F19ED2EF400261D69 /* WenJiFeed.m in Sources */,
+				1315144919EE607E00F31595 /* MyWriteAndCommentViewController.m in Sources */,
 				E30FEC8F19EBE2FA00C80B6F /* GFoundSearchViewController.m in Sources */,
 				13D42CB219ED27BB00261D69 /* SDImageCache.m in Sources */,
 				13D42C6819ED251200261D69 /* FaceView.m in Sources */,
@@ -3685,6 +3696,7 @@
 				13D42E3519ED317C00261D69 /* AdvertisingimageView.m in Sources */,
 				13D42D6619ED2E7C00261D69 /* DataBase.m in Sources */,
 				13D42EA119ED32D400261D69 /* SSWBViewController.m in Sources */,
+				1315144F19EE687900F31595 /* MyViewController.m in Sources */,
 				13D42DF019ED30DA00261D69 /* JSMessageInputView.m in Sources */,
 				1386258E19EE05D500E3563B /* NewshoucangTableViewCell.m in Sources */,
 				13D42CB519ED27BB00261D69 /* SDWebImageManager.m in Sources */,

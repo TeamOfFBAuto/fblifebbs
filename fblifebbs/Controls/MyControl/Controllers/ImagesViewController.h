@@ -11,7 +11,7 @@
 #import "ImagesCell.h"
 #import "ATMHud.h"
 
-@interface ImagesViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,MWPhotoBrowserDelegate,ImageCellDelegate>
+@interface ImagesViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,MWPhotoBrowserDelegate,ImageCellDelegate>
 {
     ATMHud *hud;
     

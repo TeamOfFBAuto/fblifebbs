@@ -34,6 +34,7 @@
 #import "UMSocial.h"
 #import "DraftDatabase.H"
 
+#import "MyViewController.h"
 
 
 #pragma mark - 自定义的宏，方便调动

@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "PersonInfo.h"
 
-@interface FBMapViewController : SNViewController<MKMapViewDelegate,UIActionSheetDelegate>
+@interface FBMapViewController : MyViewController<MKMapViewDelegate,UIActionSheetDelegate>
 {
    double userLatitude;
    double userlongitude;

@@ -176,7 +176,7 @@
     
     self.rightImageName = @"ios7_lese";
 
-    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeOther];
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeOther];
         
     
     // tab_.backgroundColor=[UIColor redColor];

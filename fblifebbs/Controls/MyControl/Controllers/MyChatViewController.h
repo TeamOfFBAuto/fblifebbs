@@ -17,7 +17,7 @@
 #import "NewMineViewController.h"
 #import "AlertRePlaceView.h"
 
-@interface MyChatViewController : SNViewController<UITableViewDelegate,UITableViewDataSource,JSDismissiveTextViewDelegate,UITextViewDelegate,UITextViewDelegate,MyChatViewCellDelegate,MWPhotoBrowserDelegate,AlertRePlaceViewDelegate>
+@interface MyChatViewController : MyViewController<UITableViewDelegate,UITableViewDataSource,JSDismissiveTextViewDelegate,UITextViewDelegate,UITextViewDelegate,MyChatViewCellDelegate,MWPhotoBrowserDelegate,AlertRePlaceViewDelegate>
 {
     NSTimer * timer;
     //    botomviewofchat *bottom_view;

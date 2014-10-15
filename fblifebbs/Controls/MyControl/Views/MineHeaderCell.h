@@ -16,5 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *guanzhu_num_label;
 @property (strong, nonatomic) IBOutlet UILabel *fans_num_label;
 @property (strong, nonatomic) IBOutlet UIButton *genderImage;
+@property (strong, nonatomic) IBOutlet UIButton *userInfo_buttom;
+
 
 @end

@@ -11,7 +11,7 @@
 #import "MerchantsInfoCell.h"
 #import "fbWebViewController.h"
 
-@interface MerchantsInfoViewController : SNViewController<ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate,MerchantsInfoCellDelegate>
+@interface MerchantsInfoViewController : MyViewController<ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate,MerchantsInfoCellDelegate>
 {
     ASIHTTPRequest * request_;
     int pageCount;

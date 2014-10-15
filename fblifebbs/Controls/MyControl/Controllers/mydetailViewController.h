@@ -15,7 +15,7 @@
 
 
 
-@interface mydetailViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate,MKMapViewDelegate,CLLocationManagerDelegate>
+@interface mydetailViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate,MKMapViewDelegate,CLLocationManagerDelegate>
 {
     UITableView *detail_tab;
     

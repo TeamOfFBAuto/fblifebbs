@@ -84,7 +84,7 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     
     
-    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
 //    UIColor * cc = [UIColor blackColor];
 //

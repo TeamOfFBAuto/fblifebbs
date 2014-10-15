@@ -14,7 +14,7 @@
 #import "ATMHud.h"
 
 
-@interface guanzhuViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate,EGORefreshTableHeaderDelegate,AlertRePlaceViewDelegate>
+@interface guanzhuViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate,EGORefreshTableHeaderDelegate,AlertRePlaceViewDelegate>
 {
     UITableView *_guanzhu_tab;
     int pageCount;

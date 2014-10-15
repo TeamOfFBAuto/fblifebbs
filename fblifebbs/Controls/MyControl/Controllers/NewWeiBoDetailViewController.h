@@ -20,7 +20,7 @@
 #import "LoadingIndicatorView.h"
 
 
-@interface NewWeiBoDetailViewController : SNViewController<UITableViewDelegate,UITableViewDataSource,NewWeiBoCustomCellDelegate,WeiBoSpecialViewDelegate,MWPhotoBrowserDelegate,DetailBottomViewDelegate,ForwardingViewControllerDelegate,NewWeiBoCommentViewControllerDelegate,RTLabelDelegate>
+@interface NewWeiBoDetailViewController : MyViewController<UITableViewDelegate,UITableViewDataSource,NewWeiBoCustomCellDelegate,WeiBoSpecialViewDelegate,MWPhotoBrowserDelegate,DetailBottomViewDelegate,ForwardingViewControllerDelegate,NewWeiBoCommentViewControllerDelegate,RTLabelDelegate>
 {
     ASIHTTPRequest * detail_request;
     

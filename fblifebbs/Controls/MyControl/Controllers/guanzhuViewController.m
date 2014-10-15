@@ -204,7 +204,7 @@
     
     self.navigationItem.title = _theTitle;
     
-    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
 //    UIColor * cc = [UIColor blackColor];
 //    

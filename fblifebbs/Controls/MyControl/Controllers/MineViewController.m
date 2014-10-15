@@ -14,14 +14,25 @@
 
 #import "UserModel.h"
 
-#import "ShoucangViewController.h"
+#import "AppDelegate.h"
 
-@interface MineViewController ()
+#import "ShoucangViewController.h"
+#import "MyWriteAndCommentViewController.h"
+
+#import "FriendListViewController.h"
+#import "DraftBoxViewController.h"
+#import "QrcodeViewController.h"
+
+#import "NewMineViewController.h"
+
+@interface MineViewController ()<FriendListViewControllerDelegate>
 {
     NSArray *images_arr;
     NSArray *names_arr;
     
     MineHeaderCell *headerCell;
+    
+    NSString *userId;
 }
 
 @end
@@ -95,11 +106,18 @@
                 headerCell.genderImage.selected = YES;
                 
             }
+            headerCell.genderImage.hidden = NO;
             headerCell.genderImage.left = headerCell.nameLabel.right + 10;
-            headerCell.descriptionLabel.text = user.aboutme.length ? user.aboutme : @"无";
+            
+            NSString *des = [NSString stringWithFormat:@"简介:%@",user.aboutme.length ? user.aboutme : @"无"];
+            headerCell.descriptionLabel.text = des;
             headerCell.tiezi_num_label.text = user.topic_count;
             headerCell.fans_num_label.text = user.fans_count;
             headerCell.guanzhu_num_label.text =  user.follow_count;
+            
+            userId = user.uid;
+            
+            [headerCell.userInfo_buttom addTarget:self action:@selector(clickToUserCenter:) forControlEvents:UIControlEventTouchUpInside];
             
         }
         
@@ -108,6 +126,14 @@
         ;
     }];
 }
+
+#pragma mark - 点击事件
+
+- (void)clickToUserCenter:(UIButton *)sender
+{
+    [self returnUserName:nil Uid:userId];
+}
+
 
 #pragma mark - Table view data source
 
@@ -132,6 +158,7 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         }
         cell.contentView.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
@@ -140,6 +167,7 @@
         if (!headerCell) {
             headerCell = [[[NSBundle mainBundle]loadNibNamed:@"MineHeaderCell" owner:self options:nil]objectAtIndex:0];
         }
+        headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
 
         return headerCell;
     }
@@ -148,6 +176,7 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"MineRowCell" owner:self options:nil]objectAtIndex:0];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.iconImage.image = [UIImage imageNamed:[images_arr objectAtIndex:indexPath.row]];
     cell.aTitleLabel.text = [names_arr objectAtIndex:indexPath.row];
@@ -213,24 +242,88 @@
     
     if (indexPath.row == 3) {
         
+        //我的收藏
         ShoucangViewController *shoucang = [[ShoucangViewController alloc]init];
         
         shoucang.hidesBottomBarWhenPushed = YES;
         
         [self.navigationController pushViewController:shoucang animated:YES];
         
+    }else if (indexPath.row == 4)
+    {
+        //我的帖子
+        
+        MyWriteAndCommentViewController *write = [[MyWriteAndCommentViewController alloc]init];
+        
+        write.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:write animated:YES];
+        
+    }else if (indexPath.row == 5)
+    {
+        //我的好友
+        
+        FriendListViewController * friend = [[FriendListViewController alloc] init];
+        
+        friend.title_name_string = @"联系人";
+        
+        friend.delegate = self;
+        
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:friend];
+        
+        [self presentViewController:nav animated:YES completion:NULL];
+        
+    }else if (indexPath.row == 7)
+    {
+        //我的名片
+        
+        QrcodeViewController *vc = [[QrcodeViewController alloc]init];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        
+    }else if (indexPath.row == 8)
+    {
+        //草稿箱
+        
+        DraftBoxViewController *vc = [[DraftBoxViewController alloc]init];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else if (indexPath.row == 8)
+    {
+        //历史浏览
+        
+        
     }
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(AppDelegate *)getAppDelegate
+{
+    AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    return appdelegate;
 }
-*/
+
+
+
+#pragma mark - 联系人代理，跳转到个人界面
+
+-(void)returnUserName:(NSString *)username Uid:(NSString *)uid
+{
+    NewMineViewController * mine = [[NewMineViewController alloc] init];
+    
+    mine.uid = uid;
+    
+    
+    mine.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:mine animated:YES];
+}
 
 @end

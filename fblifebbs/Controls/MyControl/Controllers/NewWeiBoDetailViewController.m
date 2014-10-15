@@ -291,7 +291,7 @@
 //    self.navigationItem.leftBarButtonItems=@[negativeSpacer,back_item];
     
     
-    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
     
     _dataArray = [[NSMutableArray alloc] init];

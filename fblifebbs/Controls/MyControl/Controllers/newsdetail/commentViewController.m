@@ -199,7 +199,7 @@
     //    self.navigationItem.leftBarButtonItem=back_item;
     
     
-    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
+    [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeBack WithRightButtonType:SNViewControllerRightbuttonTypeNull];
     
     
     //  self.navigationItem.title=@"新闻中心";

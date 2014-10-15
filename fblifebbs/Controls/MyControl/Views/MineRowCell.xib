@@ -27,7 +27,7 @@
                         <rect key="frame" x="13" y="54" width="307" height="1"/>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jiantou.png" translatesAutoresizingMaskIntoConstraints="NO" id="09C-4e-agm">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jiantou.png" translatesAutoresizingMaskIntoConstraints="NO" id="09C-4e-agm">
                         <rect key="frame" x="300" y="20" width="7" height="13"/>
                     </imageView>
                 </subviews>

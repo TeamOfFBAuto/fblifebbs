@@ -14,6 +14,8 @@
 
 #import "UserModel.h"
 
+#import "ShoucangViewController.h"
+
 @interface MineViewController ()
 {
     NSArray *images_arr;
@@ -53,6 +55,7 @@
     images_arr = @[@"",@"",@"",@"shoucang@2x.png",@"tiezi@2x.png",@"friend@2x.png",@"",@"mingpian@2x.png",@"youxiang@2x.png",@"lishijilu@2x.png"];
     names_arr = @[@"",@"",@"",@"我的收藏",@"我的帖子",@"我的好友",@"",@"我的名片",@"草稿箱",@"历史浏览"];
     
+    self.navigationItem.title = @"我";
     
     [self getUserInfo];
 }
@@ -204,16 +207,19 @@
     return 54;
 }
 
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-//    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-//    
-//    // Pass the selected object to the new view controller.
-//    
-//    // Push the view controller.
-//    [self.navigationController pushViewController:detailViewController animated:YES];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"indexPath %@",indexPath);
+    
+    if (indexPath.row == 3) {
+        
+        ShoucangViewController *shoucang = [[ShoucangViewController alloc]init];
+        
+        shoucang.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:shoucang animated:YES];
+        
+    }
 }
 
 

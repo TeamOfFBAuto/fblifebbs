@@ -35,13 +35,6 @@
 }
 
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,8 +49,8 @@
 //    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
 //    self.view.backgroundColor = RGBCOLOR(214,214,214);
-    
-    
+//    
+//    
     if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
     {
         //iOS 5 new UINavigationBar custom background

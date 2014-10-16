@@ -980,7 +980,7 @@
     
     [MobClick beginEvent:@"NewMineViewController"];
     
-    self.navigationController.navigationBarHidden = NO;
+//    self.navigationController.navigationBarHidden = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -997,7 +997,6 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
     UIView * back_viewww = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,120)];
     
     back_viewww.backgroundColor = RGBCOLOR(40, 43, 53);
@@ -1013,6 +1012,10 @@
     
     _photos = [[NSMutableArray alloc] init];
     
+    
+    
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     

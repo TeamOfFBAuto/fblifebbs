@@ -26,9 +26,6 @@
 #import "NewMineViewController.h"
 
 #import "SliderRightSettingViewController.h"
-//#define k_User_Name @"k_User_Name"
-//#define <#macro#>(<#args#>)
-
 
 @interface MineViewController ()<FriendListViewControllerDelegate>
 {
@@ -139,7 +136,8 @@
         
         
     } failBlock:^(NSDictionary *failDic, NSError *erro) {
-        ;
+        
+        [headerCell.userInfo_buttom addTarget:self action:@selector(clickToUserCenter:) forControlEvents:UIControlEventTouchUpInside];
     }];
 }
 

@@ -118,10 +118,10 @@
     
     //设置状态栏(如果整个app是统一的状态栏，其他地方不用再设置)
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+//    
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     forum_title_array = [NSArray arrayWithObjects:@"diqu",@"chexing",@"zhuti",@"jiaoyi",nil];
     _forum_diqu_array = [NSMutableArray array];

@@ -299,6 +299,8 @@
 		5637256D19E9247800BEF45C /* slider_bbs_me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5637255A19E9247800BEF45C /* slider_bbs_me@2x.png */; };
 		5637256E19E9247800BEF45C /* sliderBBSNavigationBarImage_ios6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5637255B19E9247800BEF45C /* sliderBBSNavigationBarImage_ios6@2x.png */; };
 		5637256F19E9247800BEF45C /* sliderBBSNavigationBarImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5637255C19E9247800BEF45C /* sliderBBSNavigationBarImage@2x.png */; };
+		5637BD9C19EE5059008836CE /* touxiang.png in Resources */ = {isa = PBXBuildFile; fileRef = 5637BD9A19EE5059008836CE /* touxiang.png */; };
+		5637BD9D19EE5059008836CE /* touxiang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5637BD9B19EE5059008836CE /* touxiang@2x.png */; };
 		5646FC3319E7E30000AA35E0 /* SNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5646FC3219E7E30000AA35E0 /* SNViewController.m */; };
 		5646FC3D19E7E64F00AA35E0 /* SliderBBSTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5646FC3C19E7E64F00AA35E0 /* SliderBBSTitleView.m */; };
 		5668E1AD19EB69CF0091A4B0 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E1A819EB69CF0091A4B0 /* LogInViewController.m */; };
@@ -380,6 +382,11 @@
 		5668E27719EBC14B0091A4B0 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E25019EBC14B0091A4B0 /* line@2x.png */; };
 		5668E27819EBC14B0091A4B0 /* sixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E25119EBC14B0091A4B0 /* sixin@2x.png */; };
 		5668E27919EBC14B0091A4B0 /* yiguanzhu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E25219EBC14B0091A4B0 /* yiguanzhu@2x.png */; };
+		5691409519ED17D800625501 /* NotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691409419ED17D800625501 /* NotificationView.m */; };
+		5691409919ED21E400625501 /* NotificationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691409719ED21E400625501 /* NotificationTableViewCell.m */; };
+		5691409A19ED21E400625501 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5691409819ED21E400625501 /* NotificationTableViewCell.xib */; };
+		5691409D19ED277900625501 /* NotificationFBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691409C19ED277900625501 /* NotificationFBModel.m */; };
+		569140A019ED278B00625501 /* NotificationBBSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691409F19ED278B00625501 /* NotificationBBSModel.m */; };
 		56F6D7E919EBF9AC00B99CAC /* CustomMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E21619EBAE990091A4B0 /* CustomMessageCell.m */; };
 		56F6D7EA19EBF9DE00B99CAC /* LRefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5637232D19E905D100BEF45C /* LRefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		56F6D7EB19EBFA2C00B99CAC /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E1B319EB69DF0091A4B0 /* VerificationViewController.m */; };
@@ -772,6 +779,8 @@
 		5637255A19E9247800BEF45C /* slider_bbs_me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider_bbs_me@2x.png"; sourceTree = "<group>"; };
 		5637255B19E9247800BEF45C /* sliderBBSNavigationBarImage_ios6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderBBSNavigationBarImage_ios6@2x.png"; sourceTree = "<group>"; };
 		5637255C19E9247800BEF45C /* sliderBBSNavigationBarImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderBBSNavigationBarImage@2x.png"; sourceTree = "<group>"; };
+		5637BD9A19EE5059008836CE /* touxiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touxiang.png; sourceTree = "<group>"; };
+		5637BD9B19EE5059008836CE /* touxiang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touxiang@2x.png"; sourceTree = "<group>"; };
 		5646FC3119E7E30000AA35E0 /* SNViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNViewController.h; sourceTree = "<group>"; };
 		5646FC3219E7E30000AA35E0 /* SNViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNViewController.m; sourceTree = "<group>"; };
 		5646FC3419E7E33700AA35E0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -878,6 +887,15 @@
 		5668E25019EBC14B0091A4B0 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
 		5668E25119EBC14B0091A4B0 /* sixin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sixin@2x.png"; sourceTree = "<group>"; };
 		5668E25219EBC14B0091A4B0 /* yiguanzhu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yiguanzhu@2x.png"; sourceTree = "<group>"; };
+		5691409319ED17D800625501 /* NotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationView.h; sourceTree = "<group>"; };
+		5691409419ED17D800625501 /* NotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationView.m; sourceTree = "<group>"; };
+		5691409619ED21E400625501 /* NotificationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableViewCell.h; sourceTree = "<group>"; };
+		5691409719ED21E400625501 /* NotificationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableViewCell.m; sourceTree = "<group>"; };
+		5691409819ED21E400625501 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
+		5691409B19ED277900625501 /* NotificationFBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationFBModel.h; sourceTree = "<group>"; };
+		5691409C19ED277900625501 /* NotificationFBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationFBModel.m; sourceTree = "<group>"; };
+		5691409E19ED278B00625501 /* NotificationBBSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationBBSModel.h; sourceTree = "<group>"; };
+		5691409F19ED278B00625501 /* NotificationBBSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationBBSModel.m; sourceTree = "<group>"; };
 		64B86ABD37B84DCF95542AF2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8CC1C7F5CF2B45F2827965E6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E30FEC8D19EBE2FA00C80B6F /* GFoundSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFoundSearchViewController.h; sourceTree = "<group>"; };
@@ -1439,6 +1457,8 @@
 				5637246E19E9232800BEF45C /* ios7newsimg */,
 				5637244019E9232800BEF45C /* ios7bbsimg */,
 				5637242819E9232800BEF45C /* ios7_more_images */,
+				5637BD9A19EE5059008836CE /* touxiang.png */,
+				5637BD9B19EE5059008836CE /* touxiang@2x.png */,
 				5637241319E9232800BEF45C /* chat_people@2x.png */,
 				5637254A19E9247800BEF45C /* bbs_forum_car-1@2x.png */,
 				5637254B19E9247800BEF45C /* bbs_forum_car@2x.png */,
@@ -1821,6 +1841,10 @@
 			children = (
 				5668E21819EBAF500091A4B0 /* MessageInfo.h */,
 				5668E21919EBAF500091A4B0 /* MessageInfo.m */,
+				5691409B19ED277900625501 /* NotificationFBModel.h */,
+				5691409C19ED277900625501 /* NotificationFBModel.m */,
+				5691409E19ED278B00625501 /* NotificationBBSModel.h */,
+				5691409F19ED278B00625501 /* NotificationBBSModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1832,6 +1856,11 @@
 				5668E21319EBAACC0091A4B0 /* MessageTableView.m */,
 				5668E21519EBAE990091A4B0 /* CustomMessageCell.h */,
 				5668E21619EBAE990091A4B0 /* CustomMessageCell.m */,
+				5691409319ED17D800625501 /* NotificationView.h */,
+				5691409419ED17D800625501 /* NotificationView.m */,
+				5691409619ED21E400625501 /* NotificationTableViewCell.h */,
+				5691409719ED21E400625501 /* NotificationTableViewCell.m */,
+				5691409819ED21E400625501 /* NotificationTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2098,7 +2127,6 @@
 				5637240F19E922D800BEF45C /* sharemail@2x.png in Resources */,
 				5637253919E9232900BEF45C /* weibo_detai_line@2x.png in Resources */,
 				193D48F419ECC4DE00B6E14E /* UMShareEditViewControlleriPad.xib in Resources */,
-				5668E29319EBE38C0091A4B0 /* bbs_rankinglist_dadui@2x.png in Resources */,
 				5637254619E9232900BEF45C /* writeWeiBoImage@2x.png in Resources */,
 				563724B619E9232900BEF45C /* earth_logo@2x.png in Resources */,
 				562DE03019ECE5A900CAF790 /* bbs_rankinglist_dadui@2x.png in Resources */,
@@ -2118,6 +2146,7 @@
 				5668E1CE19EB7A070091A4B0 /* 308_223@2x.png in Resources */,
 				5637252E19E9232900BEF45C /* selectsearchbbsleft150_55@2x.png in Resources */,
 				563724FD19E9232900BEF45C /* ios7_refresh4139@2x 下午11.20.36.png in Resources */,
+				5637BD9D19EE5059008836CE /* touxiang@2x.png in Resources */,
 				5637251819E9232900BEF45C /* ios7_newsbeijing@2x.png in Resources */,
 				563723F919E922D800BEF45C /* fanhui_image@2x.png in Resources */,
 				563724F719E9232900BEF45C /* ios7_goahead4032@2x.png in Resources */,
@@ -2175,6 +2204,7 @@
 				5637256119E9247800BEF45C /* bbs_forum_earth-1@2x.png in Resources */,
 				5637253719E9232900BEF45C /* weiboChoosePicturesback@2x.png in Resources */,
 				563724C819E9232900BEF45C /* ios7_bianjiziliao25x28@2x.png in Resources */,
+				5691409A19ED21E400625501 /* NotificationTableViewCell.xib in Resources */,
 				5668E1D119EB7A070091A4B0 /* tishijizai308_223@2x.png in Resources */,
 				5637252419E9232900BEF45C /* llongInBackImage@2x.png in Resources */,
 				5637251919E9232900BEF45C /* ios7_newssearch@2x.png in Resources */,
@@ -2232,6 +2262,7 @@
 				563724B419E9232900BEF45C /* chose.png in Resources */,
 				5637250E19E9232900BEF45C /* ios7_fbselected@2x.png in Resources */,
 				563724CA19E9232900BEF45C /* ios7_change5959@2x.png in Resources */,
+				5637BD9C19EE5059008836CE /* touxiang.png in Resources */,
 				5637241119E922D800BEF45C /* shareweixin@2x.png in Resources */,
 				562DE02F19ECE5A900CAF790 /* bbs_rankinglist_dadui1@2x.png in Resources */,
 				5637254319E9232900BEF45C /* WriteBlog_face_image@2x.png in Resources */,
@@ -2394,10 +2425,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				569140A019ED278B00625501 /* NotificationBBSModel.m in Sources */,
 				56F6D7EB19EBFA2C00B99CAC /* VerificationViewController.m in Sources */,
 				56F6D7EA19EBF9DE00B99CAC /* LRefreshTableHeaderView.m in Sources */,
 				56F6D7E919EBF9AC00B99CAC /* CustomMessageCell.m in Sources */,
 				130C24DF19EBDCBD00044F51 /* NSAttributedString+Attributes.m in Sources */,
+				5691409D19ED277900625501 /* NotificationFBModel.m in Sources */,
 				5668E1BA19EB70170091A4B0 /* zsnApi.m in Sources */,
 				19FF0E7419E7D40400D5DC6A /* BBSViewController.m in Sources */,
 				E30FEC8F19EBE2FA00C80B6F /* GFoundSearchViewController.m in Sources */,
@@ -2434,11 +2467,11 @@
 				130C24E219EBDCBD00044F51 /* SCGIFImageView.m in Sources */,
 				130C24ED19EBE0E400044F51 /* MineViewController.m in Sources */,
 				193D48B819EBD33C00B6E14E /* GuanggaoViewController.m in Sources */,
+				5691409919ED21E400625501 /* NotificationTableViewCell.m in Sources */,
 				5668E21419EBAACC0091A4B0 /* MessageTableView.m in Sources */,
 				19FF0E6019E7D38200D5DC6A /* FindViewController.m in Sources */,
 				562DE03919ECE5B800CAF790 /* RankingListCustomCell.m in Sources */,
 				5668E22419EBB0740091A4B0 /* FullyLoaded.m in Sources */,
-				5668E29A19EBE38C0091A4B0 /* RankingListSegmentView.m in Sources */,
 				193D48FC19ECEE1D00B6E14E /* ShareView.m in Sources */,
 				130C24A019EBDB3500044F51 /* UIView+Frame.m in Sources */,
 				5646FC3D19E7E64F00AA35E0 /* SliderBBSTitleView.m in Sources */,
@@ -2465,6 +2498,7 @@
 				130C24DD19EBDCBD00044F51 /* FBHelper.m in Sources */,
 				130C24BB19EBDB6900044F51 /* LMoveView.m in Sources */,
 				5668E21E19EBAFCB0091A4B0 /* AsyncImageView.m in Sources */,
+				5691409519ED17D800625501 /* NotificationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -453,8 +453,14 @@ alpha:(a)]
 ///获取私信列表接口
 #define GET_MESSAGE_LIST_URL @"http://msg.fblife.com/api.php?c=index&authcode=%@"
 
+#pragma mark ---- 获取论坛通知
+#define GET_BBS_NOTIFICATION_URL @"http://bbs.fblife.com/bbsapinew/msgnotice.php?authcode=%@&type=0&page=%d&formattype=json"
 
-
+#pragma mark --- 获取fb通知
+///获取fb未读通知
+#define GET_FB_UREAD_NOTIFICATION_URL @"http://fb.fblife.com/openapi/index.php?mod=alert&code=alertlist&fromtype=b5eeec0b&authkey=%@&page=%d&numpage=20&fbtype=json"
+///获取fb已读通知
+#define GET_FB_READ_NOTIFICATION_URL @"http://fb.fblife.com/openapi/index.php?mod=alert&code=alertlistread&fromtype=b5eeec0b&authkey=%@&page=%d&numpage=20&fbtype=json"
 
 
 

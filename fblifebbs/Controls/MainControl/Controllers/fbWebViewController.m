@@ -99,11 +99,11 @@
     self.navigationItem.titleView = topView;
 
     
-    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? -3:5, 0, 12, 43/2)];
+    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(-10,0,30,44)];
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
     
-    UIButton *leftview=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 43/2)];
+    UIButton *leftview=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 44)];
 //    leftview.backgroundColor=[UIColor redColor];
     [leftview addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
     [leftview addSubview:button_back];

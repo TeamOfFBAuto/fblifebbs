@@ -19,11 +19,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,frame.size.height,self.frame.size.width/2-30,1)];
         
-        lineImageView.backgroundColor = RGBCOLOR(3,3,4);
-        
-        [self addSubview:lineImageView];
     }
     return self;
 }
@@ -33,13 +29,20 @@
 {
     titleView_block = theBlock;
     
+    
+    lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.frame.size.height,self.frame.size.width/array.count-30,1)];
+    
+    lineImageView.backgroundColor = RGBCOLOR(3,3,4);
+    
+    [self addSubview:lineImageView];
+    
     for (int i = 0;i < array.count;i++)
     {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         
         button.tag = 100+i;
         
-        button.frame = CGRectMake((self.frame.size.width/2)*i,0,self.frame.size.width/2,self.frame.size.height-2);
+        button.frame = CGRectMake((self.frame.size.width/array.count)*i,0,self.frame.size.width/array.count,self.frame.size.height-2);
         
         [button setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
         

@@ -67,8 +67,6 @@
     
     _myTableView.tableHeaderView = ranking_segment;
     
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogIn:) name:@"LogIn" object:nil];
 }
 

@@ -48,6 +48,15 @@
     [self addSubview:_myTableView];
     
     [self getNotificationData];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+
+}
+
+#pragma mark - 登陆成功
+-(void)loginSuccess:(NSNotification *)notification
+{
+    [self getNotificationData];
 }
 
 #pragma mark - 获取数据

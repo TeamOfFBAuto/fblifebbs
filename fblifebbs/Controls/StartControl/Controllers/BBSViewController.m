@@ -12,6 +12,9 @@
 #import "SliderBBSForumSegmentView.h"
 #import "ASINetworkQueue.h"
 #import "BBSRankingView.h"
+#import "BBSfenduiViewController.h"
+#import "bbsdetailViewController.h"
+#import "RankingListModel.h"
 
 
 @interface SliderBBSForumModel ()
@@ -194,12 +197,22 @@
         switch (index) {
             case 0:///bbsdetail
             {
-                
+                RankingListModel * model = (RankingListModel*)object;
+                bbsdetailViewController * detail = [[bbsdetailViewController alloc] init];
+                detail.bbsdetail_tid = model.ranking_id;
+                detail.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:detail animated:YES];
             }
                 break;
             case 1:///bbsfendui
             {
+                RankingListModel * model = (RankingListModel*)object;
                 
+                BBSfenduiViewController * fendui = [[BBSfenduiViewController alloc] init];
+                fendui.string_id = model.ranking_id;
+                fendui.collection_array = self.forum_section_collection_array;
+                fendui.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:fendui animated:YES];
             }
                 break;
             case 2:///login
@@ -629,13 +642,10 @@
 
 -(void)pushToBBSForumDetailWithId:(NSString *)theId
 {
-//    BBSfenduiViewController * fendui = [[BBSfenduiViewController alloc] init];
-//    
-//    fendui.string_id = theId;
-//    
-//    fendui.collection_array = self.forum_section_collection_array;
-//    
-//    [self.navigationController pushViewController:fendui animated:YES];
+    BBSfenduiViewController * fendui = [[BBSfenduiViewController alloc] init];
+    fendui.string_id = theId;
+    fendui.collection_array = self.forum_section_collection_array;
+    [self.navigationController pushViewController:fendui animated:YES];
 }
 
 
@@ -646,16 +656,14 @@
 
 -(void)CollectForumSectionTap:(ZSNButton *)sender
 {
-//    BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
-//    
-//    
-//    if (!isLogin) {
-//        LogInViewController * logIn = [LogInViewController sharedManager];
-//        
-//        [self presentViewController:logIn animated:YES completion:NULL];
-//        
-//        return;
-//    }
+    BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+    
+    if (!isLogin)
+    {
+        LogInViewController * logIn = [LogInViewController sharedManager];
+        [self presentViewController:logIn animated:YES completion:NULL];
+        return;
+    }
     
     
     

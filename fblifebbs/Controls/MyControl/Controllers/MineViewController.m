@@ -27,6 +27,8 @@
 
 #import "SliderRightSettingViewController.h"
 
+#import "ScanHistoyViewController.h"
+
 #define CURRENT_USER_HEADIMAGE @"HEADIMAGE"//头像
 
 @interface MineViewController ()<FriendListViewControllerDelegate>
@@ -153,7 +155,7 @@
 - (void)getDataWithUserModel:(UserModel *)user
 {
  
-    [headerCell.headImage setImageWithURL:[NSURL URLWithString:user.face_small] placeholderImage:nil];
+    [headerCell.headImage setImageWithURL:[NSURL URLWithString:user.face_small] placeholderImage:[UIImage imageNamed:@"touxiang.png"]];
     
     headerCell.nameLabel.text = user.username;
     
@@ -161,7 +163,7 @@
     
     headerCell.nameLabel.width = [LTools widthForText:user.username font:16];
     
-    if ([user.gender integerValue] == 0) {
+    if ([user.gender integerValue] == 1) {
         NSLog(@"man");
         
     }else
@@ -354,11 +356,15 @@
         
         [self.navigationController pushViewController:vc animated:YES];
         
-    }else if (indexPath.row == 8)
+    }else if (indexPath.row == 9)
     {
         //历史浏览
         
+        ScanHistoyViewController *vc = [[ScanHistoyViewController alloc]init];
         
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

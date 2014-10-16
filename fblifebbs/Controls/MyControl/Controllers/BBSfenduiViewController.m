@@ -65,6 +65,11 @@
     }
 }
 
+- (void)dealloc
+{
+    NSLog(@"--dealloc-- %@",NSStringFromClass([self class]));
+}
+
 - (void)viewDidLoad
 {
     

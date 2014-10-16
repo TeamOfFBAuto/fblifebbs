@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MineRowCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UIImageView *iconImage;
+@property (strong, nonatomic) IBOutlet UILabel *aTitleLabel;
 
 @end

@@ -8,17 +8,20 @@
 
 #import "fbWebViewController.h"
 
-//#import "newsdetailViewController.h"
-//#import "commentViewController.h"
+#import "newsdetailViewController.h"
+#import "commentViewController.h"
 #import "JSONKit.h"
 #import "personal.h"
 #import "ASIHTTPRequest.h"
+#import "loadingview.h"
 #import "DefaultConstant.h"
 #import "LogInViewController.h"
 #import "fbWebViewController.h"
+#import "NewMineViewController.h"
 #import "UMSocialControllerService.h"
 #import "UMSocialSnsPlatformManager.h"
-//#import "WriteBlogViewController.h"
+#import "WriteBlogViewController.h"
+#import "SSWBViewController.h"
 @interface fbWebViewController (){
 
     ShareView *_shareView;
@@ -80,8 +83,7 @@
 
     [super viewDidLoad];
     
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-
+    
     
     UIView * topView = [[UIView alloc] initWithFrame:CGRectMake(0,0,200,44)];
     topView.backgroundColor = [UIColor clearColor];
@@ -116,9 +118,26 @@
         
         [self.navigationController.navigationBar setBackgroundImage:IOS_VERSION>=7?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]: [UIImage imageNamed:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
     }
+//    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? -3:5, 0, 12, 43/2)];
+//    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+//    
+//    UIButton *leftview=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 43/2)];
+////    leftview.backgroundColor=[UIColor redColor];
+//    [leftview addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+//    [leftview addSubview:button_back];
+//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:leftview];
+//    self.navigationItem.leftBarButtonItem=back_item;
+//
+//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
+//        
+//        //iOS 5 new UINavigationBar custom background
+//        
+//        [self.navigationController.navigationBar setBackgroundImage:IOS_VERSION>=7?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]: [UIImage imageNamed:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
+//    }
     
     
-//    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
+    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
     
     
@@ -287,6 +306,7 @@
     }
     
     
+    
 }
 
 -(void)clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -295,18 +315,18 @@
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:USER_IN])
         {
-//            WriteBlogViewController * writeBlogView = [[WriteBlogViewController alloc] init];
-//            
-//            writeBlogView.theText = [NSString stringWithFormat:@"分享新闻:“%@”,链接:%@",string_title,self.urlstring] ;
-//            
-//            NSMutableArray *array_shareimg=[[NSMutableArray alloc]init];
-//            // [array_shareimg addObject:[UIImage imageNamed:@"Icon@2x.png"]];
-//            NSMutableArray *array_none=[[NSMutableArray alloc]init];
-//            [array_none addObject:@"safjakf"];
-//            writeBlogView.allImageArray1=array_shareimg;
-//            writeBlogView.allAssesters1=array_none;
-//            
-//            [self presentModalViewController:writeBlogView animated:YES];
+            WriteBlogViewController * writeBlogView = [[WriteBlogViewController alloc] init];
+            
+            writeBlogView.theText = [NSString stringWithFormat:@"分享新闻:“%@”,链接:%@",string_title,self.urlstring] ;
+            
+            NSMutableArray *array_shareimg=[[NSMutableArray alloc]init];
+            // [array_shareimg addObject:[UIImage imageNamed:@"Icon@2x.png"]];
+            NSMutableArray *array_none=[[NSMutableArray alloc]init];
+            [array_none addObject:@"safjakf"];
+            writeBlogView.allImageArray1=array_shareimg;
+            writeBlogView.allAssesters1=array_none;
+            
+            [self presentModalViewController:writeBlogView animated:YES];
             
         }
         else{
@@ -501,18 +521,18 @@
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:USER_IN])
         {
-//            WriteBlogViewController * writeBlogView = [[WriteBlogViewController alloc] init];
-//            
-//            writeBlogView.theText = [NSString stringWithFormat:@"分享新闻:“%@”,链接:%@",string_title,self.urlstring] ;
-//            
-//            NSMutableArray *array_shareimg=[[NSMutableArray alloc]init];
-//           // [array_shareimg addObject:[UIImage imageNamed:@"Icon@2x.png"]];
-//            NSMutableArray *array_none=[[NSMutableArray alloc]init];
-//            [array_none addObject:@"safjakf"];
-//            writeBlogView.allImageArray1=array_shareimg;
-//            writeBlogView.allAssesters1=array_none;
-//            
-//            [self presentModalViewController:writeBlogView animated:YES];
+            WriteBlogViewController * writeBlogView = [[WriteBlogViewController alloc] init];
+            
+            writeBlogView.theText = [NSString stringWithFormat:@"分享新闻:“%@”,链接:%@",string_title,self.urlstring] ;
+            
+            NSMutableArray *array_shareimg=[[NSMutableArray alloc]init];
+           // [array_shareimg addObject:[UIImage imageNamed:@"Icon@2x.png"]];
+            NSMutableArray *array_none=[[NSMutableArray alloc]init];
+            [array_none addObject:@"safjakf"];
+            writeBlogView.allImageArray1=array_shareimg;
+            writeBlogView.allAssesters1=array_none;
+            
+            [self presentModalViewController:writeBlogView animated:YES];
             
         }
         else{

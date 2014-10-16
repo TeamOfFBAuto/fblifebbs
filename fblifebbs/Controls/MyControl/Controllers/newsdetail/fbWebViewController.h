@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FaceScrollView.h"
+#import "FaceView.h"
 #import "downloadtool.h"
+#import "GrayPageControl.h"
+#import "MWPhotoBrowser.h"
 #import "bottombarview.h"
-//#import "bbsdetailViewController.h"
+#import "bbsdetailViewController.h"
+#import "SelectNumberView.h"
 #import "AlertRePlaceView.h"
 #import "loadingimview.h"
 #import "WXApi.h"
@@ -21,7 +26,7 @@
 #import "ShareView.h"
 
 
-@interface fbWebViewController : UIViewController<UIWebViewDelegate,NSURLConnectionDataDelegate,UITextFieldDelegate,UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate,downloaddelegate,AlertRePlaceViewDelegate,BottombarviewDelegate,WXApiDelegate,MFMailComposeViewControllerDelegate,WeiboSDKDelegate>{
+@interface fbWebViewController : SNViewController<UIWebViewDelegate,NSURLConnectionDataDelegate,UITextFieldDelegate,UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate,downloaddelegate,MWPhotoBrowserDelegate,AlertRePlaceViewDelegate,BottombarviewDelegate,SelectNumberViewDelegate,WXApiDelegate,MFMailComposeViewControllerDelegate,WeiboSDKDelegate>{
     UIWebView *awebview;
     UIButton *button_comment;
     UILabel *titleview;

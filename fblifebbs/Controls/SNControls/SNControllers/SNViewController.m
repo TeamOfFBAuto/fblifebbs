@@ -48,7 +48,7 @@
     myLeftType = &theType;
     MyRightType = &rightType;
     
-    if (theType == MyViewControllerLeftbuttonTypeBack)
+    if (theType == SNViewControllerLeftbuttonTypeBack)
     {
         UIBarButtonItem * spaceButton1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
         spaceButton1.width = MY_MACRO_NAME?-13:5;
@@ -58,7 +58,7 @@
         [_my_left_button setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
         UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:_my_left_button];
         self.navigationItem.leftBarButtonItems=@[spaceButton1,back_item];
-    }else if (theType == MyViewControllerLeftbuttonTypelogo)
+    }else if (theType == SNViewControllerLeftbuttonTypelogo)
     {
         UIImageView * leftImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ios7logo"]];
         leftImageView.center = CGPointMake(MY_MACRO_NAME? 18:30,22);
@@ -66,7 +66,7 @@
         [lefttttview addSubview:leftImageView];
         UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:lefttttview];
         self.navigationItem.leftBarButtonItems = @[spaceButton,leftButton];
-    }else if(theType == MyViewControllerLeftbuttonTypeOther)
+    }else if(theType == SNViewControllerLeftbuttonTypeOther)
     {
         UIImage * leftImage = [UIImage imageNamed:_leftImageName];
         _my_left_button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -76,7 +76,7 @@
         UIBarButtonItem * leftBarButton = [[UIBarButtonItem alloc] initWithCustomView:_my_left_button];
         self.navigationItem.leftBarButtonItems = @[spaceButton,leftBarButton];;
         
-    }else if (theType == MyViewControllerRightbuttonTypeText)
+    }else if (theType == SNViewControllerRightbuttonTypeText)
     {
         _my_left_button = [UIButton buttonWithType:UIButtonTypeCustom];
         _my_left_button.frame = CGRectMake(0,0,30,44);
@@ -93,7 +93,7 @@
     
     
     
-    if (rightType == MyViewControllerRightbuttonTypeRefresh)
+    if (rightType == SNViewControllerRightbuttonTypeRefresh)
     {
         _my_right_button = [UIButton buttonWithType:UIButtonTypeCustom];
         [_my_right_button setImage:[UIImage imageNamed:@"ios7_refresh4139.png"] forState:UIControlStateNormal];
@@ -102,7 +102,7 @@
         [_my_right_button addTarget:self action:@selector(rightButtonTap:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItems= @[spaceButton,[[UIBarButtonItem alloc] initWithCustomView:_my_right_button]];
         
-    }else if (rightType == MyViewControllerRightbuttonTypeSearch)
+    }else if (rightType == SNViewControllerRightbuttonTypeSearch)
     {
         UIButton *rightview=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 37, 37/2)];
         rightview.backgroundColor=[UIColor clearColor];
@@ -117,7 +117,7 @@
         UIBarButtonItem *_rightitem=[[UIBarButtonItem alloc]initWithCustomView:rightview];
         self.navigationItem.rightBarButtonItem=_rightitem;
         
-    }else if(rightType == MyViewControllerRightbuttonTypeText)
+    }else if(rightType == SNViewControllerRightbuttonTypeText)
     {
         _my_right_button = [UIButton buttonWithType:UIButtonTypeCustom];
         _my_right_button.frame = CGRectMake(0,0,30,44);
@@ -128,10 +128,10 @@
         [_my_right_button addTarget:self action:@selector(rightButtonTap:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItems = @[spaceButton,[[UIBarButtonItem alloc] initWithCustomView:_my_right_button]];
         
-    }else if (rightType == MyViewControllerRightbuttonTypeDelete)
+    }else if (rightType == SNViewControllerRightbuttonTypeDelete)
     {
         
-    }else if (rightType == MyViewControllerRightbuttonTypePerson)
+    }else if (rightType == SNViewControllerRightbuttonTypePerson)
     {
         _my_right_button = [UIButton buttonWithType:UIButtonTypeCustom];
         _my_right_button.frame = CGRectMake(0,0,36/2,33/2);
@@ -141,7 +141,7 @@
         self.navigationItem.rightBarButtonItems = @[spaceButton,People_button];
         
         
-    }else if(rightType == MyViewControllerRightbuttonTypeOther)
+    }else if(rightType == SNViewControllerRightbuttonTypeOther)
     {
         UIImage * rightImage = [UIImage imageNamed:_rightImageName];
         _my_right_button = [UIButton buttonWithType:UIButtonTypeCustom];

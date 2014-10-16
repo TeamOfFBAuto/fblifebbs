@@ -20,9 +20,6 @@
 
 @end
 
-
-
-
 @interface zsnApi : NSObject
 
 +(NSString *)timechange:(NSString *)placetime;

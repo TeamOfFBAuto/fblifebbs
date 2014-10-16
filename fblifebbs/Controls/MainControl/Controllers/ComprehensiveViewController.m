@@ -207,7 +207,7 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
     [self turnToguanggao];
 
     
-    [self panduanIsNewVersion];
+//    [self panduanIsNewVersion];
 //  NSLog(@"shizhongkun转化成MD5加密后的字符串为=%@",[self md5:@"shizhongkun"])  ;
     
     

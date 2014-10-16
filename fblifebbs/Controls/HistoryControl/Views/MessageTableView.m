@@ -161,9 +161,14 @@
 
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [_myTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     MessageInfo * info = [self.data_array objectAtIndex:indexPath.row];
     MyChatViewController * chat = [[MyChatViewController alloc] init];
     chat.info = info;
+    UIViewController * vc = [self getSuperViewController];
+    vc.hidesBottomBarWhenPushed = YES;
+    [vc.navigationController pushViewController:chat animated:YES];
 }
 - (CGFloat)heightForRowIndexPath:(NSIndexPath *)indexPath
 {
@@ -179,6 +184,10 @@
 }
 
 
+-(UIViewController *)getSuperViewController
+{
+    return (UIViewController *)_delegate;
+}
 
 
 /*

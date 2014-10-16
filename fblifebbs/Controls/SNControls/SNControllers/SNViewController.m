@@ -199,6 +199,12 @@
     
 }
 
+-(void)PushControllerWith:(UIViewController *)vc WithAnimation:(BOOL)animation
+{
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:animation];
+}
+
 /*
 #pragma mark - Navigation
 

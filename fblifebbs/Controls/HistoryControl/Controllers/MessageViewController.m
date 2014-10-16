@@ -12,7 +12,7 @@
 #import "MessageInfo.h"
 #import "NotificationView.h"
 
-@interface MessageViewController ()
+@interface MessageViewController ()<MessageTableViewDelegate>
 {
     ///顶部选择视图
     SliderBBSTitleView * _seg_view;
@@ -31,6 +31,13 @@
 
 @implementation MessageViewController
 @synthesize myScrollView = _myScrollView;
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = NO;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,6 +66,7 @@
     _myScrollView.contentSize = CGSizeMake((DEVICE_WIDTH+20)*3,0);
     
     message_tableView = [[MessageTableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,_myScrollView.frame.size.height)];
+    message_tableView.delegate = self;
     [_myScrollView addSubview:message_tableView];
     
     

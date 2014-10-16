@@ -54,7 +54,8 @@ typedef enum
 
 
 -(void)setSNViewControllerLeftButtonType:(SNViewControllerLeftbuttonType)theType WithRightButtonType:(SNViewControllerRightbuttonType)rightType;
-
+///类跳转时隐藏tabbar
+-(void)PushControllerWith:(UIViewController *)vc WithAnimation:(BOOL)animation;
 
 
 @end

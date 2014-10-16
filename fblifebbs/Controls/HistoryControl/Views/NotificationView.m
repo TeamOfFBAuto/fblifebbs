@@ -39,12 +39,12 @@
     uread_page = 1;
     read_page = 1;
     
-    _myTableView = [[RefreshTableView alloc] initWithFrame:self.bounds showLoadMore:YES];
+    _myTableView = [[RefreshTableView alloc] initWithFrame:self.bounds showLoadMore:NO];
 //    _myTableView.delegate = self;
     _myTableView.dataSource = self;
     _myTableView.refreshDelegate = self;
+    _myTableView.isHaveMoreData = NO;
     _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _myTableView.isHaveMoreData = YES;
     [self addSubview:_myTableView];
     
     [self getNotificationData];
@@ -63,7 +63,8 @@
             
             if ([[result objectForKey:@"errcode"] intValue]==0)
             {
-                if (uread_page == 1) {
+                if (uread_page == 1)
+                {
                     [uread_array removeAllObjects];
                 }
                 
@@ -85,6 +86,7 @@
                             [bself loadFBReadNotificationWithHud:hud];
                         }else
                         {
+                            bself.myTableView.isHaveMoreData = YES;
                             [bself.myTableView finishReloadigData];
                             [bself.myTableView reloadData];
                         }
@@ -104,9 +106,14 @@
                 [bself loadFBReadNotificationWithHud:hud];
             }
             
-        } failBlock:^(NSDictionary *failDic, NSError *erro) {
+        } failBlock:^(NSDictionary *failDic, NSError *erro)
+        {
+            if (uread_array.count == 0 && read_array.count == 0)
+            {
+                bself.myTableView.isHaveMoreData = NO;
+            }
+            
             [bself loadFBReadNotificationWithHud:hud];
-            [bself.myTableView finishReloadigData];
         }];
         
     }else if (_aType == NotificationViewTypeBBS)//bbs通知
@@ -126,14 +133,21 @@
                 }
                 NSArray * array = [result objectForKey:@"bbsinfo"];
                 
-                for (NSDictionary * aDic in array)
+                if ([array isKindOfClass:[NSArray class]])
                 {
-                    NotificationBBSModel * model = [[NotificationBBSModel alloc] initWithDic:aDic];
-                    [bbs_array addObject:model];
-                }
-                
-                if (array.count < 20) {
-                    bself.myTableView.isHaveMoreData = NO;
+                    for (NSDictionary * aDic in array)
+                    {
+                        NotificationBBSModel * model = [[NotificationBBSModel alloc] initWithDic:aDic];
+                        [bbs_array addObject:model];
+                    }
+                    
+                    if (array.count < 20)
+                    {
+                        bself.myTableView.isHaveMoreData = NO;
+                    }else
+                    {
+                        bself.myTableView.isHaveMoreData = YES;
+                    }
                 }
                 
                 [bself.myTableView finishReloadigData];
@@ -173,6 +187,12 @@
             }
             
             NSArray * array = [result objectForKey:@"alertlist"];
+            
+            if (![array isKindOfClass:[NSArray class]])
+            {
+                [bself.myTableView finishReloadigData];
+                return ;
+            }
             
             for (NSDictionary * aDic in array)
             {

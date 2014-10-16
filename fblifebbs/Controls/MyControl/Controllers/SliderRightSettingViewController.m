@@ -92,11 +92,7 @@
 
 -(void)leftButtonTap:(UIButton *)sender
 {
-    AppDelegate * app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-//    [self.pushViewController setNavigationHiddenWith:YES WithBlock:^{
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - 登陆成功

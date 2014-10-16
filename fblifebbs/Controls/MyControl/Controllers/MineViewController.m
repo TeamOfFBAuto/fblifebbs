@@ -27,6 +27,8 @@
 
 #import "SliderRightSettingViewController.h"
 
+#define CURRENT_USER_HEADIMAGE @"HEADIMAGE"//头像
+
 @interface MineViewController ()<FriendListViewControllerDelegate>
 {
     NSArray *images_arr;
@@ -50,6 +52,14 @@
         LogInViewController *login = [LogInViewController sharedManager];
         
         [self presentViewController:login animated:YES completion:nil];
+    }else
+    {
+        
+        NSDictionary *dic = [LTools cacheForKey:@"userInfo"];
+        
+        UserModel *user = [[UserModel alloc]initWithDictionary:dic];
+        
+        [self getDataWithUserModel:user];
     }
     
 }
@@ -65,14 +75,14 @@
     
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
     
-//    UIBarButtonItem * spaceButton1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    spaceButton1.width = MY_MACRO_NAME?-13:5;
-    
     UIButton *settings=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? -5:5,8,40,44)];
     [settings addTarget:self action:@selector(clickToSettings:) forControlEvents:UIControlEventTouchUpInside];
     [settings setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:settings];
     self.navigationItem.rightBarButtonItem = back_item;
+    
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
     
     images_arr = @[@"",@"",@"",@"shoucang@2x.png",@"tiezi@2x.png",@"friend@2x.png",@"",@"mingpian@2x.png",@"youxiang@2x.png",@"lishijilu@2x.png"];
     names_arr = @[@"",@"",@"",@"我的收藏",@"我的帖子",@"我的好友",@"",@"我的名片",@"草稿箱",@"历史浏览"];
@@ -85,6 +95,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loginSuccess:(NSNotification *)notify
+{
+    NSLog(@"loginSuccess");
+    
+    [self getUserInfo];
 }
 
 #pragma mark - 网络请求
@@ -100,44 +117,18 @@
         NSDictionary *dic = [data objectForKey:[personal getMyUid]];
         if ([dic isKindOfClass:[NSDictionary class]]) {
             
+            [LTools cache:dic ForKey:@"userInfo"];
+            
             UserModel *user = [[UserModel alloc]initWithDictionary:dic];
             
-            [headerCell.headImage setImageWithURL:[NSURL URLWithString:user.face_small] placeholderImage:nil];
-            headerCell.nameLabel.text = user.username;
-            
-            [LTools cache:user.username ForKey:@""];
-            
-            headerCell.nameLabel.width = [LTools widthForText:user.username font:16];
-            
-            if ([user.gender integerValue] == 0) {
-                NSLog(@"man");
-                
-            }else
-            {
-                NSLog(@"women");
-                
-                headerCell.genderImage.selected = YES;
-                
-            }
-            headerCell.genderImage.hidden = NO;
-            headerCell.genderImage.left = headerCell.nameLabel.right + 10;
-            
-            NSString *des = [NSString stringWithFormat:@"简介:%@",user.aboutme.length ? user.aboutme : @"无"];
-            headerCell.descriptionLabel.text = des;
-            headerCell.tiezi_num_label.text = user.topic_count;
-            headerCell.fans_num_label.text = user.fans_count;
-            headerCell.guanzhu_num_label.text =  user.follow_count;
-            
-            userId = user.uid;
-            
-            [headerCell.userInfo_buttom addTarget:self action:@selector(clickToUserCenter:) forControlEvents:UIControlEventTouchUpInside];
+            [self getDataWithUserModel:user];
             
         }
         
         
     } failBlock:^(NSDictionary *failDic, NSError *erro) {
         
-        [headerCell.userInfo_buttom addTarget:self action:@selector(clickToUserCenter:) forControlEvents:UIControlEventTouchUpInside];
+        
     }];
 }
 
@@ -155,6 +146,42 @@
     settingVC.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:settingVC animated:YES];
+}
+
+#pragma mark - 数据处理
+
+- (void)getDataWithUserModel:(UserModel *)user
+{
+ 
+    [headerCell.headImage setImageWithURL:[NSURL URLWithString:user.face_small] placeholderImage:nil];
+    
+    headerCell.nameLabel.text = user.username;
+    
+    [LTools cache:user.username ForKey:@""];
+    
+    headerCell.nameLabel.width = [LTools widthForText:user.username font:16];
+    
+    if ([user.gender integerValue] == 0) {
+        NSLog(@"man");
+        
+    }else
+    {
+        NSLog(@"women");
+        
+        headerCell.genderImage.selected = YES;
+        
+    }
+    headerCell.genderImage.hidden = NO;
+    headerCell.genderImage.left = headerCell.nameLabel.right + 10;
+    
+    NSString *des = [NSString stringWithFormat:@"简介:%@",user.aboutme.length ? user.aboutme : @"无"];
+    headerCell.descriptionLabel.text = des;
+    headerCell.tiezi_num_label.text = user.topic_count;
+    headerCell.fans_num_label.text = user.fans_count;
+    headerCell.guanzhu_num_label.text =  user.follow_count;
+    
+    userId = user.uid;
+
 }
 
 #pragma mark - Table view data source
@@ -190,7 +217,18 @@
             headerCell = [[[NSBundle mainBundle]loadNibNamed:@"MineHeaderCell" owner:self options:nil]objectAtIndex:0];
         }
         headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [headerCell.userInfo_buttom addTarget:self action:@selector(clickToUserCenter:) forControlEvents:UIControlEventTouchUpInside];
 
+        if ([[NSUserDefaults standardUserDefaults]boolForKey:USER_IN]) {
+            
+            NSDictionary *dic = [LTools cacheForKey:@"userInfo"];
+            
+            UserModel *user = [[UserModel alloc]initWithDictionary:dic];
+            
+            [self getDataWithUserModel:user];
+        }
+        
         return headerCell;
     }
     

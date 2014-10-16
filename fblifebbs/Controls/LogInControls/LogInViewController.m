@@ -441,7 +441,7 @@
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:USER_AUTHOD object:[dictionary objectForKey:@"bbsinfo"]];
-                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGIN_SUCCESS object:nil];
                 
                 [self.delegate successToLogIn];
                 pwNameField.text = @"";

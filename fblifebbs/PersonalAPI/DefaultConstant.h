@@ -126,6 +126,9 @@ alpha:(a)]
 #define TUPIANZHILIANG @"tupianzhiliang"
 #define NOTIFICATION_QUXIAOGUANZHU @"quxiaoguanzhu"
 #define NOTIFICATION_TIANJIAGUANZHU @"tianjiaguanzhu"
+
+#define NOTIFICATION_LOGIN_SUCCESS @"login_success"//登录成功
+
 #define NOTIFICATION_REPLY @"reply"
 #define DEVICETOKEN @"pushdevicetoken"
 

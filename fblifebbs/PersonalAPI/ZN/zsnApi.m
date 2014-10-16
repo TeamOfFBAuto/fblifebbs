@@ -9,7 +9,7 @@
 #import "zsnApi.h"
 #include "sys/stat.h"
 #include <dirent.h>
-
+#import "FbFeed.h"
 
 @implementation ZSNButton
 @synthesize myDictionary = _myDictionary;
@@ -609,595 +609,595 @@
 
 
 
-//+(NSMutableArray *)conversionFBContent:(NSDictionary *)userinfo isSave:(BOOL)isSave WithType:(int)theType
-//{
-//    NSMutableArray * data_array = [[NSMutableArray alloc] init];
-//    
-//    NSArray *keys;
-//    int i, count;
-//    id key, value;
-//    keys = [userinfo allKeys];
-//    
-//    //给keys排序降序
-//    NSMutableArray *arr11 = [[NSMutableArray alloc]init];
-//    for (int i=0; i<keys.count; i++)
-//    {
-//        [arr11 addObject:[NSNumber numberWithInt:[[keys objectAtIndex: i] intValue]]];
-//    }
-//    
-//    NSArray * arr1 = [NSArray arrayWithArray:arr11];
-//    arr1=  [ arr1 sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
-//            {
-//                return [obj2 compare:obj1];
-//            } ];
-//    
-//    count = [arr1 count];
-//    
-//    
-//    
-//    for (i = 0; i < count; i++)
-//    {
-//        FbFeed *obj = [[FbFeed alloc] init];
-//        
-//        key = [NSString stringWithFormat:@"%@",[arr1 objectAtIndex:i]];
-//        
-//        value = [userinfo objectForKey:key];
-//        
-//        
-//        //解析微博内容
-//        obj.photo_title = @"";
-//        [obj setTid:[value objectForKey:FB_TID]];
-//        [obj setUid:[value objectForKey:FB_UID]];
-//        [obj setUserName:[value objectForKey:FB_USERNAME]];
-//        [obj setContent: [self FBImageChange:[value objectForKey:FB_CONTENT]]];
-//        
-//        if ([[value objectForKey:FB_IMAGEID] isEqualToString:@"0"])
-//        {
-//            [obj setNsImageFlg:@"0"];
-//        }else
-//        {
-//            [obj setNsImageFlg:@"1"];
-//        }
-//        
-//        obj.image_original_url_m = [value objectForKey:@"image_original_m"];
-//        
-//        obj.image_small_url_m = [value objectForKey:@"image_small_m"];
-//        
-//        //是否有图片
-//        if ([obj imageFlg])
-//        {
-//            [obj setImage_original_url:[value objectForKey:FB_IMAGE_ORIGINAL]];
-//            [obj setImage_small_url:[value objectForKey:FB_IMAGE_SMALL]];
-//        }
-//        
-//        [obj setFrom:[zsnApi exchangeFrom:[value objectForKey:FB_FROM]]];
-//        [obj setNsType:[value objectForKey:FB_TYPE]];
-//        obj.sort = [value objectForKey:FB_SORT];
-//        obj.sortId = [value objectForKey:FB_SORTID];
-//        
-//        [obj setMusicurl:[NSString stringWithFormat:@"%@",[value objectForKey:@"musicurl"]]];
-//        
-//        if ([obj.musicurl isEqual:[NSNull null]] || [obj.musicurl isEqualToString:@"(null)"] || obj.musicurl.length == 0 || [obj.musicurl isEqualToString:@"<null>"])
-//        {
-//            [obj setMusicurl:@""];
-//        }
-//        
-//        [obj setOlink:[NSString stringWithFormat:@"%@",[value objectForKey:@"videolink"]]];
-//        
-//        if ([obj.olink isEqual:[NSNull null]] || [obj.olink isEqualToString:@"(null)"] || obj.olink.length == 0 || [obj.olink isEqualToString:@"<null>"])
-//        {
-//            [obj setOlink:@""];
-//        }
-//        
-//        
-//        
-//        [obj setJing_lng:[value objectForKey:FB_JING_LNG]];
-//        [obj setWei_lat:[value objectForKey:FB_WEI_LAT]];
-//        [obj setLocality:[value objectForKey:FB_LOCALITY]];
-//        [obj setFace_original_url:[value objectForKey:FB_FACE_ORIGINAL]];
-//        [obj setFace_small_url:[value objectForKey:FB_FACE_SMALL]];
-//        [obj setNsRootFlg:[value objectForKey:FB_ROOTTID]];
-//        [obj setDateline:[value objectForKey:FB_DATELINE]];//[personal timestamp:[value objectForKey:FB_DATELINE]]];
-//        [obj setReplys:[value objectForKey:FB_REPLYS]];
-//        [obj setForwards:[value objectForKey:FB_FORWARDS]];
-//        [obj setRootFlg:NO];
-//        
-//        //解析其他类型
-//        
-//        if([obj.sort isEqualToString:@"3"]&&[obj.type isEqualToString:@"first"])
-//        {
-//            //解析图集
-//            NSDictionary *photojson= [[value objectForKey:FB_CONTENT] objectFromJSONString];
-//            
-//            PhotoFeed * photo=[[PhotoFeed alloc]initWithJson:photojson];
-//            
-//            [obj setPhoto:photo];
-//            
-//            obj.content = [NSString stringWithFormat:@"<a href=\"fb://PhotoDetail/%@\">%@</a>",photo.aid,photo.title];
-//            
-//            obj.photo_title = photo.title;
-//            
-//            [obj setImageFlg:YES];
-//            
-//            [obj setImage_small_url_m: photo.image_string];
-//            
-//            [obj setImage_original_url_m:photo.image_string];
-//            
-//        }else if([obj.sort isEqualToString:@"2"]&&[obj.type isEqualToString:@"first"])
-//        {
-//            //解析文集
-//            NSDictionary *blogjson= [[value objectForKey:FB_CONTENT] objectFromJSONString];
-//            
-//            BlogFeed * blog=[[BlogFeed alloc]initWithJson:blogjson];
-//            
-//            [obj setBlog:blog];
-//            
-//            obj.title_content = [NSString stringWithFormat:@"<a href=\"fb://BlogDetail/%@\">%@</a>",blog.blogid,blog.title];
-//            
-//            obj.content = blog.content;
-//            
-//            obj.photo_title = blog.title;
-//            
-//            [obj setImageFlg:blog.photoFlg];
-//            
-//            if (blog.photoFlg)
-//            {
-//                [obj setImage_small_url_m:blog.photo];
-//                [obj setImage_original_url_m:blog.photo];
-//            }
-//            
-//            
-//        }else if([obj.sort isEqualToString:@"4"]&&[obj.type isEqualToString:@"first"])
-//        {
-//            //论坛帖子转发为微博
-//            NSDictionary * newsForwoadjson= [[value objectForKey:FB_CONTENT] objectFromJSONString];
-//            
-//            FbNewsFeed * fbnews= [[FbNewsFeed alloc] initWithJson:newsForwoadjson];
-//            
-//            [obj setFbNews:fbnews];
-//            
-//            
-//            obj.title_content = [NSString stringWithFormat:@"<a href=\"fb://tieziDetail/%@/%@\">%@</a>",fbnews.bbsid,fbnews.bbsid,fbnews.title];
-//            
-//            obj.content = fbnews.content;
-//            
-//            obj.photo_title = fbnews.title;
-//            
-//            [obj setImageFlg:fbnews.photoFlg];
-//            
-//            if (fbnews.photoFlg)
-//            {
-//                [obj setImage_small_url_m:fbnews.photo];
-//                [obj setImage_original_url_m:fbnews.photo];
-//            }
-//            
-//        }else if([obj.sort isEqualToString:@"5"]&&[obj.type isEqualToString:@"first"])
-//        {
-//            //论坛分享
-//            NSDictionary *newsSendjson= [[value objectForKey:FB_EXTENSION] objectFromJSONString];
-//            
-//            Extension * ex=[[Extension alloc] initWithJson:newsSendjson];
-//            
-//            [obj setExten:ex];
-//            
-//            [obj setRootFlg:YES];
-//            
-//            
-//            obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://atSomeone@/%@\">@%@</a>:<a href=\"fb://BlogDetail/%@\">%@</a>",ex.authorid,ex.author,ex.authorid,ex.title];
-//            
-//            obj.rcontent = ex.forum_content;
-//            
-//            obj.photo_title = ex.title;
-//            
-//            [obj setSort:@"0"];
-//            
-//            [obj setRsort:@"5"];
-//            [obj setRsortId:ex.authorid];
-//            [obj setRimageFlg:ex.photoFlg];
-//            [obj setRimage_small_url_m:ex.photo];
-//            [obj setRimage_original_url_m:ex.photo];
-//        }else if (([obj.sort isEqualToString:@"8"] || [obj.sort isEqualToString:@"7"] || [obj.sort isEqualToString:@"6"])&&[obj.type isEqualToString:@"first"])
-//        {
-//            NSDictionary *exjson= [[value objectForKey:FB_EXTENSION] objectFromJSONString];
-//            Extension * ex=[[Extension alloc]initWithJson:exjson];
-//            [obj setExten:ex];
-//            
-//            obj.rsort = obj.sort;
-//            
-//            obj.rsortId = obj.sortId;
-//            
-//            obj.sort = @"0";
-//            
-//            obj.rootFlg = YES;
-//            
-//            [obj setRimageFlg:ex.photoFlg];
-//            
-//            [obj setRimage_small_url_m:ex.photo];
-//            
-//            [obj setRimage_original_url_m:ex.photo];
-//            
-//            obj.rtitle_content = [NSString  stringWithFormat:@"<a href=\"fb.news://PhotoDetail/id=%@/sort=%@\">%@</a>",obj.sortId,obj.sort,ex.title];
-//            
-//            obj.rcontent = [exjson objectForKey:@"intro"];
-//            
-//            obj.photo_title = ex.title;
-//            
-//        }else if([obj.sort isEqualToString:@"10"]&&[obj.type isEqualToString:@"first"])
-//        {
-//            //资源分享
-//            NSDictionary *newsSendjson= [[value objectForKey:FB_EXTENSION] objectFromJSONString];
-//            
-//            Extension * ex=[[Extension alloc] initWithJson:newsSendjson];
-//            
-//            [obj setExten:ex];
-//            
-//            [obj setRootFlg:YES];
-//            
-//            obj.sort = @"0";
-//            
-//            [obj setRcontent:[zsnApi ShareResourceContent:ex.forum_content]];
-//            
-//            [obj setRsort:@"10"];
-//            
-//            [obj setRsortId:ex.authorid];
-//            
-//            [obj setRimageFlg:ex.photoFlg];
-//            
-//            [obj setRimage_small_url_m:[NSString stringWithFormat:@"http://fb.cn%@",ex.photo]];
-//            
-//            [obj setRimage_original_url_m:[NSString stringWithFormat:@"http://fb.cn%@",ex.photo]];
-//        }else if (([obj.sort isEqualToString:@"9"]&&[obj.type isEqualToString:@"first"]))
-//        {
-//            //商城分享
-//            NSDictionary *newsSendjson= [[value objectForKey:FB_EXTENSION] objectFromJSONString];
-//            
-//            Extension * ex=[[Extension alloc] initWithJson:newsSendjson];
-//            
-//            [obj setExten:ex];
-//            
-//            [obj setRootFlg:YES];
-//            
-//            obj.sort = @"0";
-//            
-//            obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://shareshop\">%@</a>",[zsnApi ShareResourceContent:ex.title]];
-//            
-//            obj.photo_title = ex.title;
-//            
-//            [obj setRsort:@"9"];
-//            
-//            [obj setRsortId:ex.authorid];
-//            
-//            [obj setRimageFlg:ex.photoFlg];
-//            
-//            [obj setRimage_small_url_m:ex.photo];
-//            
-//            [obj setRimage_original_url_m:ex.photo];
-//        }else if ([obj.sort isEqualToString:@"15"]&&[obj.type isEqualToString:@"first"])
-//        {
-//            NSDictionary * atlas_dic = [[value objectForKey:FB_EXTENSION] objectFromJSONString];
-//            
-//            NSString * title = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"title"]];
-//            
-//            NSString * photo = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"photo"]];
-//            
-//            NSString * intro = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"intro"]];
-//            
-//            obj.sort = @"0";
-//            
-//            obj.rootFlg = YES;
-//            
-//            obj.rsort = @"15";
-//            
-//            obj.rsortId = obj.sortId;
-//            
-//            if (photo.length > 0)
-//            {
-//                obj.rimageFlg = YES;
-//                
-//                obj.rimage_original_url_m = photo;
-//                
-//                obj.rimage_small_url_m = photo;
-//            }
-//            
-//            if (title.length > 0)
-//            {
-//                obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://tieziDetail/%@/%@\">%@</a>",obj.sortId,obj.sortId,title];
-//            }
-//            
-//            obj.rcontent = intro;
-//            
-//            
-//            
-//            
-//                        
-//        }
-//        
-//        
-//        while ([obj.content rangeOfString:@"&nbsp;"].length)
-//        {
-//            obj.content = [obj.content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
-//        }
-//        
-//        
-//        
-//        NSMutableString * tempString = [NSMutableString stringWithFormat:@"%@",obj.content];
-//        
-//        if ([tempString rangeOfString:@"<a>#"].length)
-//        {
-//            NSString * insertString = [NSString stringWithFormat:@"href=\"fb://BlogDetail/%@\"",obj.tid];
-//            [tempString insertString:insertString atIndex:[obj.content rangeOfString:@"<a>#"].location+2];
-//            obj.content = [NSString stringWithString:tempString];
-//        }
-//        
-//        
-//        while ([obj.content rangeOfString:@"<a id="].length)
-//        {
-//            obj.content = [zsnApi exchangeString:obj.content];
-//        }
-//        
-//        
-//        
-//        //解析转发内容
-//        if (![[value objectForKey:@"roottid"] isEqualToString:@"0"] )
-//        {
-//            [obj setRootFlg:YES];
-//            
-//            NSDictionary * followinfo= [value objectForKey:@"followinfo"];
-//            
-//            if (followinfo==nil)
-//            {
-//                //原微博已删除
-//                [obj setRcontent:NS_WEIBO_DEL];
-//            }else
-//            {
-//                //解析转发的微博内容
-//                [obj setRtid:[followinfo objectForKey:FB_TID]];
-//                [obj setRuid:[followinfo objectForKey:FB_UID]];
-//                [obj setRuserName:[followinfo objectForKey:FB_USERNAME]];
-//                
-//                [obj setRcontent:[ NSString stringWithFormat:@"<a href=\"fb://atSomeone@/%@\">@%@</a>:%@",obj.ruid,obj.ruserName,[zsnApi imgreplace:[followinfo objectForKey:FB_CONTENT]]]];
-//                
-//                if ([[followinfo objectForKey:FB_IMAGEID] isEqualToString:@"0"])
-//                {
-//                    [obj setRNsImageFlg:@"0"];
-//                }else
-//                {
-//                    [obj setRNsImageFlg:@"1"];
-//                }
-//                
-//                
-//                obj.rimage_original_url_m = [followinfo objectForKey:@"image_original_m"];
-//                
-//                obj.rimage_small_url_m = [followinfo objectForKey:@"image_small_m"];
-//                
-//                
-//                if ([obj rimageFlg])
-//                {
-//                    [obj setRimage_original_url:[followinfo objectForKey:FB_IMAGE_ORIGINAL]];
-//                    [obj setRimage_small_url:[followinfo objectForKey:FB_IMAGE_SMALL]];
-//                }
-//                [obj setRfrom:[followinfo objectForKey:FB_FROM]];
-//                [obj setRNsType:[followinfo objectForKey:FB_TYPE]];
-//                obj.rsort = [followinfo objectForKey:FB_SORT];
-//                obj.rsortId = [followinfo objectForKey:FB_SORTID];
-//                
-//                [obj setRmusicurl:[NSString stringWithFormat:@"%@",[followinfo objectForKey:@"musicurl"]]];
-//                
-//                if ([obj.rmusicurl isEqual:[NSNull null]] || [obj.rmusicurl isEqualToString:@"(null)"] || obj.rmusicurl.length == 0 || [obj.rmusicurl isEqualToString:@"<null>"])
-//                {
-//                    [obj setRmusicurl:@""];
-//                }
-//                
-//                
-//                
-//                [obj setRolink:[NSString stringWithFormat:@"%@",[followinfo objectForKey:@"videolink"]]];
-//                
-//                if ([obj.rolink isEqual:[NSNull null]] || [obj.rolink isEqualToString:@"(null)"] || obj.rolink.length == 0 || [obj.rolink isEqualToString:@"<null>"])
-//                {
-//                    [obj setRolink:@""];
-//                }
-//                
-//                [obj setRjing_lng:[followinfo objectForKey:FB_JING_LNG]];
-//                [obj setRwei_lat:[followinfo objectForKey:FB_WEI_LAT]];
-//                [obj setRlocality:[followinfo objectForKey:FB_LOCALITY]];
-//                [obj setRface_original_url:[followinfo objectForKey:FB_FACE_ORIGINAL]];
-//                [obj setRface_small_url:[followinfo objectForKey:FB_FACE_SMALL]];
-//                [obj setRNsRootFlg:[followinfo objectForKey:FB_ROOTTID]];
-//                [obj setRdateline:[followinfo objectForKey:FB_DATELINE]];
-//                [obj setRreplys:[followinfo objectForKey:FB_REPLYS]];
-//                [obj setRforwards:[followinfo objectForKey:FB_FORWARDS]];
-//                //解析其他类型
-//                
-//                if([obj.rsort isEqualToString:@"3"]&&[obj.rtype isEqualToString:@"first"])
-//                {
-//                    //解析图集
-//                    NSDictionary * photojson= [[followinfo objectForKey:FB_CONTENT] objectFromJSONString];
-//                    
-//                    PhotoFeed * photo = [[PhotoFeed alloc]initWithJson:photojson];
-//                    
-//                    [obj setRphoto:photo];
-//                    
-//                    obj.rcontent = [NSString stringWithFormat:@"<a href=\"fb://atSomeone@/%@\">@%@</a>:我在图集<a href=\"fb:forwardingStyle//PhotoDetail/%@\">%@</a>上传了新图片",obj.ruid,obj.ruserName,photo.aid,photo.title];
-//                    
-//                    obj.photo_title = photo.title;
-//                    
-//                    [obj setRimageFlg:YES];
-//                    
-//                    [obj setRimage_small_url_m:photo.image_string];
-//                    
-//                    [obj setRimage_original_url_m:photo.image_string];
-//                    
-//                }else if([obj.rsort isEqualToString:@"2"]&&[obj.rtype isEqualToString:@"first"])
-//                {
-//                    //解析文集
-//                    NSDictionary *blogjson= [[followinfo objectForKey:FB_CONTENT] objectFromJSONString];
-//                    BlogFeed * blog=[[BlogFeed alloc]initWithJson:blogjson];
-//                    [obj setRblog:blog];
-//                    obj.rtitle_content = blog.title;
-//                    obj.rcontent = blog.content;
-//                    obj.photo_title = blog.title;
-//                    [obj setRimageFlg:blog.photoFlg];
-//                    if (blog.photoFlg) {
-//                        [obj setRimage_small_url_m:blog.photo];
-//                        [obj setRimage_original_url_m:blog.photo];
-//                    }
-//                }else if([obj.rsort isEqualToString:@"4"]&&[obj.rtype isEqualToString:@"first"])
-//                {
-//                    //论坛帖子转发为微博
-//                    NSDictionary *newsForwoadjson= [[followinfo objectForKey:FB_CONTENT] objectFromJSONString];
-//                    FbNewsFeed * fbnews=[[FbNewsFeed alloc]initWithJson:newsForwoadjson];
-//                    [obj setRfbNews:fbnews];
-//                    
-//                    
-//                    obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://atSomeone@/%@\">@%@</a>:<a href=\"fb:forwardingStyle//tieziDetail/%@/%@/%@/\">%@</a>",fbnews.uid,obj.ruserName,fbnews.bbsid,fbnews.title,fbnews.bbsid,fbnews.title];
-//                    
-//                    obj.rcontent = fbnews.content;
-//                    
-//                    obj.photo_title = fbnews.title;
-//                    
-//                    
-//                    [obj setRimageFlg:fbnews.photoFlg];
-//                    if (fbnews.photoFlg)
-//                    {
-//                        [obj setRimage_small_url_m:fbnews.photo];
-//                        
-//                        [obj setRimage_original_url_m:fbnews.photo];
-//                    }
-//                }else if([obj.rsort isEqualToString:@"5"]&&[obj.rtype isEqualToString:@"first"])
-//                {
-//                    //论坛分享
-//                    
-//                    NSDictionary *newsSendjson= [[followinfo objectForKey:FB_EXTENSION] objectFromJSONString];
-//                    Extension * ex=[[Extension alloc]initWithJson:newsSendjson];
-//                    [obj setRexten:ex];
-//                    
-//                    obj.rtitle_content = ex.title;
-//                    
-//                    obj.rcontent = ex.forum_content;
-//                    
-//                    obj.photo_title = ex.title;
-//                    
-//                    [obj setRimageFlg:ex.photoFlg];
-//                    [obj setRimage_small_url_m:ex.photo];
-//                    [obj setRimage_original_url_m:ex.photo];
-//                }else if (([obj.rsort isEqualToString:@"8"] || [obj.rsort isEqualToString:@"7"] || [obj.rsort isEqualToString:@"6"])&&[obj.rtype isEqualToString:@"first"])
-//                {
-//                    NSDictionary *exjson= [[followinfo objectForKey:FB_EXTENSION] objectFromJSONString];
-//                    Extension * ex=[[Extension alloc]initWithJson:exjson];
-//                    [obj setExten:ex];
-//                    
-//                    
-//                    [obj setRimageFlg:ex.photoFlg];
-//                    
-//                    [obj setRimage_small_url_m:ex.photo];
-//                    
-//                    [obj setRimage_original_url_m:ex.photo];
-//                    
-//                    obj.rtitle_content = [NSString  stringWithFormat:@"<a href=\"fb.news://PhotoDetail/id=%@/sort=%@\">%@</a>",obj.sortId,obj.sort,ex.title];
-//                    
-//                    obj.rcontent = [exjson objectForKey:@"intro"];
-//                    
-//                    obj.photo_title = ex.title;
-//                    
-//                }else if([obj.rsort isEqualToString:@"10"]&&[obj.rtype isEqualToString:@"first"])
-//                {
-//                    //资源分享
-//                    NSDictionary *newsSendjson= [[followinfo objectForKey:FB_EXTENSION] objectFromJSONString];
-//                    
-//                    Extension * ex=[[Extension alloc] initWithJson:newsSendjson];
-//                    
-//                    [obj setExten:ex];
-//                    
-//                    [obj setRcontent:[zsnApi ShareResourceContent:ex.forum_content]];
-//                    
-//                    [obj setRsortId:ex.authorid];
-//                    
-//                    [obj setRimageFlg:ex.photoFlg];
-//                    
-//                    [obj setRimage_small_url_m:[NSString stringWithFormat:@"http://fb.cn%@",ex.photo]];
-//                    
-//                    [obj setRimage_original_url_m:[NSString stringWithFormat:@"http://fb.cn%@",ex.photo]];
-//                }else if (([obj.sort isEqualToString:@"9"]&&[obj.type isEqualToString:@"first"]))
-//                {
-//                    //商城分享
-//                    NSDictionary *newsSendjson= [[followinfo objectForKey:FB_EXTENSION] objectFromJSONString];
-//                    
-//                    Extension * ex=[[Extension alloc] initWithJson:newsSendjson];
-//                    
-//                    [obj setExten:ex];
-//                    
-//                    obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://shareshop\">%@</a>",[zsnApi ShareResourceContent:ex.title]];
-//                    
-//                    obj.photo_title = ex.title;
-//                    
-//                    [obj setRsortId:ex.authorid];
-//                    
-//                    [obj setRimageFlg:ex.photoFlg];
-//                    
-//                    [obj setRimage_small_url_m:ex.photo];
-//                    
-//                    [obj setRimage_original_url_m:ex.photo];
-//                }
-//            }
-//        }
-//        
-//        while ([obj.rcontent rangeOfString:@"&nbsp;"].length)
-//        {
-//            obj.rcontent = [obj.rcontent stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
-//        }
-//        
-//        
-//        
-//        NSMutableString * RtempString = [NSMutableString stringWithFormat:@"%@",obj.rcontent];
-//        
-//        if ([RtempString rangeOfString:@"<a>#"].length)
-//        {
-//            NSString * insertString = [NSString stringWithFormat:@" href=\"fb:forwardingStyle//BlogDetail/%@\"",obj.rtid];
-//            [RtempString insertString:insertString atIndex:[obj.rcontent rangeOfString:@"<a>#"].location+2];
-//            obj.rcontent = [NSString stringWithString:RtempString];
-//        }
-//        
-//        while ([obj.rcontent rangeOfString:@"<a id="].length)
-//        {
-//            obj.rcontent = [zsnApi exchangeString:obj.rcontent];
-//        }
-//        
-//        
-//        obj.content = [obj.content stringByReplacingOccurrencesOfString:@"<a>" withString:@"<a href=\"fb://shareshop\">"];
-//        
-//        obj.rcontent = [obj.rcontent stringByReplacingOccurrencesOfString:@"<a>" withString:@"<a href=\"fb://shareshop\">"];
-//        
-//        obj.title_content = [obj.title_content stringByReplacingOccurrencesOfString:@"<a>" withString:@"<a href=\"fb://shareshop\">"];
-//        
-//        obj.rtitle_content = [obj.rtitle_content stringByReplacingOccurrencesOfString:@"<a>" withString:@"<a href=\"fb://shareshop\">"];
-//        
-//        
-//        obj.content = [obj.content stringByReplacingOccurrencesOfString:@"<ahref" withString:@"<a href"];
-//        
-//        obj.rcontent = [obj.rcontent stringByReplacingOccurrencesOfString:@"<ahref" withString:@"<a href"];
-//        
-//        obj.title_content = [obj.title_content stringByReplacingOccurrencesOfString:@"<ahref" withString:@"<a href"];
-//        
-//        obj.rtitle_content = [obj.rtitle_content stringByReplacingOccurrencesOfString:@"<ahref" withString:@"<a href"];
-//        
-//        
-//        [data_array addObject:obj];
-//        
-//        
-//        
-//        if (isSave)
-//        {
-//            int result = [FbFeed addWeiBoContentWithInfo:obj WithType:theType];
-//            
-//            NSLog(@"微博添加数据结果 ----  %d",result);
-//        }
-//        
-//        
-//    }
-//    
-//    return data_array;
-//    
-//}
++(NSMutableArray *)conversionFBContent:(NSDictionary *)userinfo isSave:(BOOL)isSave WithType:(int)theType
+{
+    NSMutableArray * data_array = [[NSMutableArray alloc] init];
+    
+    NSArray *keys;
+    int i, count;
+    id key, value;
+    keys = [userinfo allKeys];
+    
+    //给keys排序降序
+    NSMutableArray *arr11 = [[NSMutableArray alloc]init];
+    for (int i=0; i<keys.count; i++)
+    {
+        [arr11 addObject:[NSNumber numberWithInt:[[keys objectAtIndex: i] intValue]]];
+    }
+    
+    NSArray * arr1 = [NSArray arrayWithArray:arr11];
+    arr1=  [ arr1 sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
+            {
+                return [obj2 compare:obj1];
+            } ];
+    
+    count = [arr1 count];
+    
+    
+    
+    for (i = 0; i < count; i++)
+    {
+        FbFeed *obj = [[FbFeed alloc] init];
+        
+        key = [NSString stringWithFormat:@"%@",[arr1 objectAtIndex:i]];
+        
+        value = [userinfo objectForKey:key];
+        
+        
+        //解析微博内容
+        obj.photo_title = @"";
+        [obj setTid:[value objectForKey:FB_TID]];
+        [obj setUid:[value objectForKey:FB_UID]];
+        [obj setUserName:[value objectForKey:FB_USERNAME]];
+        [obj setContent: [self FBImageChange:[value objectForKey:FB_CONTENT]]];
+        
+        if ([[value objectForKey:FB_IMAGEID] isEqualToString:@"0"])
+        {
+            [obj setNsImageFlg:@"0"];
+        }else
+        {
+            [obj setNsImageFlg:@"1"];
+        }
+        
+        obj.image_original_url_m = [value objectForKey:@"image_original_m"];
+        
+        obj.image_small_url_m = [value objectForKey:@"image_small_m"];
+        
+        //是否有图片
+        if ([obj imageFlg])
+        {
+            [obj setImage_original_url:[value objectForKey:FB_IMAGE_ORIGINAL]];
+            [obj setImage_small_url:[value objectForKey:FB_IMAGE_SMALL]];
+        }
+        
+        [obj setFrom:[zsnApi exchangeFrom:[value objectForKey:FB_FROM]]];
+        [obj setNsType:[value objectForKey:FB_TYPE]];
+        obj.sort = [value objectForKey:FB_SORT];
+        obj.sortId = [value objectForKey:FB_SORTID];
+        
+        [obj setMusicurl:[NSString stringWithFormat:@"%@",[value objectForKey:@"musicurl"]]];
+        
+        if ([obj.musicurl isEqual:[NSNull null]] || [obj.musicurl isEqualToString:@"(null)"] || obj.musicurl.length == 0 || [obj.musicurl isEqualToString:@"<null>"])
+        {
+            [obj setMusicurl:@""];
+        }
+        
+        [obj setOlink:[NSString stringWithFormat:@"%@",[value objectForKey:@"videolink"]]];
+        
+        if ([obj.olink isEqual:[NSNull null]] || [obj.olink isEqualToString:@"(null)"] || obj.olink.length == 0 || [obj.olink isEqualToString:@"<null>"])
+        {
+            [obj setOlink:@""];
+        }
+        
+        
+        
+        [obj setJing_lng:[value objectForKey:FB_JING_LNG]];
+        [obj setWei_lat:[value objectForKey:FB_WEI_LAT]];
+        [obj setLocality:[value objectForKey:FB_LOCALITY]];
+        [obj setFace_original_url:[value objectForKey:FB_FACE_ORIGINAL]];
+        [obj setFace_small_url:[value objectForKey:FB_FACE_SMALL]];
+        [obj setNsRootFlg:[value objectForKey:FB_ROOTTID]];
+        [obj setDateline:[value objectForKey:FB_DATELINE]];//[personal timestamp:[value objectForKey:FB_DATELINE]]];
+        [obj setReplys:[value objectForKey:FB_REPLYS]];
+        [obj setForwards:[value objectForKey:FB_FORWARDS]];
+        [obj setRootFlg:NO];
+        
+        //解析其他类型
+        
+        if([obj.sort isEqualToString:@"3"]&&[obj.type isEqualToString:@"first"])
+        {
+            //解析图集
+            NSDictionary *photojson= [[value objectForKey:FB_CONTENT] objectFromJSONString];
+            
+            PhotoFeed * photo=[[PhotoFeed alloc]initWithJson:photojson];
+            
+            [obj setPhoto:photo];
+            
+            obj.content = [NSString stringWithFormat:@"<a href=\"fb://PhotoDetail/%@\">%@</a>",photo.aid,photo.title];
+            
+            obj.photo_title = photo.title;
+            
+            [obj setImageFlg:YES];
+            
+            [obj setImage_small_url_m: photo.image_string];
+            
+            [obj setImage_original_url_m:photo.image_string];
+            
+        }else if([obj.sort isEqualToString:@"2"]&&[obj.type isEqualToString:@"first"])
+        {
+            //解析文集
+            NSDictionary *blogjson= [[value objectForKey:FB_CONTENT] objectFromJSONString];
+            
+            BlogFeed * blog=[[BlogFeed alloc]initWithJson:blogjson];
+            
+            [obj setBlog:blog];
+            
+            obj.title_content = [NSString stringWithFormat:@"<a href=\"fb://BlogDetail/%@\">%@</a>",blog.blogid,blog.title];
+            
+            obj.content = blog.content;
+            
+            obj.photo_title = blog.title;
+            
+            [obj setImageFlg:blog.photoFlg];
+            
+            if (blog.photoFlg)
+            {
+                [obj setImage_small_url_m:blog.photo];
+                [obj setImage_original_url_m:blog.photo];
+            }
+            
+            
+        }else if([obj.sort isEqualToString:@"4"]&&[obj.type isEqualToString:@"first"])
+        {
+            //论坛帖子转发为微博
+            NSDictionary * newsForwoadjson= [[value objectForKey:FB_CONTENT] objectFromJSONString];
+            
+            FbNewsFeed * fbnews= [[FbNewsFeed alloc] initWithJson:newsForwoadjson];
+            
+            [obj setFbNews:fbnews];
+            
+            
+            obj.title_content = [NSString stringWithFormat:@"<a href=\"fb://tieziDetail/%@/%@\">%@</a>",fbnews.bbsid,fbnews.bbsid,fbnews.title];
+            
+            obj.content = fbnews.content;
+            
+            obj.photo_title = fbnews.title;
+            
+            [obj setImageFlg:fbnews.photoFlg];
+            
+            if (fbnews.photoFlg)
+            {
+                [obj setImage_small_url_m:fbnews.photo];
+                [obj setImage_original_url_m:fbnews.photo];
+            }
+            
+        }else if([obj.sort isEqualToString:@"5"]&&[obj.type isEqualToString:@"first"])
+        {
+            //论坛分享
+            NSDictionary *newsSendjson= [[value objectForKey:FB_EXTENSION] objectFromJSONString];
+            
+            Extension * ex=[[Extension alloc] initWithJson:newsSendjson];
+            
+            [obj setExten:ex];
+            
+            [obj setRootFlg:YES];
+            
+            
+            obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://atSomeone@/%@\">@%@</a>:<a href=\"fb://BlogDetail/%@\">%@</a>",ex.authorid,ex.author,ex.authorid,ex.title];
+            
+            obj.rcontent = ex.forum_content;
+            
+            obj.photo_title = ex.title;
+            
+            [obj setSort:@"0"];
+            
+            [obj setRsort:@"5"];
+            [obj setRsortId:ex.authorid];
+            [obj setRimageFlg:ex.photoFlg];
+            [obj setRimage_small_url_m:ex.photo];
+            [obj setRimage_original_url_m:ex.photo];
+        }else if (([obj.sort isEqualToString:@"8"] || [obj.sort isEqualToString:@"7"] || [obj.sort isEqualToString:@"6"])&&[obj.type isEqualToString:@"first"])
+        {
+            NSDictionary *exjson= [[value objectForKey:FB_EXTENSION] objectFromJSONString];
+            Extension * ex=[[Extension alloc]initWithJson:exjson];
+            [obj setExten:ex];
+            
+            obj.rsort = obj.sort;
+            
+            obj.rsortId = obj.sortId;
+            
+            obj.sort = @"0";
+            
+            obj.rootFlg = YES;
+            
+            [obj setRimageFlg:ex.photoFlg];
+            
+            [obj setRimage_small_url_m:ex.photo];
+            
+            [obj setRimage_original_url_m:ex.photo];
+            
+            obj.rtitle_content = [NSString  stringWithFormat:@"<a href=\"fb.news://PhotoDetail/id=%@/sort=%@\">%@</a>",obj.sortId,obj.sort,ex.title];
+            
+            obj.rcontent = [exjson objectForKey:@"intro"];
+            
+            obj.photo_title = ex.title;
+            
+        }else if([obj.sort isEqualToString:@"10"]&&[obj.type isEqualToString:@"first"])
+        {
+            //资源分享
+            NSDictionary *newsSendjson= [[value objectForKey:FB_EXTENSION] objectFromJSONString];
+            
+            Extension * ex=[[Extension alloc] initWithJson:newsSendjson];
+            
+            [obj setExten:ex];
+            
+            [obj setRootFlg:YES];
+            
+            obj.sort = @"0";
+            
+            [obj setRcontent:[zsnApi ShareResourceContent:ex.forum_content]];
+            
+            [obj setRsort:@"10"];
+            
+            [obj setRsortId:ex.authorid];
+            
+            [obj setRimageFlg:ex.photoFlg];
+            
+            [obj setRimage_small_url_m:[NSString stringWithFormat:@"http://fb.cn%@",ex.photo]];
+            
+            [obj setRimage_original_url_m:[NSString stringWithFormat:@"http://fb.cn%@",ex.photo]];
+        }else if (([obj.sort isEqualToString:@"9"]&&[obj.type isEqualToString:@"first"]))
+        {
+            //商城分享
+            NSDictionary *newsSendjson= [[value objectForKey:FB_EXTENSION] objectFromJSONString];
+            
+            Extension * ex=[[Extension alloc] initWithJson:newsSendjson];
+            
+            [obj setExten:ex];
+            
+            [obj setRootFlg:YES];
+            
+            obj.sort = @"0";
+            
+            obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://shareshop\">%@</a>",[zsnApi ShareResourceContent:ex.title]];
+            
+            obj.photo_title = ex.title;
+            
+            [obj setRsort:@"9"];
+            
+            [obj setRsortId:ex.authorid];
+            
+            [obj setRimageFlg:ex.photoFlg];
+            
+            [obj setRimage_small_url_m:ex.photo];
+            
+            [obj setRimage_original_url_m:ex.photo];
+        }else if ([obj.sort isEqualToString:@"15"]&&[obj.type isEqualToString:@"first"])
+        {
+            NSDictionary * atlas_dic = [[value objectForKey:FB_EXTENSION] objectFromJSONString];
+            
+            NSString * title = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"title"]];
+            
+            NSString * photo = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"photo"]];
+            
+            NSString * intro = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"intro"]];
+            
+            obj.sort = @"0";
+            
+            obj.rootFlg = YES;
+            
+            obj.rsort = @"15";
+            
+            obj.rsortId = obj.sortId;
+            
+            if (photo.length > 0)
+            {
+                obj.rimageFlg = YES;
+                
+                obj.rimage_original_url_m = photo;
+                
+                obj.rimage_small_url_m = photo;
+            }
+            
+            if (title.length > 0)
+            {
+                obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://tieziDetail/%@/%@\">%@</a>",obj.sortId,obj.sortId,title];
+            }
+            
+            obj.rcontent = intro;
+            
+            
+            
+            
+                        
+        }
+        
+        
+        while ([obj.content rangeOfString:@"&nbsp;"].length)
+        {
+            obj.content = [obj.content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+        }
+        
+        
+        
+        NSMutableString * tempString = [NSMutableString stringWithFormat:@"%@",obj.content];
+        
+        if ([tempString rangeOfString:@"<a>#"].length)
+        {
+            NSString * insertString = [NSString stringWithFormat:@"href=\"fb://BlogDetail/%@\"",obj.tid];
+            [tempString insertString:insertString atIndex:[obj.content rangeOfString:@"<a>#"].location+2];
+            obj.content = [NSString stringWithString:tempString];
+        }
+        
+        
+        while ([obj.content rangeOfString:@"<a id="].length)
+        {
+            obj.content = [zsnApi exchangeString:obj.content];
+        }
+        
+        
+        
+        //解析转发内容
+        if (![[value objectForKey:@"roottid"] isEqualToString:@"0"] )
+        {
+            [obj setRootFlg:YES];
+            
+            NSDictionary * followinfo= [value objectForKey:@"followinfo"];
+            
+            if (followinfo==nil)
+            {
+                //原微博已删除
+                [obj setRcontent:NS_WEIBO_DEL];
+            }else
+            {
+                //解析转发的微博内容
+                [obj setRtid:[followinfo objectForKey:FB_TID]];
+                [obj setRuid:[followinfo objectForKey:FB_UID]];
+                [obj setRuserName:[followinfo objectForKey:FB_USERNAME]];
+                
+                [obj setRcontent:[ NSString stringWithFormat:@"<a href=\"fb://atSomeone@/%@\">@%@</a>:%@",obj.ruid,obj.ruserName,[zsnApi imgreplace:[followinfo objectForKey:FB_CONTENT]]]];
+                
+                if ([[followinfo objectForKey:FB_IMAGEID] isEqualToString:@"0"])
+                {
+                    [obj setRNsImageFlg:@"0"];
+                }else
+                {
+                    [obj setRNsImageFlg:@"1"];
+                }
+                
+                
+                obj.rimage_original_url_m = [followinfo objectForKey:@"image_original_m"];
+                
+                obj.rimage_small_url_m = [followinfo objectForKey:@"image_small_m"];
+                
+                
+                if ([obj rimageFlg])
+                {
+                    [obj setRimage_original_url:[followinfo objectForKey:FB_IMAGE_ORIGINAL]];
+                    [obj setRimage_small_url:[followinfo objectForKey:FB_IMAGE_SMALL]];
+                }
+                [obj setRfrom:[followinfo objectForKey:FB_FROM]];
+                [obj setRNsType:[followinfo objectForKey:FB_TYPE]];
+                obj.rsort = [followinfo objectForKey:FB_SORT];
+                obj.rsortId = [followinfo objectForKey:FB_SORTID];
+                
+                [obj setRmusicurl:[NSString stringWithFormat:@"%@",[followinfo objectForKey:@"musicurl"]]];
+                
+                if ([obj.rmusicurl isEqual:[NSNull null]] || [obj.rmusicurl isEqualToString:@"(null)"] || obj.rmusicurl.length == 0 || [obj.rmusicurl isEqualToString:@"<null>"])
+                {
+                    [obj setRmusicurl:@""];
+                }
+                
+                
+                
+                [obj setRolink:[NSString stringWithFormat:@"%@",[followinfo objectForKey:@"videolink"]]];
+                
+                if ([obj.rolink isEqual:[NSNull null]] || [obj.rolink isEqualToString:@"(null)"] || obj.rolink.length == 0 || [obj.rolink isEqualToString:@"<null>"])
+                {
+                    [obj setRolink:@""];
+                }
+                
+                [obj setRjing_lng:[followinfo objectForKey:FB_JING_LNG]];
+                [obj setRwei_lat:[followinfo objectForKey:FB_WEI_LAT]];
+                [obj setRlocality:[followinfo objectForKey:FB_LOCALITY]];
+                [obj setRface_original_url:[followinfo objectForKey:FB_FACE_ORIGINAL]];
+                [obj setRface_small_url:[followinfo objectForKey:FB_FACE_SMALL]];
+                [obj setRNsRootFlg:[followinfo objectForKey:FB_ROOTTID]];
+                [obj setRdateline:[followinfo objectForKey:FB_DATELINE]];
+                [obj setRreplys:[followinfo objectForKey:FB_REPLYS]];
+                [obj setRforwards:[followinfo objectForKey:FB_FORWARDS]];
+                //解析其他类型
+                
+                if([obj.rsort isEqualToString:@"3"]&&[obj.rtype isEqualToString:@"first"])
+                {
+                    //解析图集
+                    NSDictionary * photojson= [[followinfo objectForKey:FB_CONTENT] objectFromJSONString];
+                    
+                    PhotoFeed * photo = [[PhotoFeed alloc]initWithJson:photojson];
+                    
+                    [obj setRphoto:photo];
+                    
+                    obj.rcontent = [NSString stringWithFormat:@"<a href=\"fb://atSomeone@/%@\">@%@</a>:我在图集<a href=\"fb:forwardingStyle//PhotoDetail/%@\">%@</a>上传了新图片",obj.ruid,obj.ruserName,photo.aid,photo.title];
+                    
+                    obj.photo_title = photo.title;
+                    
+                    [obj setRimageFlg:YES];
+                    
+                    [obj setRimage_small_url_m:photo.image_string];
+                    
+                    [obj setRimage_original_url_m:photo.image_string];
+                    
+                }else if([obj.rsort isEqualToString:@"2"]&&[obj.rtype isEqualToString:@"first"])
+                {
+                    //解析文集
+                    NSDictionary *blogjson= [[followinfo objectForKey:FB_CONTENT] objectFromJSONString];
+                    BlogFeed * blog=[[BlogFeed alloc]initWithJson:blogjson];
+                    [obj setRblog:blog];
+                    obj.rtitle_content = blog.title;
+                    obj.rcontent = blog.content;
+                    obj.photo_title = blog.title;
+                    [obj setRimageFlg:blog.photoFlg];
+                    if (blog.photoFlg) {
+                        [obj setRimage_small_url_m:blog.photo];
+                        [obj setRimage_original_url_m:blog.photo];
+                    }
+                }else if([obj.rsort isEqualToString:@"4"]&&[obj.rtype isEqualToString:@"first"])
+                {
+                    //论坛帖子转发为微博
+                    NSDictionary *newsForwoadjson= [[followinfo objectForKey:FB_CONTENT] objectFromJSONString];
+                    FbNewsFeed * fbnews=[[FbNewsFeed alloc]initWithJson:newsForwoadjson];
+                    [obj setRfbNews:fbnews];
+                    
+                    
+                    obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://atSomeone@/%@\">@%@</a>:<a href=\"fb:forwardingStyle//tieziDetail/%@/%@/%@/\">%@</a>",fbnews.uid,obj.ruserName,fbnews.bbsid,fbnews.title,fbnews.bbsid,fbnews.title];
+                    
+                    obj.rcontent = fbnews.content;
+                    
+                    obj.photo_title = fbnews.title;
+                    
+                    
+                    [obj setRimageFlg:fbnews.photoFlg];
+                    if (fbnews.photoFlg)
+                    {
+                        [obj setRimage_small_url_m:fbnews.photo];
+                        
+                        [obj setRimage_original_url_m:fbnews.photo];
+                    }
+                }else if([obj.rsort isEqualToString:@"5"]&&[obj.rtype isEqualToString:@"first"])
+                {
+                    //论坛分享
+                    
+                    NSDictionary *newsSendjson= [[followinfo objectForKey:FB_EXTENSION] objectFromJSONString];
+                    Extension * ex=[[Extension alloc]initWithJson:newsSendjson];
+                    [obj setRexten:ex];
+                    
+                    obj.rtitle_content = ex.title;
+                    
+                    obj.rcontent = ex.forum_content;
+                    
+                    obj.photo_title = ex.title;
+                    
+                    [obj setRimageFlg:ex.photoFlg];
+                    [obj setRimage_small_url_m:ex.photo];
+                    [obj setRimage_original_url_m:ex.photo];
+                }else if (([obj.rsort isEqualToString:@"8"] || [obj.rsort isEqualToString:@"7"] || [obj.rsort isEqualToString:@"6"])&&[obj.rtype isEqualToString:@"first"])
+                {
+                    NSDictionary *exjson= [[followinfo objectForKey:FB_EXTENSION] objectFromJSONString];
+                    Extension * ex=[[Extension alloc]initWithJson:exjson];
+                    [obj setExten:ex];
+                    
+                    
+                    [obj setRimageFlg:ex.photoFlg];
+                    
+                    [obj setRimage_small_url_m:ex.photo];
+                    
+                    [obj setRimage_original_url_m:ex.photo];
+                    
+                    obj.rtitle_content = [NSString  stringWithFormat:@"<a href=\"fb.news://PhotoDetail/id=%@/sort=%@\">%@</a>",obj.sortId,obj.sort,ex.title];
+                    
+                    obj.rcontent = [exjson objectForKey:@"intro"];
+                    
+                    obj.photo_title = ex.title;
+                    
+                }else if([obj.rsort isEqualToString:@"10"]&&[obj.rtype isEqualToString:@"first"])
+                {
+                    //资源分享
+                    NSDictionary *newsSendjson= [[followinfo objectForKey:FB_EXTENSION] objectFromJSONString];
+                    
+                    Extension * ex=[[Extension alloc] initWithJson:newsSendjson];
+                    
+                    [obj setExten:ex];
+                    
+                    [obj setRcontent:[zsnApi ShareResourceContent:ex.forum_content]];
+                    
+                    [obj setRsortId:ex.authorid];
+                    
+                    [obj setRimageFlg:ex.photoFlg];
+                    
+                    [obj setRimage_small_url_m:[NSString stringWithFormat:@"http://fb.cn%@",ex.photo]];
+                    
+                    [obj setRimage_original_url_m:[NSString stringWithFormat:@"http://fb.cn%@",ex.photo]];
+                }else if (([obj.sort isEqualToString:@"9"]&&[obj.type isEqualToString:@"first"]))
+                {
+                    //商城分享
+                    NSDictionary *newsSendjson= [[followinfo objectForKey:FB_EXTENSION] objectFromJSONString];
+                    
+                    Extension * ex=[[Extension alloc] initWithJson:newsSendjson];
+                    
+                    [obj setExten:ex];
+                    
+                    obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://shareshop\">%@</a>",[zsnApi ShareResourceContent:ex.title]];
+                    
+                    obj.photo_title = ex.title;
+                    
+                    [obj setRsortId:ex.authorid];
+                    
+                    [obj setRimageFlg:ex.photoFlg];
+                    
+                    [obj setRimage_small_url_m:ex.photo];
+                    
+                    [obj setRimage_original_url_m:ex.photo];
+                }
+            }
+        }
+        
+        while ([obj.rcontent rangeOfString:@"&nbsp;"].length)
+        {
+            obj.rcontent = [obj.rcontent stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+        }
+        
+        
+        
+        NSMutableString * RtempString = [NSMutableString stringWithFormat:@"%@",obj.rcontent];
+        
+        if ([RtempString rangeOfString:@"<a>#"].length)
+        {
+            NSString * insertString = [NSString stringWithFormat:@" href=\"fb:forwardingStyle//BlogDetail/%@\"",obj.rtid];
+            [RtempString insertString:insertString atIndex:[obj.rcontent rangeOfString:@"<a>#"].location+2];
+            obj.rcontent = [NSString stringWithString:RtempString];
+        }
+        
+        while ([obj.rcontent rangeOfString:@"<a id="].length)
+        {
+            obj.rcontent = [zsnApi exchangeString:obj.rcontent];
+        }
+        
+        
+        obj.content = [obj.content stringByReplacingOccurrencesOfString:@"<a>" withString:@"<a href=\"fb://shareshop\">"];
+        
+        obj.rcontent = [obj.rcontent stringByReplacingOccurrencesOfString:@"<a>" withString:@"<a href=\"fb://shareshop\">"];
+        
+        obj.title_content = [obj.title_content stringByReplacingOccurrencesOfString:@"<a>" withString:@"<a href=\"fb://shareshop\">"];
+        
+        obj.rtitle_content = [obj.rtitle_content stringByReplacingOccurrencesOfString:@"<a>" withString:@"<a href=\"fb://shareshop\">"];
+        
+        
+        obj.content = [obj.content stringByReplacingOccurrencesOfString:@"<ahref" withString:@"<a href"];
+        
+        obj.rcontent = [obj.rcontent stringByReplacingOccurrencesOfString:@"<ahref" withString:@"<a href"];
+        
+        obj.title_content = [obj.title_content stringByReplacingOccurrencesOfString:@"<ahref" withString:@"<a href"];
+        
+        obj.rtitle_content = [obj.rtitle_content stringByReplacingOccurrencesOfString:@"<ahref" withString:@"<a href"];
+        
+        
+        [data_array addObject:obj];
+        
+        
+        
+        if (isSave)
+        {
+            int result = [FbFeed addWeiBoContentWithInfo:obj WithType:theType];
+            
+            NSLog(@"微博添加数据结果 ----  %d",result);
+        }
+        
+        
+    }
+    
+    return data_array;
+    
+}
 
 
 

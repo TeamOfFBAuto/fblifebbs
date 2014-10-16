@@ -75,28 +75,14 @@
     [back_view addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
     self.navigationItem.leftBarButtonItem=back_item;
-//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
-//        //iOS 5 new UINavigationBar custom background
-//        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
-//        
-//    }
-//    
-//    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -5:5, 3, 12, 43/2)];
-//    
-//    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-//    
-//    UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 28)];
-//    [back_view addSubview:button_back];
-//    back_view.backgroundColor=[UIColor clearColor];
-//    [back_view addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
-//    self.navigationItem.leftBarButtonItem=back_item;
+
     
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
+    //去掉 新闻和图集
+    
     newsScrow=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568-64:480-64)];
-    newsScrow.contentSize=CGSizeMake(320*4, 0);
+    newsScrow.contentSize=CGSizeMake(320*2, 0);
     newsScrow.pagingEnabled=YES;
     newsScrow.delegate=self;
     newsScrow.showsHorizontalScrollIndicator=NO;
@@ -106,16 +92,13 @@
     
     [self.view addSubview:newsScrow];
     
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<2; i++) {
         
-        FinalshoucangView *mytesttab=[[FinalshoucangView alloc]initWithFrame:CGRectMake(320*i, 0, 320, iPhone5?568-64:480-64) Type:i];
+        FinalshoucangView *mytesttab=[[FinalshoucangView alloc]initWithFrame:CGRectMake(320*i, 0, 320, iPhone5?568-64:480-64) Type:i + 1];
         mytesttab.tag=i+800;
         mytesttab.delegate=self;
         [newsScrow addSubview:mytesttab];
         mytesttab.backgroundColor=[UIColor redColor];
-        
-        
-        
     }
     
     
@@ -128,7 +111,9 @@
     
     _weibo_seg.backgroundColor = [UIColor clearColor];
     
-    [_weibo_seg setAllViewsWith:[NSArray arrayWithObjects:@"新闻",@"帖子",@"版块",@"图集",nil] index:0];
+//    [_weibo_seg setAllViewsWith:[NSArray arrayWithObjects:@"新闻",@"帖子",@"版块",@"图集",nil] index:0];
+    
+    [_weibo_seg setAllViewsWith:[NSArray arrayWithObjects:@"帖子",@"版块",nil] index:0];
     
     self.navigationItem.titleView = daohangview;
 

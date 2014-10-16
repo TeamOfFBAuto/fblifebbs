@@ -2,4 +2,22 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PublicClasses/&#x4e0b;&#x62c9;&#x5237;&#x65b0;&#x4e0a;&#x62c9;&#x52a0;&#x8f7d;/RefreshTableView.m"
+            timestampString = "435119170.707533"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "-scrollViewDidEndDragging:willDecelerate:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -8,6 +8,7 @@
 
 #import "MessageTableView.h"
 #import "CustomMessageCell.h"
+#import "MyChatViewController.h"
 
 @implementation MessageTableView
 @synthesize myTableView = _myTableView;
@@ -28,29 +29,89 @@
 
 -(void)setup
 {
-    _myTableView = [[RefreshTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
-    _myTableView.delegate = self;
+    _data_array = [NSMutableArray array];
+    _myTableView = [[RefreshTableView alloc] initWithFrame:self.bounds showLoadMore:NO];
     _myTableView.dataSource = self;
     _myTableView.refreshDelegate = self;
     _myTableView.separatorInset = UIEdgeInsetsZero;
     [self addSubview:_myTableView];
+    
+    [self initHttpRequest];
 }
 
--(void)setData_array:(NSMutableArray *)data_array
+#pragma mark - 网络请求
+#pragma mark-获取私信列表
+-(void)initHttpRequest
 {
-    _data_array = data_array;
-    [_myTableView reloadData];
+    [request_tools cancelRequest];
+    
+    NSString * string = [[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
+    request_tools = [[LTools alloc] initWithUrl:[NSString stringWithFormat:GET_MESSAGE_LIST_URL,string] isPost:NO postData:nil];
+    
+    NSLog(@"私信首页url --  %@",[NSString stringWithFormat:GET_MESSAGE_LIST_URL,string]);
+    
+    __weak typeof(self)bself = self;
+    [request_tools requestCompletion:^(NSDictionary *result, NSError *erro) {
+        
+        @try {
+            
+            [bself.data_array removeAllObjects];
+            NSArray * infoArray = [result objectForKey:@"info"];
+            
+            if (![infoArray isKindOfClass:[NSArray class]]) {
+                return ;
+            }
+            
+            NSLog(@"info===%@",infoArray);
+            
+            for (NSDictionary * dic in infoArray)
+            {
+                MessageInfo * info = [[MessageInfo alloc] initWithDictionary:dic];
+                
+                [bself.data_array addObject:info];
+                
+            }
+            NSUserDefaults *stau=[NSUserDefaults standardUserDefaults];
+            [stau setObject:infoArray forKey:@"whyhavenodata"];
+            NSLog(@"youmuyou==%@",[stau objectForKey:@"whyhavenodata"]);
+            [stau synchronize];
+            
+            if (bself.data_array.count == 0)///此时没有数据了
+            {
+                
+            }else
+            {
+                
+            }
+            
+            [bself.myTableView finishReloadigData];
+            
+        }
+        @catch (NSException *exception)
+        {
+            
+        }
+        @finally {
+            
+        }
+        
+    } failBlock:^(NSDictionary *failDic, NSError *erro) {
+        [bself.myTableView finishReloadigData];
+    }];
+    
 }
+
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _data_array.count;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 76;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 76;
+//}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -89,7 +150,7 @@
 ///下拉加载
 - (void)loadNewData
 {
-    
+    [self initHttpRequest];
 }
 ///上拉更多
 - (void)loadMoreData
@@ -98,6 +159,24 @@
 }
 
 
+- (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MessageInfo * info = [self.data_array objectAtIndex:indexPath.row];
+    MyChatViewController * chat = [[MyChatViewController alloc] init];
+    chat.info = info;
+}
+- (CGFloat)heightForRowIndexPath:(NSIndexPath *)indexPath
+{
+    return 76;
+}
+- (UIView *)viewForHeaderInSection:(NSInteger)section
+{
+    return nil;
+}
+- (CGFloat)heightForHeaderInSection:(NSInteger)section
+{
+    return 0;
+}
 
 
 

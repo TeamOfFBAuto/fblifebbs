@@ -67,13 +67,6 @@
                      
                      [allAssesters addObject:returnValue];
                  }
-                 
-                 
-                 //                UIButton * button = (UIButton *)[morePicView viewWithTag:101+i];
-                 //
-                 //                [button setImage:returnValue forState:UIControlStateNormal];
-                 
-                 
              } failureBlock:^(NSError *error) {
                  // error handling
              }];
@@ -977,8 +970,6 @@
 {
     
     NSString* fullURL = [NSString stringWithFormat:URLIMAGE,[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];
-    //  NSString * fullURL = [NSString stringWithFormat:@"http://t.fblife.com/openapi/index.php?mod=doweibo&code=addpicmuliti&fromtype=b5eeec0b&authkey=UmZaPlcyXj8AMQRoDHcDvQehBcBYxgfbtype=json"];
-    
     
     NSLog(@"上传图片的url  ——--  %@",fullURL);
     ASIFormDataRequest * request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:fullURL]];
@@ -987,20 +978,13 @@
     
     //得到图片的data
     NSData* data;
-    //获取图片质量
-    //  NSString *tupianzhiliang=[[NSUserDefaults standardUserDefaults] objectForKey:TUPIANZHILIANG];
-    
     NSMutableData *myRequestData=[NSMutableData data];
-    
-    NSLog(@"imagearray -----  %d",allImageArray.count);
     
     for (int i = 0;i < allImageArray.count; i++)
     {
         [request setPostFormat:ASIMultipartFormDataPostFormat];
         
         UIImage *image=[allImageArray objectAtIndex:i];
-        
-        
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -1010,36 +994,21 @@
         //UIImageJPEGRepresentation(image)
         [imageData writeToFile:savedImagePath atomically:NO];
         
-        
-        
-        
-        
-        
-        
         UIImage * newImage = [personal scaleToSizeWithImage:image size:CGSizeMake(image.size.width>1024?1024:image.size.width,image.size.width>1024?image.size.height*1024/image.size.width:image.size.height)];
         
         data = UIImageJPEGRepresentation(newImage,image_quality?0.5:0.3);
-        
         
         [request addRequestHeader:@"Content-Length" value:[NSString stringWithFormat:@"%d", [myRequestData length]]];
         
         //设置http body
         
         [request addData:data withFileName:[NSString stringWithFormat:@"boris%d.png",i] andContentType:@"image/PNG" forKey:@"topic[]"];
-        
-        //  [request addData:myRequestData forKey:[NSString stringWithFormat:@"boris%d",i]];
-        
     }
     
     [request setRequestMethod:@"POST"];
-    
     request.cachePolicy = TT_CACHE_EXPIRATION_AGE_NEVER;
-    
     request.cacheStoragePolicy = ASICacheForSessionDurationCacheStoragePolicy;
-    
     [request startAsynchronous];
-    
-    
 }
 
 -(void)requestFinished:(ASIHTTPRequest *)request

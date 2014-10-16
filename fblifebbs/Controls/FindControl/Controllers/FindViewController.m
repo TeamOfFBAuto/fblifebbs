@@ -47,7 +47,7 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    return 54;
 }
 
 
@@ -61,7 +61,7 @@
     if (section == 0) {
         num = 1;
     }else if (section ==1){
-        num = 3;
+        num = 2;
     }
     return num;
 }
@@ -72,6 +72,36 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    
+    //图标
+    UIImageView *titleImv = [[UIImageView alloc]initWithFrame:CGRectMake(12, 17, 20, 20)];
+    [cell.contentView addSubview:titleImv];
+    //标题
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleImv.frame)+15, 19, 130, 17)];
+    [cell.contentView addSubview:titleLabel];
+    titleLabel.font = [UIFont systemFontOfSize:15];
+    titleLabel.textColor = RGBCOLOR(49, 49, 49);
+    
+    //箭头
+    UIImageView *jiantouImv = [[UIImageView alloc]initWithFrame:CGRectMake(298, 17, 7, 15)];
+    jiantouImv.image = [UIImage imageNamed:@"jiantou@.png"];
+    [cell.contentView addSubview:jiantouImv];
+    
+    
+    
+    if (indexPath.row == 0 && indexPath.section == 0) {
+        titleImv.image = [UIImage imageNamed:@"friend.png"];
+        titleLabel.text = @"好友动态";
+    }else if (indexPath.row == 0 && indexPath.section == 1){
+        titleImv.image = [UIImage imageNamed:@"news.png"];
+        titleLabel.text = @"e族新闻";
+    }else if (indexPath.row == 1 && indexPath.section == 1){
+        titleImv.image = [UIImage imageNamed:@"shangcheng.png"];
+        titleLabel.text = @"e族商城";
+    }
+    
+    
+    
     
     return cell;
 }

@@ -16,6 +16,8 @@
 #import "newsdetailViewController.h"
 #import "NewWeiBoDetailViewController.h"
 #import "NewMineViewController.h"
+#import "bbsdetailViewController.h"
+#import "BBSfenduiViewController.h"
 
 @interface GFoundSearchViewController3 : SNViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CustomSegmentViewDelegate,NewWeiBoCustomCellDelegate,MWPhotoBrowserDelegate>
 {
@@ -37,7 +39,7 @@
     
     NSMutableArray * array_cache;
     
-    NSMutableArray * array_search_zixun;
+    NSMutableArray * array_search_bankuai;
     
     NSMutableArray * array_search_bbs;
     

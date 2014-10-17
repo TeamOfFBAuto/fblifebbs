@@ -31,9 +31,9 @@
     self.title = @"搜索";
     
     
-    if (!array_search_zixun)
+    if (!array_search_bankuai)
     {
-        array_search_zixun = [[NSMutableArray alloc] init];
+        array_search_bankuai = [[NSMutableArray alloc] init];
     }
     
     if (!array_search_bbs)
@@ -208,10 +208,13 @@
                 break;
             case 1:
             {
-#pragma mark - 版块=====
-                SearchNewsView *_search_news=[[SearchNewsView alloc]init];
-                [_search_news layoutSubviewsWithDicNewsinfo:dic_ssinfo];
-                [cell.contentView addSubview:_search_news];
+#pragma mark - 版块===== tableviewcell自定义cell 已修改
+//                SearchNewsView *_search_news=[[SearchNewsView alloc]init];
+//                [_search_news layoutSubviewsWithDicNewsinfo:dic_ssinfo];
+                
+                UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 200, 40)];
+                titleLabel.text = [dic_ssinfo objectForKey:@"name"];
+                [cell.contentView addSubview:titleLabel];
                 
             }
                 break;
@@ -281,11 +284,15 @@
                 break;
             case 1:
             {
-#pragma mark - 版块==========
-                newsdetailViewController *newsDe=[[newsdetailViewController alloc]init];
-                newsDe.string_Id=[NSString stringWithFormat:@"%@",[dicinfoofsearchresault objectForKey:@"tid"]];
-                //                [self.leveyTabBarController hidesTabBar:YES animated:YES];
-                [self.navigationController pushViewController:newsDe animated:YES];//跳入下一个View
+#pragma mark - 版块========== cellDidSelect方法 跳转版块详细页
+//                newsdetailViewController *newsDe=[[newsdetailViewController alloc]init];
+//                newsDe.string_Id=[NSString stringWithFormat:@"%@",[dicinfoofsearchresault objectForKey:@"tid"]];
+//                //                [self.leveyTabBarController hidesTabBar:YES animated:YES];
+//                [self.navigationController pushViewController:newsDe animated:YES];//跳入下一个View
+                BBSfenduiViewController *bbsDvc = [[BBSfenduiViewController alloc]init];
+                bbsDvc.string_id = [dicinfoofsearchresault objectForKey:@"fid"];
+                [self.navigationController pushViewController:bbsDvc animated:YES];
+                
                 
             }
                 break;
@@ -406,9 +413,13 @@
         case 1://版块
         {
             
-#pragma mark - 版块===
-            NSLog(@"点击的是资讯");
-            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],2,mysearchPage];
+#pragma mark - 版块===已修改
+            
+//            NSLog(@"点击的是资讯");
+//            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],2,mysearchPage];
+            
+            NSLog(@"点击的是版块");
+           string_searchurl = [NSString stringWithFormat: @"http://bbs.fblife.com/bbsapinew/searchforums.php?sk=%@&formattype=json",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
            
         }
             break;
@@ -536,9 +547,33 @@
                 
             }
             
+#pragma mark - #pragma mark - 版块搜索返回的数据装到 self.array_searchresault 数组里====
+            if (mysegment.currentPage == 1) {//版块
+                
+                NSArray *arr = [dicofsearch objectForKey:@"bbsinfo"];
+                
+                if ([arr isKindOfClass:[NSArray class]]) {
+                    
+                    if (arr.count >0) {
+                        
+                        [self.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"bbsinfo"]];
+                        
+                    }
+                }
+                
+                [array_search_bankuai removeAllObjects];
+                [array_search_bankuai addObjectsFromArray:self.array_searchresault];
+                
+                [self.myTableView reloadData];
+                return;
+            }
+            
+            
+#pragma mark - 除了版块搜索之外的搜索
             if (dicofsearch.count>0) {
                 
                 if ([[dicofsearch objectForKey:@"allnumbers"] integerValue]>0) {
+                    
                     [self.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"searchinfo"]];
                     NSLog(@"是有数据的");
                     
@@ -553,7 +588,7 @@
                         [alert show];
                     }
                     if (mysegment.currentPage==1) {
-#pragma mark - 版块====
+#pragma mark - 版块==== 已修改
                         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的版块信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
                         
                         [alert show];
@@ -569,11 +604,10 @@
                 [array_search_bbs addObjectsFromArray:self.array_searchresault];
                 
                 
-            }else if (mysegment.currentPage==1)
-            {
-#pragma mark - 版块======
-                [array_search_zixun removeAllObjects];
-                [array_search_zixun addObjectsFromArray:self.array_searchresault];
+            }else if (mysegment.currentPage==1){
+#pragma mark - 版块====== 已修改  以为版块接口返回的数据类型和 用户 帖子不同 所以 这里不会走的 上面有判断currentPage == 1 的时候有数据 赋值后 直接return了
+                [array_search_bankuai removeAllObjects];
+                [array_search_bankuai addObjectsFromArray:self.array_searchresault];
                 
             }else if (mysegment.currentPage==2)
             {
@@ -582,6 +616,8 @@
             }
             
             NSLog(@"self.array_searchresault===%@",self.array_searchresault);
+            
+            
             [self.myTableView reloadData];
             //        }
         }
@@ -685,11 +721,11 @@
         if ([_searchbar.text isEqualToString:[array_cache objectAtIndex:mysegment.currentPage]])
         {
             [self.array_searchresault removeAllObjects];
-            NSLog(@"------%d",array_search_zixun.count);
-            if (mysegment.currentPage ==1 && array_search_zixun.count != 0)
+            NSLog(@"------%d",array_search_bankuai.count);
+            if (mysegment.currentPage ==1 && array_search_bankuai.count != 0)
             {
-#pragma mark - 版块=====
-                [self.array_searchresault addObjectsFromArray:array_search_zixun];
+#pragma mark - 版块===== 已修改
+                [self.array_searchresault addObjectsFromArray:array_search_bankuai];
                 [self.myTableView reloadData];
                 
             }else if (mysegment.currentPage ==0 && array_search_bbs.count != 0){//帖子

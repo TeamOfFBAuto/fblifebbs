@@ -7,11 +7,13 @@
 //
 
 
-
+//发现页面
 
 #import <UIKit/UIKit.h>
 #import "GFoundSearchViewController.h"
-@interface FindViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
+#import "GshoppingWebViewController.h"
+
+@interface FindViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
     UITableView *_tabelview;
 }

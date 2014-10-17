@@ -22,6 +22,7 @@
 
 
 #import "ComprehensiveViewController.h"
+#import "AFNetworkReachabilityManager.h"
 
 
 @interface AppDelegate ()
@@ -112,7 +113,7 @@
     
     
     
-    
+    [self checkNetWork];
     
     //    [MobClick startWithAppkey:@"5368ab4256240b6925029e29"];
     
@@ -122,6 +123,41 @@
     self.window.rootViewController = tabbarVC;
 
 
+}
+
+
+-(void)checkNetWork
+{
+    //判断网络是否可用
+    //开启监控
+    //[[AFNetworkActivityIndicatorManager sharedManager]setEnabled:YES];
+    AFNetworkReachabilityManager *afnrm =[AFNetworkReachabilityManager sharedManager];
+    [afnrm startMonitoring];
+    //设置网络状况监控后的代码块
+    [afnrm setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
+    {
+        switch ([[AFNetworkReachabilityManager sharedManager]networkReachabilityStatus])
+        {
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                NSLog(@"WiFi");
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_HAVE_NETWORK object:nil];
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                NSLog(@"WWAN");
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_HAVE_NETWORK object:nil];
+                break;
+            case AFNetworkReachabilityStatusUnknown:
+                NSLog(@"Unknown");
+                
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                NSLog(@"NotReachable");
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_NETWORK object:nil];
+                break;
+            default:
+                break;
+        }
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

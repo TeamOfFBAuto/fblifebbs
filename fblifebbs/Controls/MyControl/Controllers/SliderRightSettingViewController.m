@@ -356,7 +356,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"removeTheTimer" object:nil];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"logoutToChangeHeader" object:nil];
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT_SUCCESS object:nil];
         [user synchronize];
         
         

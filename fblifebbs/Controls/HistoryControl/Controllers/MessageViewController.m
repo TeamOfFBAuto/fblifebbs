@@ -11,8 +11,10 @@
 #import "MessageTableView.h"
 #import "MessageInfo.h"
 #import "NotificationView.h"
+#import "NewMessageViewController.h"
+#import "MyChatViewController.h"
 
-@interface MessageViewController ()<MessageTableViewDelegate>
+@interface MessageViewController ()<MessageTableViewDelegate,NewMessageViewControllerDelegate>
 {
     ///顶部选择视图
     SliderBBSTitleView * _seg_view;
@@ -44,6 +46,9 @@
 {
     [super viewDidLoad];
     
+    [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeNull WithRightButtonType:SNViewControllerRightbuttonTypeOther];
+    self.rightImageName = WRITE_DEFAULT_IMAGE;
+    
     ///加载顶部选择
     __weak typeof(self)bself = self;
     _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,0,260,44)];
@@ -73,7 +78,32 @@
     
     NotificationView * bbsView = [[NotificationView alloc] initWithFrame:CGRectMake((DEVICE_WIDTH+20)*2,0,DEVICE_WIDTH,_myScrollView.frame.size.height) withType:NotificationViewTypeBBS];
     [_myScrollView addSubview:bbsView];
+    
 }
+
+-(void)rightButtonTap:(UIButton *)sender
+{
+    NewMessageViewController * newMessage = [[NewMessageViewController alloc] init];
+    newMessage.delegate = self;
+    [self presentViewController:newMessage animated:YES completion:NULL];
+}
+
+
+#pragma mark-newMessageViewControllerDelegate
+
+-(void)sucessToSendWithName:(NSString *)userName Uid:(NSString *)theUid
+{
+    MessageInfo * info = [[MessageInfo alloc] init];
+    info.to_username = userName;
+    info.othername = userName;
+    info.to_uid = theUid;
+    info.from_username = [[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME];
+    info.from_uid = [[NSUserDefaults standardUserDefaults] objectForKey:USER_UID];
+    MyChatViewController * chat = [[MyChatViewController alloc] init];
+    chat.info = info;
+    [self PushControllerWith:chat WithAnimation:YES];
+}
+
 
 
 #pragma mark - UIScrollViewDelegate

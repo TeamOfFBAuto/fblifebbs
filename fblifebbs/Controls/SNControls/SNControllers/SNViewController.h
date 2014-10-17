@@ -34,9 +34,9 @@ typedef enum
 {
     UIBarButtonItem * spaceButton;
     
-    SNViewControllerLeftbuttonType * myLeftType;
+    SNViewControllerLeftbuttonType myLeftType;
     
-    SNViewControllerRightbuttonType * MyRightType;
+    SNViewControllerRightbuttonType MyRightType;
 }
 
 ///右侧字符串
@@ -56,6 +56,12 @@ typedef enum
 -(void)setSNViewControllerLeftButtonType:(SNViewControllerLeftbuttonType)theType WithRightButtonType:(SNViewControllerRightbuttonType)rightType;
 ///类跳转时隐藏tabbar
 -(void)PushControllerWith:(UIViewController *)vc WithAnimation:(BOOL)animation;
+
+
+///右边按钮点击方法
+-(void)rightButtonTap:(UIButton *)sender;
+///左边按钮点击方法
+-(void)leftButtonTap:(UIButton *)sender;
 
 
 @end

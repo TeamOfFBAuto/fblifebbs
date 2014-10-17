@@ -62,7 +62,7 @@
         }else
         {
             [button setTitleColor:UN_SELECTED_COLOR forState:UIControlStateNormal];
-            
+            button.selected = NO;
             [button setImageEdgeInsets:UIEdgeInsetsMake(0,0,5,0)];
         }
         

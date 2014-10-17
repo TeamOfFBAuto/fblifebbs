@@ -128,6 +128,12 @@ alpha:(a)]
 #define NOTIFICATION_TIANJIAGUANZHU @"tianjiaguanzhu"
 
 #define NOTIFICATION_LOGIN_SUCCESS @"login_success"//登录成功
+///成功退出登录
+#define NOTIFICATION_LOGOUT_SUCCESS @"logout_success"
+///来网啦
+#define NOTIFICATION_HAVE_NETWORK @"haveNetWork"
+///没网啦
+#define NOTIFICATION_NO_NETWORK @"noNetWork"
 
 #define NOTIFICATION_REPLY @"reply"
 #define DEVICETOKEN @"pushdevicetoken"

@@ -83,7 +83,7 @@
 
 
 
-@interface BBSViewController ()<UITableViewDataSource,UITableViewDelegate,RefreshDelegate>
+@interface BBSViewController ()<UITableViewDataSource,UITableViewDelegate,RefreshDelegate,UISearchBarDelegate>
 {
     ///顶部选择器
     SliderBBSTitleView * _seg_view;
@@ -135,11 +135,10 @@
     theType = ForumDiQuType;
     
     current_forum = 0;
-    
-    
+
     ///加载顶部选择
     __weak typeof(self)bself = self;
-    _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,0,190,44)];
+    _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,70,190,44)];
     [_seg_view setAllViewsWith:[NSArray arrayWithObjects:@"全部版块",@"排行榜",nil] withBlock:^(int index) {
         [bself.myScrollView setContentOffset:CGPointMake((DEVICE_WIDTH+20)*index,0) animated:YES];
         bself.seg_current_page = index;
@@ -164,8 +163,24 @@
     _myTableView1.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_myScrollView addSubview:_myTableView1];
     
-    SliderBBSForumSegmentView * forumSegmentView = [[SliderBBSForumSegmentView alloc] initWithFrame:CGRectMake(340,0,320,63)];
     
+    
+    UIView *table_sectionV = [[UIView alloc]initWithFrame:CGRectZero];
+    table_sectionV.backgroundColor = [UIColor clearColor];
+    table_sectionV.backgroundColor = [UIColor whiteColor];
+    table_sectionV.frame = CGRectMake(0, 0, 320,115);
+    UIView *search_bgview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 52)];
+    [table_sectionV addSubview:search_bgview];
+    UISearchBar *bar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 52)];
+    bar.placeholder = @"搜索帖子/版块/用户";
+    bar.delegate = self;
+    bar.layer.borderWidth = 2.f;
+    bar.layer.borderColor = COLOR_SEARCHBAR.CGColor;
+    bar.barTintColor = COLOR_SEARCHBAR;
+    [search_bgview addSubview:bar];
+    
+    
+    SliderBBSForumSegmentView * forumSegmentView = [[SliderBBSForumSegmentView alloc] initWithFrame:CGRectMake(0,52,320,63)];
     [forumSegmentView setAllViewsWithTextArray:[NSArray arrayWithObjects:@"地区",@"车型",@"主题",@"交易",nil] WithImageArray:[NSArray arrayWithObjects:@"bbs_forum_earth",@"bbs_forum_car",@"bbs_forum_zhuti",@"bbs_forum_jiaoyi",@"bbs_forum_earth-1",@"bbs_forum_car-1",@"bbs_forum_zhuti-1",@"bbs_forum_jiaoyi-1",nil] WithBlock:^(int index) {
         
         if (current_forum == index) {
@@ -177,7 +192,9 @@
         [bself isHaveCacheDataWith:index];
     }];
     
-    _myTableView1.tableHeaderView = forumSegmentView;
+    [table_sectionV addSubview:forumSegmentView];
+    
+    _myTableView1.tableHeaderView = table_sectionV;
     
     
     ///排行榜部分
@@ -231,7 +248,67 @@
     ///数据请求
     [self loadAllForums];
     
+    [self loadCollectionForumSectionData];
+    
+    //论坛版块收藏通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forumSectionChange:) name:@"forumSectionChange" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HaveNetWork:) name:NOTIFICATION_HAVE_NETWORK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NoNetWork:) name:NOTIFICATION_NO_NETWORK object:nil];
+    
 }
+
+#pragma mark - 获取论坛版块收藏更改通知
+
+-(void)forumSectionChange:(NSNotification *)notification
+{
+    NSDictionary * dictionary = notification.userInfo;
+    
+    NSString * theId = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"forumSectionId"]];
+    
+    if ([self.forum_section_collection_array containsObject:theId])
+    {
+        [self.forum_section_collection_array removeObject:theId];
+    }else
+    {
+        [self.forum_section_collection_array addObject:theId];
+    }
+    
+    [self.myTableView1 reloadData];
+}
+
+
+#pragma mark - 读取所有收藏版块数据信息
+-(void)loadCollectionForumSectionData
+{
+    collection_model = [[SliderForumCollectionModel alloc] init];
+    
+    __weak typeof(self) bself = self;
+    
+    if (!_forum_section_collection_array)
+    {
+        _forum_section_collection_array = [NSMutableArray array];
+    }else
+    {
+        [_forum_section_collection_array removeAllObjects];
+    }
+    
+    //第一个参数第一页  第二个参数一页显示多少个，这里要全部的数据所以给1000
+    [collection_model loadCollectionDataWith:1 WithPageSize:100 WithFinishedBlock:^(NSMutableArray *array) {
+        
+        [bself.forum_section_collection_array addObjectsFromArray:collection_model.collect_id_array];
+        [bself.myTableView2 reloadData];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:bself.forum_section_collection_array forKey:@"forumSectionCollectionArray"];
+        
+    } WithFailedBlock:^(NSString *string) {
+        
+        bself.forum_section_collection_array = [[NSUserDefaults standardUserDefaults] objectForKey:@"forumSectionCollectionArray"];
+    }];
+    
+}
+
+
 #pragma mark - 网络请求部分
 #pragma mark - 判断论坛有没有缓存数据
 -(void)isHaveCacheDataWith:(int)index
@@ -303,7 +380,6 @@
 
 #pragma mark - ASI队列回调方法，处理返回数据
 
-
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSDictionary * allDic = [request.responseString objectFromJSONString];
@@ -347,10 +423,7 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    if (request.tag -417 == current_forum)
-    {
-        [self isHaveCacheDataWith:current_forum];
-    }
+
 }
 
 
@@ -365,7 +438,23 @@
     
 }
 
-
+#pragma mark - 如果没有获取到某一版块信息，那么当有网的时候再请求一次
+///有网情况
+-(void)HaveNetWork:(NSNotification *)notification
+{
+    for (int i = 0;i < _forum_temp_array.count;i++) {
+        NSMutableArray * array = [_forum_temp_array objectAtIndex:i];
+        if (array.count == 0)
+        {
+            [self isHaveCacheDataWith:i];
+        }
+    }
+}
+///网络断开
+-(void)NoNetWork:(NSNotification *)notification
+{
+    
+}
 
 #pragma mark - UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -645,7 +734,7 @@
     BBSfenduiViewController * fendui = [[BBSfenduiViewController alloc] init];
     fendui.string_id = theId;
     fendui.collection_array = self.forum_section_collection_array;
-    [self.navigationController pushViewController:fendui animated:YES];
+    [self PushControllerWith:fendui WithAnimation:YES];
 }
 
 
@@ -842,6 +931,12 @@
 - (void)loadMoreData
 {
     
+}
+
+#pragma mark - UISearchBarDelegate
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    return YES;
 }
 
 

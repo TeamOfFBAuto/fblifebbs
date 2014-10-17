@@ -45,8 +45,8 @@
 
 -(void)setSNViewControllerLeftButtonType:(SNViewControllerLeftbuttonType)theType WithRightButtonType:(SNViewControllerRightbuttonType)rightType
 {
-    myLeftType = &theType;
-    MyRightType = &rightType;
+    myLeftType = theType;
+    MyRightType = rightType;
     
     if (theType == SNViewControllerLeftbuttonTypeBack)
     {
@@ -172,24 +172,24 @@
 -(void)setLeftImageName:(NSString *)leftImageName
 {
     _leftImageName = leftImageName;
-    [self setSNViewControllerLeftButtonType:*(myLeftType) WithRightButtonType:*(MyRightType)];
+    [self setSNViewControllerLeftButtonType:myLeftType WithRightButtonType:MyRightType];
 }
 -(void)setLeftString:(NSString *)leftString
 {
     _leftString = leftString;
-    [self setSNViewControllerLeftButtonType:*(myLeftType) WithRightButtonType:*(MyRightType)];
+    [self setSNViewControllerLeftButtonType:myLeftType WithRightButtonType:MyRightType];
 }
 
 -(void)setRightImageName:(NSString *)rightImageName
 {
     _rightImageName = rightImageName;
-    [self setSNViewControllerLeftButtonType:*(myLeftType) WithRightButtonType:*(MyRightType)];
+    [self setSNViewControllerLeftButtonType:myLeftType WithRightButtonType:MyRightType];
 }
 
 -(void)setRightString:(NSString *)rightString
 {
     _rightString = rightString;
-    [self setSNViewControllerLeftButtonType:*(myLeftType) WithRightButtonType:*(MyRightType)];
+    [self setSNViewControllerLeftButtonType:myLeftType WithRightButtonType:MyRightType];
 }
 
 

@@ -43,13 +43,22 @@
     }
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(logoutSuccess:) name:NOTIFICATION_LOGOUT_SUCCESS object:nil];
 }
 
 #pragma mark - 登陆成功
 -(void)loginSuccess:(NSNotification *)notification
 {
+    _myTableView.pageNum = 1;
     [self initHttpRequest];
+}
+
+#pragma mark - 退出登录成功
+-(void)logoutSuccess:(NSNotification *)notification
+{
+    [_data_array removeAllObjects];
+    [_myTableView finishReloadigData];
+    
 }
 
 #pragma mark - 网络请求

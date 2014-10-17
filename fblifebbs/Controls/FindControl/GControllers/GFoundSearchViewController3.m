@@ -81,13 +81,13 @@
     [ImgV_ofsearch addSubview:imgbc];
     
     _searchbar=[[UITextField alloc]initWithFrame:CGRectMake(30+6,MY_MACRO_NAME? 6:12,206-5,58/2)];
-    //[[_searchbar.subviews objectAtIndex:0]removeFromSuperview];
+    
     _searchbar.delegate=self;
     [_searchbar becomeFirstResponder];
     _searchbar.font=[UIFont systemFontOfSize:12.f];
     _searchbar.placeholder=@"输入关键词";
     _searchbar.returnKeyType=UIReturnKeySearch;
-    // _searchbar.barStyle = UIBarStyleBlack;
+    
     _searchbar.userInteractionEnabled = TRUE;
     [ImgV_ofsearch addSubview:_searchbar];
     
@@ -99,7 +99,6 @@
     mysegment=[[CustomSegmentView alloc]initWithFrame:CGRectMake(12, (44-28.5)/2, 296, 57/2)];
     [mysegment setAllViewWithArray:[NSArray arrayWithObjects:@"ios7_newsunselect.png",@"ios7_bbsunselect.png",@"ios7_userunselect.png", @"ios7_newsselected.png",@"ios7_bbsselected.png",@"userselected.png",nil]];
     [mysegment settitleWitharray:[NSArray arrayWithObjects:@"帖子",@"版块",@"用户", nil]];
-    // mysegment.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"segbackground.png"]];
     [selectview addSubview:mysegment];
     mysegment.delegate=self;
     
@@ -752,9 +751,13 @@
     
     current_select = buttonSelected;
     
-    [searchloadingview startLoading];
+    if (_searchbar.text.length > 0) {//搜索框有内容的时候在进行搜索 菊花开始转动
+        [searchloadingview startLoading];
+        [self WhetherOrNotRequest];
+    }
     
-    [self WhetherOrNotRequest];
+    
+    
 }
 
 

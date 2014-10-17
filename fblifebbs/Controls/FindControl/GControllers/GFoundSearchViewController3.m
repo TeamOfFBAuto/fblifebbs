@@ -298,32 +298,6 @@
                 break;
             case 2:
             {
-                BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
-                if (isLogIn)
-                {
-                    FbFeed * info = [self.array_searchresault objectAtIndex:indexPath.row];
-                    
-                    NewWeiBoDetailViewController *  detail = [[NewWeiBoDetailViewController alloc] init];
-                    
-                    detail.info = info;
-                    
-                    self.navigationController.navigationBarHidden = NO;
-                    
-                    [self.navigationController pushViewController:detail animated:YES];
-                }else
-                {
-                    if (!logIn)
-                    {
-                        logIn = [LogInViewController sharedManager];
-                    }
-                    //                    [self.leveyTabBarController hidesTabBar:YES animated:YES];
-                    [self presentViewController:logIn animated:YES completion:NULL];
-                }
-                
-            }
-                break;
-            case 3:
-            {
                 PersonInfo * info = [_array_searchresault objectAtIndex:indexPath.row];
                 [self.myTableView deselectRowAtIndexPath:[self.myTableView indexPathForSelectedRow] animated:YES];
                 
@@ -343,9 +317,9 @@
                     [self presentViewController:logIn animated:YES completion:NULL];
                 }
                 
-                
             }
                 break;
+            
                 
                 
             default:

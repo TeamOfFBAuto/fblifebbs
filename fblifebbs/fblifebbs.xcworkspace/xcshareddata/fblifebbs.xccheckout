@@ -12,8 +12,6 @@
 	<dict>
 		<key>68FC690C3962DAEA53D3EA11296F41B5267481D9</key>
 		<string>https://github.com/TeamOfFBAuto/FBLIFEBBS.git</string>
-		<key>E626A131908AB6F412B4104C41DB70E385353F32</key>
-		<string>https://github.com/TeamOfFBAuto/FBLifeForHero0914.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>fblifebbs/fblifebbs.xcworkspace</string>
@@ -21,8 +19,6 @@
 	<dict>
 		<key>68FC690C3962DAEA53D3EA11296F41B5267481D9</key>
 		<string>../..</string>
-		<key>E626A131908AB6F412B4104C41DB70E385353F32</key>
-		<string>../../../FBLife%E7%9B%B8%E5%85%B3/FBLifeForHero0914</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/TeamOfFBAuto/FBLIFEBBS.git</string>
@@ -39,14 +35,6 @@
 			<string>68FC690C3962DAEA53D3EA11296F41B5267481D9</string>
 			<key>IDESourceControlWCCName</key>
 			<string>FBLIFEBBS</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E626A131908AB6F412B4104C41DB70E385353F32</string>
-			<key>IDESourceControlWCCName</key>
-			<string>FBLifeForHero0914</string>
 		</dict>
 	</array>
 </dict>

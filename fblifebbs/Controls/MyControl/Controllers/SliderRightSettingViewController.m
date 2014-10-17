@@ -300,6 +300,8 @@
     {
         UMFeedbackViewController *feedb=[[UMFeedbackViewController alloc]init];
         [self.navigationController pushViewController:feedb animated:YES];
+        
+        
     }else if (indexPath.row == 3)//版本更新
     {
         [self checkVersionUpdate];

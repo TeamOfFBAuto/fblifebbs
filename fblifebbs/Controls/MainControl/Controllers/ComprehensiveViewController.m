@@ -299,6 +299,7 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
     [self setHidesBottomBarWhenPushed:YES];
 
     [self.navigationController pushViewController:fbweb animated:YES];
+    [self setHidesBottomBarWhenPushed:NO];
 
     NSLog(@"sender.object===%@",sender.userInfo);
 

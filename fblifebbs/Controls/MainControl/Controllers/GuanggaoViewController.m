@@ -30,6 +30,8 @@
 
     [super viewWillAppear:YES];
     
+    
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
     
@@ -178,6 +180,8 @@
     
     
 }
+
+
 
 
 #pragma mark-网络数据

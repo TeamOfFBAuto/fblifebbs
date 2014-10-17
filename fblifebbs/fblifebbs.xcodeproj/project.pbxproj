@@ -702,6 +702,7 @@
 		5637BD9D19EE5059008836CE /* touxiang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5637BD9B19EE5059008836CE /* touxiang@2x.png */; };
 		5646FC3319E7E30000AA35E0 /* SNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5646FC3219E7E30000AA35E0 /* SNViewController.m */; };
 		5646FC3D19E7E64F00AA35E0 /* SliderBBSTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5646FC3C19E7E64F00AA35E0 /* SliderBBSTitleView.m */; };
+		565DAC2C19F0D80000FBB805 /* FriendCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAC2B19F0D80000FBB805 /* FriendCircleViewController.m */; };
 		5668E1AD19EB69CF0091A4B0 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E1A819EB69CF0091A4B0 /* LogInViewController.m */; };
 		5668E1AE19EB69CF0091A4B0 /* ZhaoHuiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E1AA19EB69CF0091A4B0 /* ZhaoHuiViewController.m */; };
 		5668E1AF19EB69CF0091A4B0 /* ZhuCeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E1AC19EB69CF0091A4B0 /* ZhuCeViewController.m */; };
@@ -1734,6 +1735,8 @@
 		5646FC3419E7E33700AA35E0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		5646FC3B19E7E64F00AA35E0 /* SliderBBSTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderBBSTitleView.h; sourceTree = "<group>"; };
 		5646FC3C19E7E64F00AA35E0 /* SliderBBSTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderBBSTitleView.m; sourceTree = "<group>"; };
+		565DAC2A19F0D80000FBB805 /* FriendCircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCircleViewController.h; sourceTree = "<group>"; };
+		565DAC2B19F0D80000FBB805 /* FriendCircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCircleViewController.m; sourceTree = "<group>"; };
 		5668E1A719EB69CF0091A4B0 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		5668E1A819EB69CF0091A4B0 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		5668E1A919EB69CF0091A4B0 /* ZhaoHuiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhaoHuiViewController.h; sourceTree = "<group>"; };
@@ -3040,6 +3043,8 @@
 				19FF0E5F19E7D38200D5DC6A /* FindViewController.xib */,
 				E30FEC8D19EBE2FA00C80B6F /* GFoundSearchViewController.h */,
 				E30FEC8E19EBE2FA00C80B6F /* GFoundSearchViewController.m */,
+				565DAC2A19F0D80000FBB805 /* FriendCircleViewController.h */,
+				565DAC2B19F0D80000FBB805 /* FriendCircleViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -4540,6 +4545,7 @@
 				13D42E2619ED30F200261D69 /* MyChatViewCell.m in Sources */,
 				13D42D9519ED2FD800261D69 /* ImagesViewController.m in Sources */,
 				13D42C6719ED251200261D69 /* FaceScrollView.m in Sources */,
+				565DAC2C19F0D80000FBB805 /* FriendCircleViewController.m in Sources */,
 				13D42D2F19ED2AA500261D69 /* newslooked.m in Sources */,
 				1315146E19EE7E4E00F31595 /* UMTableViewController.m in Sources */,
 				13D42CD019ED289200261D69 /* ATMProgressLayer.m in Sources */,

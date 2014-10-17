@@ -31,7 +31,6 @@
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
     
-    
     BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
     if (!isLogin)
     {

@@ -36,6 +36,19 @@
     _myTableView.separatorInset = UIEdgeInsetsZero;
     [self addSubview:_myTableView];
     
+    BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+    if (isLogin)
+    {
+        [self initHttpRequest];
+    }
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+    
+}
+
+#pragma mark - 登陆成功
+-(void)loginSuccess:(NSNotification *)notification
+{
     [self initHttpRequest];
 }
 
@@ -96,6 +109,8 @@
         }
         
     } failBlock:^(NSDictionary *failDic, NSError *erro) {
+        
+        
         [bself.myTableView finishReloadigData];
     }];
     

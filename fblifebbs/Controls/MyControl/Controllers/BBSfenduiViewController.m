@@ -1212,7 +1212,7 @@
     selecttionofxialaview=1;
     bbsdetailViewController *   tempdetail=[[bbsdetailViewController alloc]init];
     
-    //    [self setHidesBottomBarWhenPushed:YES];
+       [self setHidesBottomBarWhenPushed:YES];
     NSDictionary *dic=[_array_info objectAtIndex:indexPath.row];
     
     tempdetail.bbsdetail_tid=[NSString stringWithFormat:@"%@",[dic objectForKey:@"tid"]];
@@ -1358,6 +1358,7 @@
 -(void)TurntoFbWebview{
     fbWebViewController *fbweb=[[fbWebViewController alloc]init];
     fbweb.urlstring=str_guanggaolink;
+    [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:fbweb animated:YES];
     NSLog(@"zounifb");
     

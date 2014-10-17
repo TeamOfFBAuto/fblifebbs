@@ -18,13 +18,7 @@
     SliderBBSTitleView * _seg_view;
     ///私信界面
     MessageTableView * message_tableView;
-    ///请求私信
-    ASIHTTPRequest * _request_;
     
-    ///私信接口数据容器
-    NSMutableArray * message_array;
-    ///通知数据容器
-    NSMutableArray * notification_array;
 }
 
 @end
@@ -36,15 +30,20 @@
 {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
+    
+    
+    BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+    if (!isLogin)
+    {
+        LogInViewController * logIn = [LogInViewController sharedManager];
+        [self presentViewController:logIn animated:YES completion:nil];
+    }
 }
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
-    message_array = [NSMutableArray array];
-    notification_array = [NSMutableArray array];
-    
     
     ///加载顶部选择
     __weak typeof(self)bself = self;
@@ -69,7 +68,7 @@
     message_tableView.delegate = self;
     [_myScrollView addSubview:message_tableView];
     
-    
+
     NotificationView * fbView = [[NotificationView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH+20,0,DEVICE_WIDTH,_myScrollView.frame.size.height) withType:NotificationViewTypeFB];
     [_myScrollView addSubview:fbView];
     
@@ -106,9 +105,7 @@
 
 -(void)dealloc
 {
-    [_request_ cancel];
-    _request_.delegate = nil;
-    _request_ = nil;
+    
 }
 
 

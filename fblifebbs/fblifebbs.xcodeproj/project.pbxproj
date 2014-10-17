@@ -784,6 +784,7 @@
 		5691409A19ED21E400625501 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5691409819ED21E400625501 /* NotificationTableViewCell.xib */; };
 		5691409D19ED277900625501 /* NotificationFBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691409C19ED277900625501 /* NotificationFBModel.m */; };
 		569140A019ED278B00625501 /* NotificationBBSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691409F19ED278B00625501 /* NotificationBBSModel.m */; };
+		56A6E68519F0DB3D0084871E /* FriendCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A6E68419F0DB3D0084871E /* FriendCircleViewController.m */; };
 		56F6D7E919EBF9AC00B99CAC /* CustomMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E21619EBAE990091A4B0 /* CustomMessageCell.m */; };
 		56F6D7EA19EBF9DE00B99CAC /* LRefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5637232D19E905D100BEF45C /* LRefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		56F6D7EB19EBFA2C00B99CAC /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E1B319EB69DF0091A4B0 /* VerificationViewController.m */; };
@@ -1845,6 +1846,8 @@
 		5691409C19ED277900625501 /* NotificationFBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationFBModel.m; sourceTree = "<group>"; };
 		5691409E19ED278B00625501 /* NotificationBBSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationBBSModel.h; sourceTree = "<group>"; };
 		5691409F19ED278B00625501 /* NotificationBBSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationBBSModel.m; sourceTree = "<group>"; };
+		56A6E68319F0DB3D0084871E /* FriendCircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCircleViewController.h; sourceTree = "<group>"; };
+		56A6E68419F0DB3D0084871E /* FriendCircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCircleViewController.m; sourceTree = "<group>"; };
 		64B86ABD37B84DCF95542AF2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8CC1C7F5CF2B45F2827965E6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E35CA93819F0C43800A9C4CD /* SearchNewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNewsView.h; sourceTree = "<group>"; };
@@ -3798,6 +3801,8 @@
 				E35CA94319F0C4B400A9C4CD /* GFoundSearchViewController.m */,
 				E35CA94A19F0CEC400A9C4CD /* GFoundSearchViewController3.h */,
 				E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */,
+				56A6E68319F0DB3D0084871E /* FriendCircleViewController.h */,
+				56A6E68419F0DB3D0084871E /* FriendCircleViewController.m */,
 			);
 			path = GControllers;
 			sourceTree = "<group>";
@@ -4684,6 +4689,7 @@
 				13D42D6819ED2E7C00261D69 /* FbFeed.m in Sources */,
 				13D42EAC19ED38A000261D69 /* AtlasContentView.m in Sources */,
 				13D42D4219ED2B9500261D69 /* ShangJiaNewsInfo.m in Sources */,
+				56A6E68519F0DB3D0084871E /* FriendCircleViewController.m in Sources */,
 				130C24B619EBDB6900044F51 /* LButtonView.m in Sources */,
 				13D42D8C19ED2F5B00261D69 /* FriendListViewController.m in Sources */,
 				130C24DD19EBDCBD00044F51 /* FBHelper.m in Sources */,

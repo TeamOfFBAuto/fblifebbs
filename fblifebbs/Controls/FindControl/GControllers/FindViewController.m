@@ -7,6 +7,7 @@
 //
 
 #import "FindViewController.h"
+#import "FriendCircleViewController.h"
 
 #define COLOR_VIEW_BACKGROUND [UIColor colorWithRed:246/255.F green:247/255.F blue:249/255.F alpha:1.0]//视图背景颜色
 
@@ -217,6 +218,10 @@
         GshoppingWebViewController * vv = [[GshoppingWebViewController alloc]init];        
         [self PushControllerWith:vv WithAnimation:YES];
         
+    }else if (indexPath.section == 0 && indexPath.row == 0)///好友动态
+    {
+        FriendCircleViewController * circle = [[FriendCircleViewController alloc] init];
+        [self PushControllerWith:circle WithAnimation:YES];
     }
     
     

@@ -385,6 +385,8 @@
 		193D48F919ECC4DE00B6E14E /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 193D48E819ECC4DE00B6E14E /* UMSocialSDKResourcesNew.bundle */; };
 		193D48FC19ECEE1D00B6E14E /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D48FB19ECEE1D00B6E14E /* ShareView.m */; };
 		193D490219ECEFDD00B6E14E /* bottombarview.m in Sources */ = {isa = PBXBuildFile; fileRef = 193D490119ECEFDD00B6E14E /* bottombarview.m */; };
+		19C49C3819F0BD830090F00E /* navigationbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C49C3719F0BD830090F00E /* navigationbg@2x.png */; };
+		19C49C3A19F0D4EF0090F00E /* finds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C49C3919F0D4EF0090F00E /* finds@2x.png */; };
 		19FF0E2219E7D28500D5DC6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF0E2119E7D28500D5DC6A /* main.m */; };
 		19FF0E2519E7D28500D5DC6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF0E2419E7D28500D5DC6A /* AppDelegate.m */; };
 		19FF0E2819E7D28500D5DC6A /* fblifebbs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19FF0E2619E7D28500D5DC6A /* fblifebbs.xcdatamodeld */; };
@@ -1314,6 +1316,8 @@
 		193D48FB19ECEE1D00B6E14E /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
 		193D490019ECEFDD00B6E14E /* bottombarview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bottombarview.h; sourceTree = "<group>"; };
 		193D490119ECEFDD00B6E14E /* bottombarview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bottombarview.m; sourceTree = "<group>"; };
+		19C49C3719F0BD830090F00E /* navigationbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbg@2x.png"; sourceTree = "<group>"; };
+		19C49C3919F0D4EF0090F00E /* finds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finds@2x.png"; sourceTree = "<group>"; };
 		19FF0E1C19E7D28500D5DC6A /* fblifebbs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fblifebbs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19FF0E2019E7D28500D5DC6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19FF0E2119E7D28500D5DC6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2952,6 +2956,7 @@
 		563723D319E9229E00BEF45C /* allImages */ = {
 			isa = PBXGroup;
 			children = (
+				19C49C3719F0BD830090F00E /* navigationbg@2x.png */,
 				13ACB68F19EFAEE50092318B /* ImagesofNew */,
 				13ACB67C19EFADD70092318B /* AtlasImages */,
 				13ACB67119EFAC580092318B /* NewMineImage */,
@@ -3394,6 +3399,7 @@
 		5668E22619EBC14A0091A4B0 /* FblifeBBSbbs */ = {
 			isa = PBXGroup;
 			children = (
+				19C49C3919F0D4EF0090F00E /* finds@2x.png */,
 				5668E22719EBC14A0091A4B0 /* bankuai-1@2x.png */,
 				5668E22819EBC14A0091A4B0 /* bankuai@2x.png */,
 				5668E22919EBC14A0091A4B0 /* dian@2x.png */,
@@ -3775,6 +3781,7 @@
 				13D42E6819ED32AD00261D69 /* addMorePicture@2x.png in Resources */,
 				13ACB65D19EFA96F0092318B /* quanzikuang_sel.png in Resources */,
 				5637253719E9232900BEF45C /* weiboChoosePicturesback@2x.png in Resources */,
+				19C49C3A19F0D4EF0090F00E /* finds@2x.png in Resources */,
 				13D42DFB19ED30DA00261D69 /* bubble-default-incoming-selected@2x.png in Resources */,
 				563724C819E9232900BEF45C /* ios7_bianjiziliao25x28@2x.png in Resources */,
 				13ACB68819EFADD70092318B /* atlas_fanhui@2x.png in Resources */,
@@ -3910,6 +3917,7 @@
 				13D42E9719ED32D400261D69 /* content_bg560X180.png in Resources */,
 				13ACB65C19EFA96F0092318B /* quanzikuang@2x.png in Resources */,
 				13D42D0A19ED297F00261D69 /* 确认80_78-2(1)(1)@2x.png in Resources */,
+				19C49C3819F0BD830090F00E /* navigationbg@2x.png in Resources */,
 				563724DB19E9232900BEF45C /* ios7_zanwu_120_120@2x.png in Resources */,
 				13D42DF719ED30DA00261D69 /* back-send@2x.png in Resources */,
 				563724F619E9232900BEF45C /* ios7_diqu@2x.png in Resources */,

@@ -90,7 +90,7 @@
     
     navc2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"版块" image:[UIImage imageNamed:@"bankuai-1.png"] selectedImage:[UIImage imageNamed:@"bankuai-1.png"]];
     
-    navc3.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:[UIImage imageNamed:@"find-1.png"] selectedImage:[UIImage imageNamed:@"find-1.png"]];
+    navc3.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:[UIImage imageNamed:@"finds.png"] selectedImage:[UIImage imageNamed:@"finds.png"]];
     
     navc4.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"消息" image:[UIImage imageNamed:@"xiaoxi-1"] selectedImage:[UIImage imageNamed:@"xiaoxi-1.png"]];
     
@@ -106,7 +106,9 @@
     tabbarVC.tabBar.tintColor=[UIColor blackColor];
     
     
-    tabbarVC.tabBar.backgroundImage = [UIImage imageNamed:@""];
+    
+    
+    tabbarVC.tabBar.backgroundImage = [UIImage imageNamed:@"navigationbg.png"];
     
     
     

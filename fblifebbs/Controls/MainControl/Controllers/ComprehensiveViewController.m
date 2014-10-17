@@ -12,11 +12,15 @@
 
 #import "fbWebViewController.h"
 
+#import "bbsdetailViewController.h"
+
 //#import "LeftViewController.h"
 //
 //#import "RightViewController.h"
 //
 //#import "ShowImagesViewController.h"//看图集
+
+
 
 #import "CompreTableViewCell.h"
 
@@ -30,7 +34,7 @@
 
 #import "NewMainViewModel.h"
 
-//#import "BBSfenduiViewController.h"
+#import "BBSfenduiViewController.h"
 
 #import "GuanggaoViewController.h"//广告
 
@@ -758,11 +762,13 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
 
                 case 2:{
                     NSLog(@"到论坛的");
-//                    bbsdetailViewController *_detaibbslVC=[[bbsdetailViewController alloc]init];
-//                    
-//                    _detaibbslVC.bbsdetail_tid=item.idoftype;
-//                    
-//                    [self.navigationController pushViewController:_detaibbslVC animated:YES];
+                    bbsdetailViewController *_detaibbslVC=[[bbsdetailViewController alloc]init];
+                    
+                    _detaibbslVC.bbsdetail_tid=item.idoftype;
+                    
+                    [self setHidesBottomBarWhenPushed:YES];
+                    
+                    [self.navigationController pushViewController:_detaibbslVC animated:YES];
                     
 
                 }
@@ -940,11 +946,13 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
         case 3:
         {
             NSLog(@"到论坛的");
-//            bbsdetailViewController *_detaibbslVC=[[bbsdetailViewController alloc]init];
-//            
-//            _detaibbslVC.bbsdetail_tid=_newmodel.tid;
-//            
-//            [self.navigationController pushViewController:_detaibbslVC animated:YES];
+            bbsdetailViewController *_detaibbslVC=[[bbsdetailViewController alloc]init];
+            
+            _detaibbslVC.bbsdetail_tid=_newmodel.tid;
+            
+            [self setHidesBottomBarWhenPushed:YES];
+            
+            [self.navigationController pushViewController:_detaibbslVC animated:YES];
             
         }
             break;
@@ -1097,11 +1105,13 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
                 break;
             case 3:
             {
-//                BBSfenduiViewController *_bbsVC=[[BBSfenduiViewController alloc]init];\
-//                
-//                _bbsVC.string_id=_newmodel.bbsfid;
-//                
-//                [self.navigationController pushViewController:_bbsVC animated:YES];
+                BBSfenduiViewController *_bbsVC=[[BBSfenduiViewController alloc]init];\
+                
+                [self setHidesBottomBarWhenPushed:YES];
+                
+                _bbsVC.string_id=_newmodel.bbsfid;
+                
+                [self.navigationController pushViewController:_bbsVC animated:YES];
             }
                 break;
             case 4:

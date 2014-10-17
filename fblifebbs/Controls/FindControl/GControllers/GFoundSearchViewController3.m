@@ -140,7 +140,7 @@
 }
 
 
-#pragma mark - 消失 ------------- 现在是navigation推过来的 所以这里是搜索
+#pragma mark - 消失 ------------- 现在是navigation推过来的 不是模态出来的 所以这里是不是取消 是搜索
 
 -(void)searchcancell
 {
@@ -368,251 +368,259 @@
 }
 
 
-#pragma mark-search取数据
+#pragma mark-search请求网络数据
 
 -(void)searchbythenetework
 {
-    switch (mysegment.currentPage)
-    {
-        case 0://帖子
+    if (_searchbar.text.length > 0) {//有内容再搜索
+        switch (mysegment.currentPage)
         {
-            
-            NSLog(@"点击的是帖子");
-            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],1,mysearchPage];
-            
-            
-            
-        }
-            break;
-        case 1://版块
-        {
-            
-#pragma mark - 版块===已修改
-            
-//            NSLog(@"点击的是资讯");
-//            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],2,mysearchPage];
-            
-            NSLog(@"点击的是版块");
-           string_searchurl = [NSString stringWithFormat: @"http://bbs.fblife.com/bbsapinew/searchforums.php?sk=%@&formattype=json",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-           
-        }
-            break;
-        case 2:
-        {
-            
-            NSLog(@"点击的是用户");
-            string_searchurl=[NSString stringWithFormat:URL_SERCH_USER,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],search_user_page];
-            
-        }
-            break;
-       
-            
-        default:
-            break;
-    }
-    
-    
-    NSLog(@"1请求的url = %@",string_searchurl);
-
-    if (request_search) {
-        [request_search cancel];
-        request_search.delegate = nil;
-        request_search = nil;
-    }
-    
-    
-    request_search = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:string_searchurl]];
-    __block ASIHTTPRequest * _requset = request_search;
-    
-    _requset.delegate = self;
-    [_requset setTimeOutSeconds:120];
-    
-    [_requset setCompletionBlock:^{
-        
-        
-        @try {
-            [searchloadingview stopLoading:1];
-            issearchloadsuccess=NO;
-            if (mysearchPage==1)
+            case 0://帖子
             {
-                [self.array_searchresault removeAllObjects];
+                
+                NSLog(@"点击的是帖子");
+                string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],1,mysearchPage];
+                
             }
-            
-            NSDictionary * dicofsearch = [request_search.responseData objectFromJSONData];
-            
-            NSLog(@"搜索的信息 -=-=  %@",dicofsearch);
-            
-            if (mysegment.currentPage == 2)
+                break;
+            case 1://版块
             {
                 
-                NSString * errcode = [NSString stringWithFormat:@"%@",[dicofsearch objectForKey:@"errcode"]];
+#pragma mark - 版块===已修改
                 
+                //            NSLog(@"点击的是资讯");
+                //            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],2,mysearchPage];
+                
+                NSLog(@"点击的是版块");
+                string_searchurl = [NSString stringWithFormat: @"http://bbs.fblife.com/bbsapinew/searchforums.php?sk=%@&formattype=json",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                
+            }
+                break;
+            case 2:
+            {
+                
+                NSLog(@"点击的是用户");
+                string_searchurl=[NSString stringWithFormat:URL_SERCH_USER,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],search_user_page];
+                
+            }
+                break;
+                
+                
+            default:
+                break;
+        }
+        
+        
+        NSLog(@"1请求的url = %@",string_searchurl);
+        
+        if (request_search) {
+            [request_search cancel];
+            request_search.delegate = nil;
+            request_search = nil;
+        }
+        
+        
+        request_search = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:string_searchurl]];
+        __block ASIHTTPRequest * _requset = request_search;
+        
+        _requset.delegate = self;
+        [_requset setTimeOutSeconds:120];
+        
+        [_requset setCompletionBlock:^{
+            
+            
+            @try {
                 [searchloadingview stopLoading:1];
-                
-                int the_count = [[dicofsearch objectForKey:@"count"] intValue];
-                
-                if (the_count == 0)
+                issearchloadsuccess=NO;
+                if (mysearchPage==1)
                 {
-                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到该用户,请检查用户名是否正确" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-                    
-                    [alert show];
-                    
-                    return;
+                    [self.array_searchresault removeAllObjects];
                 }
                 
-                if ([errcode intValue]==0)
+                NSDictionary * dicofsearch = [request_search.responseData objectFromJSONData];
+                
+                NSLog(@"搜索的信息 -=-=  %@",dicofsearch);
+                
+                if (mysegment.currentPage == 2)
                 {
-                    NSDictionary * dic111 = [dicofsearch objectForKey:@"data"];
                     
-                    total_count_users = [[dicofsearch objectForKey:@"count"] intValue];
+                    NSString * errcode = [NSString stringWithFormat:@"%@",[dicofsearch objectForKey:@"errcode"]];
                     
-                    NSArray * allkeys = [dic111 allKeys];
+                    [searchloadingview stopLoading:1];
                     
-                    if (search_user_page ==1)
+                    int the_count = [[dicofsearch objectForKey:@"count"] intValue];
+                    
+                    
+                    
+                    
+                    if (the_count == 0)
                     {
-                        if (total_count_users/20 == 0)
+                        
+                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到该用户,请检查用户名是否正确" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                        
+                        [alert show];
+                        
+                        return;
+                    }
+                    
+                    
+                    //上拉下提的逻辑判断================
+                    if ([errcode intValue]==0)
+                    {
+                        NSDictionary * dic111 = [dicofsearch objectForKey:@"data"];
+                        
+                        total_count_users = [[dicofsearch objectForKey:@"count"] intValue];
+                        
+                        NSArray * allkeys = [dic111 allKeys];
+                        
+                        if (search_user_page ==1)
                         {
-                            searchloadingview.normalLabel.text = @"没有更多了";
+                            if (total_count_users/20 == 0)
+                            {
+                                searchloadingview.normalLabel.text = @"没有更多了";
+                            }
+                            
+                            [array_search_user removeAllObjects];
+                            [_array_searchresault removeAllObjects];
+                            
+                            self.myTableView.contentOffset = CGPointMake(0,0);
+                            
+                        }else
+                        {
+                            
                         }
                         
-                        [array_search_user removeAllObjects];
-                        [_array_searchresault removeAllObjects];
                         
-                        self.myTableView.contentOffset = CGPointMake(0,0);
+                        for (int i = 0;i < allkeys.count;i++)
+                        {
+                            NSDictionary * myDic = [dic111 objectForKey:[allkeys objectAtIndex:i]];
+                            
+                            PersonInfo * info2 = [[PersonInfo alloc] initWithDictionary:myDic];
+                            
+                            info2.face_original = [dic111 objectForKey:@"small_avatar"];
+                            
+                            info2.city = [NSString stringWithFormat:@"%@",[dicofsearch objectForKey:@"location"]];
+                            
+                            if (info2.username.length !=0)
+                            {
+                                [_array_searchresault addObject:info2];
+                                [array_search_user addObject:info2];
+                            }
+                        }
+                        
+                        [self.myTableView reloadData];
+                        
+                        return;
                         
                     }else
                     {
+                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到该用户,请检查用户名是否正确" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
                         
+                        [alert show];
+                        
+                        
+                        
+                        return;
                     }
                     
                     
-                    for (int i = 0;i < allkeys.count;i++)
-                    {
-                        NSDictionary * myDic = [dic111 objectForKey:[allkeys objectAtIndex:i]];
+                }
+                
+#pragma mark - #pragma mark - 版块搜索返回的数据装到 self.array_searchresault 数组里====
+                if (mysegment.currentPage == 1) {//版块
+                    
+                    NSArray *arr = [dicofsearch objectForKey:@"bbsinfo"];
+                    
+                    if ([arr isKindOfClass:[NSArray class]]) {
                         
-                        PersonInfo * info2 = [[PersonInfo alloc] initWithDictionary:myDic];
-                        
-                        info2.face_original = [dic111 objectForKey:@"small_avatar"];
-                        
-                        info2.city = [NSString stringWithFormat:@"%@",[dicofsearch objectForKey:@"location"]];
-                        
-                        if (info2.username.length !=0)
-                        {
-                            [_array_searchresault addObject:info2];
-                            [array_search_user addObject:info2];
+                        if (arr.count >0) {
+                            
+                            [self.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"bbsinfo"]];
+                            
                         }
                     }
                     
+                    [array_search_bankuai removeAllObjects];
+                    [array_search_bankuai addObjectsFromArray:self.array_searchresault];
+                    
                     [self.myTableView reloadData];
-                    
-                    return;
-                    
-                }else
-                {
-                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到该用户,请检查用户名是否正确" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-                    
-                    [alert show];
-                    
-                    
-                    
                     return;
                 }
                 
                 
-            }
-            
-#pragma mark - #pragma mark - 版块搜索返回的数据装到 self.array_searchresault 数组里====
-            if (mysegment.currentPage == 1) {//版块
-                
-                NSArray *arr = [dicofsearch objectForKey:@"bbsinfo"];
-                
-                if ([arr isKindOfClass:[NSArray class]]) {
+#pragma mark - 除了版块搜索之外的搜索
+                if (dicofsearch.count>0) {
                     
-                    if (arr.count >0) {
+                    if ([[dicofsearch objectForKey:@"allnumbers"] integerValue]>0) {
                         
-                        [self.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"bbsinfo"]];
+                        [self.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"searchinfo"]];
+                        NSLog(@"是有数据的");
                         
+                        
+                    }else{
+                        NSLog(@"没有相关数据");
+                        
+                        if (mysegment.currentPage==0) {//帖子
+                            
+                            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的帖子信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                            
+                            [alert show];
+                        }
+                        if (mysegment.currentPage==1) {
+#pragma mark - 版块==== 已修改
+                            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的版块信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                            
+                            [alert show];
+                        }
+                        return;
                     }
                 }
                 
-                [array_search_bankuai removeAllObjects];
-                [array_search_bankuai addObjectsFromArray:self.array_searchresault];
+                if (mysegment.currentPage == 0)//帖子
+                {
+                    
+                    [array_search_bbs removeAllObjects];
+                    [array_search_bbs addObjectsFromArray:self.array_searchresault];
+                    
+                    
+                }else if (mysegment.currentPage==1){
+#pragma mark - 版块====== 已修改  以为版块接口返回的数据类型和 用户 帖子不同 所以 这里不会走的 上面有判断currentPage == 1 的时候有数据 赋值后 直接return了
+                    [array_search_bankuai removeAllObjects];
+                    [array_search_bankuai addObjectsFromArray:self.array_searchresault];
+                    
+                }else if (mysegment.currentPage==2)
+                {
+                    [array_search_user removeAllObjects];
+                    [array_search_user addObjectsFromArray:self.array_searchresault];
+                }
+                
+                NSLog(@"self.array_searchresault===%@",self.array_searchresault);
+                
                 
                 [self.myTableView reloadData];
-                return;
+                //        }
             }
-            
-            
-#pragma mark - 除了版块搜索之外的搜索
-            if (dicofsearch.count>0) {
+            @catch (NSException *exception) {
                 
-                if ([[dicofsearch objectForKey:@"allnumbers"] integerValue]>0) {
-                    
-                    [self.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"searchinfo"]];
-                    NSLog(@"是有数据的");
-                    
-                    
-                }else{
-                    NSLog(@"没有相关数据");
-                    
-                    if (mysegment.currentPage==0) {//帖子
-                        
-                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的帖子信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-                        
-                        [alert show];
-                    }
-                    if (mysegment.currentPage==1) {
-#pragma mark - 版块==== 已修改
-                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的版块信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-                        
-                        [alert show];
-                    }
-                    return;
-                }
             }
-            
-            if (mysegment.currentPage == 0)//帖子
-            {
+            @finally {
                 
-                [array_search_bbs removeAllObjects];
-                [array_search_bbs addObjectsFromArray:self.array_searchresault];
-                
-                
-            }else if (mysegment.currentPage==1){
-#pragma mark - 版块====== 已修改  以为版块接口返回的数据类型和 用户 帖子不同 所以 这里不会走的 上面有判断currentPage == 1 的时候有数据 赋值后 直接return了
-                [array_search_bankuai removeAllObjects];
-                [array_search_bankuai addObjectsFromArray:self.array_searchresault];
-                
-            }else if (mysegment.currentPage==2)
-            {
-                [array_search_user removeAllObjects];
-                [array_search_user addObjectsFromArray:self.array_searchresault];
             }
-            
-            NSLog(@"self.array_searchresault===%@",self.array_searchresault);
-            
-            
-            [self.myTableView reloadData];
-            //        }
-        }
-        @catch (NSException *exception) {
-            
-        }
-        @finally {
-            
-        }
-    }];
-    
-    
-    [_requset setFailedBlock:^{
-        
-        [request_search cancel];
+        }];
         
         
-        //        [self initHttpRequestInfomation];
-    }];
+        [_requset setFailedBlock:^{
+            
+            [request_search cancel];
+            
+            
+            //        [self initHttpRequestInfomation];
+        }];
+        
+        [_requset startAsynchronous];
+    }
     
-    [_requset startAsynchronous];
+    
 }
 
 

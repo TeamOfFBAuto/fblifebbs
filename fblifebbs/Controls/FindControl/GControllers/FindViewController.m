@@ -163,7 +163,7 @@
 {
     NSLog(@"searchPage  跳转到搜索页面");
     
-    [self.navigationController pushViewController:[[GFoundSearchViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[GFoundSearchViewController3 alloc]init] animated:YES];
     
     
 }

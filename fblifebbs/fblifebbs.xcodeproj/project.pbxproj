@@ -795,6 +795,7 @@
 		E35CA94519F0C4B400A9C4CD /* FindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35CA94119F0C4B400A9C4CD /* FindViewController.xib */; };
 		E35CA94619F0C4B400A9C4CD /* GFoundSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94319F0C4B400A9C4CD /* GFoundSearchViewController.m */; };
 		E35CA94919F0C70100A9C4CD /* GshoppingWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94819F0C70100A9C4CD /* GshoppingWebViewController.m */; };
+		E35CA94C19F0CEC400A9C4CD /* GFoundSearchViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1857,6 +1858,8 @@
 		E35CA94319F0C4B400A9C4CD /* GFoundSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFoundSearchViewController.m; sourceTree = "<group>"; };
 		E35CA94719F0C70100A9C4CD /* GshoppingWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GshoppingWebViewController.h; sourceTree = "<group>"; };
 		E35CA94819F0C70100A9C4CD /* GshoppingWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GshoppingWebViewController.m; sourceTree = "<group>"; };
+		E35CA94A19F0CEC400A9C4CD /* GFoundSearchViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFoundSearchViewController3.h; sourceTree = "<group>"; };
+		E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFoundSearchViewController3.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3793,6 +3796,8 @@
 				E35CA94119F0C4B400A9C4CD /* FindViewController.xib */,
 				E35CA94219F0C4B400A9C4CD /* GFoundSearchViewController.h */,
 				E35CA94319F0C4B400A9C4CD /* GFoundSearchViewController.m */,
+				E35CA94A19F0CEC400A9C4CD /* GFoundSearchViewController3.h */,
+				E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */,
 			);
 			path = GControllers;
 			sourceTree = "<group>";
@@ -4500,6 +4505,7 @@
 				13D42D8319ED2F1600261D69 /* NewWeiBoDetailViewController.m in Sources */,
 				193D48A019EBCF7800B6E14E /* SGFocusImageItem.m in Sources */,
 				130C24F719EBE80D00044F51 /* MineRowCell.m in Sources */,
+				E35CA94C19F0CEC400A9C4CD /* GFoundSearchViewController3.m in Sources */,
 				1315145519EE70FF00F31595 /* AtlasSavedPraAndCollModel.xcdatamodeld in Sources */,
 				13D42D6C19ED2E7C00261D69 /* WeiBoInfo.m in Sources */,
 				13D42C6C19ED251200261D69 /* newscellview.m in Sources */,

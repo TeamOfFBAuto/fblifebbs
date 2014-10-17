@@ -1,12 +1,12 @@
 //
-//  GFoundSearchViewController.h
+//  GFoundSearchViewController3.h
 //  fblifebbs
 //
-//  Created by gaomeng on 14-10-13.
+//  Created by gaomeng on 14-10-17.
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SNViewController.h"
 #import "CustomSegmentView.h"
 #import "NewWeiBoCustomCell.h"
 #import "MWPhotoBrowser.h"
@@ -17,7 +17,7 @@
 #import "NewWeiBoDetailViewController.h"
 #import "NewMineViewController.h"
 
-@interface GFoundSearchViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CustomSegmentViewDelegate,NewWeiBoCustomCellDelegate,MWPhotoBrowserDelegate>
+@interface GFoundSearchViewController3 : SNViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CustomSegmentViewDelegate,NewWeiBoCustomCellDelegate,MWPhotoBrowserDelegate>
 {
     UIView * searchheaderview;
     
@@ -59,6 +59,7 @@
     
     LogInViewController * logIn;
 }
+
 
 ///主视图，显示数据
 @property(nonatomic,strong)UITableView * myTableView;

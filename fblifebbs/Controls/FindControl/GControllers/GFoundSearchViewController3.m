@@ -1,20 +1,18 @@
 //
-//  GFoundSearchViewController.m
+//  GFoundSearchViewController3.m
 //  fblifebbs
 //
-//  Created by gaomeng on 14-10-13.
+//  Created by gaomeng on 14-10-17.
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
-#import "GFoundSearchViewController.h"
+#import "GFoundSearchViewController3.h"
 
-
-@interface GFoundSearchViewController ()
+@interface GFoundSearchViewController3 ()
 
 @end
 
-@implementation GFoundSearchViewController
-
+@implementation GFoundSearchViewController3
 
 - (void)dealloc
 {
@@ -99,8 +97,8 @@
     selectview.backgroundColor=RGBACOLOR(247, 247, 247, 1);
     [searchheaderview addSubview:selectview];
     mysegment=[[CustomSegmentView alloc]initWithFrame:CGRectMake(12, (44-28.5)/2, 296, 57/2)];
-    [mysegment setAllViewWithArray:[NSArray arrayWithObjects:@"ios7_newsunselect.png",@"ios7_bbsunselect.png",@"ios7_fbunselect.png",@"ios7_userunselect.png", @"ios7_newsselected.png",@"ios7_bbsselected.png",@"ios7_fbselected.png",@"userselected.png",nil]];
-    [mysegment settitleWitharray:[NSArray arrayWithObjects:@"资讯",@"论坛",@"微博",@"用户", nil]];
+    [mysegment setAllViewWithArray:[NSArray arrayWithObjects:@"ios7_newsunselect.png",@"ios7_bbsunselect.png",@"ios7_userunselect.png", @"ios7_newsselected.png",@"ios7_bbsselected.png",@"userselected.png",nil]];
+    [mysegment settitleWitharray:[NSArray arrayWithObjects:@"资讯",@"论坛",@"用户", nil]];
     // mysegment.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"segbackground.png"]];
     [selectview addSubview:mysegment];
     mysegment.delegate=self;
@@ -146,9 +144,9 @@
 
 -(void)searchcancell
 {
-//    [request_search clearDelegatesAndCancel];
-//    
-//    [self dismissViewControllerAnimated:YES completion:NULL];
+    //    [request_search clearDelegatesAndCancel];
+    //
+    //    [self dismissViewControllerAnimated:YES completion:NULL];
     
     [self searchbythenetework];
     
@@ -167,14 +165,7 @@
     
     if (mysegment.currentPage == 2)
     {
-        FbFeed * info = [self.array_searchresault objectAtIndex:indexPath.row];
-        
-        if (!test_cell)
-        {
-            test_cell = [[NewWeiBoCustomCell alloc] init];
-        }
-        
-        return [test_cell returnCellHeightWith:info WithType:0] + 20;
+        return 70;
         
     }else
     {
@@ -199,30 +190,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (mysegment.currentPage == 2)
-    {
-        static NSString * identifier = @"identifier";// [NSString stringWithFormat:@"%d",indexPath.row];
-        
-        NewWeiBoCustomCell * cell = (NewWeiBoCustomCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-        if (cell == nil)
-        {
-            cell = [[NewWeiBoCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-            cell.delegate = self;
-        }
-        
-        [cell setAllViewWithType:0];
-        
-        float height = [tableView rectForRowAtIndexPath:indexPath].size.height;
-        
-        if (self.array_searchresault.count !=0)
-        {
-            FbFeed * info = [self.array_searchresault objectAtIndex:indexPath.row];
-            
-            [cell setInfo:info withReplysHeight:height WithType:0];
-        }
-        
-        return cell;
-    }else
+    
     {
         static NSString * identifier = @"cell";
         
@@ -255,15 +223,8 @@
                 [cell.contentView addSubview:_search_news];
             }
                 break;
-            case 2:
-            {
-                SearchNewsView *_search_news=[[SearchNewsView alloc]init];
-                [_search_news layoutSubviewsWithDicNewsinfo:dic_ssinfo];
-                [cell.contentView addSubview:_search_news];
-            }
-                break;
                 
-            case 3:
+            case 2:
             {
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 //                    cell.contentView.backgroundColor = RGBCOLOR(248,248,248);
@@ -326,7 +287,7 @@
             {
                 newsdetailViewController *newsDe=[[newsdetailViewController alloc]init];
                 newsDe.string_Id=[NSString stringWithFormat:@"%@",[dicinfoofsearchresault objectForKey:@"tid"]];
-//                [self.leveyTabBarController hidesTabBar:YES animated:YES];
+                //                [self.leveyTabBarController hidesTabBar:YES animated:YES];
                 [self.navigationController pushViewController:newsDe animated:YES];//跳入下一个View
                 
             }
@@ -359,7 +320,7 @@
                     {
                         logIn = [LogInViewController sharedManager];
                     }
-//                    [self.leveyTabBarController hidesTabBar:YES animated:YES];
+                    //                    [self.leveyTabBarController hidesTabBar:YES animated:YES];
                     [self presentViewController:logIn animated:YES completion:NULL];
                 }
                 
@@ -370,7 +331,7 @@
                 PersonInfo * info = [_array_searchresault objectAtIndex:indexPath.row];
                 [self.myTableView deselectRowAtIndexPath:[self.myTableView indexPathForSelectedRow] animated:YES];
                 
-//                [self.leveyTabBarController hidesTabBar:YES animated:YES];
+                //                [self.leveyTabBarController hidesTabBar:YES animated:YES];
                 
                 NewMineViewController * mine = [[NewMineViewController alloc] init];
                 mine.uid = info.uid;
@@ -414,7 +375,7 @@
             
             issearchloadsuccess=!issearchloadsuccess;
             mysearchPage++;
-            if (mysegment.currentPage==3)
+            if (mysegment.currentPage==2)
             {
                 if (search_user_page*20>=total_count_users)
                 {
@@ -452,6 +413,7 @@
     {
         case 0:
         {
+            
             NSLog(@"点击的是资讯");
             string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],2,mysearchPage];
             
@@ -459,27 +421,20 @@
             break;
         case 1:
         {
+            
             NSLog(@"点击的是论坛");
             string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],1,mysearchPage];
         }
             break;
         case 2:
         {
-            NSLog(@"点击的是微博");
             
-            string_searchurl = [NSString stringWithFormat:Search_weiBo,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],mysearchPage];
-        }
-            break;
-        case 3:
-        {
             NSLog(@"点击的是用户");
-            
-            //            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],4];
-            
-            
             string_searchurl=[NSString stringWithFormat:URL_SERCH_USER,[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],search_user_page];
+            
         }
             break;
+       
             
         default:
             break;
@@ -518,14 +473,6 @@
             NSLog(@"搜索的信息 -=-=  %@",dicofsearch);
             
             if (mysegment.currentPage == 2)
-            {
-                [self getWeiBoSearchData:dicofsearch];
-                return;
-            }
-            
-            
-            
-            if (mysegment.currentPage == 3)
             {
                 
                 NSString * errcode = [NSString stringWithFormat:@"%@",[dicofsearch objectForKey:@"errcode"]];
@@ -640,7 +587,7 @@
             {
                 [array_search_bbs removeAllObjects];
                 [array_search_bbs addObjectsFromArray:self.array_searchresault];
-            }else if (mysegment.currentPage==3)
+            }else if (mysegment.currentPage==2)
             {
                 [array_search_user removeAllObjects];
                 [array_search_user addObjectsFromArray:self.array_searchresault];
@@ -762,13 +709,7 @@
                 
                 [self.myTableView reloadData];
                 
-            }else if (mysegment.currentPage ==2 && weibo_search_data.count != 0)
-            {
-                [self.array_searchresault addObjectsFromArray:weibo_search_data];
-                
-                [self.myTableView reloadData];
-                
-            }else if (mysegment.currentPage ==3 && array_search_user.count != 0)
+            }else if (mysegment.currentPage ==2 && array_search_user.count != 0)
             {
                 [self.array_searchresault addObjectsFromArray:array_search_user];
                 
@@ -947,7 +888,7 @@
     {
         newsdetailViewController * news = [[newsdetailViewController alloc] initWithID:sortId];
         [self setHidesBottomBarWhenPushed:YES];
-//        [self.leveyTabBarController hidesTabBar:YES animated:YES];
+        //        [self.leveyTabBarController hidesTabBar:YES animated:YES];
         [self.navigationController pushViewController:news animated:YES];
         [self setHidesBottomBarWhenPushed: NO];
         
@@ -988,7 +929,7 @@
         wenji111.bId = sortId;
         
         [self setHidesBottomBarWhenPushed:YES];
-//        [self.leveyTabBarController hidesTabBar:YES animated:YES];
+        //        [self.leveyTabBarController hidesTabBar:YES animated:YES];
         
         [self.navigationController pushViewController:wenji111 animated:YES];
         
@@ -1001,7 +942,7 @@
         
         [self setHidesBottomBarWhenPushed:YES];
         
-//        [self.leveyTabBarController hidesTabBar:YES animated:YES];
+        //        [self.leveyTabBarController hidesTabBar:YES animated:YES];
         
         [self.navigationController pushViewController:detail animated:YES];
         
@@ -1081,7 +1022,7 @@
     
     [browser setInitialPageIndex:index];
     
-//    [self.leveyTabBarController hidesTabBar:YES animated:YES];
+    //    [self.leveyTabBarController hidesTabBar:YES animated:YES];
     
     [self presentViewController:browser animated:YES completion:NULL];
 }
@@ -1111,6 +1052,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

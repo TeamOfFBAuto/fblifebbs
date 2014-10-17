@@ -214,14 +214,21 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 1 && indexPath.section == 1) {
-        GshoppingWebViewController * vv = [[GshoppingWebViewController alloc]init];        
+    if (indexPath.row == 1 && indexPath.section == 1) {//e族商城
+        
+        GwebViewController * vv = [[GwebViewController alloc]init];
+        vv.urlstring = @"http://m.fblife.com/mall/";
         [self PushControllerWith:vv WithAnimation:YES];
         
-    }else if (indexPath.section == 0 && indexPath.row == 0)///好友动态
-    {
+    }else if (indexPath.section == 0 && indexPath.row == 0){//好友动态
+        
         FriendCircleViewController * circle = [[FriendCircleViewController alloc] init];
         [self PushControllerWith:circle WithAnimation:YES];
+        
+    }else if (indexPath.row == 0 && indexPath.section == 1){//e族新闻
+        GwebViewController * cc = [[GwebViewController alloc]init];
+        cc.urlstring = @"http://m.fblife.com/news";
+        [self PushControllerWith:cc WithAnimation:YES];
     }
     
     

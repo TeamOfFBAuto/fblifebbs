@@ -1,33 +1,20 @@
 //
-//  GshoppingWebViewController.m
-//  FBCircle
+//  GwebViewController.m
+//  fblifebbs
 //
-//  Created by gaomeng on 14-8-27.
-//  Copyright (c) 2014年 soulnear. All rights reserved.
+//  Created by gaomeng on 14/10/17.
+//  Copyright (c) 2014年 szk. All rights reserved.
 //
 
-#import "GshoppingWebViewController.h"
+#import "GwebViewController.h"
+
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
-//#define IOS7DAOHANGLANBEIJING @"eva.png"
-//#define IOS6DAOHANGLANBEIJING @"ios7eva320_44.png"
-@interface GshoppingWebViewController ()
+
+@interface GwebViewController ()
 
 @end
 
-@implementation GshoppingWebViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-
-
-
+@implementation GwebViewController
 
 - (void)viewDidLoad
 {
@@ -35,10 +22,8 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
-    self.urlstring = @"http://m.fblife.com/mall/";
     [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeBack WithRightButtonType:SNViewControllerRightbuttonTypeNull];
-
+    
     
     NSURL *url =[NSURL URLWithString:self.urlstring];
     
@@ -107,12 +92,10 @@
 
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 @end

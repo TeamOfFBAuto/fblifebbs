@@ -98,7 +98,7 @@
     [searchheaderview addSubview:selectview];
     mysegment=[[CustomSegmentView alloc]initWithFrame:CGRectMake(12, (44-28.5)/2, 296, 57/2)];
     [mysegment setAllViewWithArray:[NSArray arrayWithObjects:@"ios7_newsunselect.png",@"ios7_bbsunselect.png",@"ios7_userunselect.png", @"ios7_newsselected.png",@"ios7_bbsselected.png",@"userselected.png",nil]];
-    [mysegment settitleWitharray:[NSArray arrayWithObjects:@"资讯",@"论坛",@"用户", nil]];
+    [mysegment settitleWitharray:[NSArray arrayWithObjects:@"帖子",@"版块",@"用户", nil]];
     // mysegment.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"segbackground.png"]];
     [selectview addSubview:mysegment];
     mysegment.delegate=self;
@@ -163,35 +163,26 @@
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (mysegment.currentPage == 2)
+    if (mysegment.currentPage == 2)//用户
     {
         return 70;
         
-    }else
-    {
-        if (mysegment.currentPage ==3)
-        {
-            return 70;
-        }else
-        {
+    }else{
             
-            NSDictionary *dic_ssinfo =[self.array_searchresault objectAtIndex:indexPath.row];
-            
-            NSString *string__tcon=[NSString stringWithFormat:@"%@",[dic_ssinfo objectForKey:@"content"]];
-            CGSize constraintSize = CGSizeMake(310, MAXFLOAT);
-            CGSize labelSize = [string__tcon sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-            return     30+labelSize.height+5+23;
-            
-        }
+        NSDictionary *dic_ssinfo =[self.array_searchresault objectAtIndex:indexPath.row];
+        
+        NSString *string__tcon=[NSString stringWithFormat:@"%@",[dic_ssinfo objectForKey:@"content"]];
+        CGSize constraintSize = CGSizeMake(310, MAXFLOAT);
+        CGSize labelSize = [string__tcon sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        return     30+labelSize.height+5+23;
+        
+        
     }
     
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
-    {
         static NSString * identifier = @"cell";
         
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -207,9 +198,8 @@
         
         cell.accessoryType = UITableViewCellAccessoryNone;
         NSDictionary *dic_ssinfo =[self.array_searchresault objectAtIndex:indexPath.row];
-        switch (mysegment.currentPage)
-        {
-            case 0:
+        switch (mysegment.currentPage){
+            case 0://帖子
             {
                 SearchNewsView *_search_news=[[SearchNewsView alloc]init];
                 [_search_news layoutSubviewsWithDicNewsinfo:dic_ssinfo];
@@ -218,9 +208,11 @@
                 break;
             case 1:
             {
+#pragma mark - 版块=====
                 SearchNewsView *_search_news=[[SearchNewsView alloc]init];
                 [_search_news layoutSubviewsWithDicNewsinfo:dic_ssinfo];
                 [cell.contentView addSubview:_search_news];
+                
             }
                 break;
                 
@@ -231,7 +223,6 @@
                 cell.backgroundColor = [UIColor clearColor];
                 
                 PersonInfo * info = [_array_searchresault objectAtIndex:indexPath.row];
-                
                 
                 AsyncImageView * imagetouxiang=[[AsyncImageView alloc]initWithFrame:CGRectMake(5, 10,50 , 50)];
                 
@@ -250,10 +241,8 @@
                 label_username.font = [UIFont systemFontOfSize:18];
                 [cell.contentView addSubview:label_username];
                 
-                
                 NSString * location = info.city;
-                if (info.city.length == 0||[info.city isEqualToString:@"(null)"])
-                {
+                if (info.city.length == 0||[info.city isEqualToString:@"(null)"]){
                     location = @"未知";
                 }
                 
@@ -269,9 +258,8 @@
             default:
                 break;
         }
-        
+    
         return cell;
-    }
     
 }
 
@@ -283,20 +271,21 @@
         NSDictionary *dicinfoofsearchresault=[self.array_searchresault objectAtIndex:indexPath.row];
         switch (mysegment.currentPage)
         {
-            case 0:
+            case 0://帖子
             {
-                newsdetailViewController *newsDe=[[newsdetailViewController alloc]init];
-                newsDe.string_Id=[NSString stringWithFormat:@"%@",[dicinfoofsearchresault objectForKey:@"tid"]];
-                //                [self.leveyTabBarController hidesTabBar:YES animated:YES];
-                [self.navigationController pushViewController:newsDe animated:YES];//跳入下一个View
+                bbsdetailViewController *_bbsdetail=[[bbsdetailViewController alloc]init];
+                _bbsdetail.bbsdetail_tid=[NSString stringWithFormat:@"%@",[dicinfoofsearchresault objectForKey:@"tid"]];
+                [self.navigationController pushViewController:_bbsdetail animated:YES];
                 
             }
                 break;
             case 1:
             {
-                bbsdetailViewController *_bbsdetail=[[bbsdetailViewController alloc]init];
-                _bbsdetail.bbsdetail_tid=[NSString stringWithFormat:@"%@",[dicinfoofsearchresault objectForKey:@"tid"]];
-                [self.navigationController pushViewController:_bbsdetail animated:YES];
+#pragma mark - 版块==========
+                newsdetailViewController *newsDe=[[newsdetailViewController alloc]init];
+                newsDe.string_Id=[NSString stringWithFormat:@"%@",[dicinfoofsearchresault objectForKey:@"tid"]];
+                //                [self.leveyTabBarController hidesTabBar:YES animated:YES];
+                [self.navigationController pushViewController:newsDe animated:YES];//跳入下一个View
                 
             }
                 break;
@@ -385,12 +374,7 @@
                 
                 search_user_page++;
             }else{
-                //                    if (self.array_searchresault.count>0) {
-                //                        searchresaultview.tableFooterView=searchloadingview;
-                //                    }else{
-                //
-                //                        searchresaultview.tableFooterView=nil;
-                //                    }
+                
             }
             
             [self searchbythenetework];
@@ -407,23 +391,25 @@
 
 -(void)searchbythenetework
 {
-    
-    
     switch (mysegment.currentPage)
     {
-        case 0:
+        case 0://帖子
         {
             
-            NSLog(@"点击的是资讯");
-            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],2,mysearchPage];
+            NSLog(@"点击的是帖子");
+            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],1,mysearchPage];
+            
+            
             
         }
             break;
-        case 1:
+        case 1://版块
         {
             
-            NSLog(@"点击的是论坛");
-            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],1,mysearchPage];
+#pragma mark - 版块===
+            NSLog(@"点击的是资讯");
+            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],2,mysearchPage];
+           
         }
             break;
         case 2:
@@ -442,8 +428,7 @@
     
     
     NSLog(@"1请求的url = %@",string_searchurl);
-    
-    
+
     if (request_search) {
         [request_search cancel];
         request_search.delegate = nil;
@@ -551,9 +536,6 @@
                 
             }
             
-            
-            //        if ([[dicofsearch objectForKey:@"allnumbers"] integerValue]>0)
-            //        {
             if (dicofsearch.count>0) {
                 
                 if ([[dicofsearch objectForKey:@"allnumbers"] integerValue]>0) {
@@ -564,13 +546,15 @@
                 }else{
                     NSLog(@"没有相关数据");
                     
-                    if (mysegment.currentPage==0) {
-                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的新闻信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+                    if (mysegment.currentPage==0) {//帖子
+                        
+                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的帖子信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
                         
                         [alert show];
                     }
                     if (mysegment.currentPage==1) {
-                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的论坛信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+#pragma mark - 版块====
+                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未找到相关的版块信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
                         
                         [alert show];
                     }
@@ -578,15 +562,19 @@
                 }
             }
             
-            if (mysegment.currentPage == 0)
+            if (mysegment.currentPage == 0)//帖子
             {
                 
-                [array_search_zixun removeAllObjects];
-                [array_search_zixun addObjectsFromArray:self.array_searchresault];
-            }else if (mysegment.currentPage==1)
-            {
                 [array_search_bbs removeAllObjects];
                 [array_search_bbs addObjectsFromArray:self.array_searchresault];
+                
+                
+            }else if (mysegment.currentPage==1)
+            {
+#pragma mark - 版块======
+                [array_search_zixun removeAllObjects];
+                [array_search_zixun addObjectsFromArray:self.array_searchresault];
+                
             }else if (mysegment.currentPage==2)
             {
                 [array_search_user removeAllObjects];
@@ -698,13 +686,14 @@
         {
             [self.array_searchresault removeAllObjects];
             NSLog(@"------%d",array_search_zixun.count);
-            if (mysegment.currentPage ==0 && array_search_zixun.count != 0)
+            if (mysegment.currentPage ==1 && array_search_zixun.count != 0)
             {
+#pragma mark - 版块=====
                 [self.array_searchresault addObjectsFromArray:array_search_zixun];
                 [self.myTableView reloadData];
                 
-            }else if (mysegment.currentPage ==1 && array_search_bbs.count != 0)
-            {
+            }else if (mysegment.currentPage ==0 && array_search_bbs.count != 0){//帖子
+                
                 [self.array_searchresault addObjectsFromArray:array_search_bbs];
                 
                 [self.myTableView reloadData];

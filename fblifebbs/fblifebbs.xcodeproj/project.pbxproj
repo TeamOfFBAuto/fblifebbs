@@ -797,8 +797,8 @@
 		E35CA94419F0C4B400A9C4CD /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94019F0C4B400A9C4CD /* FindViewController.m */; };
 		E35CA94519F0C4B400A9C4CD /* FindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35CA94119F0C4B400A9C4CD /* FindViewController.xib */; };
 		E35CA94619F0C4B400A9C4CD /* GFoundSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94319F0C4B400A9C4CD /* GFoundSearchViewController.m */; };
-		E35CA94919F0C70100A9C4CD /* GshoppingWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94819F0C70100A9C4CD /* GshoppingWebViewController.m */; };
 		E35CA94C19F0CEC400A9C4CD /* GFoundSearchViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */; };
+		E39B8DC819F0E21500A6FBC8 /* GwebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B8DC719F0E21500A6FBC8 /* GwebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1863,10 +1863,10 @@
 		E35CA94119F0C4B400A9C4CD /* FindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindViewController.xib; sourceTree = "<group>"; };
 		E35CA94219F0C4B400A9C4CD /* GFoundSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFoundSearchViewController.h; sourceTree = "<group>"; };
 		E35CA94319F0C4B400A9C4CD /* GFoundSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFoundSearchViewController.m; sourceTree = "<group>"; };
-		E35CA94719F0C70100A9C4CD /* GshoppingWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GshoppingWebViewController.h; sourceTree = "<group>"; };
-		E35CA94819F0C70100A9C4CD /* GshoppingWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GshoppingWebViewController.m; sourceTree = "<group>"; };
 		E35CA94A19F0CEC400A9C4CD /* GFoundSearchViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFoundSearchViewController3.h; sourceTree = "<group>"; };
 		E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFoundSearchViewController3.m; sourceTree = "<group>"; };
+		E39B8DC619F0E21500A6FBC8 /* GwebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GwebViewController.h; sourceTree = "<group>"; };
+		E39B8DC719F0E21500A6FBC8 /* GwebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GwebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3801,8 +3801,6 @@
 		E35CA93E19F0C4B400A9C4CD /* GControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E35CA94719F0C70100A9C4CD /* GshoppingWebViewController.h */,
-				E35CA94819F0C70100A9C4CD /* GshoppingWebViewController.m */,
 				E35CA93F19F0C4B400A9C4CD /* FindViewController.h */,
 				E35CA94019F0C4B400A9C4CD /* FindViewController.m */,
 				E35CA94119F0C4B400A9C4CD /* FindViewController.xib */,
@@ -3812,6 +3810,8 @@
 				E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */,
 				56A6E68319F0DB3D0084871E /* FriendCircleViewController.h */,
 				56A6E68419F0DB3D0084871E /* FriendCircleViewController.m */,
+				E39B8DC619F0E21500A6FBC8 /* GwebViewController.h */,
+				E39B8DC719F0E21500A6FBC8 /* GwebViewController.m */,
 			);
 			path = GControllers;
 			sourceTree = "<group>";
@@ -4625,6 +4625,7 @@
 				13D42DF219ED30DA00261D69 /* NSString+JSMessagesView.m in Sources */,
 				13D42C9519ED259300261D69 /* MWPhotoBrowser.m in Sources */,
 				13D42D0119ED297F00261D69 /* QBImagePickerAssetView.m in Sources */,
+				E39B8DC819F0E21500A6FBC8 /* GwebViewController.m in Sources */,
 				13D42D8019ED2EF400261D69 /* WenJiViewController.m in Sources */,
 				13D42E9619ED32D400261D69 /* commentViewController.m in Sources */,
 				13D42C9319ED259300261D69 /* MWCaptionView.m in Sources */,
@@ -4689,7 +4690,6 @@
 				13D42C9619ED259300261D69 /* MWTapDetectingImageView.m in Sources */,
 				5668E1AE19EB69CF0091A4B0 /* ZhaoHuiViewController.m in Sources */,
 				13D42CB719ED27BB00261D69 /* UIButton+WebCache.m in Sources */,
-				E35CA94919F0C70100A9C4CD /* GshoppingWebViewController.m in Sources */,
 				19FF0E6A19E7D3D300D5DC6A /* MessageViewController.m in Sources */,
 				13D42CCF19ED289200261D69 /* ATMHudView.m in Sources */,
 				193D48A619EBCFE400B6E14E /* SMPageControl.m in Sources */,

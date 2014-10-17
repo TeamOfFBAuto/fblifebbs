@@ -163,8 +163,8 @@
 - (void)clickToSearch:(UIButton *)sender
 {
     NSLog(@"searchPage  跳转到搜索页面");
-    
-    [self.navigationController pushViewController:[[GFoundSearchViewController3 alloc]init] animated:YES];
+    GFoundSearchViewController3 *gfoundSearchVC3 = [[GFoundSearchViewController3 alloc]init];
+    [self PushControllerWith:gfoundSearchVC3 WithAnimation:YES];
     
     
 }

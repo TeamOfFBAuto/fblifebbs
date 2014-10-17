@@ -122,7 +122,7 @@
     
     
     
-    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,IOS_VERSION>=7?108: 88,320,(iPhone5?568:480)-(IOS_VERSION>=7?108:88)) style:UITableViewStylePlain];
+    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,IOS_VERSION>=7?108: 88,320,(iPhone5?568:480)-(IOS_VERSION>=7?168:148)) style:UITableViewStylePlain];
     
     _myTableView.delegate = self;
     
@@ -166,7 +166,7 @@
     {
         return 70;
         
-    }else{
+    }else if (mysegment.currentPage == 0){//帖子
             
         NSDictionary *dic_ssinfo =[self.array_searchresault objectAtIndex:indexPath.row];
         
@@ -176,6 +176,8 @@
         return     30+labelSize.height+5+23;
         
         
+    }else{
+        return 44;
     }
     
 }
@@ -211,7 +213,8 @@
 //                SearchNewsView *_search_news=[[SearchNewsView alloc]init];
 //                [_search_news layoutSubviewsWithDicNewsinfo:dic_ssinfo];
                 
-                UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 200, 40)];
+                UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 15, 200, 17)];
+                titleLabel.font = [UIFont systemFontOfSize:15];
                 titleLabel.text = [dic_ssinfo objectForKey:@"name"];
                 [cell.contentView addSubview:titleLabel];
                 
@@ -267,6 +270,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (self.array_searchresault.count>0)
     {
@@ -755,7 +760,6 @@
         [searchloadingview startLoading];
         [self WhetherOrNotRequest];
     }
-    
     
     
 }

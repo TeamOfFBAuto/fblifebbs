@@ -77,11 +77,16 @@
     
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
     
-    UIButton *settings=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? -5:5,8,40,44)];
+    
+    UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceButton.width = MY_MACRO_NAME?-5:5;
+    
+    UIButton *settings=[[UIButton alloc]initWithFrame:CGRectMake(20,8,40+10,44)];
     [settings addTarget:self action:@selector(clickToSettings:) forControlEvents:UIControlEventTouchUpInside];
-    [settings setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    [settings setImage:[UIImage imageNamed:@"shezhi"] forState:UIControlStateNormal];
+    [settings setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:settings];
-    self.navigationItem.rightBarButtonItem = back_item;
+    self.navigationItem.rightBarButtonItems = @[spaceButton,back_item];
     
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
@@ -195,13 +200,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 10;
+    return 10 + 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 6) {
+    if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 6 || indexPath.row == 10) {
         
         static NSString *identify = @"onecell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
@@ -286,7 +291,7 @@
  
  - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 6) {
+    if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 6 || indexPath.row == 10) {
         
         return 12;
     }

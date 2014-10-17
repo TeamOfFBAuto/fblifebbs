@@ -21,6 +21,18 @@
 
 @implementation FindViewController
 
+
+
+- (void)dealloc
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+
+
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -151,7 +163,7 @@
 {
     NSLog(@"searchPage  跳转到搜索页面");
     
-    [self.navigationController pushViewController:[[GFoundSearchViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[GFoundSearchViewController3 alloc]init] animated:YES];
     
     
 }
@@ -194,6 +206,20 @@
         view.frame = CGRectMake(0, 0, 320, 17);
     }
     return view;
+}
+
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row == 1 && indexPath.section == 1) {
+        GshoppingWebViewController * vv = [[GshoppingWebViewController alloc]init];        
+        [self PushControllerWith:vv WithAnimation:YES];
+        
+    }
+    
+    
 }
 
 

@@ -90,7 +90,7 @@
         
         [self addSubview:self.zanlabel];
         
-        [self addSubview:self.bigLeixing];
+      //  [self addSubview:self.bigLeixing];
         
         [self addSubview:self.littleLeixing];
         
@@ -101,7 +101,7 @@
        // [self addSubview:self.fenGeLine];
         
         self.littleAndBigLine.image=[UIImage imageNamed:@"bigandlittle.png"];
-        [self addSubview:self.littleAndBigLine];
+//        [self addSubview:self.littleAndBigLine];
         
         
         
@@ -306,7 +306,7 @@
                     
                     CGSize titleSize = [_newmodel.forumname sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
                     [_littleLeixing setTitle:_newmodel.forumname forState:UIControlStateNormal];
-                    _littleLeixing.frame=CGRectMake(140+10, BIGORIGIN, titleSize.width+2, 18);
+                    _littleLeixing.frame=CGRectMake(100+10, BIGORIGIN, titleSize.width+2, 18);
                     
                     [_bigLeixing setTitle:@"论坛" forState:UIControlStateNormal];
                     //[_bigLabel:RGBCOLOR(103, 103, 103)];

@@ -29,6 +29,8 @@
 
 #import "ScanHistoyViewController.h"
 
+#import "AppDelegate.h"
+
 #define CURRENT_USER_HEADIMAGE @"HEADIMAGE"//头像
 
 @interface MineViewController ()<FriendListViewControllerDelegate>
@@ -53,7 +55,9 @@
         
         LogInViewController *login = [LogInViewController sharedManager];
         
-        [self presentViewController:login animated:YES completion:nil];
+        UIViewController *root = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+        
+        [root presentViewController:login animated:YES completion:nil];
     }else
     {
         

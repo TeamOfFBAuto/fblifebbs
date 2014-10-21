@@ -35,6 +35,10 @@
 ///创建视图
 -(void)setup
 {
+    
+    _bbs_forum_collection_array = [NSMutableArray array];
+    _bbs_post_collection_array = [NSMutableArray array];
+    
     _data_array = [NSMutableArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array],[NSMutableArray array],nil];
     _myTableView = [[RefreshTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
     _myTableView.delegate = self;
@@ -68,6 +72,13 @@
     _myTableView.tableHeaderView = ranking_segment;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogIn:) name:@"LogIn" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bbsDetailCollectChanged:) name:@"bbsDetailCollectChanged" object:nil];
+}
+
+#pragma mark - 主题收藏变更通知
+-(void)bbsDetailCollectChanged:(NSNotification *)notification
+{
+    [self loadAllBBSPostData];
 }
 
 #pragma mark - 请求排行榜数据
@@ -252,7 +263,8 @@
     
     BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
     
-    if (!isLogin) {
+    if (!isLogin)
+    {
         rangking_block(2,nil);
         return;
     }

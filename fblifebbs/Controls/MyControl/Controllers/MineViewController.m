@@ -53,7 +53,7 @@
     
     if (![[NSUserDefaults standardUserDefaults]boolForKey:USER_IN]) {
         
-        LogInViewController *login = [LogInViewController sharedManager];
+        LogInViewController *login = [[LogInViewController alloc] init];
         
         UIViewController *root = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
         

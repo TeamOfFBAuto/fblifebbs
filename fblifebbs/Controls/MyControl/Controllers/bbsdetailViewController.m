@@ -695,6 +695,7 @@
         if ([[dicinfo objectForKey:@"errcode"] intValue]==0) {
             
             [self.collection_array addObject:self.bbsdetail_tid];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"bbsDetailCollectChanged" object:nil];
             
             sender.userInteractionEnabled=YES;
             [self.thezkingAlertV zkingalertShowWithString:@"收藏成功"];
@@ -784,6 +785,8 @@
             {
                 [self.collection_array removeObject:self.bbsdetail_tid];
             }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"bbsDetailCollectChanged" object:nil];
             
             [self.thezkingAlertV zkingalertShowWithString:@"已取消收藏"];
 

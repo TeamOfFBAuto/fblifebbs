@@ -17,11 +17,13 @@
 #import "loadingimview.h"
 
 
-@interface NewWeiBoDetailViewController ()
+@interface NewWeiBoDetailViewController ()<UIAlertViewDelegate>
 {
     UIView * tableHeaderView;
     
     loadingimview * myAlertView;
+    
+    ASIHTTPRequest * weibo_request;
 }
 
 @end
@@ -77,17 +79,11 @@
 -(void)initHttpRequest
 {
     NSString *authkey=[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
-    
-    NSString* fullURL = [NSString stringWithFormat:URL_WEIBO_DETAIL,self.info.tid,authkey,pageCount];
-    
+    NSString* fullURL = [NSString stringWithFormat:URL_WEIBO_DETAIL,_tid,authkey,pageCount];
     NSLog(@"微博详情请求的url ---  %@",fullURL);
-    
     detail_request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullURL]];
-    
     detail_request.shouldAttemptPersistentConnection = NO;
-    
     [detail_request setDelegate:self];
-    
     [detail_request startAsynchronous];
 }
 
@@ -196,8 +192,11 @@
             }
         }
         
-        [self.myTableView reloadData];
-
+        
+        if (self.info)
+        {
+            [self.myTableView reloadData];
+        }
     }
     @catch (NSException *exception) {
         
@@ -255,58 +254,18 @@
     [super viewDidLoad];
     
     self.title = @"微博正文";
-    
-//    UIColor * cc = [UIColor blackColor];
-//    
-//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-//    
-//    self.navigationController.navigationBar.titleTextAttributes = dict;
-    
-    
     self.photos = [[NSMutableArray alloc] init];
-    
     pageCount = 1;
     
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     
-    
-//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-//    {
-//        //iOS 5 new UINavigationBar custom background
-//        
-//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-//    }
-//    
-//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    negativeSpacer.width = MY_MACRO_NAME?-4:5;
-//    
-//    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,31/2,32/2)];
-//    
-//    [button_back addTarget:self action:@selector(backH:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-//    
-//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-//    
-//    self.navigationItem.leftBarButtonItems=@[negativeSpacer,back_item];
-    
-    
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
-    
     
     _dataArray = [[NSMutableArray alloc] init];
     
-    
-    [self initHttpRequest];
-    
-    
-    
     self.myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,(iPhone5?568:480)-20-44-44) style:UITableViewStylePlain];
-    
     self.myTableView.delegate = self;
-    
     self.myTableView.dataSource = self;
-    
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     if (IOS_VERSION>=7.0)
@@ -317,92 +276,108 @@
     [self.view addSubview:self.myTableView];
     
     
+    
+    if (!self.info && _tid.length > 0)
+    {
+        [self loadWeiBoData];
+    }else if(self.info)
+    {
+        _tid = self.info.tid;
+        [self loadSectionViews];
+    }
+    
+    [self initHttpRequest];
+    
     tabelFootView = [[LoadingIndicatorView alloc] initWithFrame:CGRectMake(0,0,320,40)];
-    
     [tabelFootView startLoading];
-    
     self.myTableView.tableFooterView = tabelFootView;
-    
-    
-    
-    
-    
-    weibo_content_view = [self returnWeiBocontentView];
-    
-    tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,weibo_content_view.frame.size.height+40)];
-    
-    tableHeaderView.backgroundColor = [UIColor whiteColor];
-    
-    UIImageView * line_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,tableHeaderView.frame.size.height-4,320,4)];
-    
-    line_imageView.tag = 417;
-    
-    line_imageView.image = [UIImage imageNamed:@"weibo_detai_line.png"];
-    
-    [tableHeaderView addSubview:line_imageView];
-    
-    [tableHeaderView addSubview:weibo_content_view];
-    
-    _myTableView.sectionHeaderHeight = tableHeaderView.frame.size.height;
-    
-    _myTableView.tableHeaderView = tableHeaderView;
-    
-    
+
     
     tishi_view = [[UIView alloc] initWithFrame:CGRectMake(0,tableHeaderView.frame.size.height,320,200)];
-    
     tishi_view.backgroundColor = [UIColor whiteColor];
     
-    
-    //    if (MY_MACRO_NAME)
-    //    {
-    //        UIView * lineview = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,0.5)];
-    //        lineview.backgroundColor = RGBCOLOR(189,189,189);
-    //
-    //        [tishi_view addSubview:lineview];
-    //    }
-    
-    
     UIImageView * wu_imageView = [[UIImageView alloc] initWithFrame:CGRectMake((320-121/2)/2,114/2,121/2,114/2)];
-    
     wu_imageView.image = [UIImage imageNamed:@"weibo_detail_wurenpinglun.png"];
-    
     [tishi_view addSubview:wu_imageView];
     
     
     UILabel * wu_label = [[UILabel alloc] initWithFrame:CGRectMake(0,114+12,320,20)];
-    
     wu_label.backgroundColor = [UIColor clearColor];
-    
     wu_label.text = @"还没有人评论";
-    
     wu_label.textAlignment = NSTextAlignmentCenter;
-    
     wu_label.textColor = RGBCOLOR(193,193,193);
-    
     wu_label.font = [UIFont systemFontOfSize:14];
-    
     [tishi_view addSubview:wu_label];
     
     
-    
     DetailBottomView * bottom_view = [[DetailBottomView alloc] initWithFrame:CGRectMake(0,(iPhone5?568:480)-64-44,320,44)];
-    
     bottom_view.delegate = self;
-    
     bottom_view.backgroundColor = [UIColor whiteColor];
-    
     [self.view addSubview:bottom_view];
     
-    
-    
     myAlertView = [[loadingimview alloc] initWithFrame:CGRectMake(0,0,150,100) labelString:@"正在加载"];
-    
     myAlertView.center = CGPointMake(160,(iPhone5?568:480)/2-64);
-    
     myAlertView.hidden = YES;
-
     [self.view addSubview:myAlertView];
+}
+
+#pragma mark - 请求微博数据
+-(void)loadWeiBoData
+{
+    NSString * fullURL= [NSString stringWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=getweibo&code=weibocomment&tid=%@&fromtype=b5eeec0b&authkey=%@&page=1&fbtype=json",_tid,[personal getMyAuthkey]];
+    
+    weibo_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
+    
+    typeof(weibo_request)wrequest = weibo_request;
+    typeof(self)wself = self;
+    [wrequest setCompletionBlock:^{
+        NSDictionary * dic = [weibo_request.responseString objectFromJSONString];
+        NSLog(@"alldic ---  %@",dic);
+        
+        if ([[dic objectForKey:@"weibomain"] isEqual:[NSNull null]] || [[dic objectForKey:@"weibomain"] isEqual:@"<null>"])
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"该篇微博不存在" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+            [alert show];
+        
+            return;
+        }
+        
+        NSDictionary * value = [dic objectForKey:@"weibomain"];
+        
+        NSMutableArray * temp_array = [zsnApi conversionFBContent:[NSDictionary dictionaryWithObject:value forKey:@"1"] isSave:NO WithType:0];
+        if (temp_array.count > 0)
+        {
+            wself.info = [temp_array objectAtIndex:0];
+        }
+        
+        [wself loadSectionViews];
+        
+        [wself.myTableView reloadData];
+    }];
+    
+    [wrequest setFailedBlock:^{
+        
+    }];
+    
+    [weibo_request startAsynchronous];
+}
+
+#pragma mark - 加载微博信息
+-(void)loadSectionViews
+{
+    weibo_content_view = [self returnWeiBocontentView];
+    tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,weibo_content_view.frame.size.height+40)];
+    tableHeaderView.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView * line_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,tableHeaderView.frame.size.height-4,320,4)];
+    line_imageView.tag = 417;
+    line_imageView.image = [UIImage imageNamed:@"weibo_detai_line.png"];
+    
+    [tableHeaderView addSubview:line_imageView];
+    [tableHeaderView addSubview:weibo_content_view];
+    _myTableView.sectionHeaderHeight = tableHeaderView.frame.size.height;
+    
+    _myTableView.tableHeaderView = tableHeaderView;
 }
 
 
@@ -413,17 +388,6 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //    if (indexPath.row == 0)
-    //    {
-    //        if (!weibo_content_view)
-    //        {
-    //            weibo_content_view = [self returnWeiBocontentView];
-    //        }
-    //
-    //        return weibo_content_view.frame.size.height + 35;
-    //    }else
-    //    {
     ReplysFeed * info = [self.dataArray objectAtIndex:indexPath.row];
     
     if (!test_label)
@@ -439,7 +403,6 @@
     CGSize optimumSize = [test_label optimumSize];
     
     return optimumSize.height + 30 + 20;
-    //    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -462,25 +425,16 @@
     
     
     _Head_ImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(10,10,CELL_TOUXIANG,CELL_TOUXIANG)];
-    
     _Head_ImageView.userInteractionEnabled = YES;
-    
     _Head_ImageView.layer.masksToBounds = NO;
-    
     _Head_ImageView.layer.shadowOffset = CGSizeMake(0.3,0.3);
-    
     _Head_ImageView.layer.shadowRadius = 1;
-    
     _Head_ImageView.layer.shadowOpacity = 0.2;
-    
     _Head_ImageView.backgroundColor = [UIColor redColor];
-    
     _Head_ImageView.tag = 100+indexPath.row;
-    
     [cell.contentView addSubview:_Head_ImageView];
     
     UITapGestureRecognizer * head_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headTap:)];
-    
     [_Head_ImageView addGestureRecognizer:head_tap];
     
     
@@ -501,50 +455,29 @@
     
     
     content_label = [[RTLabel alloc] initWithFrame:CGRectMake(55,35,255,10)];
-    
     content_label.lineBreakMode = NSLineBreakByCharWrapping;
-    
     content_label.lineSpacing = 3;
-    
     content_label.delegate = self;
-    
     content_label.textColor = RGBCOLOR(49,49,49);
-    
     content_label.backgroundColor = [UIColor clearColor];
-    
     content_label.font = [UIFont systemFontOfSize:15];
-    
     [cell.contentView addSubview:content_label];
     
-    
-    
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     
     
     if (self.dataArray.count > 0)
     {
         cell.backgroundColor = RGBCOLOR(247,247,247);
-        
         cell.contentView.backgroundColor = RGBCOLOR(247,247,247);
-        
         ReplysFeed * info = [self.dataArray objectAtIndex:indexPath.row];
-        
         [_Head_ImageView loadImageFromURL:info.faceOriginal withPlaceholdImage:[personal getImageWithName:@"touxiang"]];
-        
         _UserName_Label.text = info.username;
-        
         _DateLine_Label.text = info.dateline;
-        
         content_label.text = info.content;
-        
         CGSize optimumSize = [content_label optimumSize];
-        
         CGRect rect = [content_label frame];
-        
         rect.size.height = optimumSize.height+10;
-        
         content_label.frame = rect;
     }
     
@@ -561,19 +494,12 @@
     
     
     AsyncImageView * headerView = [[AsyncImageView alloc] initWithFrame:CGRectMake(10,10,CELL_TOUXIANG,CELL_TOUXIANG)];
-    
     headerView.userInteractionEnabled = YES;
-    
     headerView.layer.masksToBounds = NO;
-    
     headerView.layer.shadowOffset = CGSizeMake(0.3,0.3);
-    
     headerView.layer.shadowRadius = 1;
-    
     headerView.layer.shadowOpacity = 0.2;
-    
     headerView.backgroundColor = [UIColor redColor];
-    
     [weibo_view addSubview:headerView];
     UITapGestureRecognizer * head_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myheadTap:)];
     [headerView addGestureRecognizer:head_tap];
@@ -611,67 +537,43 @@
     
     
     WeiBoSpecialView *  _content_view_special = [[WeiBoSpecialView alloc] initWithFrame:CGRectMake(55,35,255,100)];
-    
     _content_view_special.line_space = 5;
-    
     _content_view_special.content_font = 16;
-    
     _content_view_special.delegate = self;
-    
     [weibo_view addSubview:_content_view_special];
     
     CGRect rect = [_content_view_special frame];
-    
     rect.size.height = [_content_view_special setAllViewWithFeed:self.info isReply:NO];
-    
     _content_view_special.frame = rect;
-    
     total_height = rect.size.height + 30;
-    
     reply_frame.origin.y = rect.size.height + 35 + 3;
     
     
     if (self.info.rootFlg)
     {
         WeiBoSpecialView * _content_reply_special = [[WeiBoSpecialView alloc] initWithFrame:CGRectMake(8,10,255-16,0)];
-        
         _content_reply_special.line_space = 3;
-        
         _content_reply_special.content_font = 16;
-        
         _content_reply_special.delegate = self;
-        
         [_reply_background_view addSubview:_content_reply_special];
         
         CGRect rect = [_content_reply_special frame];
-        
         rect.size.height = [_content_reply_special setAllViewWithFeed:self.info isReply:YES];
-        
         _content_reply_special.frame = rect;
-        
         reply_frame.size.height = rect.size.height + 20;
-        
         total_height = total_height + rect.size.height + 20 + 10;
         
-        
         _reply_background_view.frame = reply_frame;
-        
         _reply_background_view.image = [[UIImage imageNamed:@"newWeiBoBackGroundImage.png"] stretchableImageWithLeftCapWidth:130 topCapHeight:7];
     }
     
     
     UILabel * _from_label = [[UILabel alloc] initWithFrame:CGRectMake(55,total_height + 10,100,20)];
-    
     _from_label.textColor = RGBCOLOR(142,142,142);
-    
     _from_label.text = self.info.from;
-    
     _from_label.textAlignment = NSTextAlignmentLeft;
-    
     _from_label.font = [UIFont systemFontOfSize:12];
-    
     _from_label.backgroundColor = [UIColor clearColor];
-    
     [weibo_view addSubview:_from_label];
     
     
@@ -792,7 +694,7 @@
         if (!isLogIn)
         {
             LogInViewController * logIn = [LogInViewController sharedManager];
-            [self presentModalViewController:logIn animated:YES];
+            [self presentViewController:logIn animated:YES completion:nil];
             return;
         }
     }
@@ -810,13 +712,9 @@
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     browser.displayActionButton = YES;
-    
     browser.title_string = self.info.photo_title;
-    
     [browser setInitialPageIndex:index];
-    
-//    [self.leveyTabBarController hidesTabBar:YES animated:YES];
-    [self presentModalViewController:browser animated:YES];
+    [self presentViewController:browser animated:YES completion:nil];
 }
 
 
@@ -863,7 +761,7 @@
             
             LogInViewController * logIn = [LogInViewController sharedManager];
             
-            [self presentModalViewController:logIn animated:YES];
+            [self presentViewController:logIn animated:YES completion:nil];
         }
         
         
@@ -881,20 +779,6 @@
         
         [self setHidesBottomBarWhenPushed:NO];
     }
-    //    else
-    //    {
-    //        NewWeiBoDetailViewController * detail = [[NewWeiBoDetailViewController alloc] init];
-    //
-    //        detail.info = info;
-    //
-    //        [self setHidesBottomBarWhenPushed:YES];
-    //
-    //        [self.leveyTabBarController hidesTabBar:YES animated:YES];
-    //
-    //        [self.navigationController pushViewController:detail animated:YES];
-    //
-    //        [self setHidesBottomBarWhenPushed:NO];
-    //    }
 }
 
 -(void)showClickUrl:(NSString *)theUrl WithFBFeed:(FbFeed *)info;
@@ -958,7 +842,7 @@
             ForwardingViewController *  forward1 = [[ForwardingViewController alloc] init];
             forward1.delegate = self;
             forward1.info = self.info;
-            [self presentModalViewController:forward1 animated:YES];
+            [self presentViewController:forward1 animated:YES completion:nil];
         }
             break;
         case 2:
@@ -966,13 +850,19 @@
             NewWeiBoCommentViewController *  comment1 = [[NewWeiBoCommentViewController alloc] init];
             comment1.delegate = self;
             comment1.info = self.info;
-            [self presentModalViewController:comment1 animated:YES];
+            [self presentViewController:comment1 animated:YES completion:nil];
         }
             break;
             
         default:
             break;
     }
+}
+
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

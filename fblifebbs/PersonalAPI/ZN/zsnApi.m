@@ -431,29 +431,29 @@
 
 
 
-//+(float)calculateheight:(NSArray *)array
-//{
-//    
-//    float height = 0.0;
-//    for (NSString * string in array)
-//    {
-//        if (string.length > 0)
-//        {
-//            if ([string rangeOfString:@"[img]"].length && [string rangeOfString:@"[/img]"].length)
-//            {
-//                height += 90;
-//                
-//            }else
-//            {
-//                UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,300,50)];
-//                CGPoint point = [personal LinesWidth:string Label:label font:[UIFont systemFontOfSize:16]];
-//                
-//                height += point.y;
-//            }
-//        }
-//    }
-//    return height;
-//}
++(float)calculateheight:(NSArray *)array
+{
+    
+    float height = 0.0;
+    for (NSString * string in array)
+    {
+        if (string.length > 0)
+        {
+            if ([string rangeOfString:@"[img]"].length && [string rangeOfString:@"[/img]"].length)
+            {
+                height += 90;
+                
+            }else
+            {
+                UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,300,50)];
+                CGPoint point = [personal LinesWidth:string Label:label font:[UIFont systemFontOfSize:16]];
+                
+                height += point.y;
+            }
+        }
+    }
+    return height;
+}
 
 + (NSString*)FBImageChange:(NSString*)imgSrc
 {

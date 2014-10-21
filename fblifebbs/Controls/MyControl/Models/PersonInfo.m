@@ -7,6 +7,7 @@
 //
 
 #import "PersonInfo.h"
+#import "pinyin.h"
 
 @implementation PersonInfo
 @synthesize aboutme = _aboutme;
@@ -136,7 +137,7 @@
     else
     {
         //如果是非英语
-//        firstName = [NSString stringWithFormat:@"%c",pinyinFirstLetter([[[self.username substringToIndex:1] substringFromIndex:0] characterAtIndex:0])];
+        firstName = [NSString stringWithFormat:@"%c",pinyinFirstLetter([[[self.username substringToIndex:1] substringFromIndex:0] characterAtIndex:0])];
     }
     
     return firstName;

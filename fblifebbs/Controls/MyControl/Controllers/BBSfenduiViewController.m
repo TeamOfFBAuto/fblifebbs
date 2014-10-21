@@ -884,7 +884,7 @@
                     }else{
                         
                         [button_collect setBackgroundImage:[UIImage imageNamed:@"ios7_collectselect.png"] forState:UIControlStateNormal];
-                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:nil];
                         [self.collection_array addObject:self.string_id];
                         
                         //                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"haha" message:@"收藏成功" delegate:nil cancelButtonTitle:@"yes" otherButtonTitles:nil, nil];
@@ -907,6 +907,7 @@
                     if ([self.collection_array containsObject:self.string_id])
                     {
                         [self.collection_array removeObject:self.string_id];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:nil];
                     }
                     
                     

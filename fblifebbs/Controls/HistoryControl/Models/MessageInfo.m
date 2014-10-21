@@ -67,8 +67,10 @@
             self.othername=self.from_username;
         }
         
-        NSString *string_uid=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:USER_UID]];
-        if ([string_uid isEqualToString:self.from_uid]) {
+        NSString *string_uid=[personal getMyUid];
+        
+        if ([string_uid isEqualToString:self.from_uid])
+        {
             self.selfunread=self.fromunread;
             self.otheruid=self.to_uid;
             

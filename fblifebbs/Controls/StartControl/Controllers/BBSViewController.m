@@ -15,6 +15,7 @@
 #import "BBSfenduiViewController.h"
 #import "bbsdetailViewController.h"
 #import "RankingListModel.h"
+#import "GFoundSearchViewController3.h"
 
 
 @interface SliderBBSForumModel ()
@@ -99,6 +100,8 @@
     SliderForumCollectionModel * collection_model;
     ///请求数据队列
     ASINetworkQueue * networkQueue;
+    ///排行榜
+    BBSRankingView * rangkingView;
 }
 
 @end
@@ -114,6 +117,12 @@
 @synthesize forum_section_collection_array = _forum_section_collection_array;
 @synthesize forum_temp_array = _forum_temp_array;
 @synthesize forum_zhuti_array = _forum_zhuti_array;
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+}
 
 - (void)viewDidLoad
 {
@@ -204,7 +213,7 @@
     _myTableView2.separatorStyle = UITableViewCellSeparatorStyleNone;
    // [_myScrollView addSubview:_myTableView2];
     
-    BBSRankingView * rangkingView = [[BBSRankingView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH+20,0,DEVICE_WIDTH,_myScrollView.frame.size.height)];
+    rangkingView = [[BBSRankingView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH+20,0,DEVICE_WIDTH,_myScrollView.frame.size.height)];
     [_myScrollView addSubview:rangkingView];
     
     
@@ -218,7 +227,7 @@
                 bbsdetailViewController * detail = [[bbsdetailViewController alloc] init];
                 detail.bbsdetail_tid = model.ranking_id;
                 detail.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:detail animated:YES];
+                [bself.navigationController pushViewController:detail animated:YES];
             }
                 break;
             case 1:///bbsfendui
@@ -227,9 +236,9 @@
                 
                 BBSfenduiViewController * fendui = [[BBSfenduiViewController alloc] init];
                 fendui.string_id = model.ranking_id;
-                fendui.collection_array = self.forum_section_collection_array;
+                fendui.collection_array = bself.forum_section_collection_array;
                 fendui.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:fendui animated:YES];
+                [bself.navigationController pushViewController:fendui animated:YES];
             }
                 break;
             case 2:///login
@@ -262,21 +271,25 @@
 
 -(void)forumSectionChange:(NSNotification *)notification
 {
-    NSDictionary * dictionary = notification.userInfo;
+//    NSDictionary * dictionary = notification.userInfo;
+//    
+//    NSString * theId = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"forumSectionId"]];
+//    
+//    if ([self.forum_section_collection_array containsObject:theId])
+//    {
+//        [self.forum_section_collection_array removeObject:theId];
+//    }else
+//    {
+//        [self.forum_section_collection_array addObject:theId];
+//    }
+//    
+//    [rangkingView.bbs_forum_collection_array removeAllObjects];
+//    [rangkingView.bbs_forum_collection_array addObjectsFromArray:self.forum_section_collection_array];
+//    
+//    [self.myTableView1 reloadData];
     
-    NSString * theId = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"forumSectionId"]];
-    
-    if ([self.forum_section_collection_array containsObject:theId])
-    {
-        [self.forum_section_collection_array removeObject:theId];
-    }else
-    {
-        [self.forum_section_collection_array addObject:theId];
-    }
-    
-    [self.myTableView1 reloadData];
+    [self loadCollectionForumSectionData];
 }
-
 
 #pragma mark - 读取所有收藏版块数据信息
 -(void)loadCollectionForumSectionData
@@ -297,13 +310,18 @@
     [collection_model loadCollectionDataWith:1 WithPageSize:100 WithFinishedBlock:^(NSMutableArray *array) {
         
         [bself.forum_section_collection_array addObjectsFromArray:collection_model.collect_id_array];
-        [bself.myTableView2 reloadData];
+        [bself.myTableView1 reloadData];
         
+        rangkingView.bbs_forum_collection_array = [NSMutableArray arrayWithArray:collection_model.collect_id_array];
+        [rangkingView.myTableView reloadData];
         [[NSUserDefaults standardUserDefaults] setObject:bself.forum_section_collection_array forKey:@"forumSectionCollectionArray"];
         
     } WithFailedBlock:^(NSString *string) {
         
         bself.forum_section_collection_array = [[NSUserDefaults standardUserDefaults] objectForKey:@"forumSectionCollectionArray"];
+        [bself.myTableView1 reloadData];
+        rangkingView.bbs_forum_collection_array = [NSMutableArray arrayWithArray:bself.forum_section_collection_array];
+        [rangkingView.myTableView reloadData];
     }];
     
 }
@@ -448,6 +466,10 @@
         {
             [self isHaveCacheDataWith:i];
         }
+    }
+    
+    if (_forum_section_collection_array.count==0) {
+        [self loadCollectionForumSectionData];
     }
 }
 ///网络断开
@@ -936,7 +958,10 @@
 #pragma mark - UISearchBarDelegate
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
-    return YES;
+    GFoundSearchViewController3 * search = [[GFoundSearchViewController3 alloc] init];
+    [self PushControllerWith:search WithAnimation:YES];
+    
+    return NO;
 }
 
 

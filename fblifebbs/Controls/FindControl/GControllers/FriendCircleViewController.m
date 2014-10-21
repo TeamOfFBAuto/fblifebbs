@@ -37,6 +37,19 @@
 
 @implementation FriendCircleViewController
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshmydata" object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -62,6 +75,8 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     
     [self initHttpRequest];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:@"refreshmydata" object:nil];
 }
 
 #pragma mark - 右边按钮
@@ -69,6 +84,12 @@
 {
     WriteBlogViewController * writeVC = [[WriteBlogViewController alloc] init];
     [self presentViewController:writeVC animated:YES completion:NULL];
+}
+
+#pragma mark - 数据有变化，更新数据
+-(void)refreshData:(NSNotification *)notification
+{
+    [self initHttpRequest];
 }
 
 //请求数据
@@ -144,6 +165,9 @@
         hud.mode = MBProgressHUDModeText;
         hud.labelText = @"加载失败";
         [hud hide:YES afterDelay:1.5];
+        
+        data_array = [FbFeed findAll];
+        [myTableView finishReloadigData];
     }];
 }
 
@@ -190,7 +214,11 @@
 }
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    FbFeed * info = [data_array objectAtIndex:indexPath.row];
     
+    NewWeiBoDetailViewController * detail = [[NewWeiBoDetailViewController alloc] init];
+    detail.info = info;
+    [self.navigationController pushViewController:detail animated:YES];
 }
 - (CGFloat)heightForRowIndexPath:(NSIndexPath *)indexPath
 {
@@ -225,6 +253,7 @@
     ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
     
     __block ASIHTTPRequest * _requset = request;
+    __weak typeof(self)wself = self;
     
     _requset.delegate = self;
     
@@ -259,7 +288,7 @@
                     
                     detail.info=obj;
                     
-                    [self.navigationController pushViewController:detail animated:YES];
+                    [wself.navigationController pushViewController:detail animated:YES];
                 }
             }
         }
@@ -278,7 +307,7 @@
         [request cancel];
     }];
     
-    [_requset startAsynchronous];
+    [request startAsynchronous];
     
 }
 
@@ -487,13 +516,7 @@
 #pragma mark - dealloc
 -(void)dealloc
 {
-    [data_array removeAllObjects];
-    data_array = nil;
     
-    [weiBo_request cancel];
-    weiBo_request = nil;
-    
-    test_cell = nil;
 }
 
 - (void)didReceiveMemoryWarning

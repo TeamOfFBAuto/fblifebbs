@@ -107,15 +107,9 @@
         if (!_tixing_label)
         {
             _tixing_label = [[UIImageView alloc] initWithFrame:CGRectMake(230,8,13,13)];
-            
             _tixing_label.hidden = YES;
-            
-            _tixing_label.backgroundColor = [UIColor clearColor];
-            
             _tixing_label.image = [personal getImageWithName:@"newlabel@2x"];
-            
             _tixing_label.center = CGPointMake(61.5,13);
-            
             [self.contentView addSubview:_tixing_label];
         }
     }else

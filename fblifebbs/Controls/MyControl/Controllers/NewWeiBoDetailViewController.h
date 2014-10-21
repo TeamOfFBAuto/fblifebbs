@@ -5,6 +5,9 @@
 //  Created by soulnear on 13-12-12.
 //  Copyright (c) 2013年 szk. All rights reserved.
 //
+/**
+ 微博详情界面
+ **/
 
 #import <UIKit/UIKit.h>
 #import "FbFeed.h"
@@ -47,8 +50,10 @@
     UIView * tishi_view;
     
 }
-
+///如果有微博内容，赋给info，这种情况下不需要请求微博数据
 @property(nonatomic,strong)FbFeed * info;
+///如果没有微博数据(info没有值)，那么需要给tid赋值以请求微博数据
+@property(nonatomic,strong)NSString * tid;
 
 @property(nonatomic,strong)NSMutableArray * dataArray;
 

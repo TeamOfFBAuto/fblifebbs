@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "pinyin.h"
+
 
 @interface PersonInfo : NSObject
 {

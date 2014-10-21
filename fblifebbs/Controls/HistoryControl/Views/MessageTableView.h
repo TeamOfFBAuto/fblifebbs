@@ -20,6 +20,10 @@
 @interface MessageTableView : UIView<UITableViewDataSource,UITableViewDelegate,RefreshDelegate>
 {
     LTools * request_tools;
+    
+    ASIHTTPRequest * check_request;
+    ///判断是否有新数据
+    int NewsMessageNumber;
 }
 
 @property(nonatomic,strong)RefreshTableView * myTableView;

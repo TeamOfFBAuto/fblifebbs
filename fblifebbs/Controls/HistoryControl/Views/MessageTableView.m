@@ -29,6 +29,8 @@
 
 -(void)setup
 {
+    NewsMessageNumber = 0;
+    
     _data_array = [NSMutableArray array];
     _myTableView = [[RefreshTableView alloc] initWithFrame:self.bounds showLoadMore:NO];
     _myTableView.dataSource = self;
@@ -44,6 +46,12 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(logoutSuccess:) name:NOTIFICATION_LOGOUT_SUCCESS object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HaveNetWork:) name:NOTIFICATION_HAVE_NETWORK object:nil];
+    
+    
+    NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:20.0f target:self selector:@selector(checkallmynotification) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 
 #pragma mark - 登陆成功
@@ -59,6 +67,15 @@
     [_data_array removeAllObjects];
     [_myTableView finishReloadigData];
     
+}
+
+#pragma mark - 来网啦
+-(void)HaveNetWork:(NSNotification * )notification
+{
+    if (_data_array.count == 0)
+    {
+        [self initHttpRequest];
+    }
 }
 
 #pragma mark - 网络请求
@@ -191,7 +208,7 @@
     MyChatViewController * chat = [[MyChatViewController alloc] init];
     chat.info = info;
     UIViewController * vc = [self getSuperViewController];
-    vc.hidesBottomBarWhenPushed = YES;
+    chat.hidesBottomBarWhenPushed = YES;
     [vc.navigationController pushViewController:chat animated:YES];
 }
 - (CGFloat)heightForRowIndexPath:(NSIndexPath *)indexPath
@@ -212,6 +229,55 @@
 {
     return (UIViewController *)_delegate;
 }
+
+
+#pragma mark - 每隔20秒去请求是否有新数据
+-(void)checkallmynotification
+{
+    NSString * fullUrl = [NSString stringWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=alert&code=alertnumbytype&fromtype=b5eeec0b&authkey=%@&fbtype=json",[personal getMyAuthkey]];
+    check_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullUrl]];
+    typeof(self)wself = self;
+    typeof(check_request)wrequest = check_request;
+    
+    [wrequest setCompletionBlock:^{
+        
+        @try {
+            NSDictionary *dic=[check_request.responseString objectFromJSONString];
+                NewsMessageNumber = 0;
+                NSDictionary * alertnum_dic = [dic objectForKey:@"alertnum"];
+                
+                NSLog(@"未读消息 ------  %@",alertnum_dic);
+                
+                for (int i = 0;i <= 16;i++)
+                {
+                    if (i == 6)
+                    {
+                        if ([[alertnum_dic objectForKey:[NSString stringWithFormat:@"%d",i]] intValue]>0)
+                        {
+                            [wself initHttpRequest];
+                        }
+                    }else
+                    {
+                        NewsMessageNumber += [[alertnum_dic objectForKey:[NSString stringWithFormat:@"%d",i]] intValue];
+                    }
+                }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        
+    }];
+    
+    [wrequest setFailedBlock:^{
+        
+    }];
+    
+    [check_request startAsynchronous];
+}
+
 
 
 /*

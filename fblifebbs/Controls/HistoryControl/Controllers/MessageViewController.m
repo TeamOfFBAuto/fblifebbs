@@ -14,7 +14,7 @@
 #import "NewMessageViewController.h"
 #import "MyChatViewController.h"
 
-@interface MessageViewController ()<MessageTableViewDelegate,NewMessageViewControllerDelegate>
+@interface MessageViewController ()<MessageTableViewDelegate,NewMessageViewControllerDelegate,NotificationViewDelegate>
 {
     ///顶部选择视图
     SliderBBSTitleView * _seg_view;
@@ -32,19 +32,25 @@
 {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
-    
+}
+
+-(BOOL)isLogIn
+{
     BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
     if (!isLogin)
     {
         LogInViewController * logIn = [LogInViewController sharedManager];
         [self presentViewController:logIn animated:YES completion:nil];
     }
+    
+    return isLogin;
 }
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self isLogIn];
     
     [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeNull WithRightButtonType:SNViewControllerRightbuttonTypeOther];
     self.rightImageName = WRITE_DEFAULT_IMAGE;
@@ -74,18 +80,24 @@
     
 
     NotificationView * fbView = [[NotificationView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH+20,0,DEVICE_WIDTH,_myScrollView.frame.size.height) withType:NotificationViewTypeFB];
+    fbView.delegate = self;
     [_myScrollView addSubview:fbView];
     
     NotificationView * bbsView = [[NotificationView alloc] initWithFrame:CGRectMake((DEVICE_WIDTH+20)*2,0,DEVICE_WIDTH,_myScrollView.frame.size.height) withType:NotificationViewTypeBBS];
+    bbsView.delegate = self;
     [_myScrollView addSubview:bbsView];
     
 }
 
 -(void)rightButtonTap:(UIButton *)sender
 {
-    NewMessageViewController * newMessage = [[NewMessageViewController alloc] init];
-    newMessage.delegate = self;
-    [self presentViewController:newMessage animated:YES completion:NULL];
+    BOOL isLog = [self isLogIn];
+    if (isLog)
+    {
+        NewMessageViewController * newMessage = [[NewMessageViewController alloc] init];
+        newMessage.delegate = self;
+        [self presentViewController:newMessage animated:YES completion:NULL];
+    }
 }
 
 

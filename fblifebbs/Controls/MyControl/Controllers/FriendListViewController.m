@@ -228,13 +228,13 @@
         
         for (PersonInfo * info in self.dataArray)
         {
-//            NSInteger sect = [theCollation sectionForObject:info collationStringSelector:@selector(getFirstName)];//getLastName是实现中文安拼音检索的核心，见NameIndex类
-//            info._sectionNum = sect; //设定姓的索引编号
-//            
-//            if (![number_array containsObject:[NSNumber numberWithInt:sect]])
-//            {
-//                [number_array addObject:[NSNumber numberWithInt:sect]];
-//            }
+            NSInteger sect = [theCollation sectionForObject:info collationStringSelector:@selector(getFirstName)];//getLastName是实现中文安拼音检索的核心，见NameIndex类
+            info._sectionNum = sect; //设定姓的索引编号
+            
+            if (![number_array containsObject:[NSNumber numberWithInt:sect]])
+            {
+                [number_array addObject:[NSNumber numberWithInt:sect]];
+            }
         }
         
         NSSortDescriptor *sd1 = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];

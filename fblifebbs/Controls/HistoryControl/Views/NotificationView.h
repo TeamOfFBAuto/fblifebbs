@@ -18,6 +18,12 @@ typedef enum
 }NotificationViewType;
 
 
+@protocol NotificationViewDelegate <NSObject>
+
+
+
+@end
+
 
 @interface NotificationView : UIView<UITableViewDataSource,UITableViewDelegate,RefreshDelegate>
 {
@@ -40,6 +46,7 @@ typedef enum
 @property(nonatomic,strong)RefreshTableView * myTableView;
 ///类型
 @property(nonatomic,assign)NotificationViewType aType;
+@property(nonatomic,assign)id<NotificationViewDelegate>delegate;
 
 
 -(id)initWithFrame:(CGRect)frame withType:(NotificationViewType)theType;

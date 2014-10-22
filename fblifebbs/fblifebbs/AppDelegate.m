@@ -106,12 +106,9 @@
     
     tabbarVC.tabBar.tintColor=[UIColor blackColor];
     
-    
-    
-    
     tabbarVC.tabBar.backgroundImage = [UIImage imageNamed:@"navigationbg.png"];
     
-    
+    tabbarVC.delegate = self;
     
     [self checkNetWork];
     
@@ -123,6 +120,19 @@
     self.window.rootViewController = tabbarVC;
 
 
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if (tabBarController.selectedIndex != 4) {
+        [defaults setObject:[NSString stringWithFormat:@"%d",tabBarController.selectedIndex] forKey:@"lastVC"];
+        [defaults synchronize];
+    }else
+    {
+
+    }
 }
 
 

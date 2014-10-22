@@ -33,7 +33,7 @@
 
 #define CURRENT_USER_HEADIMAGE @"HEADIMAGE"//头像
 
-@interface MineViewController ()<FriendListViewControllerDelegate>
+@interface MineViewController ()<FriendListViewControllerDelegate,LogInViewControllerDelegate>
 {
     NSArray *images_arr;
     NSArray *names_arr;
@@ -51,13 +51,26 @@
 {
     [super viewWillAppear:animated];
     
-    if (![[NSUserDefaults standardUserDefaults]boolForKey:USER_IN]) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    
         
-        LogInViewController *login = [[LogInViewController alloc] init];
-        
-        UIViewController *root = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-        
-        [root presentViewController:login animated:YES completion:nil];
+        if (![defaults boolForKey:USER_IN]) {
+            
+            LogInViewController *login = [[LogInViewController alloc] init];
+            
+            login.delegate = self;
+            
+            UITabBarController *root = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+            
+            [root presentViewController:login animated:YES completion:^{
+                
+                int index = [[defaults objectForKey:@"lastVC"]integerValue];
+                
+                root.selectedIndex = index;
+                
+            }];
+
     }else
     {
         
@@ -68,6 +81,12 @@
         [self getDataWithUserModel:user];
     }
     
+}
+
+-(void)successToLogIn
+{
+    UITabBarController *root = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+    root.selectedIndex = 4;
 }
 
 - (void)viewDidLoad {

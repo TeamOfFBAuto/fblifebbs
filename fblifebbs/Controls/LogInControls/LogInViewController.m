@@ -259,7 +259,11 @@
     [self loadDown];
     
     [self dismissViewControllerAnimated:YES completion:^(void){
-        [_delegate failToLogIn];
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(failToLogIn)]) {
+            [_delegate failToLogIn];
+        }
+        
     }];
 }
 

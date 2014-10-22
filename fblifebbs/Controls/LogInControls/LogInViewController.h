@@ -20,6 +20,8 @@
 
 @protocol LogInViewControllerDelegate <NSObject>
 
+@optional
+
 -(void)successToLogIn;
 
 -(void)failToLogIn;

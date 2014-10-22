@@ -997,7 +997,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIView * back_viewww = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,120)];
+    UIView * back_viewww = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,120)];
     
     back_viewww.backgroundColor = RGBCOLOR(40, 43, 53);
     
@@ -1056,11 +1056,11 @@
     
     if (!loadview)
     {
-        loadview=[[LoadingIndicatorView alloc]initWithFrame:CGRectMake(0, 900, 320, 40)];
+        loadview=[[LoadingIndicatorView alloc]initWithFrame:CGRectMake(0, 900, DEVICE_WIDTH, 40)];
     }
     
     
-    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,(iPhone5?568:480)-20-44) style:UITableViewStylePlain];
+    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-20-44) style:UITableViewStylePlain];
     
     _myTableView.delegate = self;
     
@@ -1080,12 +1080,9 @@
     _myTableView.tableFooterView = loadview;
     
     
-    _top_view = [[NewUserMessageTop alloc] initWithFrame:CGRectMake(0,0,320,201)];
-    
+    _top_view = [[NewUserMessageTop alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,201)];
     _top_view.delegate = self;
-    
     _top_view.backgroundColor = [UIColor whiteColor];//RGBCOLOR(245,245,245);
-    
     _myTableView.tableHeaderView = _top_view;
     
     

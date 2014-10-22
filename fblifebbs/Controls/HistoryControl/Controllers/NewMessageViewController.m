@@ -20,6 +20,7 @@
 {
     int temp_count;
     UITextView * temp_textView;
+    ASIFormDataRequest * send_request;
 }
 
 @end
@@ -91,13 +92,60 @@
         return;
     }
     
+//    NSString * fullUrl = [NSString stringWithFormat:@"http://msg.fblife.com/api.php?c=send&toname=%@&content=%@&authcode=%@",[self.name_textField.text stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[self.inputToolBarView.textView.text stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];
+//    
+//    
+//    NSLog(@"上传的url -- %s %@",__FUNCTION__,fullUrl);
+    
+    
+    send_request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://msg.fblife.com/api.php?c=send"]];
+    [send_request setPostValue:self.name_textField.text forKey:@"toname"];
+    [send_request setPostValue:self.inputToolBarView.textView.text forKey:@"content"];
+    [send_request setPostValue:[personal  getMyAuthkey] forKey:@"authcode"];
+    
+    
+    __weak typeof(send_request) wrequest = send_request;
+    
+    [wrequest setCompletionBlock:^{
+        @try {
+            NSDictionary * dictionary = [send_request.responseData objectFromJSONData];
+            
+            NSString * errcode = [dictionary objectForKey:@"errcode"];
+            NSString * bbsinfo = [dictionary objectForKey:@"bbsinfo"];
+            NSLog(@"dic ---  %@   errcode --- %@  bbsinfo --  %@",dictionary,errcode,bbsinfo);
+            
+            if ([errcode intValue] == 0)
+            {
+                if (_delegate && [_delegate respondsToSelector:@selector(sucessToSendWithName:Uid:)])
+                {
+                    [_delegate sucessToSendWithName:self.name_textField.text Uid:bbsinfo];
+                }
+                
+                [self dismissViewControllerAnimated:NO completion:nil];
+            }else
+            {
+                [zsnApi showAutoHiddenMBProgressWithText:@"该用户不存在" addToView:self.view];
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        
+    }];
+    
+    [wrequest setFailedBlock:^{
+        [zsnApi showAutoHiddenMBProgressWithText:@"发送失败" addToView:self.view];
+    }];
+    
+    [send_request startAsynchronous];
     
     
     
-    NSString * fullUrl = [NSString stringWithFormat:@"http://msg.fblife.com/api.php?c=send&toname=%@&&content=%@&authcode=%@",[self.name_textField.text stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[self.inputToolBarView.textView.text stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];
     
-    
-    NSLog(@"上传的url -- %s %@",__FUNCTION__,fullUrl);
+    /*
     
     ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullUrl]];
     
@@ -142,6 +190,7 @@
     
     
     [request startAsynchronous];
+     */
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -414,13 +463,9 @@
 -(void)friendList:(UIButton *)button
 {
     FriendListViewController * list = [[FriendListViewController alloc] init];
-    
     list.delegate = self;
-    
     list.title_name_string = @"联系人";
-    
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:list];
-    
     [self presentViewController:nav animated:YES completion:NULL];
 }
 
@@ -453,6 +498,14 @@
 + (CGFloat)maxHeight
 {
     return ([JSMessageInputView maxLines] + 1.0f) * [JSMessageInputView textViewLineHeight];
+}
+
+
+#pragma mark - dealloc
+-(void)dealloc
+{
+    [send_request cancelAuthentication];
+    send_request = nil;
 }
 
 @end

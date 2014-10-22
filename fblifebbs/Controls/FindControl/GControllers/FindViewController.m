@@ -222,6 +222,13 @@
         
     }else if (indexPath.section == 0 && indexPath.row == 0){//好友动态
         
+        BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+        if (!isLogIn) {
+            LogInViewController * logIn = [LogInViewController sharedManager];
+            [self presentViewController:logIn animated:YES completion:nil];
+            return;
+        }
+        
         FriendCircleViewController * circle = [[FriendCircleViewController alloc] init];
         [self PushControllerWith:circle WithAnimation:YES];
         

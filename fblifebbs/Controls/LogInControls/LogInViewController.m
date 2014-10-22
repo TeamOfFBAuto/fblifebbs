@@ -68,9 +68,9 @@
 
 -(void)loadDown
 {
-    logoImageView.center = CGPointMake(160,42 + 49.5/2 + (IOS_VERSION>=7.0?64:44));
+    logoImageView.center = CGPointMake(logoImageView.frame.origin.x,42 + 49.5/2 + (IOS_VERSION>=7.0?64:44));
     
-    denglu_imageView.frame = CGRectMake(23.5/2,logoImageView.center.y+25+10,296.5,185);
+    denglu_imageView.frame = CGRectMake(denglu_imageView.frame.origin.x,logoImageView.center.y+25+10,296.5,185);
     
     isShow = NO;
 }
@@ -103,33 +103,21 @@
     }
     
     UILabel * title_label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,100,44)];
-    
     title_label.text = @"登录";
-    
     title_label.textColor = [UIColor blackColor];
-    
     title_label.backgroundColor = [UIColor clearColor];
-    
     title_label.textAlignment = NSTextAlignmentCenter;
-    
     title_label.font =TITLEFONT;
-    
     NavTitle.titleView = title_label;
     
-    
     UIBarButtonItem * spaceBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    
     spaceBar.width = MY_MACRO_NAME?-5:5;
     
     
     UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,31/2,32/2)];
-    
     [button_back addTarget:self action:@selector(backH) forControlEvents:UIControlEventTouchUpInside];
-    
     [button_back setBackgroundImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
-    
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-    
     NavTitle.leftBarButtonItems=@[spaceBar,back_item];
     
     
@@ -137,29 +125,18 @@
     [nav setItems:[NSArray arrayWithObject:NavTitle]];
     ///////////////////////////////////
     
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    
     UIImage * logo_image = [UIImage imageNamed:@"logoInLogo.png"];
-    
     logoImageView = [[UIImageView alloc] initWithImage:logo_image];
-    
-    logoImageView.center = CGPointMake(160,42 + 49.5/2 + (IOS_VERSION>=7.0?64:44));
-    
+    logoImageView.center = CGPointMake(DEVICE_WIDTH/2.0,42 + 49.5/2 + (IOS_VERSION>=7.0?64:44));
     [self.view addSubview:logoImageView];
     
-    
-    
-    denglu_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(23.5/2,logoImageView.center.y+25+10,296.5,185)];
-    
+    denglu_imageView = [[UIImageView alloc] initWithFrame:CGRectMake((DEVICE_WIDTH-296.5)/2.0,logoImageView.center.y+25+10,296.5,185)];
     denglu_imageView.userInteractionEnabled = YES;
-    
     denglu_imageView.image = [UIImage imageNamed:@"llongInBackImage.png"];
-    
     [self.view addSubview:denglu_imageView];
     
     
-    userNameField=[[UITextField alloc] initWithFrame:CGRectMake(70,18,[UIScreen mainScreen].applicationFrame.size.width-110,42)];
+    userNameField=[[UITextField alloc] initWithFrame:CGRectMake(70,18,209,42)];
     userNameField.backgroundColor=[UIColor clearColor];
     userNameField.contentVerticalAlignment=UIControlContentVerticalAlignmentCenter;//垂直居中
     userNameField.placeholder = @"用户名";                          //默认显示的字
@@ -170,7 +147,7 @@
     userNameField.font = [UIFont systemFontOfSize:16];
     [denglu_imageView addSubview:userNameField];
         
-    pwNameField=[[UITextField alloc] initWithFrame:CGRectMake(70,74,[UIScreen mainScreen].applicationFrame.size.width-110,42)];
+    pwNameField=[[UITextField alloc] initWithFrame:CGRectMake(70,74,209,42)];
     pwNameField.delegate = self;
     pwNameField.backgroundColor=[UIColor clearColor];
     pwNameField.contentVerticalAlignment=UIControlContentVerticalAlignmentCenter;//垂直居中
@@ -185,22 +162,12 @@
     
     
     UIButton * logIn_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
     logIn_button.frame = CGRectMake(13,130,272,43);
-    
     logIn_button.backgroundColor = [UIColor clearColor];
-    
     [logIn_button setTitle:@"登 录" forState:UIControlStateNormal];
-    
     [logIn_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
     [logIn_button addTarget:self action:@selector(loginH) forControlEvents:UIControlEventTouchUpInside];
-    
     [denglu_imageView addSubview:logIn_button];
-    
-    
-    
-    
     
     
     /*老版界面
@@ -242,45 +209,27 @@
     
     
     UIButton * zhuce_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    zhuce_button.frame = CGRectMake(82,[UIScreen mainScreen].bounds.size.height-60,65,20);
-    
+    zhuce_button.frame = CGRectMake(DEVICE_WIDTH/2.0-80,[UIScreen mainScreen].bounds.size.height-60,65,20);
     [zhuce_button setTitle:@"注册账号" forState:UIControlStateNormal];
-    
     zhuce_button.titleLabel.font = [UIFont systemFontOfSize:16];
-    
     zhuce_button.titleLabel.textAlignment = NSTextAlignmentCenter;
-    
     zhuce_button.backgroundColor = [UIColor clearColor];
-    
     [zhuce_button setTitleColor:RGBCOLOR(82,82,82) forState:UIControlStateNormal];
-    
     [zhuce_button addTarget:self action:@selector(zhuceButton:) forControlEvents:UIControlEventTouchUpInside];
-    
     [self.view addSubview:zhuce_button];
     
-    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(159.5,[UIScreen mainScreen].bounds.size.height-58,0.5,16)];
-    
+    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH/2.0,[UIScreen mainScreen].bounds.size.height-58,0.5,16)];
     lineView.backgroundColor = RGBCOLOR(65,65,65);
-    
     [self.view addSubview:lineView];
     
     UIButton * zhaohui_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    zhaohui_button.frame = CGRectMake(174,[UIScreen mainScreen].bounds.size.height-60,65,20);
-    
+    zhaohui_button.frame = CGRectMake(DEVICE_WIDTH/2.0+14,[UIScreen mainScreen].bounds.size.height-60,65,20);
     zhaohui_button.titleLabel.font = [UIFont systemFontOfSize:16];
-    
     [zhaohui_button setTitleColor:RGBCOLOR(82,82,82) forState:UIControlStateNormal];
-    
     [zhaohui_button setTitle:@"忘记密码" forState:UIControlStateNormal];
-    
     [zhaohui_button addTarget:self action:@selector(zhaohuiButton:) forControlEvents:UIControlEventTouchUpInside];
-    
     zhaohui_button.backgroundColor = [UIColor clearColor];
-    
     zhaohui_button.titleLabel.textAlignment = NSTextAlignmentCenter;
-    
     [self.view addSubview:zhaohui_button];
     
     [self.view addSubview:nav];
@@ -570,9 +519,9 @@
     [userNameField resignFirstResponder];
     
     [UIView animateWithDuration:0.3 animations:^{
-        logoImageView.center = CGPointMake(160,42 + 49.5/2 + (IOS_VERSION>=7.0?64:44));
+        logoImageView.center = CGPointMake(logoImageView.frame.origin.x,42 + 49.5/2 + (IOS_VERSION>=7.0?64:44));
         
-        denglu_imageView.frame = CGRectMake(23.5/2,logoImageView.center.y+25+10,296.5,185);
+        denglu_imageView.frame = CGRectMake(denglu_imageView.frame.origin.x,logoImageView.center.y+25+10,296.5,185);
         
         
     } completion:^(BOOL finished) {
@@ -592,9 +541,9 @@
             isShow = YES;
             
             [UIView animateWithDuration:0.4 animations:^{
-                logoImageView.center = CGPointMake(160,-49.5/2);
+                logoImageView.center = CGPointMake(DEVICE_WIDTH/2.0,-49.5/2);
                 
-                denglu_imageView.center = CGPointMake(160,(IOS_VERSION>=7.0?64:44)+185/2);
+                denglu_imageView.center = CGPointMake(DEVICE_WIDTH/2.0f,(IOS_VERSION>=7.0?64:44)+185/2);
                 
             } completion:^(BOOL finished) {
                 

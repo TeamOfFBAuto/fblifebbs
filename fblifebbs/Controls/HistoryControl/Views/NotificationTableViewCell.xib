@@ -45,7 +45,7 @@
                 <outlet property="date_label" destination="MKY-rs-cdw" id="UEI-1g-hyP"/>
                 <outlet property="header_imageView" destination="Oe7-5P-DK1" id="TdL-ni-hPJ"/>
             </connections>
-            <point key="canvasLocation" x="284" y="314"/>
+            <point key="canvasLocation" x="14" y="370"/>
         </tableViewCell>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

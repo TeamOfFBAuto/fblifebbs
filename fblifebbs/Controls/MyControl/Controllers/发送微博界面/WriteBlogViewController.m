@@ -115,11 +115,8 @@
     nav = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,0,aScreenRect.size.width,IOS_VERSION>=7.0?64:44)];
     //创建navbaritem
     UINavigationItem *NavTitle = [[UINavigationItem alloc] initWithTitle:@"发表微博"];
-    
     nav.barStyle = UIBarStyleBlackOpaque;
-    
     [nav pushNavigationItem:NavTitle animated:YES];
-    
     [self.view addSubview:nav];
     
     
@@ -138,17 +135,11 @@
     NavTitle.leftBarButtonItems=@[space_button,back_item];
     
     UIButton * send_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
     send_button.frame = CGRectMake(0,0,30,44);
-    
     send_button.titleLabel.textAlignment = NSTextAlignmentRight;
-    
     [send_button setTitle:@"发送" forState:UIControlStateNormal];
-    
     send_button.titleLabel.font = [UIFont systemFontOfSize:15];
-    
     [send_button setTitleColor:RGBCOLOR(89,89,89) forState:UIControlStateNormal];
-    
     [send_button addTarget:self action:@selector(loginH) forControlEvents:UIControlEventTouchUpInside];
     
     NavTitle.rightBarButtonItems = @[space_button,[[UIBarButtonItem alloc] initWithCustomView:send_button]];
@@ -162,28 +153,18 @@
     }
     
     UILabel * title_label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,100,44)];
-    
     title_label.text = @"发表微博";
-    
     title_label.backgroundColor = [UIColor clearColor];
-    
     title_label.textColor = [UIColor blackColor];
-    
     title_label.textAlignment = NSTextAlignmentCenter;
-    
     title_label.font = TITLEFONT;
-    
     NavTitle.titleView = title_label;
     
     
-    
-    myTextView = [[UITextView alloc] initWithFrame:CGRectMake(10,IOS_VERSION>=7.0?64:55,300,100)];
+    myTextView = [[UITextView alloc] initWithFrame:CGRectMake(10,IOS_VERSION>=7.0?64:55,DEVICE_WIDTH-20,100)];
     myTextView.backgroundColor =IOS_VERSION>=7.0?[UIColor whiteColor]:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1];
-    
     myTextView.backgroundColor = [UIColor clearColor];
-    
     myTextView.delegate = self;
-    
     if (theText.length ==0 || [theText isEqualToString:@""])
     {
         myTextView.text = @"分享新鲜事......";
@@ -201,14 +182,10 @@
     myTextView.font = [UIFont systemFontOfSize:17];
     myTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     myTextView.scrollEnabled = YES;
-    //    [myTextView sizeToFit];
     [myTextView becomeFirstResponder];
-    
     [self.view addSubview:myTextView];
     
-    
-    
-    options_view = [[UIView alloc] initWithFrame:CGRectMake(0,IOS_VERSION>=7.0?79:59,320,73)];
+    options_view = [[UIView alloc] initWithFrame:CGRectMake(0,IOS_VERSION>=7.0?79:59,DEVICE_WIDTH,73)];
     options_view.backgroundColor = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1];
     [self.view addSubview:options_view];
     
@@ -233,15 +210,10 @@
     
     
     wordsNumber_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    wordsNumber_button.frame = CGRectMake(260,2,60,25);
-    
+    wordsNumber_button.frame = CGRectMake(DEVICE_WIDTH-60,2,60,25);
     [wordsNumber_button setTitle:@"140" forState:UIControlStateNormal];
-    
     [wordsNumber_button setTitleColor:RGBCOLOR(154,162,166) forState:UIControlStateNormal];
-    
     wordsNumber_button.titleLabel.font = [UIFont systemFontOfSize:14];
-    
     [wordsNumber_button setTitleEdgeInsets:UIEdgeInsetsMake(1,0,0,12)];
     
     
@@ -250,127 +222,78 @@
     UIImageView *xximg=[[UIImageView alloc]initWithFrame:CGRectMake(40,9,9,9)];
     xximg.image=[UIImage imageNamed:@"writeblog_delete_image.png"];
     [wordsNumber_button addSubview:xximg];
-    
     wordsNumber_button.backgroundColor = [UIColor clearColor];
-    
     [wordsNumber_button setImageEdgeInsets:UIEdgeInsetsMake(2,35,0,0)];
-    
     [wordsNumber_button addTarget:self action:@selector(doTap:) forControlEvents:UIControlEventTouchUpInside
      ];
-    
     [options_view addSubview:wordsNumber_button];
     
     
     UIImageView * faceImageView = [[UIImageView alloc] initWithImage:[personal getImageWithName:@"write_blog_back@2x"]];
-    
     faceImageView.userInteractionEnabled = YES;
-    
-    faceImageView.frame = CGRectMake(0,30,320,43);
-    
+    faceImageView.frame = CGRectMake(0,30,DEVICE_WIDTH,43);
     [options_view addSubview:faceImageView];
-    
     
     NSArray * array = [NSArray arrayWithObjects:@"photo_write",@"where_write",@"talk_write",@"write_blog_at",@"smile_write",@"write_blog_key",nil];
     
     for (int i = 0;i < 5;i++)
     {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        
         button.tag = 1000 + i;
-        
         
         if (i == 1) {
             UIImageView * imageView11 = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,30/2,44/2)];
-            
             imageView11.center = CGPointMake(12.5,12.5);
-            
             imageView11.image = [UIImage imageNamed:@"where_write.png"];
-            
             [button addSubview:imageView11];
         }else{
             [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[array objectAtIndex:i]]] forState:UIControlStateNormal];
         }
         
-        
         [button addTarget:self action:@selector(doButton:) forControlEvents:UIControlEventTouchUpInside];
-        
         button.frame = CGRectMake(12 + 68.75 * i,7.5,25,25);
-        
         [faceImageView addSubview:button];
     }
     
-    
-    
     UIButton * deleteImageView = [UIButton buttonWithType:UIButtonTypeCustom];
-    
     deleteImageView.frame = CGRectMake(0,0,25,20);
-    
     deleteImageView.hidden = YES;
-    
     deleteImageView.center = CGPointMake(0,0);
-    
     deleteImageView.tag = 999999;
-    
     [deleteImageView setImage:[personal getImageWithName:@"delete"] forState:UIControlStateNormal];
-    
     [deleteImageView addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
-    
     [imageView addSubview:deleteImageView];
     
     
-    
-    scrollView = [[WeiBoFaceScrollView alloc] initWithFrame:CGRectMake(0,(iPhone5?(568-215):(480-215))-(MY_MACRO_NAME?0:20),320,215) target:self];
+    scrollView = [[WeiBoFaceScrollView alloc] initWithFrame:CGRectMake(0,(iPhone5?(568-215):(480-215))-(MY_MACRO_NAME?0:20),DEVICE_WIDTH,215) target:self];
     scrollView.hidden = YES;
     scrollView.delegate = self;
     scrollView.bounces = NO;
-    scrollView.contentSize = CGSizeMake(320*3,0);
+    scrollView.contentSize = CGSizeMake(DEVICE_WIDTH*3,0);
     [self.view addSubview:scrollView];
     
     
     
-    pageControl = [[GrayPageControl alloc] initWithFrame:CGRectMake(0,0,320,25)];
-    
-    //    pageControl.center = CGPointMake(160,iPhone5?(568-20-(IOS_VERSION>=7.0?0:20)):(480-20-(IOS_VERSION>=7.0?0:20)));
-    
-    pageControl.center = CGPointMake(160,215-20);
-    
+    pageControl = [[GrayPageControl alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,25)];
+    pageControl.center = CGPointMake(DEVICE_WIDTH/2,215-20);
     pageControl.numberOfPages = 3;
-    
     pageControl.currentPage = 0;
-    
     [scrollView addSubview:pageControl];
     
     
-    
-    morePicView = [[UIView alloc] initWithFrame:CGRectMake(0,iPhone5?(568-215-(IOS_VERSION>=7.0?0:20)):(480-215-(IOS_VERSION>=7.0?0:20)),320,215)];
-    
+    morePicView = [[UIView alloc] initWithFrame:CGRectMake(0,iPhone5?(568-215-(IOS_VERSION>=7.0?0:20)):(480-215-(IOS_VERSION>=7.0?0:20)),DEVICE_WIDTH,215)];
     morePicView.backgroundColor = RGBCOLOR(241,241,241);
-    
     morePicView.hidden = YES;
-    
     [self.view addSubview:morePicView];
     
-    
-    morePicImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,320,135)];
-    
+    morePicImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,135)];
     morePicImageView.userInteractionEnabled = YES;
-    
     morePicImageView.backgroundColor = RGBCOLOR(241,241,241);
-    
     [morePicView addSubview:morePicImageView];
-    
     
     if (self.myAllimgUrl.count>0)
     {
         [self comeonmyimage];
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            [self comeonmyimage];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                
-//                NSLog(@"我艹 -----  %@",allImageArray);
-//                [self setbutton];
-//            });
-//        });
     }else
     {
         [self setbutton];
@@ -378,29 +301,18 @@
     
     
     UILabel * highPic_titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,150,200,44)];
-    
     highPic_titleLabel.text = @"开启上传高清图片";
-    
     highPic_titleLabel.backgroundColor = [UIColor clearColor];
-    
     highPic_titleLabel.textAlignment = NSTextAlignmentLeft;
-    
     highPic_titleLabel.textColor = RGBCOLOR(43,43,43);
-    
     [morePicView addSubview:highPic_titleLabel];
     
     
     UISwitch * highPicSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(160,156,80,25)];
-    
     highPicSwitch.on = YES;
-    
     image_quality = YES;
-    
     [highPicSwitch addTarget:self action:@selector(chooseImageQuality:) forControlEvents:UIControlEventValueChanged];
-    
     [morePicView addSubview:highPicSwitch];
-    
-    
     
     if (!hud)
     {

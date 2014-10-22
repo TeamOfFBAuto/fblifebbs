@@ -247,11 +247,8 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
         return;
     }
     
-    
     nav.transform = CGAffineTransformIdentity;
-    
     back_view.transform = CGAffineTransformIdentity;
-    
     back_view.hidden = YES;
     
     [UIView animateWithDuration:0.5 animations:^{
@@ -261,17 +258,11 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
             nav.transform = CGAffineTransformIdentity;
             back_view.transform = CGAffineTransformIdentity;
             _pagingScrollView.transform = CGAffineTransformIdentity;
-            //            self.progressHUD.transform = CGAffineTransformIdentity;
-            
-            nav.frame = CGRectMake(0,0,320,44);
-            back_view.frame = CGRectMake(0,0,320,40);
-            
-            nav.center = CGPointMake(160,22);
-            back_view.center = CGPointMake(160,iPhone5?568-22:480-20);
-            
-            right_button.frame = CGRectMake(290,10.25,right_button.frame.size.width,right_button.frame.size.height);
-            
-            
+            nav.frame = CGRectMake(0,0,DEVICE_WIDTH,44);
+            back_view.frame = CGRectMake(0,0,DEVICE_WIDTH,40);
+            nav.center = CGPointMake(DEVICE_WIDTH/2,22);
+            back_view.center = CGPointMake(DEVICE_WIDTH/2,DEVICE_HEIGHT-22);
+            right_button.frame = CGRectMake(DEVICE_WIDTH-30,10.25,right_button.frame.size.width,right_button.frame.size.height);
             
             NSLog(@"朝下1");
         }else if (orientation == 2)
@@ -280,42 +271,37 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
             nav.transform = CGAffineTransformIdentity;
             
             _pagingScrollView.transform = CGAffineTransformMakeRotation(-M_PI);
-            nav.frame = CGRectMake(0,0,320,44);
-            back_view.frame = CGRectMake(0,0,320,40);
+            nav.frame = CGRectMake(0,0,DEVICE_WIDTH,44);
+            back_view.frame = CGRectMake(0,0,DEVICE_WIDTH,40);
             nav.transform = CGAffineTransformMakeRotation(-M_PI);
             back_view.transform = CGAffineTransformMakeRotation(-M_PI);
-            //            self.progressHUD.transform = CGAffineTransformMakeRotation(-M_PI);
-            nav.center = CGPointMake(160,iPhone5?568-22:480-22);
-            back_view.center = CGPointMake(160,20);
-            
-            right_button.frame = CGRectMake(290,10.25,right_button.frame.size.width,right_button.frame.size.height);
+            nav.center = CGPointMake(DEVICE_WIDTH/2,DEVICE_HEIGHT-22);
+            back_view.center = CGPointMake(DEVICE_WIDTH/2,20);
+            right_button.frame = CGRectMake(DEVICE_WIDTH-30,10.25,right_button.frame.size.width,right_button.frame.size.height);
             
             NSLog(@"朝上2");
         }else if (orientation == 3)
         {
             _pagingScrollView.transform = CGAffineTransformMakeRotation(M_PI/2);
-            nav.frame = CGRectMake(0,0,iPhone5?568:480,32);
-            back_view.frame = CGRectMake(0,0,iPhone5?568:480,40);
+            nav.frame = CGRectMake(0,0,DEVICE_HEIGHT,32);
+            back_view.frame = CGRectMake(0,0,DEVICE_HEIGHT,40);
             nav.transform = CGAffineTransformMakeRotation(M_PI/2);
             back_view.transform = CGAffineTransformMakeRotation(M_PI/2);
-            //            self.progressHUD.transform = CGAffineTransformMakeRotation(M_PI/2);
-            nav.center = CGPointMake(320-16,iPhone5?568/2:480/2);
-            back_view.center = CGPointMake(20,iPhone5?568/2:480/2);
-            
-            right_button.frame = CGRectMake(iPhone5?568-30:480-30,10.25,right_button.frame.size.width,right_button.frame.size.height);
+            nav.center = CGPointMake(DEVICE_WIDTH-16,DEVICE_HEIGHT/2);
+            back_view.center = CGPointMake(20,DEVICE_HEIGHT/2);
+            right_button.frame = CGRectMake(DEVICE_HEIGHT-30,10.25,right_button.frame.size.width,right_button.frame.size.height);
             
             NSLog(@"朝右3");
         }else
         {
             _pagingScrollView.transform = CGAffineTransformMakeRotation(M_PI*1.5);
-            nav.frame = CGRectMake(0,0,iPhone5?568:480,32);
-            back_view.frame = CGRectMake(0,0,iPhone5?568:480,40);
+            nav.frame = CGRectMake(0,0,DEVICE_HEIGHT,32);
+            back_view.frame = CGRectMake(0,0,DEVICE_HEIGHT,40);
             nav.transform = CGAffineTransformMakeRotation(M_PI*1.5);
             back_view.transform = CGAffineTransformMakeRotation(M_PI*1.5);
-            //            self.progressHUD.transform = CGAffineTransformMakeRotation(M_PI*1.5);
-            nav.center = CGPointMake(20,iPhone5?568/2:480/2);
-            back_view.center = CGPointMake(320-16,iPhone5?568/2:480/2);
-            right_button.frame = CGRectMake(iPhone5?568-30:480-30,10.25,right_button.frame.size.width,right_button.frame.size.height);
+            nav.center = CGPointMake(20,DEVICE_HEIGHT/2);
+            back_view.center = CGPointMake(DEVICE_WIDTH-16,DEVICE_HEIGHT/2);
+            right_button.frame = CGRectMake(DEVICE_HEIGHT-30,10.25,right_button.frame.size.width,right_button.frame.size.height);
             
             NSLog(@"朝左4");
         }
@@ -353,7 +339,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     self.view.backgroundColor = [UIColor blackColor];
     
     // Setup paging scrolling view
-    _pagingScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,320,iPhone5?568:480)];
+    _pagingScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT)];
     //	_pagingScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _pagingScrollView.pagingEnabled = YES;
     _pagingScrollView.delegate = self;
@@ -364,7 +350,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     [self.view addSubview:_pagingScrollView];
     
     // Toolbar
-    _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,iPhone5?568-44:480-44,320,44)];
+    _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,DEVICE_HEIGHT-44,DEVICE_WIDTH,44)];
     _toolbar.tintColor = nil;
     if ([[UIToolbar class] respondsToSelector:@selector(appearance)]) {
         [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
@@ -394,83 +380,28 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     }
     
     
-    
-    back_view = [[UIView alloc] initWithFrame:CGRectMake(0,[UIScreen mainScreen].bounds.size.height-40,320,40)];
+    back_view = [[UIView alloc] initWithFrame:CGRectMake(0,DEVICE_HEIGHT-40,DEVICE_WIDTH,40)];
     back_view.autoresizesSubviews = NO;
-    
     back_view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
-    
     [self.view addSubview:back_view];
     
     
-    title_label = [[UILabel alloc] initWithFrame:CGRectMake(10,0,250,40)];
-    
+    title_label = [[UILabel alloc] initWithFrame:CGRectMake(10,0,DEVICE_WIDTH-70,40)];
     title_label.textAlignment = NSTextAlignmentLeft;
-    
     title_label.text = [NSString stringWithFormat:@"%d/%d  %@",_currentPageIndex+1,[self numberOfPhotos],self.title_string];
-    
     title_label.textColor = [UIColor whiteColor];
-    
     title_label.font = [UIFont systemFontOfSize:15];
-    
     title_label.backgroundColor = [UIColor clearColor];
-    
     [back_view addSubview:title_label];
     
     
-    
     right_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    right_button.frame = CGRectMake(290,10.25,30,20);
-    
+    right_button.frame = CGRectMake(DEVICE_WIDTH-30,10.25,30,20);
     right_button.backgroundColor = [UIColor clearColor];
-    
     [right_button setImage:[UIImage imageNamed:@"image_dowoland.png"] forState:UIControlStateNormal];
-    
     [right_button addTarget:self action:@selector(savePhoto) forControlEvents:UIControlEventTouchUpInside];
-    
     [back_view addSubview:right_button];
     
-    
-    
-    /*
-     //创建navbar
-     nav = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,MY_MACRO_NAME?0:20,320,44)];
-     //创建navbaritem
-     NavTitle = [[UINavigationItem alloc] init];//WithTitle:@"账号登录"];
-     nav.barStyle = UIBarStyleBlack;
-     [nav pushNavigationItem:NavTitle animated:YES];
-     
-     UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-     
-     spaceButton.width = MY_MACRO_NAME?0:5;
-     
-     
-     UIButton * left_button = [UIButton buttonWithType:UIButtonTypeCustom];
-     
-     left_button.frame = CGRectMake(0,0,12,21.5);
-     
-     [left_button setImage:[UIImage imageNamed:@"images_back.png"] forState:UIControlStateNormal];
-     
-     [left_button addTarget:self action:@selector(backH) forControlEvents:UIControlEventTouchUpInside];
-     
-     NavTitle.leftBarButtonItems = @[spaceButton,[[UIBarButtonItem alloc]initWithCustomView:left_button]];
-     
-     
-     UIButton * right_button = [UIButton buttonWithType:UIButtonTypeCustom];
-     
-     right_button.frame = CGRectMake(0,0,20,19.5);
-     
-     [right_button setImage:[UIImage imageNamed:@"image_dowoland.png"] forState:UIControlStateNormal];
-     
-     [right_button addTarget:self action:@selector(savePhoto) forControlEvents:UIControlEventTouchUpInside];
-     
-     NavTitle.rightBarButtonItems = @[spaceButton,[[UIBarButtonItem alloc]initWithCustomView:right_button]];
-     
-     //设置barbutton
-     [nav setItems:[NSArray arrayWithObject:NavTitle]];
-     
-     */
     // Super
     [super viewDidLoad];
     
@@ -485,11 +416,9 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 -(void)backH
 {
     [nav removeFromSuperview];
-    self.wantsFullScreenLayout = NO;
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -528,40 +457,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     [_toolbar setItems:items];
     [items release];
     [self updateNavigation];
-    /*
-     // Navigation buttons
-     if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
-     // We're first on stack so show done button
-     UIBarButtonItem *doneButton = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonPressed:)] autorelease];
-     // Set appearance
-     if ([UIBarButtonItem respondsToSelector:@selector(appearance)]) {
-     [doneButton setBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-     [doneButton setBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
-     [doneButton setBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-     [doneButton setBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
-     [doneButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateNormal];
-     [doneButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateHighlighted];
-     }
-     self.navigationItem.rightBarButtonItem = doneButton;
-     } else {
-     // We're not first so show back button
-     UIViewController *previousViewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-     NSString *backButtonTitle = previousViewController.navigationItem.backBarButtonItem ? previousViewController.navigationItem.backBarButtonItem.title : previousViewController.title;
-     UIBarButtonItem *newBackButton = [[[UIBarButtonItem alloc] initWithTitle:backButtonTitle style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-     // Appearance
-     if ([UIBarButtonItem respondsToSelector:@selector(appearance)]) {
-     [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-     [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
-     [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-     [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
-     [newBackButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateNormal];
-     [newBackButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateHighlighted];
-     }
-     self.previousViewControllerBackButton = previousViewController.navigationItem.backBarButtonItem; // remember previous
-     previousViewController.navigationItem.backBarButtonItem = newBackButton;
-     }
-     */
-    
+
     // Content offset
     _pagingScrollView.contentOffset = [self contentOffsetForPageAtIndex:_currentPageIndex];
     [self tilePages];
@@ -587,31 +483,6 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 - (void)viewWillAppear:(BOOL)animated {
     // Super
     [super viewWillAppear:animated];
-    
-    /*
-     
-     
-     // Layout manually (iOS < 5)
-     if (SYSTEM_VERSION_LESS_THAN(@"5")) [self viewWillLayoutSubviews];
-     
-     // Status bar
-     if (self.wantsFullScreenLayout && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-     _previousStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
-     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:animated];
-     }
-     
-     // Navigation bar appearance
-     if (!_viewIsActive && [self.navigationController.viewControllers objectAtIndex:0] != self) {
-     [self storePreviousNavBarAppearance];
-     }
-     [self setNavBarAppearance:animated];
-     
-     // Update UI
-     [self hideControlsAfterDelay];
-     
-     
-     */
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -1291,7 +1162,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     //    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     [self setControlsHidden:![self areControlsHidden] animated:YES permanent:NO];
 }
@@ -1314,7 +1185,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 
 - (void)doneButtonPressed:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)actionButtonPressed:(id)sender
@@ -1488,7 +1359,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             emailer.modalPresentationStyle = UIModalPresentationPageSheet;
         }
-        [self presentModalViewController:emailer animated:YES];
+        [self presentViewController:emailer animated:YES completion:nil];
         [emailer release];
         [self hideProgressHUD:NO];
     }
@@ -1503,7 +1374,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
                                                         delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", nil) otherButtonTitles:nil] autorelease];
         [alert show];
     }
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

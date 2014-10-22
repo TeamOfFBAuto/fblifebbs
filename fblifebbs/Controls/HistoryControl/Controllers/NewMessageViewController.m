@@ -110,14 +110,9 @@
         @try {
             NSDictionary * dictionary = [request.responseData objectFromJSONData];
             
-            
-            
             NSString * errcode = [dictionary objectForKey:@"errcode"];
-            
             NSString * bbsinfo = [dictionary objectForKey:@"bbsinfo"];
-            
             NSLog(@"dic ---  %@   errcode --- %@  bbsinfo --  %@",dictionary,errcode,bbsinfo);
-            
             
             if ([errcode intValue] == 0)
             {
@@ -126,9 +121,7 @@
                     [_delegate sucessToSendWithName:self.name_textField.text Uid:bbsinfo];
                 }
                 
-                
                 [self dismissViewControllerAnimated:NO completion:nil];
-                
             }else
             {
                 UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"提示" message:@"没有该用户" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -141,24 +134,6 @@
         @finally {
             
         }
-        
-        
-        
-        
-        
-        //        NSString *string_test=[NSString stringWithFormat:@"%@",[dictionary objectForKey:@"bbsinfo"]];
-        //
-        //        if ([string_test isEqualToString:@"没有该用户"])
-        //        {
-        //            UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"提示" message:@"没有该用户" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        //            [alertview show];
-        //        }else
-        //        {
-        //            [self dismissModalViewControllerAnimated:NO];
-        //        }
-        
-        
-        
     }];
     
     [request_ setFailedBlock:^{
@@ -192,10 +167,9 @@
     
     float ios7_height = IOS_VERSION>=7.0?20:0;
     
-    
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIView *view_daohang=[[UIView alloc]initWithFrame:CGRectMake(0,0,320,44+ios7_height)];
+    UIView *view_daohang=[[UIView alloc]initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,44+ios7_height)];
     
     view_daohang.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:IOS_VERSION>=7.0?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING]];
     
@@ -215,66 +189,38 @@
     UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,ios7_height,30,44)];
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
     [button_back setImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
-    
-    //    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-    //    self.navigationItem.leftBarButtonItems=@[space_button,back_item];
-    
     [view_daohang addSubview:button_back];
     
-    
-    UIView * backGround_view = [[UIView alloc] initWithFrame:CGRectMake(0,44+ios7_height,320,HEIGHT)];
-    
+    UIView * backGround_view = [[UIView alloc] initWithFrame:CGRectMake(0,44+ios7_height,DEVICE_WIDTH,HEIGHT)];
     backGround_view.backgroundColor = RGBCOLOR(248,248,248);
-    
     [self.view addSubview:backGround_view];
     
     
     UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(10,0,60,HEIGHT)];
-    
     name_label.backgroundColor = [UIColor clearColor];
-    
     name_label.text = @"收件人:";
-    
     name_label.textColor = RGBCOLOR(108,108,108);
-    
     name_label.textAlignment = NSTextAlignmentLeft;
-    
     [backGround_view addSubview:name_label];
     
-    
-    
-    self.name_textField = [[UITextField alloc] initWithFrame:CGRectMake(75,0,210,HEIGHT)];
-    
+    self.name_textField = [[UITextField alloc] initWithFrame:CGRectMake(75,0,DEVICE_WIDTH-110,HEIGHT)];
     [self.name_textField becomeFirstResponder];
-    
     self.name_textField.keyboardType = UIKeyboardTypeTwitter;
-    
     self.name_textField.delegate = self;
-    
     self.name_textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    
     self.name_textField.backgroundColor = [UIColor clearColor];
-    
     [backGround_view addSubview:self.name_textField];
     
     
     UIButton * button = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    
-    button.frame = CGRectMake(285,5,30,30);
-    
-    
+    button.frame = CGRectMake(DEVICE_WIDTH-35,5,30,30);
     [button addTarget:self action:@selector(friendList:) forControlEvents:UIControlEventTouchUpInside];
-    
     [backGround_view addSubview:button];
-    
-    
-    
     
     
     // TODO: refactor
     
     CGSize size = self.view.frame.size;
-    
     CGRect inputFrame = CGRectMake(0.0f, size.height - INPUT_HEIGHT, size.width, INPUT_HEIGHT);
     
     self.inputToolBarView = [[JSMessageInputView alloc] initWithFrame:inputFrame delegate:self];

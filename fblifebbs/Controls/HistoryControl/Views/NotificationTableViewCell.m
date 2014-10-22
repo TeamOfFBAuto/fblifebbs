@@ -46,19 +46,19 @@
     }
     
     
-    
+    _date_label.center = CGPointMake(DEVICE_WIDTH/2.0,_date_label.center.y);
     _date_label.text = date_string;
     [_header_imageView loadImageFromURL:image_url withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
     
     _content_label.text = content_string;
     _content_label.numberOfLines=0;
-    CGSize constraintSize = CGSizeMake(220, MAXFLOAT);
+    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT);
     CGSize labelSize = [content_string sizeWithFont:_content_label.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-    _content_label.frame=CGRectMake(67, 38, 220, labelSize.height);
+    _content_label.frame=CGRectMake(67, 38,DEVICE_WIDTH-100, labelSize.height);
     
     UIImage *image=[UIImage imageNamed:@"talk2.png"];
     _background_imageView.image = [image stretchableImageWithLeftCapWidth:22.f topCapHeight:22.f];
-    _background_imageView.frame=CGRectMake(52, 33, 240,labelSize.height+10);
+    _background_imageView.frame=CGRectMake(52, 33, DEVICE_WIDTH-80,labelSize.height+10);
     
     
 }

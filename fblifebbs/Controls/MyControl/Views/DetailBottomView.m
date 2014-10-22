@@ -16,12 +16,9 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,0.5)];
-        
+        UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,frame.size.width,0.5)];
         line_view.backgroundColor = RGBCOLOR(145,148,153);
-        
         [self addSubview:line_view];
-        
         
         NSArray * array1 = [NSArray arrayWithObjects:@"刷新",@"转发",@"评论",nil];
         

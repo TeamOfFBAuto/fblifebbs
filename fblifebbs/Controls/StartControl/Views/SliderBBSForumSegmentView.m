@@ -55,9 +55,7 @@
         if (i == 0)
         {
             [button setTitleColor:SELECTED_COLOR forState:UIControlStateNormal];
-            
             button.selected = YES;
-            
             [button setImageEdgeInsets:UIEdgeInsetsZero];
         }else
         {

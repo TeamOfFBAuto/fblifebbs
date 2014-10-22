@@ -1323,6 +1323,45 @@
 }
 
 
+#pragma mark - 解码特殊字符
++(NSString *)decodeSpecialCharactersString:(NSString *)input
+{
+    input = [input stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    input = [input stringByReplacingOccurrencesOfString:@"quot;" withString:@"\""];
+    input = [input stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];
+    input = [input stringByReplacingOccurrencesOfString:@"&lt;" withString:@"&lt"];
+    input = [input stringByReplacingOccurrencesOfString:@"&gt;" withString:@"&gt"];
+    
+    input = [input stringByReplacingOccurrencesOfString:@"<" withString:@"&lt"];
+    input = [input stringByReplacingOccurrencesOfString:@">" withString:@"&gt"];
+    return input;
+}
+
+#pragma mark - 特殊字符编码
++(NSString *)encodeSpecialCharactersString:(NSString *)input
+{
+    input = [input stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+    input = [input stringByReplacingOccurrencesOfString:@"\"" withString:@"quot;"];
+    input = [input stringByReplacingOccurrencesOfString:@"'" withString:@"&#039;"];
+    input = [input stringByReplacingOccurrencesOfString:@"<" withString:@"&lt"];
+    input = [input stringByReplacingOccurrencesOfString:@">" withString:@"&gt"];
+    return input;
+}
+#pragma mark - 特殊字符编码转换成特殊字符
++(NSString *)ddecodeSpecialCharactersStringWith:(NSString *)input
+{
+    input = [input stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    input = [input stringByReplacingOccurrencesOfString:@"quot;" withString:@"\""];
+    input = [input stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];
+    input = [input stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    input = [input stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    return input;
+}
+
+
+
+
+
 @end
 
 

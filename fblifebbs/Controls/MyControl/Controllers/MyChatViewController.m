@@ -174,11 +174,33 @@
     }
     
     
-    NSString * fullUrl = [NSString stringWithFormat:@"http://msg.fblife.com/api.php?c=send&toname=%@&&content=%@&authcode=%@",[theToUserName stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[theInfo.msg_message stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];
+//    NSString * fullUrl = [NSString stringWithFormat:@"http://msg.fblife.com/api.php?c=send&toname=%@&&content=%@&authcode=%@",[theToUserName stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[theInfo.msg_message stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];
     
     
-    NSLog(@"上传的url --  %@",fullUrl);
+//    NSLog(@"上传的url --  %@",fullUrl);
     
+    
+    _request_send = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://msg.fblife.com/api.php?c=send"]];
+    [_request_send setPostValue:theToUserName forKey:@"toname"];
+    [_request_send setPostValue:theInfo.msg_message forKey:@"content"];
+    [_request_send setPostValue:[personal  getMyAuthkey] forKey:@"authcode"];
+    
+    
+    __weak typeof(_request_send) wrequest = _request_send;
+    
+    [wrequest setCompletionBlock:^{
+        
+    }];
+    
+    [wrequest setFailedBlock:^{
+        
+    }];
+    
+    [_request_send startAsynchronous];
+    
+
+    
+    /*
     _request_send = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullUrl]];
     
     _request_send.delegate = self;
@@ -196,6 +218,7 @@
     
     
     [_request_send startAsynchronous];
+     */
 }
 
 -(void)loadNewMessage
@@ -663,10 +686,7 @@
             test_cell = [[MyChatViewCell alloc] init];
         }
         
-        
         CGPoint point = [test_cell returnHeightWithArray:[zsnApi stringExchange:info.msg_message] WithType:theType];
-        
-        //        CGPoint point = [self returnHeightWithArray:[zsnApi stringExchange:info.msg_message] WithType:JSBubbleMessageTypeIncoming];
         
         return point.y < 40? 50+25:point.y + 50;
     }else

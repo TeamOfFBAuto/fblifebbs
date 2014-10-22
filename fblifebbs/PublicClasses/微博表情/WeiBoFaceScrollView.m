@@ -19,12 +19,12 @@
         self.showsHorizontalScrollIndicator=NO;
         self.showsVerticalScrollIndicator=NO;
         // Initialization code here.
-        self.backgroundColor=[UIColor whiteColor];
+        self.backgroundColor=[UIColor colorWithRed:237/255.f green:237/255.f  blue:237/255.f  alpha:1];
         //        self.backgroundColor = [UIColor colorWithPatternImage:[personal getImageWithName:@""]];
         self.pagingEnabled=YES;
         self.bounces = YES;
         self.contentSize=CGSizeMake(320*3, 0);
-        for (int i = 0;i < 1;i++)
+        for (int i = 0;i < 3;i++)
         {
             NewFaceView *faceView = [[NewFaceView alloc] initWithFrame:CGRectMake(0+320*i,0,320,215)];
             

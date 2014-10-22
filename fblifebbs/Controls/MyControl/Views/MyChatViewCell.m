@@ -80,7 +80,7 @@
     UIImage * image = [UIImage imageNamed:type == JSBubbleMessageTypeOutgoing ?@"talk1.png":@"talk2.png"];
     
     
-    _background_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(type == JSBubbleMessageTypeOutgoing?(320 - point.x - 65):50,34,point.x+15,point.y)];
+    _background_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(type == JSBubbleMessageTypeOutgoing?(DEVICE_WIDTH - point.x - 65):50,34,point.x+15,point.y)];
     
     _background_imageView.userInteractionEnabled = YES;
     
@@ -124,19 +124,13 @@
     
     
     self.timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(105,5,110,16)];
-    
+    self.timestampLabel.center = CGPointMake(DEVICE_WIDTH/2.0,self.timestampLabel.center.y);
     self.timestampLabel.textAlignment = NSTextAlignmentCenter;
-    
     self.timestampLabel.backgroundColor = [UIColor clearColor];
-    
     self.timestampLabel.layer.cornerRadius = 8;
-    
     self.timestampLabel.backgroundColor = [RGBCOLOR(245,245,245) colorWithAlphaComponent:0.8];
-    
     self.timestampLabel.textAlignment = NSTextAlignmentCenter;
-    
     self.timestampLabel.textColor = RGBCOLOR(125,123,124);
-    
     
     NSString *str___=[NSString stringWithFormat:@"%@",info.date_now];
     if (str___.length==0||[str___ isEqualToString:@"(null)"]) {
@@ -146,9 +140,7 @@
         
     }
     
-    
     self.timestampLabel.font = [UIFont systemFontOfSize:12];
-    
     [self.contentView addSubview:self.timestampLabel];
     
     
@@ -284,40 +276,49 @@
                 
             }else
             {
-                NSString * clean_string = string;
                 
-                while ([clean_string rangeOfString:@"[url]"].length && [clean_string rangeOfString:@"[/url]"].length)
-                {
-                    NSString * theurl = [[clean_string substringToIndex:[clean_string rangeOfString:@"[/url]"].location] substringFromIndex:[clean_string rangeOfString:@"[url]"].location+5];
-                    
-                    clean_string = [clean_string stringByReplacingOccurrencesOfString:@"[url]" withString:[NSString stringWithFormat:@"<a href=\"%@\">",theurl]];
-                    clean_string = [clean_string stringByReplacingOccurrencesOfString:@"[/url]" withString:@"</a>"];
-                }
+                /*
+                 NSString * clean_string = string;
+                 
+                 while ([clean_string rangeOfString:@"[url]"].length && [clean_string rangeOfString:@"[/url]"].length)
+                 {
+                 NSString * theurl = [[clean_string substringToIndex:[clean_string rangeOfString:@"[/url]"].location] substringFromIndex:[clean_string rangeOfString:@"[url]"].location+5];
+                 
+                 clean_string = [clean_string stringByReplacingOccurrencesOfString:@"[url]" withString:[NSString stringWithFormat:@"<a href=\"%@\">",theurl]];
+                 clean_string = [clean_string stringByReplacingOccurrencesOfString:@"[/url]" withString:@"</a>"];
+                 }
+                 
+                 
+                 CGRect content_frame = CGRectMake(theType ==MyChatViewCellTypeIncoming?12:7,theHeight?theHeight:6,200,50);
+                 
+                 RTLabel * content_label = [[RTLabel alloc] initWithFrame:content_frame];
+                 
+                 content_label.text = @"不错<>&";//[[ZSNApi FBImageChange:clean_string] stringByReplacingEmojiCheatCodesWithUnicode];
+                 
+                 content_label.textColor = theType==MyChatViewCellTypeIncoming?[UIColor whiteColor]:RGBCOLOR(3,3,3);
+                 
+                 content_label.font = [UIFont systemFontOfSize:14];
+                 
+                 content_label.lineBreakMode = NSLineBreakByCharWrapping;
+                 
+                 
+                 CGSize optimumSize = [content_label optimumSize];
+                 content_frame.size.height = optimumSize.height + 10;
+                 content_label.frame = content_frame;
+                 content_label.backgroundColor = [UIColor clearColor];
+                 [_background_imageView addSubview:content_label];
+                 theHeight = theHeight + optimumSize.height;
+                 */
                 
-                
-                
-                CGRect content_frame = CGRectMake(theType ==JSBubbleMessageTypeIncoming?10:5,theHeight?theHeight:5,250,50);
-                
-                RTLabel * content_label = [[RTLabel alloc] initWithFrame:content_frame];
-                
-                content_label.text = clean_string;
-                
-                content_label.backgroundColor = [UIColor clearColor];
-                
-                content_label.font = [UIFont systemFontOfSize:15];
-                
-                content_label.lineBreakMode = NSLineBreakByCharWrapping;
-                
-                
-                CGSize optimumSize = [content_label optimumSize];
-                
-                content_frame.size.height = optimumSize.height + 10;
-                
-                content_label.frame = content_frame;
-                
+                CGRect content_frame = CGRectMake(theType ==JSBubbleMessageTypeIncoming?12:7,theHeight?theHeight:6,200,50);
+                OHAttributedLabel * content_label = [[OHAttributedLabel alloc] initWithFrame:content_frame];
+                content_label.textColor = theType==JSBubbleMessageTypeIncoming?[UIColor whiteColor]:RGBCOLOR(3,3,3);
+                content_label.font = [UIFont systemFontOfSize:14];
                 [_background_imageView addSubview:content_label];
                 
-                theHeight = theHeight + optimumSize.height;
+                [OHLableHelper creatAttributedText:[[zsnApi decodeSpecialCharactersString:string] stringByReplacingEmojiCheatCodesWithUnicode] Label:content_label OHDelegate:self WithWidht:16 WithHeight:18 WithLineBreak:NO];
+                
+                theHeight = theHeight + content_label.frame.size.height;
             }
         }
     }
@@ -349,7 +350,7 @@
     
     if(type == JSBubbleMessageTypeOutgoing)
     {
-        avatarX = (self.contentView.frame.size.width - kJSAvatarSize - 10);
+        avatarX = (DEVICE_WIDTH - kJSAvatarSize - 10);
     }
     
     self.avatarImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(avatarX,
@@ -397,42 +398,58 @@
                 theHeight = theHeight + image_height+5;
             }else
             {
-                NSString * clean_string = string;
                 
-                while ([clean_string rangeOfString:@"[url]"].length && [clean_string rangeOfString:@"[/url]"].length)
-                {
-                    NSString * theurl = [[clean_string substringToIndex:[clean_string rangeOfString:@"[/url]"].location] substringFromIndex:[clean_string rangeOfString:@"[url]"].location+5];
-                    
-                    clean_string = [clean_string stringByReplacingOccurrencesOfString:@"[url]" withString:[NSString stringWithFormat:@"<a href=\"%@\">",theurl]];
-                    clean_string = [clean_string stringByReplacingOccurrencesOfString:@"[/url]" withString:@"</a>"];
-                }
+                /*
+                 NSString * clean_string = string;
+                 
+                 while ([clean_string rangeOfString:@"[url]"].length && [clean_string rangeOfString:@"[/url]"].length)
+                 {
+                 NSString * theurl = [[clean_string substringToIndex:[clean_string rangeOfString:@"[/url]"].location] substringFromIndex:[clean_string rangeOfString:@"[url]"].location+5];
+                 
+                 clean_string = [clean_string stringByReplacingOccurrencesOfString:@"[url]" withString:[NSString stringWithFormat:@"<a href=\"%@\">",theurl]];
+                 clean_string = [clean_string stringByReplacingOccurrencesOfString:@"[/url]" withString:@"</a>"];
+                 }
+                 
+                 
+                 
+                 CGRect content_frame = CGRectMake(theType ==MyChatViewCellTypeIncoming?10:5,theHeight?theHeight:6,200,50);
+                 
+                 RTLabel * content_label = [[RTLabel alloc] initWithFrame:content_frame];
+                 
+                 content_label.text = [[ZSNApi FBImageChange:clean_string] stringByReplacingEmojiCheatCodesWithUnicode];
+                 
+                 content_label.font = [UIFont systemFontOfSize:14];
+                 
+                 content_label.lineBreakMode = NSLineBreakByCharWrapping;
+                 
+                 CGSize optimumSize = [content_label optimumSize];
+                 
+                 content_frame.size.height = optimumSize.height + 10;
+                 
+                 content_label.frame = content_frame;
+                 
+                 theHeight = theHeight + optimumSize.height + 5;
+                 
+                 theWidth = optimumSize.width>theWidth?optimumSize.width:theWidth;
+                 if (optimumSize.width >= 190 || optimumSize.width == 0)
+                 {
+                 theWidth = 200;
+                 }
+                 */
                 
                 
+                CGRect content_frame = CGRectMake(theType ==JSBubbleMessageTypeIncoming?10:5,theHeight?theHeight:6,200,50);
+                OHAttributedLabel * content_label = [[OHAttributedLabel alloc] initWithFrame:content_frame];
+                content_label.textColor = theType==JSBubbleMessageTypeIncoming?[UIColor whiteColor]:RGBCOLOR(3,3,3);
+                content_label.font = [UIFont systemFontOfSize:14];
                 
-                CGRect content_frame = CGRectMake(theType ==JSBubbleMessageTypeIncoming?10:5,theHeight?theHeight:5,250,50);
+                [OHLableHelper creatAttributedText:[[zsnApi decodeSpecialCharactersString:string] stringByReplacingEmojiCheatCodesWithUnicode] Label:content_label OHDelegate:self WithWidht:16 WithHeight:18 WithLineBreak:NO];
                 
-                RTLabel * content_label = [[RTLabel alloc] initWithFrame:content_frame];
+                theHeight = theHeight + content_label.frame.size.height + 5;
                 
-                content_label.text = clean_string;
-                
-                content_label.font = [UIFont systemFontOfSize:15];
-                
-                content_label.lineBreakMode = NSLineBreakByCharWrapping;
-                
-                
-                CGSize optimumSize = [content_label optimumSize];
-                
-                content_frame.size.height = optimumSize.height + 10;
-                
-                content_label.frame = content_frame;
-                
-                theHeight = theHeight + optimumSize.height + 5;
-                
-                theWidth = optimumSize.width>theWidth?optimumSize.width:theWidth;
-
-                if (optimumSize.width >= 240 || optimumSize.width == 0)
-                {
-                    theWidth = 245;
+                theWidth = (content_label.frame.size.width>theWidth?content_label.frame.size.width:theWidth)+10;
+                if (content_label.frame.size.width >= 190 || content_label.frame.size.width == 0) {
+                    theWidth = 210;
                 }
             }
         }

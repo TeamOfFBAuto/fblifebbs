@@ -25,14 +25,27 @@
     page = self.tag - 100;
     for (int i = 0; i < 4; i++)
     {
-        for (int j = 0; j < 6; j++)
+        for (int j = 0; j < 7; j++)
         {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.tag = i*6+j+page*28+1;
+            button.tag = i*7+j+page*28+1;
             [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-            button.frame = CGRectMake(17+51.6*j,16.75+42*i,28,28);
+            button.frame = CGRectMake(0,0,25,28);
             
-            [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Expression_%d",i*6 + j + page*28+1]] forState:UIControlStateNormal];
+            if (j==0)
+            {
+                button.center = CGPointMake(23,20.75+i*42);
+            }else if (j==6)
+            {
+                button.center = CGPointMake(296.5,20.75+i*42);
+            }else
+            {
+                button.center = CGPointMake(69+45.5*(j-1),20.75+i*42);
+            }
+            
+            
+            
+            [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"face%d",i*7 + j + page*28+1]] forState:UIControlStateNormal];
             if (button.imageView.image == nil)
             {
                 [button setEnabled:NO];
@@ -47,30 +60,30 @@
     
     NSLog(@"button.tag === %d",button.tag);
     NSString *name;
-    if (button.tag==1) name =@"[愣神]";
-    else if  (button.tag==2)name =@"[思考]";
-    else if  (button.tag==3)name =@"[大笑]";
-    else if  (button.tag==4)name =@"[大哭]";
-    else if  (button.tag==5)name =@"[发怒]";
-    else if  (button.tag==6)name =@"[恶魔]";
-    else if  (button.tag==7)name =@"[撇嘴]";
-    else if  (button.tag==8)name =@"[害羞]";
-    else if  (button.tag==9)name =@"[霸气]";
-    else if  (button.tag==10)name =@"[睡觉]";
-    else if  (button.tag==11)name =@"[真棒]";
-    else if  (button.tag==12)name =@"[晕菜]";
-    else if  (button.tag==13)name =@"[礼物]";
-    else if  (button.tag==14)name =@"[微笑]";
-    else if  (button.tag==15)name =@"[鬼脸]";
-    else if  (button.tag==16)name =@"[傻笑]";
-    else if  (button.tag==17)name =@"[可爱]";
-    else if  (button.tag==18)name =@"[憨笑]";
-    else if  (button.tag==19)name =@"[伤心]";
-    else if  (button.tag==20)name =@"[惊讶]";
-    else if  (button.tag==21)name =@"[哈欠]";
-    else if  (button.tag==22)name =@"[劈掌]";
-    else if  (button.tag==23)name =@"[得意]";
-    else if  (button.tag==24)name =@"[大爱]";
+    if (button.tag==1) name =@"[发呆]";
+    else if  (button.tag==2)name =@"[无奈]";
+    else if  (button.tag==3)name =@"[坏笑]";
+    else if  (button.tag==4)name =@"[撇嘴]";
+    else if  (button.tag==5)name =@"[可爱]";
+    else if  (button.tag==6)name =@"[得意]";
+    else if  (button.tag==7)name =@"[晕]";
+    else if  (button.tag==8)name =@"[大哭]";
+    else if  (button.tag==9)name =@"[衰]";
+    else if  (button.tag==10)name =@"[难过]";
+    else if  (button.tag==11)name =@"[微笑]";
+    else if  (button.tag==12)name =@"[傻笑]";
+    else if  (button.tag==13)name =@"[愤怒]";
+    else if  (button.tag==14)name =@"[酷]";
+    else if  (button.tag==15)name =@"[汗]";
+    else if  (button.tag==16)name =@"[惊讶]";
+    else if  (button.tag==17)name =@"[鼻涕]";
+    else if  (button.tag==18)name =@"[美女]";
+    else if  (button.tag==19)name =@"[帅哥]";
+    else if  (button.tag==20)name =@"[流泪]";
+    else if  (button.tag==21)name =@"[囧]";
+    else if  (button.tag==22)name =@"[生气]";
+    else if  (button.tag==23)name =@"[雷人]";
+    else if  (button.tag==24)name =@"[吓]";
     else if  (button.tag==25)name =@"[大笑]";
     else if  (button.tag==26)name =@"[吐]";
     else if  (button.tag==27)name =@"[尴尬]";

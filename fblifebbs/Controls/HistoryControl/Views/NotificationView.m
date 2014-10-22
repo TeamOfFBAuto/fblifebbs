@@ -317,7 +317,6 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"NotificationTableViewCell" owner:self options:nil] objectAtIndex:0];
     }
-    
     if (_aType == NotificationViewTypeFB)
     {
         NotificationFBModel * model;
@@ -355,8 +354,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     if (_aType == NotificationViewTypeBBS)
     {
         NotificationBBSModel * model = [bbs_array objectAtIndex:indexPath.row];
@@ -917,27 +914,29 @@
             model=[read_array objectAtIndex:indexPath.row];
             
         }
-        CGSize constraintSize = CGSizeMake(220, MAXFLOAT);
+        CGSize constraintSize = CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT);
         CGSize labelSize = [model.fb_content sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
         
-        if (read_array.count > 0 && uread_array.count > 0)
-        {
-            
-            if (indexPath.section == 0)
-            {
-                return labelSize.height+60;
-            }else
-            {
-                return labelSize.height+50;
-            }
-        }else
-        {
-            return labelSize.height+50;
-        }
+        return labelSize.height+60;
+        
+//        if (read_array.count > 0 && uread_array.count > 0)
+//        {
+//            
+//            if (indexPath.section == 0)
+//            {
+//                return labelSize.height+60;
+//            }else
+//            {
+//                return labelSize.height+50;
+//            }
+//        }else
+//        {
+//            return labelSize.height+50;
+//        }
     }else{
         
         NotificationBBSModel * model =[bbs_array objectAtIndex:indexPath.row];
-        CGSize constraintSize = CGSizeMake(220, MAXFLOAT);
+        CGSize constraintSize = CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT);
         CGSize labelSize = [model.message sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
         
         return labelSize.height+60;

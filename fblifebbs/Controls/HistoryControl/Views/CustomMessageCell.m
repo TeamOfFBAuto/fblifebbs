@@ -33,11 +33,7 @@
     if (!_headImageView)
     {
         _headImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(11.5,13,50,50)];
-        
         _headImageView.layer.masksToBounds = YES;
-        
-//        _headImageView.layer.cornerRadius = 2;
-        
         [self.contentView addSubview:_headImageView];
         
     }else
@@ -50,16 +46,11 @@
     {
         if (!_NameLabel)
         {
-            _NameLabel = [[UILabel alloc] initWithFrame:CGRectMake(73,15,170,20)];
-            
+            _NameLabel = [[UILabel alloc] initWithFrame:CGRectMake(73,15,DEVICE_WIDTH-150,20)];
             _NameLabel.font = [UIFont systemFontOfSize:15];
-            
             _NameLabel.backgroundColor = [UIColor clearColor];
-            
             _NameLabel.textColor = RGBCOLOR(49,49,49);
-            
             _NameLabel.textAlignment = NSTextAlignmentLeft;
-            
             [self.contentView addSubview:_NameLabel];
         }else
         {
@@ -69,16 +60,11 @@
         
         if (!_timeLabel)
         {
-            _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(220,15,90,20)];
-            
+            _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(DEVICE_WIDTH-110,15,100,20)];
             _timeLabel.textAlignment = NSTextAlignmentRight;
-            
             _timeLabel.backgroundColor = [UIColor clearColor];
-            
             _timeLabel.font = [UIFont systemFontOfSize:11];
-            
             _timeLabel.textColor = RGBCOLOR(181,181,181);
-            
             [self.contentView addSubview:_timeLabel];
         }else
         {
@@ -88,16 +74,11 @@
         
         if (!_contentLabel1)
         {
-            _contentLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(73,40,240,20)];
-            
+            _contentLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(73,40,DEVICE_WIDTH-80,20)];
             _contentLabel1.textColor = RGBCOLOR(120,120,120);
-            
             _contentLabel1.backgroundColor = [UIColor clearColor];
-            
             _contentLabel1.font = [UIFont systemFontOfSize:14];
-            
             _contentLabel1.textAlignment = NSTextAlignmentLeft;
-            
             [self.contentView addSubview:_contentLabel1];
         }else
         {
@@ -116,16 +97,11 @@
     {
         if (!_contentLabel)
         {
-            _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(73,30,260,30)];
-            
+            _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(73,30,DEVICE_WIDTH-80,30)];
             _contentLabel.textColor = RGBCOLOR(120,120,120);
-            
             _contentLabel.backgroundColor = [UIColor clearColor];
-            
             _contentLabel.font = [UIFont systemFontOfSize:15];
-            
             _contentLabel.textAlignment = NSTextAlignmentLeft;
-            
             [self.contentView addSubview:_contentLabel];
         }else
         {
@@ -136,16 +112,14 @@
 
 -(float )boolLabelLength:(NSString *)strString
 {
-    CGSize labsize = [strString sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(170, 9999) lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize labsize = [strString sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(DEVICE_WIDTH-150, 9999) lineBreakMode:NSLineBreakByCharWrapping];
     return labsize.width;
 }
 
 -(void)setInfoWithType:(int)type withMessageInfo:(MessageInfo *)info
 {
     if (type == 0)
-    {
-        NSLog(@"-=-=-=-=-=-=-  %@ -=-=-=-=-=-  %@",info.from_uid,[[NSUserDefaults standardUserDefaults] objectForKey:USER_UID]);
-        
+    {        
         if ([info.from_uid isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USER_UID]])
         {
             [_headImageView loadImageFromURL:[zsnApi returnUrl:info.to_uid] withPlaceholdImage:[personal getImageWithName:@"touxiang"]];

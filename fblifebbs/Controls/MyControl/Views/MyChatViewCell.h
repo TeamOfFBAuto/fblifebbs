@@ -21,6 +21,9 @@
 #import "ChatInfo.h"
 #import "MWPhotoBrowser.h"
 #import "RTLabel.h"
+#import "OHAttributedLabel.h"
+#import "OHLableHelper.h"
+
 
 
 extern CGFloat const kJSAvatarSize;
@@ -32,7 +35,7 @@ typedef enum {
 
 
 
-@interface MyChatViewCell : UITableViewCell<AsyncImageDelegate>
+@interface MyChatViewCell : UITableViewCell<AsyncImageDelegate,OHAttributedLabelDelegate>
 {
     
 }

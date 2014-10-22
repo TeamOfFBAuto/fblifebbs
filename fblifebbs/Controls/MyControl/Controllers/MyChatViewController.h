@@ -40,7 +40,7 @@
 @property(nonatomic,strong)NSMutableArray * data_array;
 
 @property(nonatomic,strong)ASIHTTPRequest * requset_data;
-@property(nonatomic,strong)ASIHTTPRequest * request_send;
+@property(nonatomic,strong)ASIFormDataRequest * request_send;
 @property(nonatomic,strong)MessageInfo * info;
 @property(nonatomic,strong)NSMutableArray * photo_array;
 

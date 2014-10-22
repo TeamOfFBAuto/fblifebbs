@@ -263,7 +263,7 @@
     
     _dataArray = [[NSMutableArray alloc] init];
     
-    self.myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,(iPhone5?568:480)-20-44-44) style:UITableViewStylePlain];
+    self.myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-20-44-44) style:UITableViewStylePlain];
     self.myTableView.delegate = self;
     self.myTableView.dataSource = self;
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -274,8 +274,6 @@
     }
     
     [self.view addSubview:self.myTableView];
-    
-    
     
     if (!self.info && _tid.length > 0)
     {
@@ -288,20 +286,20 @@
     
     [self initHttpRequest];
     
-    tabelFootView = [[LoadingIndicatorView alloc] initWithFrame:CGRectMake(0,0,320,40)];
+    tabelFootView = [[LoadingIndicatorView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,40)];
     [tabelFootView startLoading];
     self.myTableView.tableFooterView = tabelFootView;
 
     
-    tishi_view = [[UIView alloc] initWithFrame:CGRectMake(0,tableHeaderView.frame.size.height,320,200)];
+    tishi_view = [[UIView alloc] initWithFrame:CGRectMake(0,tableHeaderView.frame.size.height,DEVICE_WIDTH,200)];
     tishi_view.backgroundColor = [UIColor whiteColor];
     
-    UIImageView * wu_imageView = [[UIImageView alloc] initWithFrame:CGRectMake((320-121/2)/2,114/2,121/2,114/2)];
+    UIImageView * wu_imageView = [[UIImageView alloc] initWithFrame:CGRectMake((DEVICE_WIDTH-121/2)/2,114/2,121/2,114/2)];
     wu_imageView.image = [UIImage imageNamed:@"weibo_detail_wurenpinglun.png"];
     [tishi_view addSubview:wu_imageView];
     
     
-    UILabel * wu_label = [[UILabel alloc] initWithFrame:CGRectMake(0,114+12,320,20)];
+    UILabel * wu_label = [[UILabel alloc] initWithFrame:CGRectMake(0,114+12,DEVICE_WIDTH,20)];
     wu_label.backgroundColor = [UIColor clearColor];
     wu_label.text = @"还没有人评论";
     wu_label.textAlignment = NSTextAlignmentCenter;
@@ -310,13 +308,13 @@
     [tishi_view addSubview:wu_label];
     
     
-    DetailBottomView * bottom_view = [[DetailBottomView alloc] initWithFrame:CGRectMake(0,(iPhone5?568:480)-64-44,320,44)];
+    DetailBottomView * bottom_view = [[DetailBottomView alloc] initWithFrame:CGRectMake(0,DEVICE_HEIGHT-64-44,DEVICE_WIDTH,44)];
     bottom_view.delegate = self;
     bottom_view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottom_view];
     
     myAlertView = [[loadingimview alloc] initWithFrame:CGRectMake(0,0,150,100) labelString:@"正在加载"];
-    myAlertView.center = CGPointMake(160,(iPhone5?568:480)/2-64);
+    myAlertView.center = CGPointMake(DEVICE_WIDTH/2,DEVICE_HEIGHT/2-64);
     myAlertView.hidden = YES;
     [self.view addSubview:myAlertView];
 }
@@ -366,10 +364,10 @@
 -(void)loadSectionViews
 {
     weibo_content_view = [self returnWeiBocontentView];
-    tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,weibo_content_view.frame.size.height+40)];
+    tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,weibo_content_view.frame.size.height+40)];
     tableHeaderView.backgroundColor = [UIColor whiteColor];
     
-    UIImageView * line_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,tableHeaderView.frame.size.height-4,320,4)];
+    UIImageView * line_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,tableHeaderView.frame.size.height-4,DEVICE_WIDTH,4)];
     line_imageView.tag = 417;
     line_imageView.image = [UIImage imageNamed:@"weibo_detai_line.png"];
     
@@ -392,7 +390,7 @@
     
     if (!test_label)
     {
-        test_label = [[RTLabel alloc] initWithFrame:CGRectMake(55,35,255,10)];
+        test_label = [[RTLabel alloc] initWithFrame:CGRectMake(55,35,DEVICE_WIDTH-65,10)];
         test_label.lineSpacing = 3;
         test_label.lineBreakMode = NSLineBreakByCharWrapping;
         test_label.font = [UIFont systemFontOfSize:15];
@@ -422,8 +420,6 @@
     }
     
     
-    
-    
     _Head_ImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(10,10,CELL_TOUXIANG,CELL_TOUXIANG)];
     _Head_ImageView.userInteractionEnabled = YES;
     _Head_ImageView.layer.masksToBounds = NO;
@@ -446,7 +442,7 @@
     [cell.contentView addSubview:_UserName_Label];
     
     
-    _DateLine_Label = [[UILabel alloc] initWithFrame:CGRectMake(250,8,60,20)];
+    _DateLine_Label = [[UILabel alloc] initWithFrame:CGRectMake(DEVICE_WIDTH-100,8,80,20)];
     _DateLine_Label.backgroundColor = [UIColor clearColor];
     _DateLine_Label.font = [UIFont systemFontOfSize:12];
     _DateLine_Label.textColor = RGBCOLOR(142,142,142);
@@ -454,7 +450,7 @@
     [cell.contentView addSubview:_DateLine_Label];
     
     
-    content_label = [[RTLabel alloc] initWithFrame:CGRectMake(55,35,255,10)];
+    content_label = [[RTLabel alloc] initWithFrame:CGRectMake(55,35,DEVICE_WIDTH-65,10)];
     content_label.lineBreakMode = NSLineBreakByCharWrapping;
     content_label.lineSpacing = 3;
     content_label.delegate = self;
@@ -524,7 +520,7 @@
     
     UIImageView * _reply_background_view;
     
-    CGRect reply_frame = CGRectMake(55,0,255,0);
+    CGRect reply_frame = CGRectMake(55,0,DEVICE_WIDTH-65,0);
     
     if (self.info.rootFlg)
     {
@@ -536,7 +532,7 @@
     }
     
     
-    WeiBoSpecialView *  _content_view_special = [[WeiBoSpecialView alloc] initWithFrame:CGRectMake(55,35,255,100)];
+    WeiBoSpecialView *  _content_view_special = [[WeiBoSpecialView alloc] initWithFrame:CGRectMake(55,35,DEVICE_WIDTH-65,100)];
     _content_view_special.line_space = 5;
     _content_view_special.content_font = 16;
     _content_view_special.delegate = self;
@@ -551,7 +547,7 @@
     
     if (self.info.rootFlg)
     {
-        WeiBoSpecialView * _content_reply_special = [[WeiBoSpecialView alloc] initWithFrame:CGRectMake(8,10,255-16,0)];
+        WeiBoSpecialView * _content_reply_special = [[WeiBoSpecialView alloc] initWithFrame:CGRectMake(8,10,DEVICE_WIDTH-80,0)];
         _content_reply_special.line_space = 3;
         _content_reply_special.content_font = 16;
         _content_reply_special.delegate = self;
@@ -579,7 +575,7 @@
     
     
     UIButton * _pinglun_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    _pinglun_button.frame = CGRectMake(280,total_height + 10,40,20);
+    _pinglun_button.frame = CGRectMake(DEVICE_WIDTH-40,total_height + 10,40,20);
     [_pinglun_button setTitle:self.info.replys forState:UIControlStateNormal];
     
     _pinglun_button.backgroundColor = [UIColor clearColor];
@@ -593,7 +589,7 @@
     
     
     UIButton * _zhuanfa_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    _zhuanfa_button.frame = CGRectMake(240,total_height+10,40,20);
+    _zhuanfa_button.frame = CGRectMake(DEVICE_WIDTH-80,total_height+10,40,20);
     [_zhuanfa_button setTitle:self.info.forwards forState:UIControlStateNormal];
     _zhuanfa_button.backgroundColor = [UIColor clearColor];
     [_zhuanfa_button setImage:[UIImage imageNamed:@"zhuanfa-xiao.png"] forState:UIControlStateNormal];

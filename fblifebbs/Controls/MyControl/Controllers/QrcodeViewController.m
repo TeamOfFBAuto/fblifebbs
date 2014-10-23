@@ -11,6 +11,10 @@
 #import "WriteBlogViewController.h"
 #import "LogInViewController.h"
 @interface QrcodeViewController ()
+{
+    MBProgressHUD *loading;
+    UIBarButtonItem *comment_item;
+}
 
 @end
 
@@ -68,7 +72,6 @@
     
     button_comment.tag=26;
     
-    //[button_comment setTitle:@"评论" forState:UIControlStateNormal];
     button_comment.titleLabel.font=[UIFont systemFontOfSize:14];
     [button_comment addTarget:self action:@selector(simPleshare) forControlEvents:UIControlEventTouchUpInside];
     [button_comment setImage:[UIImage imageNamed:@"zhuanfa_image.png"] forState:UIControlStateNormal];
@@ -79,15 +82,13 @@
     [rightView addSubview:button_comment];
     rightView.backgroundColor=[UIColor clearColor];
     
+    comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
     
-    UIBarButtonItem *comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
-    
-    self.navigationItem.rightBarButtonItem=comment_item;
+//    self.navigationItem.rightBarButtonItem = comment_item;
 
     if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
         //iOS 5 new UINavigationBar custom background
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-        
     }
     
     
@@ -104,11 +105,9 @@
     
     
     NSString *string_myuid=[[NSUserDefaults standardUserDefaults]objectForKey:USER_UID];
-    if ([string_myuid isEqualToString:self.uid]) {
-        self.navigationItem.rightBarButtonItem=comment_item;
-
-    }
-    
+//    if ([string_myuid isEqualToString:self.uid]) {
+//        self.navigationItem.rightBarButtonItem=comment_item;
+//    }
     
     
     
@@ -167,14 +166,9 @@
     }
 
 
-
-
-    
+    loading = [LTools MBProgressWithText:@"加载..." addToView:self.view];
     
     [self receivemyqrcode];
-
-    
-
     
     
     
@@ -184,7 +178,8 @@
 
 -(void)receivemyqrcode{
     
-  
+
+    [loading show:YES];
         
         NSString * fullURL= [NSString stringWithFormat:@"http://ucache.fblife.com/ucode/api.php?uid=%@",self.uid];
         NSLog(@"1请求的url = %@",fullURL);
@@ -205,7 +200,14 @@
                     NSString *strurl=[NSString stringWithFormat:@"%@",[dic objectForKey:@"codesrc"]];
                 //    [self receiveimgdatawithurlstring:strurl];
                    [qrimageview loadImageFromURL:strurl withPlaceholdImage:nil];
-                                   }
+                    
+                    [loading hide:YES];
+                    
+                    NSString *string_myuid=[[NSUserDefaults standardUserDefaults]objectForKey:USER_UID];
+                    if ([string_myuid isEqualToString:self.uid]) {
+                        self.navigationItem.rightBarButtonItem=comment_item;
+                    }
+                }
             }
             @catch (NSException *exception) {
                 
@@ -219,7 +221,11 @@
         
         [_requset setFailedBlock:^{
             
-            [request cancel];  
+            [request cancel];
+            
+            [loading hide:YES];
+            
+            [LTools showMBProgressWithText:@"加载失败" addToView:self.view];
             
         }];
         

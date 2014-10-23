@@ -21,7 +21,6 @@
 //#import "ShowImagesViewController.h"//看图集
 
 
-
 #import "CompreTableViewCell.h"
 
 #import "SzkLoadData.h"
@@ -178,10 +177,7 @@
       // NSLog(@"dicnew===%@",dicinfo);
        
      // NSString *xianshangbanben=[NSString stringWithFormat:@"%@",[dicinfo objectForKey:@"results"] ];
-       
-      
-       
-       
+
        
    }];
     
@@ -333,39 +329,39 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
         
     }
     
-    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -5:5, (44-33/2)/2, 36/2, 33/2)];
-    
-    [button_back addTarget:self action:@selector(leftDrawerButtonPress) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:@"homenewz36_33.png"] forState:UIControlStateNormal];
-    
-    UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
-    [back_view addSubview:button_back];
-    back_view.backgroundColor=[UIColor clearColor];
-    [back_view addTarget:self action:@selector(leftDrawerButtonPress) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
-    self.navigationItem.leftBarButtonItem=back_item;
-    
-  UIButton *  button_comment=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?37: 25, (44-39/2)/2, 41/2, 39/2)];
-    
-    
-    
-    //[button_comment setTitle:@"评论" forState:UIControlStateNormal];
-    button_comment.titleLabel.font=[UIFont systemFontOfSize:14];
-    [button_comment addTarget:self action:@selector(rightDrawerButtonPress) forControlEvents:UIControlEventTouchUpInside];
-    [button_comment setBackgroundImage:[UIImage imageNamed:@"menewz37_36.png"] forState:UIControlStateNormal];
-    
-  UIButton *  rightView=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
-    [rightView addTarget:self action:@selector(rightDrawerButtonPress) forControlEvents:UIControlEventTouchUpInside];
-    [rightView addSubview:button_comment];
-    rightView.backgroundColor=[UIColor clearColor];
-    
-    
-    
-    
-    UIBarButtonItem *comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
-    
-    self.navigationItem.rightBarButtonItem=comment_item;
-//[UIImage imageNamed:@"fblifelogo102_38_.png"];
+//    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -5:5, (44-33/2)/2, 36/2, 33/2)];
+//    
+//    [button_back addTarget:self action:@selector(leftDrawerButtonPress) forControlEvents:UIControlEventTouchUpInside];
+//    [button_back setBackgroundImage:[UIImage imageNamed:@"homenewz36_33.png"] forState:UIControlStateNormal];
+//    
+//    UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
+//    [back_view addSubview:button_back];
+//    back_view.backgroundColor=[UIColor clearColor];
+//    [back_view addTarget:self action:@selector(leftDrawerButtonPress) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
+//    self.navigationItem.leftBarButtonItem=back_item;
+//    
+//  UIButton *  button_comment=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?37: 25, (44-39/2)/2, 41/2, 39/2)];
+//    
+//    
+//    
+//    //[button_comment setTitle:@"评论" forState:UIControlStateNormal];
+//    button_comment.titleLabel.font=[UIFont systemFontOfSize:14];
+//    [button_comment addTarget:self action:@selector(rightDrawerButtonPress) forControlEvents:UIControlEventTouchUpInside];
+//    [button_comment setBackgroundImage:[UIImage imageNamed:@"menewz37_36.png"] forState:UIControlStateNormal];
+//    
+//  UIButton *  rightView=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
+//    [rightView addTarget:self action:@selector(rightDrawerButtonPress) forControlEvents:UIControlEventTouchUpInside];
+//    [rightView addSubview:button_comment];
+//    rightView.backgroundColor=[UIColor clearColor];
+//    
+//    
+//    
+//    
+//    UIBarButtonItem *comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
+//    
+//    self.navigationItem.rightBarButtonItem=comment_item;
+////[UIImage imageNamed:@"fblifelogo102_38_.png"];
     
     UIImageView *imgLogo=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logonewz113_46.png"]];
     

@@ -957,13 +957,9 @@
         case 10://二维码
         {
             QrcodeViewController * qrcode = [[QrcodeViewController alloc] init];
-            
             qrcode.headImage = _top_view.header_imageview.image;
-            
             qrcode.uid = _per_info.uid;
-            
             qrcode.nameString = _per_info.username;
-            
             [self.navigationController pushViewController:qrcode animated:YES];
         }
             break;
@@ -977,10 +973,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     [MobClick beginEvent:@"NewMineViewController"];
-    
-//    self.navigationController.navigationBarHidden = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -996,60 +989,17 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
     UIView * back_viewww = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,120)];
-    
     back_viewww.backgroundColor = RGBCOLOR(40, 43, 53);
-    
     [self.view addSubview:back_viewww];
     
     
     pageCount = 1;
-    
     _data_array = [[NSMutableArray alloc] init];
-    
     _zixin_array = [[NSMutableArray alloc] init];
-    
     _photos = [[NSMutableArray alloc] init];
     
-    
-    
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
-    
-    
-//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-//    {
-//        //iOS 5 new UINavigationBar custom background
-//        
-//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-//    }
-//    
-//    
-//    UIBarButtonItem * spaceBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    
-//    spaceBar.width = MY_MACRO_NAME?-4:5;
-//    
-//    
-//    UIButton * back_button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    
-//    back_button.frame = CGRectMake(0,0,12,21.5);
-//    
-//    [back_button setImage:[UIImage imageNamed:@"ios7_back.png"] forState:UIControlStateNormal];
-//    
-//    [back_button addTarget:self action:@selector(backH:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    self.navigationItem.leftBarButtonItems = @[spaceBar,[[UIBarButtonItem alloc] initWithCustomView:back_button]];
-//    
-//    
-//    UIColor * cc = [UIColor blackColor];
-//    
-//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-//    
-//    self.navigationController.navigationBar.titleTextAttributes = dict;
-    
     
     [self initHttpRequest];
     [self initHttpWeiBoContent];
@@ -1061,18 +1011,13 @@
     
     
     _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-20-44) style:UITableViewStylePlain];
-    
     _myTableView.delegate = self;
-    
     _myTableView.dataSource = self;
-    
     _myTableView.backgroundColor = [UIColor clearColor];//RGBCOLOR(40, 43, 53);
-    
     if (IOS_VERSION >= 7.0)
     {
         _myTableView.separatorInset = UIEdgeInsetsZero;
     }
-    
     [self.view addSubview:_myTableView];
     
     [loadview startLoading];
@@ -1394,8 +1339,7 @@
     forward.info = info;
     forward.delegate = self;
     forward.theIndexPath = theIndexpath.row;
-//    [self.leveyTabBarController hidesTabBar:YES animated:YES];
-    [self presentModalViewController:forward animated:YES];
+    [self presentViewController:forward animated:YES completion:nil];
 }
 
 -(void)presentToCommentControllerWithInfo:(FbFeed *)info WithCell:(NewWeiBoCustomCell *)theCell
@@ -1409,8 +1353,7 @@
     forward.delegate = self;
     forward.tid = info.tid;
     forward.theIndexPath = theIndexpath.row;
-//    [self.leveyTabBarController hidesTabBar:YES animated:YES];
-    [self presentModalViewController:forward animated:YES];
+    [self presentViewController:forward animated:YES completion:nil];
 }
 
 
@@ -1620,8 +1563,7 @@
     
     [browser setInitialPageIndex:index];
     
-//    [self.leveyTabBarController hidesTabBar:YES animated:YES];
-    [self presentModalViewController:browser animated:YES];
+    [self presentViewController:browser animated:YES completion:nil];
 }
 
 

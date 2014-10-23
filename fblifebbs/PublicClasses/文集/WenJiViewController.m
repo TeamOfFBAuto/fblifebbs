@@ -146,7 +146,7 @@
 //    self.navigationItem.leftBarButtonItems=@[space,back_item];
     
     
-    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
+    [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeBack WithRightButtonType:SNViewControllerRightbuttonTypeNull];
     
     
 	[self initHttpRequest];

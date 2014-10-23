@@ -55,135 +55,68 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.view.backgroundColor = RGBCOLOR(245,245,245);
-	
-//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-//    {
-//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-//    }
-    
     
     self.navigationItem.title = @"完善个人资料";
-    
-//    UIColor * cc = [UIColor blackColor];
-//    
-//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-//    
-//    self.navigationController.navigationBar.titleTextAttributes = dict;
-//    
-//    UIBarButtonItem * space_button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    space_button.width = MY_MACRO_NAME?0:5;
-//    
-//    
-//    
-//    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,12,21.5)];
-//    [button_back addTarget:self action:@selector(backH) forControlEvents:UIControlEventTouchUpInside];
-//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-//    
-//    UIBarButtonItem *back_item = [[UIBarButtonItem alloc]initWithCustomView:button_back];
-//    self.navigationItem.leftBarButtonItems = @[space_button,back_item];
-    
-    
-    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
-    
+    [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeBack WithRightButtonType:SNViewControllerRightbuttonTypeNull];
     
     UILabel * yonghuming = [[UILabel alloc] initWithFrame:CGRectMake(23/2,23/2,100,20)];
-    
     yonghuming.text = @"用户名:";
-    
     yonghuming.textAlignment = NSTextAlignmentLeft;
-    
     yonghuming.textColor = RGBCOLOR(101,102,104);
-    
     yonghuming.backgroundColor = [UIColor clearColor];
-    
     [self.view addSubview:yonghuming];
     
-    
     userName_tf = [[UITextField alloc] initWithFrame:CGRectMake(23/2,38,296,42)];
-    
     userName_tf.backgroundColor = [UIColor whiteColor];
-    
     userName_tf.delegate = self;
-    
+    userName_tf.returnKeyType = UIReturnKeyDone;
     userName_tf.font = [UIFont systemFontOfSize:15];
-    
     userName_tf.placeholder = @"最多可输入7个中文,注册后用户名不可更改";
-    
+    userName_tf.clearsOnBeginEditing = YES;
     [self.view addSubview:userName_tf];
     
-    
     UILabel * mima_label = [[UILabel alloc] initWithFrame:CGRectMake(23/2,90,200,20)];
-    
     mima_label.textColor = RGBCOLOR(101,102,104);
-    
     mima_label.text = @"密码:";
-    
     mima_label.textAlignment = NSTextAlignmentLeft;
-    
     mima_label.backgroundColor = [UIColor clearColor];
-    
     [self.view addSubview:mima_label];
     
-    
     mima_tf = [[UITextField alloc] initWithFrame:CGRectMake(23/2,120,296,42)];
-    
     mima_tf.placeholder = @"请输入密码";
-    
     mima_tf.delegate = self;
-    
     mima_tf.contentVerticalAlignment=UIControlContentVerticalAlignmentCenter;//垂直居中
-    
     mima_tf.secureTextEntry = YES;                              //密码输入时
-    
     mima_tf.backgroundColor = [UIColor whiteColor];
-    
     mima_tf.layer.borderColor = [UIColor blackColor].CGColor;
-    
     mima_tf.font = [UIFont systemFontOfSize:15];
-    
     mima_tf.layer.borderWidth = 0.5;
-    
+    mima_tf.returnKeyType = UIReturnKeyDone;
+    mima_tf.clearsOnBeginEditing = YES;
     [self.view addSubview:mima_tf];
     
-    
     UILabel * youxiang_label = [[UILabel alloc] initWithFrame:CGRectMake(23/2,175,200,20)];
-    
     youxiang_label.text = @"邮箱";
-    
     youxiang_label.textColor = RGBCOLOR(101,102,104);
-    
     youxiang_label.backgroundColor = [UIColor clearColor];
-    
     youxiang_label.textAlignment = NSTextAlignmentLeft;
-    
     [self.view addSubview:youxiang_label];
     
-    
     youxiang_tf = [[UITextField alloc] initWithFrame:CGRectMake(23/2,200,296,42)];
-    
     youxiang_tf.placeholder = @"用来找回密码,请慎重填写";
-    
     youxiang_tf.backgroundColor = [UIColor whiteColor];
-    
     youxiang_tf.delegate = self;
-    
     youxiang_tf.font = [UIFont systemFontOfSize:15];
-    
+    youxiang_tf.clearsOnBeginEditing = YES;
+    youxiang_tf.returnKeyType = UIReturnKeyDone;
     [self.view addSubview:youxiang_tf];
     
-    
     UIButton * complete_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
     complete_button.frame = CGRectMake(23/2,257,593/2,43);
-    
     [complete_button setTitle:@"完 成" forState:UIControlStateNormal];
-    
     complete_button.backgroundColor = RGBCOLOR(101,102,104);
-    
     [complete_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
     [complete_button addTarget:self action:@selector(zhuCe:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:complete_button];
@@ -195,11 +128,8 @@
     if (userName_tf.text.length == 0)
     {
         UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"用户名不能为空" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-        
         [alertView show];
-        
         [userName_tf becomeFirstResponder];
-        
         return;
     }
     
@@ -207,20 +137,15 @@
     if (mima_tf.text.length == 0)
     {
         UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"密码不能为空" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-        
         [alertView show];
-        
         [mima_tf becomeFirstResponder];
-        
         return;
     }
     
     if (youxiang_tf.text.length == 0)
     {
         UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"邮箱不能为空" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-        
         [alertView show];
-        
         [youxiang_tf becomeFirstResponder];
         
         return;
@@ -231,9 +156,7 @@
         if (!isMail)
         {
             UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请输入正确的邮箱" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-            
             [alertView show];
-            
             return;
         }
     }
@@ -242,9 +165,7 @@
     if (request_)
     {
         [request_ cancel];
-        
         request_.delegate = nil;
-        
         request_ = nil;
     }
     
@@ -254,11 +175,8 @@
     NSString * fullUrl = [NSString stringWithFormat:SENDUSERINFO,self.PhoneNumber,self.verification,[userName_tf.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],mima_tf.text,youxiang_tf.text];
     
     request_ = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullUrl]];
-    
     request_.delegate = self;
-    
     request_.shouldAttemptPersistentConnection = NO;
-    
     [request_ startAsynchronous];
 }
 
@@ -309,10 +227,34 @@
 }
 
 #pragma mark-UITextFieldDelegate
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField.frame.origin.y+textField.frame.size.height + 260 > DEVICE_HEIGHT)
+    {
+        CGRect frame = self.view.frame;
+        frame.origin.y = DEVICE_HEIGHT - (textField.frame.origin.y+textField.frame.size.height + 300);
+        [UIView animateWithDuration:0.35 animations:^{
+            self.view.frame = frame;
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+    
+    return YES;
+}
+
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    
+    [UIView animateWithDuration:0.35 animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.y = 64;
+        self.view.frame = frame;
+    } completion:^(BOOL finished) {
+        
+    }];
     
     return YES;
 }

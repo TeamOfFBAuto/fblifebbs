@@ -96,16 +96,12 @@
         if (isReply)
         {
             content = info.rcontent;
-            
             image_string = info.rimageFlg?info.rimage_small_url_m:@"";
-            
             oLink_string = info.rolink;
         }else
         {
             content = info.content;
-            
             image_string = info.imageFlg?info.image_small_url_m:@"";
-            
             oLink_string = info.olink;
         }
         
@@ -114,9 +110,7 @@
         if (isReply)
         {
             title_content = info.rtitle_content;
-            
             content = info.rcontent;
-            
             if (info.rimageFlg)
             {
                 image_string = [[info.rimage_small_url_m componentsSeparatedByString:@"|"] objectAtIndex:0];
@@ -148,17 +142,11 @@
     if (!_title_label)
     {
         _title_label = [[RTLabel alloc] init];
-        
         _title_label.delegate = self;
-        
         _title_label.lineSpacing = _line_space;
-        
         _title_label.font = [UIFont systemFontOfSize:_content_font];
-        
         _title_label.lineBreakMode = NSLineBreakByCharWrapping;
-        
         _title_label.backgroundColor = [UIColor clearColor];
-        
         [self addSubview:_title_label];
     }else
     {
@@ -176,15 +164,10 @@
         _title_label.frame = rect1;
         
         _title_label.text = [title_content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet ]];
-        
         optimumSize1 = [_title_label optimumSize];
-        
         rect1.size.height = optimumSize1.height + 10;
-        
         image_y = optimumSize1.height;
-        
         _title_label.frame = rect1;
-        
         rect1.origin.y = optimumSize1.height + 5;
     }
     
@@ -193,15 +176,10 @@
     if (!_content_label)
     {
         _content_label = [[RTLabel alloc] init];
-        
         _content_label.lineSpacing = _line_space;
-        
         _content_label.delegate = self;
-        
         _content_label.font = [UIFont systemFontOfSize:_content_font];
-        
         _content_label.lineBreakMode = NSLineBreakByCharWrapping;
-        
         [self addSubview:_content_label];
     }
     
@@ -210,15 +188,10 @@
     if (!_video_button)
     {
         _video_button = [UIButton buttonWithType:UIButtonTypeCustom];
-        
         _video_button.frame = CGRectMake(0,0,54,39/2);
-        
         _video_button.hidden = YES;
-        
         [_video_button setImage:[UIImage imageNamed:@"filmios7.png"] forState:UIControlStateNormal];
-        
         [_video_button addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-        
         [self addSubview:_video_button];
     }else
     {
@@ -235,11 +208,8 @@
     }else
     {
         _content_label.frame = rect1;
-        
         _content_label.text = content_text;
-        
         optimumSize1 = [_content_label optimumSize];
-        
         rect1.size.height = optimumSize1.height + 10;
         
         image_y = image_y + optimumSize1.height;
@@ -269,15 +239,12 @@
                 if (self.frame.size.width - point.x > 60) {
                     
                     video_frame.origin.x = point.x+10;
-                    
                     video_frame.origin.y = optimumSize1.height + _content_label.frame.origin.y-15.5;
                     
                 }else{
                     
                     video_frame.origin.x = 0;
-                    
                     video_frame.origin.y = _content_label.frame.origin.y + optimumSize1.height + 3;
-                    
                     rect1.size.height += 39/2+3;
                 }
                 
@@ -307,16 +274,14 @@
         if (!_pictureViews)
         {
             _pictureViews = [[PictureViews alloc] init];
-            
             _pictureViews.delegate = self;
-            
             [self addSubview:_pictureViews];
         }else
         {
             _pictureViews.frame = CGRectMake(0,0,0,0);
         }
         
-        _pictureViews.frame = CGRectMake(0,image_y+10,265,height);
+        _pictureViews.frame = CGRectMake(0,image_y+15,265,height);
         
         image_height = height + 10;
         
@@ -334,42 +299,26 @@
 //        if (!_original_zhuanfa_button)
 //        {
             _original_zhuanfa_button = [UIButton buttonWithType:UIButtonTypeCustom];
-            
             _original_zhuanfa_button.frame = CGRectMake(0,image_y+image_height+10,50,14);
-            
             _original_zhuanfa_button.backgroundColor = [UIColor clearColor];
-            
             [_original_zhuanfa_button setTitleColor:RGBCOLOR(89,106,150) forState:UIControlStateNormal];
-            
             _original_zhuanfa_button.titleLabel.font = [UIFont systemFontOfSize:12];
-            
             [_original_zhuanfa_button setTitle:[NSString stringWithFormat:@"转发 %@",info.rforwards] forState:UIControlStateNormal];
-            
             [_original_zhuanfa_button setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,15)];
-            
             [_original_zhuanfa_button addTarget:self action:@selector(ShowOriginalWeiBoContent:) forControlEvents:UIControlEventTouchUpInside];
-            
             [self addSubview:_original_zhuanfa_button];
 //        }
         
 //        if (!_original_pinglun_button)
 //        {
             _original_pinglun_button = [UIButton buttonWithType:UIButtonTypeCustom];
-            
             _original_pinglun_button.frame = CGRectMake(62,image_y+image_height+10,50,14);
-            
             _original_pinglun_button.backgroundColor = [UIColor clearColor];
-            
             [_original_pinglun_button setTitleColor:RGBCOLOR(89,106,150) forState:UIControlStateNormal];
-            
             _original_pinglun_button.titleLabel.font = [UIFont systemFontOfSize:12];
-            
             [_original_pinglun_button setTitle:[NSString stringWithFormat:@"评论 %@",info.rreplys] forState:UIControlStateNormal];
-            
             [_original_pinglun_button setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,15)];
-            
             [_original_pinglun_button addTarget:self action:@selector(ShowOriginalWeiBoContent:) forControlEvents:UIControlEventTouchUpInside];
-            
             [self addSubview:_original_pinglun_button];
 //        }
         
@@ -378,9 +327,7 @@
 //        if (!_original_line_view)
 //        {
             _original_line_view = [[UIView alloc] initWithFrame:CGRectMake(50,image_y+image_height+12.5,0.5,19/2)];
-            
             _original_line_view.backgroundColor = RGBCOLOR(189,189,189);
-            
             [self addSubview:_original_line_view];
 //        }
     }

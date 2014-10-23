@@ -370,29 +370,20 @@
     
     for (int i = 0;i < 4;i++)
     {
-        
         NSString * fullUrl = [NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumsbycategory.php?categorytype=%@&formattype=json&authocode=%@",[forum_title_array objectAtIndex:i],AUTHKEY];
         
        // NSLog(@"请求版块接口-----%@",fullUrl);
         
         ASIHTTPRequest * request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullUrl]];
-        
         request.tag = 417 + i;
-        
         [networkQueue addOperation:request];
     }
     
-    
     networkQueue.delegate = self;
-    
     [networkQueue setRequestDidFinishSelector:@selector(requestFinished:)];
-    
     [networkQueue setRequestDidFailSelector:@selector(requestFailed:)];
-    
     [networkQueue setQueueDidFinishSelector:@selector(queueFinished:)];
-    
     [networkQueue go];
-    
 }
 
 

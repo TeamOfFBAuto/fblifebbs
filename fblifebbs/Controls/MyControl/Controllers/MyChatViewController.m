@@ -309,46 +309,6 @@
     
     temp_count = 1;
     
-//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-//    
-//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-//    {
-//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-//    }
-//    
-//    self.navigationItem.title = self.info.othername;
-//    
-//    UIColor * cc = [UIColor blackColor];
-//    
-//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-//    
-//    self.navigationController.navigationBar.titleTextAttributes = dict;
-//    
-//    
-//    UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    spaceButton.width = MY_MACRO_NAME?0:5;
-//    
-//    
-//    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,12,21.5)];
-//    [button_back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-//    [button_back setBackgroundImage:[UIImage imageNamed:@"ios7_back@2x.png"] forState:UIControlStateNormal];
-//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-//    self.navigationItem.leftBarButtonItems=@[spaceButton,back_item];
-//    
-//    
-//    UIButton * peopleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    
-//    peopleButton.frame = CGRectMake(0,0,36/2,33/2);
-//    
-//    [peopleButton setImage:[UIImage imageNamed:@"chat_people.png"] forState:UIControlStateNormal];
-//    
-//    [peopleButton addTarget:self action:@selector(PeopleView:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    UIBarButtonItem * People_button = [[UIBarButtonItem alloc] initWithCustomView:peopleButton];
-//    
-//    self.navigationItem.rightBarButtonItems = @[spaceButton,People_button];
-    
-    
     self.rightImageName = @"chat_people";
     
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeOther];
@@ -566,7 +526,7 @@
 
 -(CGPoint)returnHeightWithArray:(NSArray *)array WithType:(MyChatViewCellType)theType
 {
-    float theWidth;
+    float theWidth = 0;
     float theHeight = 0;
     for (NSString * string in array)
     {
@@ -981,49 +941,6 @@
     
     
     temp_count = count;
-    
-    
-    
-    /*
-     
-     CGFloat maxHeight = [JSMessageInputView maxHeight];
-     
-     CGFloat textViewContentHeight = textView.contentSize.height;
-     
-     BOOL isShrinking = textViewContentHeight < self.previousTextViewContentHeight;
-     
-     CGFloat changeInHeight = textViewContentHeight - self.previousTextViewContentHeight;
-     
-     if(!isShrinking && self.previousTextViewContentHeight == maxHeight) {
-     changeInHeight = 0;
-     }
-     else {
-     changeInHeight = MIN(changeInHeight, maxHeight - self.previousTextViewContentHeight);
-     }
-     
-     if(changeInHeight != 0.0f)
-     {
-     if(!isShrinking)
-     [self.inputToolBarView adjustTextViewHeightBy:changeInHeight];
-     
-     [UIView animateWithDuration:0.25f
-     animations:^{
-     
-     CGRect inputViewFrame = self.inputToolBarView.frame;
-     self.inputToolBarView.frame = CGRectMake(0.0f,
-     inputViewFrame.origin.y - changeInHeight,
-     inputViewFrame.size.width,
-     inputViewFrame.size.height + changeInHeight);
-     }
-     completion:^(BOOL finished) {
-     if(isShrinking)
-     [self.inputToolBarView adjustTextViewHeightBy:changeInHeight];
-     }];
-     
-     self.previousTextViewContentHeight = MIN(textViewContentHeight, maxHeight);
-     }
-     
-     */
     
     self.inputToolBarView.sendButton.enabled = ([textView.text trimWhitespace].length > 0);
 }

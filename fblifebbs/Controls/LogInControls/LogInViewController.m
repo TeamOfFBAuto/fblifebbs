@@ -118,7 +118,7 @@
     [button_back addTarget:self action:@selector(backH) forControlEvents:UIControlEventTouchUpInside];
     [button_back setBackgroundImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-    NavTitle.leftBarButtonItems=@[spaceBar,back_item];
+    NavTitle.rightBarButtonItems=@[spaceBar,back_item];
     
     
     //设置barbutton
@@ -239,9 +239,7 @@
 -(void)zhuceButton:(UIButton *)sender
 {
     MyPhoneNumViewController * zhuce = [[MyPhoneNumViewController alloc] init];
-    
     UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:zhuce];
-    
     [self presentViewController:naVC animated:YES completion:NULL];
 }
 

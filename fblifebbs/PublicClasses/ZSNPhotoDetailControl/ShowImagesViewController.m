@@ -1056,9 +1056,6 @@
 
 -(void)ShareMore{
     
-    __weak typeof(_shareView)w_shareView=_shareView;
-    
-    
     __weak typeof(self)wself=self;
     if (!_shareView) {
         _shareView =[[ShareView alloc]initWithFrame:CGRectMake(0, 0, 0, 0) thebloc:^(NSInteger indexPath) {

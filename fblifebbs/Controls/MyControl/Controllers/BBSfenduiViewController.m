@@ -984,7 +984,7 @@
     titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0];
     titleLabel.textColor=RGBCOLOR(49, 49, 49);
     titleLabel.numberOfLines=0;
-    titleLabel.lineBreakMode = UILineBreakModeWordWrap|UILineBreakModeTailTruncation;
+    titleLabel.lineBreakMode = NSLineBreakByWordWrapping|NSLineBreakByTruncatingTail;
     titleLabel.backgroundColor = [UIColor clearColor];
     [imageviewcell addSubview:titleLabel];
     
@@ -998,26 +998,26 @@
     createTimeLabel.font = [UIFont systemFontOfSize:11];
     createTimeLabel.textColor= [UIColor lightGrayColor];
     createTimeLabel.backgroundColor = [UIColor clearColor];
-    createTimeLabel.textAlignment=UITextAlignmentRight;
+    createTimeLabel.textAlignment=NSTextAlignmentRight;
     [imageviewcell addSubview:createTimeLabel];
     
     repliesLabel=[[UILabel alloc]init];
     repliesLabel.font = [UIFont systemFontOfSize:11];
     repliesLabel.textColor=[UIColor grayColor];
     repliesLabel.backgroundColor = [UIColor clearColor];
-    repliesLabel.textAlignment=UITextAlignmentRight;
+    repliesLabel.textAlignment=NSTextAlignmentRight;
     [imageviewcell addSubview:repliesLabel];
     
     trasactionstatelabel=[[UILabel alloc]init];
     trasactionstatelabel.font = [UIFont systemFontOfSize:15];
     trasactionstatelabel.backgroundColor = [UIColor clearColor];
-    trasactionstatelabel.textAlignment=UITextAlignmentLeft;
+    trasactionstatelabel.textAlignment=NSTextAlignmentLeft;
     
     locationlabel=[[UILabel alloc]init];
     locationlabel.font = [UIFont systemFontOfSize:15];
     locationlabel.textColor=[UIColor lightGrayColor];
     locationlabel.backgroundColor = [UIColor clearColor];
-    locationlabel.textAlignment=UITextAlignmentLeft;
+    locationlabel.textAlignment=NSTextAlignmentLeft;
     
     
     int jinghua=[[dic objectForKey:@"digest"] integerValue];
@@ -1103,7 +1103,7 @@
     
     
     CGSize constraintSize = CGSizeMake(290, MAXFLOAT);
-    CGSize labelSize = [titleLabel.text sizeWithFont:titleLabel.font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [titleLabel.text sizeWithFont:titleLabel.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     titleLabel.frame=CGRectMake(8, 12, 290, labelSize.height);
     
     
@@ -1186,13 +1186,13 @@
             
         }else{
             
-            CGSize labelSize = [[NSString stringWithFormat:@"           %@",[dic objectForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.0]constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+            CGSize labelSize = [[NSString stringWithFormat:@"           %@",[dic objectForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.0]constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
             return labelSize.height+40+7;
             
         }
         
     }else{
-        CGSize labelSize = [[NSString stringWithFormat:@"                      %@",[dic objectForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.0]constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        CGSize labelSize = [[NSString stringWithFormat:@"                      %@",[dic objectForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.0]constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
         return labelSize.height+40+7;
     }
     
@@ -1266,12 +1266,12 @@
         _fatie.title_string=@"发帖";
         _fatie.string_distinguish=@"发帖";
         _fatie.string_fid=str_fid;
-        [self presentModalViewController:_fatie animated:YES];
+        [self presentViewController:_fatie animated:YES completion:nil];
     }
     else{
         //没有激活fb，弹出激活提示
         LogInViewController *login=[LogInViewController sharedManager];
-        [self presentModalViewController:login animated:YES];
+        [self presentViewController:login animated:YES completion:nil];
     }
     
 }

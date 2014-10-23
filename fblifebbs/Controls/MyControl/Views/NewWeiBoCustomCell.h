@@ -87,7 +87,7 @@
 @property(nonatomic,strong)UIButton * delete_button;
 
 
-
+///type为微博展示类型（0为朋友样式，1为个人主页样式）
 -(void)setAllViewWithType:(int)theType;
 
 -(float)setInfo:(FbFeed *)info withReplysHeight:(float)theheight WithType:(int)theType;

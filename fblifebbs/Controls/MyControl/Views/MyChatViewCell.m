@@ -74,52 +74,12 @@
 
 -(void)loadAllViewWithUrl:(ChatInfo *)info Style:(MyChatViewCellType)type
 {
-    
     CGPoint point = [self returnHeightWithArray:[zsnApi stringExchange:info.msg_message] WithType:type];
-    
     UIImage * image = [UIImage imageNamed:type == JSBubbleMessageTypeOutgoing ?@"talk1.png":@"talk2.png"];
     
-    
     _background_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(type == JSBubbleMessageTypeOutgoing?(DEVICE_WIDTH - point.x - 65):50,34,point.x+15,point.y)];
-    
     _background_imageView.userInteractionEnabled = YES;
-    
-    /*
-     CALayer * layer = [theView layer];
-     
-     [layer setShadowOffset:theOffset];
-     [layer setShadowRadius:theRadius];
-     [layer setShadowOpacity:theOpacity];
-     [layer setShadowColor:theColor.CGColor];
-     
-     
-     其中:theView(UIView)为目标view
-     theOffset(CGSize)为阴影偏移量,默认为(0, -3)
-     theRadius(float)为阴影四角圆角半径,默认值为3
-     theOpacity(float)为阴影透明度(取值为[0,1])
-     theColor(UIColor)为阴影颜色
-     
-     */
-    //    CALayer * layer = [_background_imageView layer];
-    //
-    //    [layer setShadowOffset:CGSizeMake(1.5, 1.5)];
-    //    [layer setShadowRadius:3];
-    //    [layer setShadowOpacity:0.7];
-    //    [layer setShadowColor:[UIColor grayColor].CGColor];
-    
-    
-    
-    //    CGFloat top = 20.f; // 顶端盖高度
-    //    CGFloat bottom = 10.f ; // 底端盖高度
-    //    CGFloat left = 10.f; // 左端盖宽度
-    //    CGFloat right = 10.f; // 右端盖宽度
-    //    UIEdgeInsets insets = UIEdgeInsetsMake(top, left, bottom, right);
-    //    // 伸缩后重新赋值
-    //  //  image = [image resizableImageWithCapInsets:insets];
-    //
-    
     _background_imageView.image = [image stretchableImageWithLeftCapWidth:15.f topCapHeight:10.f];
-    
     [self.contentView addSubview:_background_imageView];
     
     
@@ -146,9 +106,7 @@
     
     
     [self loadHeadImageViewWithUrl:[zsnApi returnUrl:info.from_uid] Style:type];
-    
     [self loadContentViewWithArray:[zsnApi stringExchange:info.msg_message] WithType:type];
-    
 }
 
 -(void)doTap:(UITapGestureRecognizer *)sender
@@ -161,52 +119,13 @@
 }
 
 
-
--(CGPoint)LinesWidth:(NSString *)string Label:(UILabel *)label
-{
-    float theLastWidth = 0;
-    NSArray * array = [string componentsSeparatedByString:@"\n"];
-    
-    if (array.count > 1)
-    {
-        for (NSString * str in array)
-        {
-            CGSize titleSize = [[str stringByAppendingString:@"哈"] sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(240, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
-            theLastWidth = titleSize.width>theLastWidth?titleSize.width:theLastWidth;
-        }
-    }else
-    {
-        CGSize titleSize = [string sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(240, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
-        theLastWidth = titleSize.width>theLastWidth?titleSize.width:theLastWidth;
-    }
-    
-    
-    CGSize titleSize = [string sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(240, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
-    
-    CGPoint lastPoint;
-    CGSize sz = [string sizeWithFont:label.font constrainedToSize:CGSizeMake(MAXFLOAT,40)];//原来为40
-    CGSize linesSz = [string sizeWithFont:label.font constrainedToSize:CGSizeMake(240, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
-    
-    
-    if(sz.width <= linesSz.width) //判断是否折行
-    {
-        lastPoint = CGPointMake(label.frame.origin.x + sz.width,linesSz.height);
-    }else
-    {
-        lastPoint = CGPointMake(label.frame.origin.x + (int)sz.width % (int)linesSz.width,  titleSize.height+((titleSize.height/20)-1)*3);
-    }
-    lastPoint = CGPointMake(theLastWidth>lastPoint.x?theLastWidth:lastPoint.x,lastPoint.y);
-    return lastPoint;
-}
-
-
 -(void)handleImageLayout:(AsyncImageView *)tag
 {
     if (!tag.image)
     {
         tag.contentMode = UIViewContentModeScaleAspectFill;
         tag.clipsToBounds = YES;
-        tag.image = [personal getImageWithName:@"url_image_failed"];
+        tag.image = [UIImage imageNamed:@"url_image_failed"];
     }
 }
 
@@ -225,10 +144,8 @@
         imageView.image = [personal getImageWithName:@"url_image_failed"];
     }else
     {
-        //        UIImage * newImage = [personal scaleToSizeWithImage:image size:CGSizeMake(image.size.width > 240?image.size.width/3:image.size.width,image.size.height>210?image.size.height/3:image.size.height)];
         imageView.contentMode = UIViewContentModeCenter;
         imageView.clipsToBounds = YES;
-        //        imageView.image = newImage;
     }
 }
 
@@ -257,7 +174,7 @@
                 
                 imageView.backgroundColor = [UIColor clearColor];
                 
-                [imageView loadImageFromURL:url withPlaceholdImage:[personal getImageWithName:@"url_image_loading"]];
+                [imageView loadImageFromURL:url withPlaceholdImage:[UIImage imageNamed:@"url_image_loading"]];
                 
                 imageView.contentMode = UIViewContentModeScaleAspectFill;
                 imageView.clipsToBounds = YES;
@@ -327,7 +244,6 @@
 
 -(void)showClickUrl:(NSString *)url
 {
-    
     while ([url rangeOfString:@" "].length)
     {
         url = [url stringByReplacingOccurrencesOfString:@" " withString:@"&"];
@@ -338,9 +254,6 @@
     {
         [delegate showClickUrlDetail:url];
     }
-    
-    
-    // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
 
@@ -353,26 +266,12 @@
         avatarX = (DEVICE_WIDTH - kJSAvatarSize - 10);
     }
     
-    self.avatarImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(avatarX,
-                                                                            33,
-                                                                            kJSAvatarSize,
-                                                                            kJSAvatarSize)];
-    
-    
+    self.avatarImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(avatarX,33,kJSAvatarSize,kJSAvatarSize)];
     self.avatarImageView.layer.cornerRadius = 5;
-    
     self.avatarImageView.layer.borderColor = (__bridge  CGColorRef)([UIColor colorWithRed:220/255.0f green:220/255.0f blue:220/255.0f alpha:1]);
-    
     self.avatarImageView.layer.borderWidth =1.0;
-    
     self.avatarImageView.layer.masksToBounds = YES;
-    
-    
-    //    self.avatarImageView.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
-    //                                             | UIViewAutoresizingFlexibleLeftMargin
-    //                                             | UIViewAutoresizingFlexibleRightMargin);
     [self.contentView addSubview:self.avatarImageView];
-    
     
     [self.avatarImageView loadImageFromURL:url withPlaceholdImage:[personal getImageWithName:@"touxiang"]];
 }

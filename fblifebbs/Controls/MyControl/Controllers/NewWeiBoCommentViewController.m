@@ -447,7 +447,7 @@
                     [delegate commentSuccessWihtTid:self.tid IndexPath:self.theIndexPath SelectView:self.theSelectViewIndex withForward:isZhuanFa];
                 }
                 
-                [self dismissModalViewControllerAnimated:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
             }else
             {
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送失败,请重试" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
@@ -533,11 +533,11 @@
         {
             [self saveWeiBo];
             
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
             
         }else if(buttonIndex ==1)
         {
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }else
     {
@@ -626,7 +626,7 @@
     //@某人
     FriendListViewController * list = [[FriendListViewController alloc] init];
     list.delegate = self;
-    [self presentModalViewController:list animated:YES];
+    [self presentViewController:list animated:YES completion:nil];
 }
 
 -(void)face:(UIButton *)button
@@ -825,7 +825,7 @@
     
     if ((myTextView.tag == 100 && [myTextView.text isEqualToString:@"分享新鲜事......"])||[theText isEqualToString:myTextView.text])
     {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }else
     {
         UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存草稿",@"不保存",nil];

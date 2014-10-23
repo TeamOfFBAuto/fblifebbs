@@ -5,6 +5,9 @@
 //  Created by soulnear on 13-12-26.
 //  Copyright (c) 2013年 soulnear. All rights reserved.
 //
+/*
+ **输入验证码
+ */
 
 #import <UIKit/UIKit.h>
 #import "ZhuCeViewController.h"

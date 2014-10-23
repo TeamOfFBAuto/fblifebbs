@@ -188,15 +188,11 @@
     if (cell == nil)
     {
         cell = [[NewWeiBoCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        
         cell.delegate = self;
     }
     
-    
     FbFeed * info = [data_array objectAtIndex:indexPath.row];
-    
     [cell setAllViewWithType:0];
-    
     [cell setInfo:info withReplysHeight:[tableView rectForRowAtIndexPath:indexPath].size.height WithType:0];
     
     return cell;

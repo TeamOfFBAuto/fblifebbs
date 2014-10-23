@@ -305,9 +305,9 @@
         
         _content_reply_special.frame = rect1;
         
-        reply_frame.size.height = rect1.size.height + 30;
+        reply_frame.size.height = rect1.size.height + 20;
         
-        total_height = total_height + rect1.size.height + 30;
+        total_height = total_height + rect1.size.height + 20;
         
         _reply_background_view.frame = reply_frame;
         
@@ -485,19 +485,18 @@
     
     total_height = [view_special setAllViewWithFeed:info isReply:NO] + 40;
     
-    
     if (info.rootFlg)
     {
         if (!content_v2)
         {
-            content_v2 = [[WeiBoSpecialView alloc] initWithFrame:CGRectMake(8,10,(theType?(DEVICE_WIDTH-20):(DEVICE_WIDTH-65))-16,10)];
+            content_v2 = [[WeiBoSpecialView alloc] initWithFrame:CGRectMake(8,10,theType?(DEVICE_WIDTH-36):(DEVICE_WIDTH-80),10)];
             content_v2.line_space = 3;
             content_v2.content_font = 16;
         }
         
         float the_height = [content_v2 setAllViewWithFeed:info isReply:YES];
         
-        total_height = total_height + the_height + 10 + 30;
+        total_height = total_height + the_height + 10 + 20;
     }
     
     return total_height + 18;

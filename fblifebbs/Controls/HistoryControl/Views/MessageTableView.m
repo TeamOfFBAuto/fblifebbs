@@ -149,11 +149,6 @@
     return _data_array.count;
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 76;
-//}
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * identifier = [NSString stringWithFormat:@"%d",indexPath.row];
@@ -217,6 +212,9 @@
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [_myTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    CustomMessageCell * cell = (CustomMessageCell *)[_myTableView cellForRowAtIndexPath:indexPath];
+    cell.tixing_label.hidden = YES;
     
     MessageInfo * info = [self.data_array objectAtIndex:indexPath.row];
     MyChatViewController * chat = [[MyChatViewController alloc] init];

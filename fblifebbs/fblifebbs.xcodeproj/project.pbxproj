@@ -959,6 +959,9 @@
 		56A6E69019F0F7C70084871E /* zhuanfa-xiao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56A6E68A19F0F7C70084871E /* zhuanfa-xiao@2x.png */; };
 		56A6E69119F0F7C70084871E /* zhuanfa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56A6E68B19F0F7C70084871E /* zhuanfa@2x.png */; };
 		56A6E69419F112820084871E /* NewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A6E69319F112820084871E /* NewMessageViewController.m */; };
+		56F549F819FE22C100E69831 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F549F519FE22C100E69831 /* icon57.png */; };
+		56F549F919FE22C100E69831 /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F549F619FE22C100E69831 /* icon114.png */; };
+		56F549FA19FE22C100E69831 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F549F719FE22C100E69831 /* icon120.png */; };
 		56F6D7E919EBF9AC00B99CAC /* CustomMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E21619EBAE990091A4B0 /* CustomMessageCell.m */; };
 		56F6D7EA19EBF9DE00B99CAC /* LRefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5637232D19E905D100BEF45C /* LRefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		56F6D7EB19EBFA2C00B99CAC /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E1B319EB69DF0091A4B0 /* VerificationViewController.m */; };
@@ -2199,6 +2202,9 @@
 		56A6E68B19F0F7C70084871E /* zhuanfa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuanfa@2x.png"; sourceTree = "<group>"; };
 		56A6E69219F112820084871E /* NewMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMessageViewController.h; sourceTree = "<group>"; };
 		56A6E69319F112820084871E /* NewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMessageViewController.m; sourceTree = "<group>"; };
+		56F549F519FE22C100E69831 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		56F549F619FE22C100E69831 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		56F549F719FE22C100E69831 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
 		64B86ABD37B84DCF95542AF2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8CC1C7F5CF2B45F2827965E6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E35CA93819F0C43800A9C4CD /* SearchNewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNewsView.h; sourceTree = "<group>"; };
@@ -3348,6 +3354,9 @@
 		19FF0E1F19E7D28500D5DC6A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				56F549F519FE22C100E69831 /* icon57.png */,
+				56F549F619FE22C100E69831 /* icon114.png */,
+				56F549F719FE22C100E69831 /* icon120.png */,
 				19FF0E2019E7D28500D5DC6A /* Info.plist */,
 				19FF0E2119E7D28500D5DC6A /* main.m */,
 				5646FC3419E7E33700AA35E0 /* PrefixHeader.pch */,
@@ -4455,6 +4464,7 @@
 				13ACB66319EFA96F0092318B /* quxiaoguanzhuanniu@2x.png in Resources */,
 				13D42DFA19ED30DA00261D69 /* bubble-default-incoming-selected.png in Resources */,
 				563724F219E9232900BEF45C /* ios7_authorunselect70_37@2x.png in Resources */,
+				56F549FA19FE22C100E69831 /* icon120.png in Resources */,
 				193D48F319ECC4DE00B6E14E /* UMShareEditViewController.xib in Resources */,
 				193D48F519ECC4DE00B6E14E /* UMSLoginViewController.xib in Resources */,
 				563724DE19E9232900BEF45C /* 110_1@2x.png in Resources */,
@@ -4613,6 +4623,7 @@
 				13D42EA219ED32D400261D69 /* zipinglun_jiantou@2x.png in Resources */,
 				5668E25919EBC14B0091A4B0 /* home@2x.png in Resources */,
 				13D42E1019ED30DA00261D69 /* demo221x70.png in Resources */,
+				56F549F919FE22C100E69831 /* icon114.png in Resources */,
 				13ACB6EC19EFD84D0092318B /* bolang@2x.png in Resources */,
 				13ACB65B19EFA96F0092318B /* quanzikuang.png in Resources */,
 				193D48F219ECC4DE00B6E14E /* UMSCommentInputControlleriPad.xib in Resources */,
@@ -4668,6 +4679,7 @@
 				193D48F019ECC4DE00B6E14E /* UMSCommentDetailController.xib in Resources */,
 				13D42E0319ED30DA00261D69 /* bubble-default-outgoing@2x.png in Resources */,
 				13ACB66219EFA96F0092318B /* quxiao_sel@2x.png in Resources */,
+				56F549F819FE22C100E69831 /* icon57.png in Resources */,
 				13ACB72519EFD8930092318B /* newcommentpic20_19@2x.png in Resources */,
 				563724C419E9232900BEF45C /* ios7_lese@2x.png in Resources */,
 				5635892F19F79359005F6F55 /* face32.png in Resources */,

@@ -187,38 +187,17 @@
     
     
     __weak typeof(_request_send) wrequest = _request_send;
-    
+    __weak typeof(self)bself = self;
     [wrequest setCompletionBlock:^{
-        
+        [bself.data_array addObject:theInfo];
+        [bself.tableView reloadData];
     }];
     
     [wrequest setFailedBlock:^{
-        
+        [zsnApi showAutoHiddenMBProgressWithText:@"发送失败,请检查您当前网络" addToView:self.view];
     }];
     
     [_request_send startAsynchronous];
-    
-
-    
-    /*
-    _request_send = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullUrl]];
-    
-    _request_send.delegate = self;
-    
-    __block ASIHTTPRequest * request_ = _request_send;
-    
-    [request_ setCompletionBlock:^{
-        
-        //        NSDictionary * dictionary = [_request_send.responseData objectFromJSONData];
-    }];
-    
-    [request_ setFailedBlock:^{
-        
-    }];
-    
-    
-    [_request_send startAsynchronous];
-     */
 }
 
 -(void)loadNewMessage
@@ -430,33 +409,22 @@
     
     info.date_now =string_date___ ;
     
-    
     if ([self.info.from_uid isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USER_UID]])
     {
         info.to_uid = self.info.to_uid;
-        
         info.to_username = self.info.to_username;
-        
         info.from_username = self.info.from_username;
-        
         info.from_uid = self.info.from_uid;
     }else
     {
         info.to_uid = self.info.from_uid;
-        
         info.to_username = self.info.from_username;
-        
         info.from_username = self.info.to_username;
-        
         info.from_uid = self.info.to_uid;
     }
     
     info.msg_message = [self.inputToolBarView.textView.text trimWhitespace];
-    
-    [self.data_array addObject:info];
-    
     [self writeMessageRequest:info];
-    
     [self finnishendsend2];
 }
 

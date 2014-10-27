@@ -66,6 +66,9 @@ typedef enum {
 //-(void)receivemorewithcommentdic:(NSDictionary *)_morecomdic morenormaldic:(NSInteger *)_morenormaldic;
 @property(nonatomic,strong)NSMutableArray * commentarray;
 @property(nonatomic,strong)NSMutableArray * normalarray;
+
+@property(nonatomic,strong)NSMutableArray * haveArray_ids;//数组中已经有的id
+
 @property(assign,nonatomic)id<FinalshoucangViewDelegate>delegate;
 @property(strong,nonatomic) UIActivityIndicatorView *    activityIndicator;
 @property(strong,nonatomic) UITableView *    tab;

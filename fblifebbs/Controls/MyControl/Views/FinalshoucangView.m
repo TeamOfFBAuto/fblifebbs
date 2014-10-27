@@ -53,6 +53,7 @@
         tab_.separatorColor=[UIColor clearColor];
         
         self.normalarray=[[NSMutableArray alloc]init];
+        self.haveArray_ids = [NSMutableArray array];
         
         
         if (_refreshHeaderView == nil)
@@ -129,6 +130,7 @@
     
     
     [self.normalarray removeAllObjects];
+    [self.haveArray_ids removeAllObjects];
     
     
 }
@@ -145,7 +147,10 @@
             for (int i=0; i<[arraynomal count]; i++) {
                 NSDictionary *dic=[arraynomal objectAtIndex:i];
                 [self.normalarray addObject:dic];
-                
+                NSString *fid = [dic objectForKey:@"fid"];
+                if (fid) {
+                    [self.haveArray_ids addObject:fid];
+                }
             }
             
         }
@@ -380,6 +385,8 @@
     
     if (numberofpage==1) {
         [self.normalarray removeAllObjects];
+        
+        [self.haveArray_ids removeAllObjects];
     }
 
     
@@ -445,7 +452,17 @@
     
     
     for (NSDictionary *dic in temparray) {
-        [self.normalarray addObject:dic];
+        
+        NSString *fid = [dic objectForKey:@"fid"];
+        
+        if (![self.haveArray_ids containsObject:fid]) {
+            
+            [self.normalarray addObject:dic];
+            
+            if (fid) {
+                [self.haveArray_ids addObject:fid];
+            }
+        }
     }
     
     

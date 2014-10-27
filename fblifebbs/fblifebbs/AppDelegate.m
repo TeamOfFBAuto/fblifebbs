@@ -41,6 +41,11 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     
+    [WXApi registerApp:@"wx4fb411c415f89047"];
+    
+    [ WeiboSDK registerApp:@"2335514239"];
+    [ WeiboSDK enableDebugMode:YES ];
+
     [self setTabbarViewcontroller];
     
     return YES;

@@ -74,11 +74,7 @@
     
     
     self.mydicinfo=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingMutableLeaves error:&error];
-    
-    
-    
-    
-      NSLog(@"dicinfo==%@",self.mydicinfo);
+         NSLog(@"dicinfo==%@",self.mydicinfo);
     
     
 //     NSArray *dicinfo=[_data objectFromJSONData];

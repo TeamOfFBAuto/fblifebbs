@@ -672,9 +672,6 @@
 		5637240C19E922D800BEF45C /* roundgray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723EC19E922D800BEF45C /* roundgray@2x.png */; };
 		5637240D19E922D800BEF45C /* sanjiao21_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723ED19E922D800BEF45C /* sanjiao21_8@2x.png */; };
 		5637240E19E922D800BEF45C /* sharefriendquan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723EF19E922D800BEF45C /* sharefriendquan@2x.png */; };
-		5637240F19E922D800BEF45C /* sharemail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723F019E922D800BEF45C /* sharemail@2x.png */; };
-		5637241019E922D800BEF45C /* shareweibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723F119E922D800BEF45C /* shareweibo@2x.png */; };
-		5637241119E922D800BEF45C /* shareweixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723F219E922D800BEF45C /* shareweixin@2x.png */; };
 		5637241219E922D800BEF45C /* shareziliudi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723F319E922D800BEF45C /* shareziliudi@2x.png */; };
 		563724B119E9232900BEF45C /* chat_people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5637241319E9232800BEF45C /* chat_people@2x.png */; };
 		563724B219E9232900BEF45C /* choosepictureno@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5637241419E9232800BEF45C /* choosepictureno@2x.png */; };
@@ -1883,9 +1880,6 @@
 		563723EC19E922D800BEF45C /* roundgray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundgray@2x.png"; sourceTree = "<group>"; };
 		563723ED19E922D800BEF45C /* sanjiao21_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sanjiao21_8@2x.png"; sourceTree = "<group>"; };
 		563723EF19E922D800BEF45C /* sharefriendquan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharefriendquan@2x.png"; sourceTree = "<group>"; };
-		563723F019E922D800BEF45C /* sharemail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharemail@2x.png"; sourceTree = "<group>"; };
-		563723F119E922D800BEF45C /* shareweibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareweibo@2x.png"; sourceTree = "<group>"; };
-		563723F219E922D800BEF45C /* shareweixin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareweixin@2x.png"; sourceTree = "<group>"; };
 		563723F319E922D800BEF45C /* shareziliudi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareziliudi@2x.png"; sourceTree = "<group>"; };
 		5637241319E9232800BEF45C /* chat_people@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_people@2x.png"; sourceTree = "<group>"; };
 		5637241419E9232800BEF45C /* choosepictureno@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "choosepictureno@2x.png"; sourceTree = "<group>"; };
@@ -3874,9 +3868,6 @@
 			isa = PBXGroup;
 			children = (
 				563723EF19E922D800BEF45C /* sharefriendquan@2x.png */,
-				563723F019E922D800BEF45C /* sharemail@2x.png */,
-				563723F119E922D800BEF45C /* shareweibo@2x.png */,
-				563723F219E922D800BEF45C /* shareweixin@2x.png */,
 				563723F319E922D800BEF45C /* shareziliudi@2x.png */,
 			);
 			path = ShareImages;
@@ -4511,7 +4502,6 @@
 				563724F319E9232900BEF45C /* ios7_bankuaisoucangselected@2x.png in Resources */,
 				5637250019E9232900BEF45C /* ios7_zuijinliulanselected@2x.png in Resources */,
 				5637253219E9232900BEF45C /* telephoto@2x.png in Resources */,
-				5637240F19E922D800BEF45C /* sharemail@2x.png in Resources */,
 				5637253919E9232900BEF45C /* weibo_detai_line@2x.png in Resources */,
 				13D42E1E19ED30DA00261D69 /* messageReceived.aiff in Resources */,
 				13ACB66E19EFA96F0092318B /* xiangxikuang_sel@2x.png in Resources */,
@@ -4742,7 +4732,6 @@
 				5668E26319EBC14B0091A4B0 /* fujin@2x.png in Resources */,
 				563724C519E9232900BEF45C /* ios7_line594_1@2x.png in Resources */,
 				13D42D3019ED2AA500261D69 /* recentlook.sqlite in Resources */,
-				5637241019E922D800BEF45C /* shareweibo@2x.png in Resources */,
 				13ACB6EB19EFD84D0092318B /* blackheart42_37@2x.png in Resources */,
 				13ACB65F19EFA96F0092318B /* quxiao.png in Resources */,
 				5668E26B19EBC14B0091A4B0 /* lishijilu@2x.png in Resources */,
@@ -4853,7 +4842,6 @@
 				5637BD9C19EE5059008836CE /* touxiang.png in Resources */,
 				13D42DF519ED30DA00261D69 /* back-receive@2x.png in Resources */,
 				13ACB6CD19EFD6420092318B /* bankuaishoucang_s.png in Resources */,
-				5637241119E922D800BEF45C /* shareweixin@2x.png in Resources */,
 				13ACB72E19EFD8930092318B /* sharemail@2x.png in Resources */,
 				13D42DF419ED30DA00261D69 /* back-receive.png in Resources */,
 				13D42E0019ED30DA00261D69 /* bubble-default-outgoing-selected.png in Resources */,

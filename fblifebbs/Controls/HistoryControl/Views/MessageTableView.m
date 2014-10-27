@@ -188,10 +188,24 @@
     return cell;
 }
 
+#pragma mark - 停止刷新加载
+-(void)stopRefresh
+{
+    [_myTableView finishReloadigData];
+    [zsnApi showAutoHiddenMBProgressWithText:@"您尚未登录" addToView:[UIApplication sharedApplication].keyWindow];
+}
+
 ///下拉加载
 - (void)loadNewData
 {
-    [self initHttpRequest];
+    BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
+    if (isLogin)
+    {
+        [self initHttpRequest];
+    }else
+    {
+        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
+    }
 }
 ///上拉更多
 - (void)loadMoreData

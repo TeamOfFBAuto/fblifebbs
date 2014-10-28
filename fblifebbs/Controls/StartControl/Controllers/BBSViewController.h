@@ -53,8 +53,6 @@ typedef enum{
 @property(nonatomic,strong)UIScrollView * myScrollView;
 ///论坛视图
 @property(nonatomic,strong)UITableView * myTableView1;
-///排行榜视图
-@property(nonatomic,strong)RefreshTableView * myTableView2;
 ///地区版块数据
 @property(nonatomic,strong)NSMutableArray * forum_diqu_array;
 ///车型版块数据

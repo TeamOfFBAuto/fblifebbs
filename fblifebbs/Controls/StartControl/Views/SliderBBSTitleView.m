@@ -30,7 +30,7 @@
     titleView_block = theBlock;
     
     
-    lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.frame.size.height,self.frame.size.width/array.count-30,1)];
+    lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.frame.size.height,self.frame.size.width/array.count-20,1)];
     
     lineImageView.backgroundColor = RGBCOLOR(3,3,4);
     

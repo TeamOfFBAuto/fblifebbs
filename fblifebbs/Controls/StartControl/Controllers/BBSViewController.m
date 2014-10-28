@@ -110,7 +110,6 @@
 @synthesize seg_current_page = _seg_current_page;
 @synthesize myScrollView = _myScrollView;
 @synthesize myTableView1 = _myTableView1;
-@synthesize myTableView2 = _myTableView2;
 @synthesize forum_chexing_array = _forum_chexing_array;
 @synthesize forum_jiaoyi_array = _forum_jiaoyi_array;
 @synthesize forum_diqu_array = _forum_diqu_array;
@@ -147,14 +146,21 @@
 
     ///加载顶部选择
     __weak typeof(self)bself = self;
-    _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,70,190,44)];
-    [_seg_view setAllViewsWith:[NSArray arrayWithObjects:@"全部版块",@"排行榜",nil] withBlock:^(int index) {
-        [bself.myScrollView setContentOffset:CGPointMake((DEVICE_WIDTH+20)*index,0) animated:YES];
-        bself.seg_current_page = index;
+    _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,70,240,44)];
+    [_seg_view setAllViewsWith:[NSArray arrayWithObjects:@"地区",@"车型",@"主题",@"交易",nil] withBlock:^(int index) {
+//        bself.seg_current_page = index;
+        
+        if (current_forum == index) {
+            return ;
+        }
+        current_forum = index;
+        [bself isHaveCacheDataWith:index];
     }];
     
     self.navigationItem.titleView = _seg_view;
     
+    
+    /*
     _myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH+20,DEVICE_HEIGHT-64-49)];
     _myScrollView.delegate = self;
     _myScrollView.bounces = NO;
@@ -164,20 +170,19 @@
     _myScrollView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_myScrollView];
     _myScrollView.contentSize = CGSizeMake((DEVICE_WIDTH+20)*2,0);
+     */
     
     ///论坛部分
-    _myTableView1 = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,_myScrollView.frame.size.height)];
+    _myTableView1 = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-64-49)];
     _myTableView1.delegate = self;
     _myTableView1.dataSource = self;
     _myTableView1.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [_myScrollView addSubview:_myTableView1];
-    
-    
+    [self.view addSubview:_myTableView1];
     
     UIView *table_sectionV = [[UIView alloc]initWithFrame:CGRectZero];
     table_sectionV.backgroundColor = [UIColor clearColor];
     table_sectionV.backgroundColor = [UIColor whiteColor];
-    table_sectionV.frame = CGRectMake(0, 0,DEVICE_WIDTH,115);
+    table_sectionV.frame = CGRectMake(0, 0,DEVICE_WIDTH,52);
     UIView *search_bgview = [[UIView alloc]initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,52)];
     [table_sectionV addSubview:search_bgview];
     UISearchBar *bar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,52)];
@@ -188,7 +193,9 @@
     bar.barTintColor = COLOR_SEARCHBAR;
     [search_bgview addSubview:bar];
     
+    _myTableView1.tableHeaderView = table_sectionV;
     
+  /*老版选择版块界面
     SliderBBSForumSegmentView * forumSegmentView = [[SliderBBSForumSegmentView alloc] initWithFrame:CGRectMake(0,52,DEVICE_WIDTH,63)];
     [forumSegmentView setAllViewsWithTextArray:[NSArray arrayWithObjects:@"地区",@"车型",@"主题",@"交易",nil] WithImageArray:[NSArray arrayWithObjects:@"bbs_forum_earth",@"bbs_forum_car",@"bbs_forum_zhuti",@"bbs_forum_jiaoyi",@"bbs_forum_earth-1",@"bbs_forum_car-1",@"bbs_forum_zhuti-1",@"bbs_forum_jiaoyi-1",nil] WithBlock:^(int index) {
         
@@ -202,17 +209,12 @@
     }];
     
     [table_sectionV addSubview:forumSegmentView];
+   */
     
-    _myTableView1.tableHeaderView = table_sectionV;
     
     
+/*
     ///排行榜部分
-    _myTableView2 = [[RefreshTableView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH+20,0,DEVICE_WIDTH,_myScrollView.frame.size.height)];
-    _myTableView2.delegate = self;
-    _myTableView2.dataSource = self;
-    _myTableView2.separatorStyle = UITableViewCellSeparatorStyleNone;
-   // [_myScrollView addSubview:_myTableView2];
-    
     rangkingView = [[BBSRankingView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH+20,0,DEVICE_WIDTH,_myScrollView.frame.size.height)];
     [_myScrollView addSubview:rangkingView];
     
@@ -252,13 +254,14 @@
                 break;
         }
     }];
-    
+ */
     
     ///数据请求
     [self loadAllForums];
+   
     
     [self loadCollectionForumSectionData];
-    
+
     //论坛版块收藏通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forumSectionChange:) name:@"forumSectionChange" object:nil];
     

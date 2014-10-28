@@ -6,6 +6,9 @@
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
+
+//  这里是所有搜索内容 GFoundSearchViewController3为 帖子版块用户的搜索界面
+
 #import <UIKit/UIKit.h>
 #import "CustomSegmentView.h"
 #import "NewWeiBoCustomCell.h"

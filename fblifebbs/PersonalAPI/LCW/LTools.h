@@ -25,7 +25,7 @@
 
 #define COLOR_TABLE_LINE [UIColor colorWithRed:229/255.F green:231/255.F blue:230/255.F alpha:1.0]//teleview分割线颜色
 
-#define COLOR_SEARCHBAR [UIColor colorWithRed:229/255.F green:231/255.F blue:230/255.F alpha:1.0]//teleview分割线颜色
+#define COLOR_SEARCHBAR [UIColor colorWithRed:229/255.F green:231/255.F blue:230/255.F alpha:1.0]//搜索条layer颜色
 
 #define L_PAGE_SIZE 10 //每页条数
 #define ERROR_INFO @"ERRO_INFO" //错误信息

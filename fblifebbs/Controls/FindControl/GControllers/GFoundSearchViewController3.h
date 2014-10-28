@@ -6,6 +6,10 @@
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
+
+
+//点击发现的搜索帖子/版块/用户 跳转的页面
+
 #import "SNViewController.h"
 #import "CustomSegmentView.h"
 #import "NewWeiBoCustomCell.h"

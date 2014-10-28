@@ -9,11 +9,6 @@
 #import "FindViewController.h"
 #import "FriendCircleViewController.h"
 
-#define COLOR_VIEW_BACKGROUND [UIColor colorWithRed:246/255.F green:247/255.F blue:249/255.F alpha:1.0]//视图背景颜色
-
-#define COLOR_TABLE_LINE [UIColor colorWithRed:229/255.F green:231/255.F blue:230/255.F alpha:1.0]//teleview分割线颜色
-
-#define COLOR_SEARCHBAR [UIColor colorWithRed:217/255.F green:217/255.F blue:217/255.F alpha:1.0]//teleview分割线颜色
 
 
 @interface FindViewController ()

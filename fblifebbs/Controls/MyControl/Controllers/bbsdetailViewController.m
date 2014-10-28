@@ -799,14 +799,7 @@
     
     
     
-    
 }
-
-
-
-
-
-
 
 
 
@@ -834,9 +827,7 @@
             
             NSLog(@"xxx==%d",indexPath);
             
-            
             [wself clickedButtonAtIndex:indexPath];
-            
             
         }];
         

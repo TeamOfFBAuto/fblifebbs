@@ -300,7 +300,7 @@
 +(CGFloat)NewshoucangTableViewCellHeightFromstyle:(NewshoucangTableViewCellStyle)thestyle comstr:(NSString *)thestring
 {
     
-    
+    thestring = thestring.length == 0  ? @" " : thestring;
     
     UIFont *font = [UIFont systemFontOfSize:16];
     //设置一个行高上限

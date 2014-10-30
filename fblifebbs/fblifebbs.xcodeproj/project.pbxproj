@@ -657,8 +657,6 @@
 		563723FC19E922D800BEF45C /* homenewz36_33@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723DC19E922D800BEF45C /* homenewz36_33@2x.png */; };
 		563723FD19E922D800BEF45C /* likes21_19@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723DD19E922D800BEF45C /* likes21_19@2x.png */; };
 		563723FE19E922D800BEF45C /* logonewz113_46@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723DE19E922D800BEF45C /* logonewz113_46@2x.png */; };
-		563723FF19E922D800BEF45C /* louzhu38_52@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723DF19E922D800BEF45C /* louzhu38_52@2x.png */; };
-		5637240019E922D800BEF45C /* louzhured38_52@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723E019E922D800BEF45C /* louzhured38_52@2x.png */; };
 		5637240119E922D800BEF45C /* love_unselected_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723E119E922D800BEF45C /* love_unselected_image@2x.png */; };
 		5637240219E922D800BEF45C /* luntangray48_41@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723E219E922D800BEF45C /* luntangray48_41@2x.png */; };
 		5637240319E922D800BEF45C /* luntanred48_41@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723E319E922D800BEF45C /* luntanred48_41@2x.png */; };
@@ -1865,8 +1863,6 @@
 		563723DC19E922D800BEF45C /* homenewz36_33@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homenewz36_33@2x.png"; sourceTree = "<group>"; };
 		563723DD19E922D800BEF45C /* likes21_19@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "likes21_19@2x.png"; sourceTree = "<group>"; };
 		563723DE19E922D800BEF45C /* logonewz113_46@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logonewz113_46@2x.png"; sourceTree = "<group>"; };
-		563723DF19E922D800BEF45C /* louzhu38_52@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "louzhu38_52@2x.png"; sourceTree = "<group>"; };
-		563723E019E922D800BEF45C /* louzhured38_52@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "louzhured38_52@2x.png"; sourceTree = "<group>"; };
 		563723E119E922D800BEF45C /* love_unselected_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "love_unselected_image@2x.png"; sourceTree = "<group>"; };
 		563723E219E922D800BEF45C /* luntangray48_41@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "luntangray48_41@2x.png"; sourceTree = "<group>"; };
 		563723E319E922D800BEF45C /* luntanred48_41@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "luntanred48_41@2x.png"; sourceTree = "<group>"; };
@@ -3846,8 +3842,6 @@
 				563723DC19E922D800BEF45C /* homenewz36_33@2x.png */,
 				563723DD19E922D800BEF45C /* likes21_19@2x.png */,
 				563723DE19E922D800BEF45C /* logonewz113_46@2x.png */,
-				563723DF19E922D800BEF45C /* louzhu38_52@2x.png */,
-				563723E019E922D800BEF45C /* louzhured38_52@2x.png */,
 				563723E119E922D800BEF45C /* love_unselected_image@2x.png */,
 				563723E219E922D800BEF45C /* luntangray48_41@2x.png */,
 				563723E319E922D800BEF45C /* luntanred48_41@2x.png */,
@@ -4793,7 +4787,6 @@
 				5635890D19F79359005F6F55 /* face17.png in Resources */,
 				5637253B19E9232900BEF45C /* weibo_detail_pinglun@2x.png in Resources */,
 				13ACB71D19EFD8930092318B /* logonewz113_46@2x.png in Resources */,
-				563723FF19E922D800BEF45C /* louzhu38_52@2x.png in Resources */,
 				5635896919F79359005F6F55 /* face58_1.png in Resources */,
 				13ACB71C19EFD8930092318B /* likes21_19@2x.png in Resources */,
 				19FF0E7519E7D40400D5DC6A /* BBSViewController.xib in Resources */,
@@ -5064,7 +5057,6 @@
 				563724E919E9232900BEF45C /* ios7_collect44_42@2x.png in Resources */,
 				13D42E7119ED32AD00261D69 /* highlightpicKuang@2x.jpeg in Resources */,
 				13D42C6519ED251200261D69 /* 20130502_selected.png in Resources */,
-				5637240019E922D800BEF45C /* louzhured38_52@2x.png in Resources */,
 				13ACB72619EFD8930092318B /* newscollect44_43@2x.png in Resources */,
 				130C24EE19EBE0E400044F51 /* MineViewController.xib in Resources */,
 				13ACB6CE19EFD6420092318B /* bbs_bg@2x.png in Resources */,

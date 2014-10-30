@@ -28,12 +28,10 @@
 -(void)setAllViewsWith:(NSArray *)array withBlock:(SliderBBSTitleViewBlock)theBlock
 {
     titleView_block = theBlock;
-    
+    total_pages = array.count;
     
     lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.frame.size.height,self.frame.size.width/array.count-20,1)];
-    
     lineImageView.backgroundColor = RGBCOLOR(3,3,4);
-    
     [self addSubview:lineImageView];
     
     for (int i = 0;i < array.count;i++)
@@ -52,18 +50,14 @@
         
         if (i == 0) {
             [button setTitleColor:SELECTED_COLOR forState:UIControlStateNormal];
-            
             lineImageView.center = CGPointMake(button.center.x,self.frame.size.height-1);
         }else
         {
             [button setTitleColor:UNSELECTED_CORLOR forState:UIControlStateNormal];
-            
         }
         
         [self addSubview:button];
     }
-    
-    
 }
 
 
@@ -73,16 +67,16 @@
     
     UIButton * button;
     
-    for (int i = 0;i<2;i++) {
+    for (int i = 0;i<total_pages;i++) {
         if (sender.tag-100 != i)
         {
             button = (UIButton *)[self viewWithTag:i+100];
+            [button setTitleColor:UNSELECTED_CORLOR forState:UIControlStateNormal];
         }
     }
     
     [UIView animateWithDuration:0.3 animations:^{
         [sender setTitleColor:SELECTED_COLOR forState:UIControlStateNormal];
-        [button setTitleColor:UNSELECTED_CORLOR forState:UIControlStateNormal];
         lineImageView.center = CGPointMake(sender.center.x,self.frame.size.height-1);
     } completion:^(BOOL finished) {
         

@@ -190,7 +190,7 @@
     __weak typeof(self)bself = self;
     [wrequest setCompletionBlock:^{
         [bself.data_array addObject:theInfo];
-        [bself.tableView reloadData];
+        [bself finnishendsend2];
     }];
     
     [wrequest setFailedBlock:^{
@@ -205,7 +205,6 @@
     if (self.data_array.count>0)
     {
         ChatInfo * info = [self.data_array objectAtIndex:self.data_array.count-1];
-        
         [self initHttpRequestWithMaxId:info.msg_id];
     }
 }
@@ -242,8 +241,10 @@
     [self scrollToBottomAnimated:NO];
 }
 
--(void)finnishendsend2{
+-(void)finnishendsend2
+{
     [self.inputToolBarView.textView setText:@""];
+    [self.inputToolBarView.textView resignFirstResponder];
     [self textViewDidChange:self.inputToolBarView.textView];
     [self.tableView reloadData];
     [self scrollToBottomAnimated:NO];
@@ -305,8 +306,8 @@
     [self initHttpRequestWithMaxId:@""];
     
     
-    //    timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(loadNewMessage) userInfo:nil repeats:YES];
-    
+    timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(loadNewMessage) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
     if([self.view isKindOfClass:[UIScrollView class]])
     {
@@ -402,11 +403,8 @@
     
     ChatInfo * info = [[ChatInfo alloc] init];
     
-    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    
     NSString *string_date___=[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[NSDate date]]];
-    
     info.date_now =string_date___ ;
     
     if ([self.info.from_uid isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USER_UID]])
@@ -424,8 +422,8 @@
     }
     
     info.msg_message = [self.inputToolBarView.textView.text trimWhitespace];
+    [self.inputToolBarView.textView resignFirstResponder];
     [self writeMessageRequest:info];
-    [self finnishendsend2];
 }
 
 
@@ -471,7 +469,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
+    [timer invalidate];
     [MobClick endEvent:@"MyChatViewController"];
 }
 

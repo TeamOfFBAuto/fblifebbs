@@ -48,11 +48,12 @@
     
     NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
     
-    self.uid = [user objectForKey:USER_UID];
+    if (self.uid.length == 0) {
+        self.uid = [user objectForKey:USER_UID];
+        self.nameString = [user objectForKey:USER_NAME];
+        self.imageString = [user objectForKey:USER_FACE];
+    }
     
-    self.nameString = [user objectForKey:USER_NAME];
-    
-    self.imageString = [user objectForKey:USER_FACE];
     
     
     self.view.backgroundColor=RGBCOLOR(247, 247, 247);
@@ -139,9 +140,9 @@
     
     [centerimgkuang addSubview:headimageview];
     
-    if ([string_myuid isEqualToString:self.uid]) {
+//    if ([string_myuid isEqualToString:self.uid]) {
         UILabel *namelabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 564/2, 200, 20)];
-        namelabel.text=[[NSUserDefaults standardUserDefaults]objectForKey:USER_NAME];
+        namelabel.text=self.nameString;
         namelabel.font=[UIFont boldSystemFontOfSize:18];
         namelabel.backgroundColor=[UIColor clearColor];
         [centerimgkuang addSubview:namelabel];
@@ -152,18 +153,18 @@
         [centerimgkuang addSubview:discribelabel];
         discribelabel.backgroundColor=[UIColor clearColor];
 
-    }else{
-        
-        UILabel *discribelabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 564/2+10, 200, 20)];
-        discribelabel.text=@"扫一扫关注我的主页";
-        discribelabel.font=[UIFont systemFontOfSize:14];
-        discribelabel.textColor=[UIColor blackColor];
-        [centerimgkuang addSubview:discribelabel];
-        discribelabel.backgroundColor=[UIColor clearColor];
-
-
-        
-    }
+//    }else{
+//        
+//        UILabel *discribelabel=[[UILabel alloc]initWithFrame:CGRectMake(70, 564/2+10, 200, 20)];
+//        discribelabel.text=@"扫一扫关注我的主页";
+//        discribelabel.font=[UIFont systemFontOfSize:14];
+//        discribelabel.textColor=[UIColor blackColor];
+//        [centerimgkuang addSubview:discribelabel];
+//        discribelabel.backgroundColor=[UIColor clearColor];
+//
+//
+//        
+//    }
 
 
     loading = [LTools MBProgressWithText:@"加载..." addToView:self.view];

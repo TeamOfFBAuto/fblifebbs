@@ -91,6 +91,17 @@
     [super viewWillAppear:animated];
     
     [MobClick beginEvent:@"WriteBlogViewController"];
+    
+    if (morePicView.hidden && myTextView)
+    {
+        if (isFace)
+        {
+            [self ShowFaceView];
+        }else
+        {
+            [myTextView becomeFirstResponder];
+        }
+    }
 }
 
 
@@ -605,12 +616,20 @@
             break;
         case 3:
         {
+            if (!isFace && morePicView.hidden)
+            {
+                [myTextView resignFirstResponder];
+                [UIView animateWithDuration:0.2 animations:^
+                 {
+                     options_view.frame = CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72,320,73);
+                     myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44:480-20-73-44)-(MY_MACRO_NAME?0:20));
+                 }];
+            }
+           
             //@某人
             FriendListViewController * list = [[FriendListViewController alloc] init];
             list.delegate = self;
-            
             UINavigationController * list_nav = [[UINavigationController alloc] initWithRootViewController:list];
-            
             [self presentViewController:list_nav animated:YES completion:NULL];
         }
             break;
@@ -1262,6 +1281,7 @@
 {
     UIButton * button = (UIButton *)[self.view viewWithTag:1004];
     isFace = NO;
+    morePicView.hidden = YES;
     [button setImage:[personal getImageWithName:isFace?@"write_blog_key@2x":@"smile_write@2x"] forState:UIControlStateNormal];
     
     return YES;
@@ -1326,25 +1346,25 @@
 -(void)atSomeBodys:(NSString *)string
 {
     
-    if (isFace)
-    {
-        //弹出表情
-        pageControl.hidden = NO;
-        
-        scrollView.hidden = NO;
-        
-        morePicView.hidden = NO;
-        
-        [UIView animateWithDuration:0.3 animations:^{
-            options_view.frame =  CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72-160,320,73);
-            myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44-160:480-20-73-44-160)-(MY_MACRO_NAME?0:20));
-            [myTextView resignFirstResponder];
-        }];
-    }else
-    {
-        //弹出键盘
-        [myTextView becomeFirstResponder];
-    }
+//    if (isFace)
+//    {
+//        //弹出表情
+//        pageControl.hidden = NO;
+//        
+//        scrollView.hidden = NO;
+//        
+//        morePicView.hidden = NO;
+//        
+//        [UIView animateWithDuration:0.3 animations:^{
+//            options_view.frame =  CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72-160,320,73);
+//            myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44-160:480-20-73-44-160)-(MY_MACRO_NAME?0:20));
+//            [myTextView resignFirstResponder];
+//        }];
+//    }else
+//    {
+//        //弹出键盘
+//        [myTextView becomeFirstResponder];
+//    }
     
     
     if (string.length == 0 || [string isEqualToString:@""])
@@ -1362,7 +1382,20 @@
     myTextView.text = [myTextView.text stringByAppendingFormat:@" @%@",string];
 }
 
-
+-(void)ShowFaceView
+{
+    //弹出表情
+    
+    morePicView.hidden = YES;
+    pageControl.hidden = NO;
+    scrollView.hidden = NO;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        options_view.frame =  CGRectMake(0,((iPhone5?568:480)-72-215)-(MY_MACRO_NAME?0:20),320,73);
+        myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-73-20-44-215:480-20-73-44-215)-(MY_MACRO_NAME?0:20));
+        [myTextView resignFirstResponder];
+    }];
+}
 
 
 - (void)image:(UIImage *)image didFinishSavingWithError:

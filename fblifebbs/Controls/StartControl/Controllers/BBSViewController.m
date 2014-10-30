@@ -435,7 +435,10 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-
+    if (request.tag -417 == current_forum)
+    {
+        [self isHaveCacheDataWith:current_forum];
+    }
 }
 
 
@@ -770,12 +773,8 @@
         return;
     }
     
-    
-    
     NSString * tid = [sender.myDictionary objectForKey:@"tid"];
-    
     BOOL isCollected = [self.forum_section_collection_array containsObject:tid];
-    
     NSString * fullUrl = @"";
     
     if (isCollected)
@@ -804,18 +803,20 @@
         
         NSLog(@"收藏取消收藏 ----  %@",dictionary);
         
-        
         if ([[dictionary objectForKey:@"errcode"] intValue] == 0)
         {
             if (isCollected)
             {
                 [bself.forum_section_collection_array removeObject:tid];
+                sender.selected = NO;
             }else
             {
                 [bself.forum_section_collection_array addObject:tid];
+                sender.selected = YES;
             }
             
-            [bself.myTableView1 reloadData];
+//            [bself.myTableView1 reloadData];
+//            sender.selected = YES;
         }else
         {
             UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:[dictionary objectForKey:@"bbsinfo"] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
@@ -826,6 +827,7 @@
     
     [request setFailedBlock:^{
         
+        [zsnApi showAutoHiddenMBProgressWithText:isCollected?@"取消收藏失败,请检查您当前网络":@"收藏失败,请检查您当前网络" addToView:self.view];
     }];
     
     [collect_request startAsynchronous];

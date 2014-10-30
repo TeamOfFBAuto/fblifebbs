@@ -16,6 +16,8 @@ typedef void(^SliderBBSTitleViewBlock)(int index);
     UIImageView * lineImageView;
     
     SliderBBSTitleViewBlock titleView_block;
+    
+    int total_pages;
 }
 
 

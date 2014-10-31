@@ -38,7 +38,7 @@
     dataArray=[NSArray array];
     currentpage=1;
     allArr=[NSMutableArray array];
-    preTag=100;
+    preTag=9000;
     
     [self loadRecentlyLookData];
     
@@ -213,7 +213,7 @@
         [ytestButton setBackgroundImage:[UIImage imageNamed:selectedArr[i]] forState:UIControlStateSelected];
         [ytestButton setBackgroundImage:[UIImage imageNamed:selectedArr[i]] forState:UIControlStateHighlighted];
         
-        ytestButton.tag=100+i;
+        ytestButton.tag=9000+i;
         if (i==0) {
             ytestButton.selected=YES;
             ytestButton.frame=CGRectMake(0, 0, 107, 203/2);
@@ -309,20 +309,23 @@
 #pragma mark--点击切换button的方法
 
 -(void)doActionButton:(UIButton *)sender{
+    
+    NSLog(@"sendertag===%d=====pretag===%d",sender.tag,preTag);
+    
     UIButton *preButton=(UIButton *)[self.view viewWithTag:preTag];
     preButton.selected=NO;
     sender.selected=YES;
     preTag=sender.tag;
     
-    [newsScrow setContentOffset:CGPointMake(320*(sender.tag-100), 0)];
+    [newsScrow setContentOffset:CGPointMake(320*(sender.tag-9000), 0)];
 
     switch (sender.tag) {
-        case 100:
+        case 9000:
         {
             NSLog(@"跳转到最近浏览");
         }
             break;
-        case 101:
+        case 9001:
         {
             if (allArr.count==0) {
                 [self loadChangshiData];
@@ -330,7 +333,7 @@
             NSLog(@"跳转到最搜藏板块");
         }
             break;
-        case 102:
+        case 9002:
         {
             NSLog(@"跳转到排行榜");
         }
@@ -423,7 +426,7 @@
     
     
     
-    
+    [self loadRecentlyLookData];
     
 }
 

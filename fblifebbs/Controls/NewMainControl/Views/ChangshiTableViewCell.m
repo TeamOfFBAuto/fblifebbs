@@ -61,7 +61,7 @@
 
 
     
-    [_imagev setImageWithURL:[NSURL URLWithString:theChangshimodel.icon] placeholderImage:nil];
+    [_imagev setImageWithURL:[NSURL URLWithString:theChangshimodel.icon] placeholderImage:[UIImage imageNamed:@"ios7_implace.png"]];
     
     _title_label.text=theChangshimodel.name;
     

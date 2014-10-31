@@ -471,6 +471,10 @@ alpha:(a)]
 ///获取fb已读通知
 #define GET_FB_READ_NOTIFICATION_URL @"http://fb.fblife.com/openapi/index.php?mod=alert&code=alertlistread&fromtype=b5eeec0b&authkey=%@&page=%d&numpage=20&fbtype=json"
 
+//新版的收藏的接口
+
+#define GET_SHOUYE_SHOUCANG_URL @"http://bbs.fblife.com/bbsapinew/favoritesforums.php?authcode=%@&action=query&formattype=json"
+
 
 
 

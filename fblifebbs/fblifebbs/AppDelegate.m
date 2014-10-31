@@ -20,6 +20,8 @@
 
 #import "LogInViewController.h"
 
+#import "TheRootViewController.h"//新改的首页
+
 
 #import "ComprehensiveViewController.h"
 #import "AFNetworkReachabilityManager.h"
@@ -71,7 +73,7 @@
 -(void)setTabbarViewcontroller{
 
    
-    ComprehensiveViewController * mainVC = [[ComprehensiveViewController alloc] init];
+    TheRootViewController * mainVC = [[TheRootViewController alloc] init];
     
     BBSViewController * microBBSVC = [[BBSViewController alloc] init];
     

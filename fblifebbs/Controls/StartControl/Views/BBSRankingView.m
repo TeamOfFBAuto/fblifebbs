@@ -66,13 +66,15 @@
     }];
     
     [self loadRankingListDataWithIndex:_currentPage];
-    
     [self loadAllBBSPostData];
+    [self loadCollectionForumSectionData];
     
     _myTableView.tableHeaderView = ranking_segment;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogIn:) name:@"LogIn" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bbsDetailCollectChanged:) name:@"bbsDetailCollectChanged" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bbsForumCollectChanged:) name:@"forumSectionChange" object:nil];
 }
 
 #pragma mark - 主题收藏变更通知
@@ -80,7 +82,11 @@
 {
     [self loadAllBBSPostData];
 }
-
+#pragma mark - 版块收藏变更
+-(void)bbsForumCollectChanged:(NSNotification *)notification
+{
+    [self loadCollectionForumSectionData];
+}
 #pragma mark - 请求排行榜数据
 
 -(void)loadRankingListDataWithIndex:(int)index
@@ -110,8 +116,6 @@
 }
 
 #pragma mark - 请求收藏的所有的帖子
-
-
 -(void)loadAllBBSPostData
 {
     BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
@@ -181,6 +185,35 @@
     }];
     
     [bbs_request startAsynchronous];
+}
+
+#pragma mark - 读取所有收藏版块数据信息
+-(void)loadCollectionForumSectionData
+{
+    SliderForumCollectionModel * collection_model = [[SliderForumCollectionModel alloc] init];
+    
+    __weak typeof(self) bself = self;
+    
+    if (!_bbs_forum_collection_array)
+    {
+        _bbs_forum_collection_array = [NSMutableArray array];
+    }else
+    {
+        [_bbs_forum_collection_array removeAllObjects];
+    }
+    
+    //第一个参数第一页  第二个参数一页显示多少个，这里要全部的数据所以给1000
+    [collection_model loadCollectionDataWith:1 WithPageSize:100 WithFinishedBlock:^(NSMutableArray *array) {
+        
+        [bself.bbs_forum_collection_array addObjectsFromArray:collection_model.collect_id_array];
+        [bself.myTableView reloadData];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:bself.bbs_forum_collection_array forKey:@"forumSectionCollectionArray"];
+    } WithFailedBlock:^(NSString *string) {
+        
+        bself.bbs_forum_collection_array = [[NSUserDefaults standardUserDefaults] objectForKey:@"forumSectionCollectionArray"];
+        [bself.myTableView reloadData];
+    }];
 }
 
 

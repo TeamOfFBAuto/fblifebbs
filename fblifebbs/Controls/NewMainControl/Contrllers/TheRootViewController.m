@@ -16,6 +16,10 @@
 
 #import "BBSfenduiViewController.h"
 #import "testbase.h"
+#import "BBSRankingView.h"
+#import "bbsdetailViewController.h"
+#import "BBSfenduiViewController.h"
+
 
 @interface TheRootViewController (){
     
@@ -152,8 +156,45 @@
     [self settabviewHederView];
     
     //第三屏，soulnear的排行榜
-    
-    
+    CGRect ranking_frame = _mainTabV.frame;
+    ranking_frame.origin.x = DEVICE_WIDTH*2;
+    BBSRankingView * rangkingView = [[BBSRankingView alloc] initWithFrame:ranking_frame];
+    [newsScrow addSubview:rangkingView];
+    __weak typeof(self)bself = self;
+    [rangkingView setRangkingBlock:^(int index, id object){
+        NSLog(@"index--------%d",index);
+        switch (index) {
+            case 0:///bbsdetail
+            {
+                RankingListModel * model = (RankingListModel*)object;
+                bbsdetailViewController * detail = [[bbsdetailViewController alloc] init];
+                detail.bbsdetail_tid = model.ranking_id;
+                detail.hidesBottomBarWhenPushed = YES;
+                [bself.navigationController pushViewController:detail animated:YES];
+            }
+                break;
+            case 1:///bbsfendui
+            {
+                RankingListModel * model = (RankingListModel*)object;
+                
+                BBSfenduiViewController * fendui = [[BBSfenduiViewController alloc] init];
+                fendui.string_id = model.ranking_id;
+//                fendui.collection_array = bself.forum_section_collection_array;
+                fendui.hidesBottomBarWhenPushed = YES;
+                [bself.navigationController pushViewController:fendui animated:YES];
+            }
+                break;
+            case 2:///login
+            {
+                LogInViewController * logIn = [LogInViewController sharedManager];
+                [bself presentViewController:logIn animated:YES completion:nil];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }];
 }
 #pragma mark--上面三个按钮的切换
 -(void)settabviewHederView{
@@ -391,7 +432,11 @@
     [super viewDidDisappear:animated];
 }
 
-
+#pragma mark - LogInDelegate
+-(void)successToLogIn
+{
+    [self loadChangshiData];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

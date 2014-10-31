@@ -22,31 +22,23 @@
         for (int i = 0;i < 3;i++)
         {
             UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-            
             button.frame = CGRectMake(12 + 100*i,12,96,45);
-                        
             [button setImage:[UIImage imageNamed:[image_array objectAtIndex:i]] forState:UIControlStateNormal];
-            
             [button setImage:[UIImage imageNamed:[image_array objectAtIndex:i+3]] forState:UIControlStateSelected];
-            
             historyPage = 0;
             
             if (i == 0)
             {
                 button.selected = YES;
-                
                 [button setImageEdgeInsets:UIEdgeInsetsZero];
             }else
             {
                 button.selected = NO;
-                
                 [button setImageEdgeInsets:UIEdgeInsetsMake(0,0,5,0)];
             }
             
             button.tag = 100+i;
-            
             [button addTarget:self action:@selector(buttonTap:) forControlEvents:UIControlEventTouchUpInside];
-            
             [self addSubview:button];
         }
     }
@@ -63,16 +55,11 @@
     }else
     {
         UIButton * button = (UIButton *)[self viewWithTag:historyPage+100];
-        
         button.selected = NO;
-        
         [button setImageEdgeInsets:UIEdgeInsetsMake(0,0,5,0)];
-        
         sender.selected = YES;
-        
         [sender setImageEdgeInsets:UIEdgeInsetsZero];
     }
-    
     historyPage = sender.tag -100;
 }
 

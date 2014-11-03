@@ -311,15 +311,20 @@
     
     BOOL isCollected;
     
+    NSString * alert_title = @"";
+
+    
     if (self.currentPage == 1)
     {
         isCollected = [self.bbs_post_collection_array containsObject:model.ranking_id];
         
         if (!isCollected)
         {
+            alert_title = @"正在收藏...";
             fullUrl = [NSString stringWithFormat:COLLECTION_BBS_POST_URL,AUTHKEY,model.ranking_id];
         }else
         {
+            alert_title = @"正在取消收藏...";
             fullUrl = [NSString stringWithFormat:DELETE_COLLECTION_BBS_POST_URL,model.ranking_id,AUTHKEY];
         }
         
@@ -329,15 +334,17 @@
         
         if (!isCollected)
         {
+            alert_title = @"正在收藏...";
             fullUrl = [NSString stringWithFormat:COLLECTION_FORUM_SECTION_URL_OLD,model.ranking_id,AUTHKEY];
         }else
         {
+            alert_title = @"正在取消收藏";
             fullUrl = [NSString stringWithFormat:COLLECTION_CANCEL_FORUM_SECTION_URL_OLD,model.ranking_id,AUTHKEY];
         }
     }
     
     NSLog(@"收藏取消收藏 ---  %@",fullUrl);
-    
+    MBProgressHUD * hud = [zsnApi showMBProgressWithText:alert_title addToView:self];
     
     NSURL * url = [NSURL URLWithString:fullUrl];
     
@@ -349,7 +356,7 @@
     __weak typeof(self) bself = self;
     
     [request setCompletionBlock:^{
-        
+        [hud hide:YES];
         cell.collection_button.selected = !isCollected;
         
         if (isCollected)//取消收藏
@@ -362,14 +369,10 @@
                 }
             }else
             {
-                //                if ([bself.bbs_forum_collection_array containsObject:model.ranking_id])
-                //                {
-                //                    [bself.bbs_forum_collection_array removeObject:model.ranking_id];
-                //                }
-                
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:   [NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
             }
+            
+            [zsnApi showAutoHiddenMBProgressWithText:@"成功取消收藏" addToView:self];
             
         }else//收藏
         {
@@ -381,19 +384,15 @@
                 }
             }else
             {
-                //                if (![bself.bbs_forum_collection_array containsObject:model.ranking_id])
-                //                {
-                //                    [bself.bbs_forum_collection_array addObject:model.ranking_id];
-                //                }
-                
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
             }
-            
+            [zsnApi showAutoHiddenMBProgressWithText:@"收藏成功" addToView:self];
         }
     }];
     
     [request setFailedBlock:^{
-        
+        [hud hide:YES];
+        [zsnApi showAutoHiddenMBProgressWithText:@"请求数据失败，请检查当前网络" addToView:self];
     }];
     
     [collect_request startAsynchronous];

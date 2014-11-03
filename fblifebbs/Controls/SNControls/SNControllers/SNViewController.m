@@ -25,7 +25,7 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
-    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+//    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     
     if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
     {

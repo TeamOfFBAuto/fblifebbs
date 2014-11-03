@@ -781,11 +781,11 @@
     
     if (isCollected)
     {
-        alert_title = @"正在取消收藏";
+        alert_title = @"正在取消收藏...";
         fullUrl = [NSString stringWithFormat:COLLECTION_CANCEL_FORUM_SECTION_URL_OLD,tid,AUTHKEY];
     }else
     {
-        alert_title = @"正在收藏";
+        alert_title = @"正在收藏...";
         fullUrl = [NSString stringWithFormat:COLLECTION_FORUM_SECTION_URL_OLD,tid,AUTHKEY];
     }
     
@@ -825,6 +825,7 @@
 //            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:[dictionary objectForKey:@"bbsinfo"] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
 //            
 //            [alertView show];
+            [hud hide:YES];
             [zsnApi showAutoHiddenMBProgressWithText:[dictionary objectForKey:@"bbsinfo"] addToView:self.view];
         }
     }];

@@ -877,6 +877,7 @@
 		563D439419F50A0900FFCAE5 /* qqleft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563D438419F50A0900FFCAE5 /* qqleft@2x.png */; };
 		563D439519F50A0900FFCAE5 /* qqright.png in Resources */ = {isa = PBXBuildFile; fileRef = 563D438519F50A0900FFCAE5 /* qqright.png */; };
 		563D439619F50A0900FFCAE5 /* qqright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563D438619F50A0900FFCAE5 /* qqright@2x.png */; };
+		5642C7E41A07744D00984860 /* ios7backImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5642C7E31A07744D00984860 /* ios7backImage@2x.png */; };
 		5646FC3319E7E30000AA35E0 /* SNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5646FC3219E7E30000AA35E0 /* SNViewController.m */; };
 		5646FC3D19E7E64F00AA35E0 /* SliderBBSTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5646FC3C19E7E64F00AA35E0 /* SliderBBSTitleView.m */; };
 		5668E1AD19EB69CF0091A4B0 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E1A819EB69CF0091A4B0 /* LogInViewController.m */; };
@@ -2103,6 +2104,7 @@
 		563D438419F50A0900FFCAE5 /* qqleft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qqleft@2x.png"; sourceTree = "<group>"; };
 		563D438519F50A0900FFCAE5 /* qqright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qqright.png; sourceTree = "<group>"; };
 		563D438619F50A0900FFCAE5 /* qqright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qqright@2x.png"; sourceTree = "<group>"; };
+		5642C7E31A07744D00984860 /* ios7backImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7backImage@2x.png"; sourceTree = "<group>"; };
 		5646FC3119E7E30000AA35E0 /* SNViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNViewController.h; sourceTree = "<group>"; };
 		5646FC3219E7E30000AA35E0 /* SNViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNViewController.m; sourceTree = "<group>"; };
 		5646FC3419E7E33700AA35E0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -3863,6 +3865,7 @@
 				5637244019E9232800BEF45C /* ios7bbsimg */,
 				5637242819E9232800BEF45C /* ios7_more_images */,
 				5637BD9A19EE5059008836CE /* touxiang.png */,
+				5642C7E31A07744D00984860 /* ios7backImage@2x.png */,
 				5637BD9B19EE5059008836CE /* touxiang@2x.png */,
 				5637241319E9232800BEF45C /* chat_people@2x.png */,
 				5637254A19E9247800BEF45C /* bbs_forum_car-1@2x.png */,
@@ -4569,6 +4572,7 @@
 				5637240219E922D800BEF45C /* luntangray48_41@2x.png in Resources */,
 				13ACB6E219EFD6420092318B /* xiala_new_fendui@2x.png in Resources */,
 				13ACB64C19EFA96F0092318B /* fensikuang_sel.png in Resources */,
+				5642C7E41A07744D00984860 /* ios7backImage@2x.png in Resources */,
 				13ACB6C919EFD6420092318B /* 5.png in Resources */,
 				19B1BA8A1A036D3A003D8522 /* shouyeshoucang@2x.png in Resources */,
 				13ACB6D419EFD6420092318B /* bbs_refresh@2x.png in Resources */,

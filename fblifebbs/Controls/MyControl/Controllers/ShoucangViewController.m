@@ -102,9 +102,9 @@
     }
     
     
-    _weibo_seg = [[ShoucangSeg alloc] initWithFrame:CGRectMake(0,0,240,44)];
+    _weibo_seg = [[ShoucangSeg alloc] initWithFrame:CGRectMake(0,0,240,45)];
     
-    UIView *daohangview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, 44)];
+    UIView *daohangview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, 45)];
     [daohangview addSubview:_weibo_seg];
     
     _weibo_seg.delegate = self;

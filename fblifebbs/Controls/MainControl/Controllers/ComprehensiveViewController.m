@@ -210,7 +210,6 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
     
     
     isloadsuccess = YES;
-    
     numberofpage=1;
     //点击了广告
     

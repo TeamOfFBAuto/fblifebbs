@@ -39,14 +39,14 @@
     //1
     bigimageview=[[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-     bigimageview.backgroundColor=[UIColor colorWithRed:245/255.f green:244/255.f blue:242/255.f alpha:1];
+     bigimageview.backgroundColor=[UIColor colorWithRed:255/255.f green:255/255.f blue:255/255.f alpha:1];
     [self.view addSubview:bigimageview];
     //2
     iMagelogo=[[UIImageView alloc]init];
     
-    iMagelogo.frame=CGRectMake(0,iPhone5? 568-217/2:480-217/2, 320, 217/2);
+    iMagelogo.frame=CGRectMake(0,iPhone5? 568-188/2:480-188/2, 320, 188/2);
     
-    iMagelogo.image=[UIImage imageNamed:@"ios7_fengmianlogo2.png"];
+    iMagelogo.image=[UIImage imageNamed:@"guanggaologo.png"];
 
     //3
     
@@ -107,6 +107,7 @@
 -(void)handleSingleTapFrom{
     
     
+    NSLog(@"string_url===%@.",string_url);
     
     
     
@@ -251,7 +252,7 @@
         [img_TEST removeFromSuperview];
         guanggao_image.image=iPhone5?guanggao_image.image:[self getSubImage:CGRectMake(0, (568-480)*2, 640,guanggao_image.image.size.height)];
         
-        guanggao_image.frame=CGRectMake(0, 0, guanggao_image.image.size.width/2, guanggao_image.image.size.height/2+2);
+        guanggao_image.frame=CGRectMake(0, 0, guanggao_image.image.size.width/2, guanggao_image.image.size.height/2+17);
         
         NSLog(@"appdelegate===仔仔到了图片");
         [UIView beginAnimations:nil context:nil];

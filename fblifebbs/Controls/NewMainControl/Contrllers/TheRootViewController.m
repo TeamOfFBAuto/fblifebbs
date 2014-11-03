@@ -20,6 +20,13 @@
 #import "bbsdetailViewController.h"
 #import "BBSfenduiViewController.h"
 
+//广告
+
+#import "GuanggaoViewController.h"//广告
+
+#import "fbWebViewController.h"//
+
+
 
 @interface TheRootViewController (){
     
@@ -33,6 +40,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //广告的逻辑
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(ssTurntoFbWebview:) name:@"TouchGuanggao" object:nil];//点击了广告
+    [self turnToguanggao];
+    
+    
+    
     [self prepairNavigationBar];
     [self setTabView];
     dataArray=[NSArray array];
@@ -46,6 +60,111 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+#pragma mark--判断新版本
+
+/**
+ *  判断版本号605673005
+ */
+
+-(void)panduanIsNewVersion{
+    
+    SzkLoadData *newload=[[SzkLoadData alloc]init];
+    
+    NSString *url = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"605673005"];
+    
+    [newload SeturlStr:url mytest:^(NSDictionary *dicinfo, int errcode) {
+        
+        
+        @try {
+            NSArray *_newarray=[NSArray arrayWithObject:[dicinfo objectForKey:@"results"]];
+            
+            NSArray *firstdic=[_newarray objectAtIndex:0];
+            
+            NSDictionary *seconddic=[firstdic objectAtIndex:0];
+            
+            NSLog(@"dicnew==%@",seconddic);
+            
+            NSString *stringInfo=[NSString stringWithFormat:@"%@",[seconddic objectForKey:@"releaseNotes"]];
+            NSString *nowline=[NSString stringWithFormat:@"%@",[seconddic objectForKey:@"version"]];
+            
+            NSLog(@"taidanteng==%@",nowline);
+            // NSLog(@"线上版本是%@当前版本是%@",xianshangbanben,NOW_VERSION);
+            
+            if ([nowline isEqualToString:NOW_VERSION]) {
+                
+                NSLog(@"当前是最新版本");
+                
+            }else{
+                
+                
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"发现新版本" message:stringInfo delegate:self cancelButtonTitle:@"立即升级" otherButtonTitles:@"下次提示",nil];
+                
+                alert.delegate = self;
+                
+                alert.tag = 10000;
+                [alert show];
+                
+                
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        // NSLog(@"dicnew===%@",dicinfo);
+        
+        // NSString *xianshangbanben=[NSString stringWithFormat:@"%@",[dicinfo objectForKey:@"results"] ];
+        
+        
+    }];
+    
+}
+
+
+#pragma mark-跳到fb页面
+-(void)ssTurntoFbWebview:(NSNotification*)sender{
+    
+    
+    
+    
+    //
+    fbWebViewController *fbweb=[[fbWebViewController alloc]init];
+    fbweb.urlstring=[NSString stringWithFormat:@"%@",[sender.userInfo objectForKey:@"link"]];
+    [fbweb viewWillAppear:YES];
+    [self setHidesBottomBarWhenPushed:YES];
+    
+    [self.navigationController pushViewController:fbweb animated:YES];
+    [self setHidesBottomBarWhenPushed:NO];
+    
+    NSLog(@"sender.object===%@",sender.userInfo);
+    
+    
+}
+
+
+#pragma mark--跳转到广告
+
+-(void)turnToguanggao{
+    
+    
+    GuanggaoViewController *_guanggaoVC=[[GuanggaoViewController alloc]init];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO ];
+    
+    [self presentViewController:_guanggaoVC animated:NO completion:NULL];
+    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0 && alertView.tag == 10000)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/yue-ye-yi-zu/id605673005?mt=8"]];
+    }
+}
+
+
 #pragma mark - 读取所有最近浏览的数据
 
 -(void)loadRecentlyLookData
@@ -54,8 +173,8 @@
     dataArray = [testbase findall];
     
     UIScrollView *   firstscro=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568-20-40-40-49+3+49:480-19-40-40-49+3+49)];
-    firstscro.contentSize=CGSizeMake(0,40* dataArray.count/2);
-    firstscro.pagingEnabled=YES;
+    firstscro.contentSize=CGSizeMake(0,40* dataArray.count);
+    firstscro.pagingEnabled=NO;
     firstscro.showsHorizontalScrollIndicator=NO;
     firstscro.showsVerticalScrollIndicator=NO;
     firstscro.backgroundColor=[UIColor whiteColor];
@@ -79,10 +198,11 @@
         
     }
     
-    
-    
-    
 }
+
+
+
+
 
 #pragma mark---点击最近浏览的大队
 
@@ -151,6 +271,7 @@
     _mainTabV=[[UITableView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH, 0, DEVICE_WIDTH, DEVICE_HEIGHT-49-107-64)];
     _mainTabV.delegate=self;
     _mainTabV.dataSource=self;
+    _mainTabV.separatorColor=[UIColor clearColor];
     _mainTabV.backgroundColor=RGBCOLOR(234, 234, 234);
     [newsScrow addSubview:_mainTabV];
     [self settabviewHederView];
@@ -268,7 +389,7 @@
         hudView=[LTools MBProgressWithText:LOADING_TITLE addToView:self.view];
         
         
-        [hudView show:YES];
+      //  [hudView show:YES];
         
         __weak typeof(hudView)weakview=hudView;
         
@@ -405,6 +526,58 @@
     
 }
 
+#pragma mark--删除
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+/*改变删除按钮的title*/
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+/*删除用到的函数*/
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        
+        //网络上得取消
+        
+        SzkLoadData *loaddata=[[SzkLoadData alloc]init];
+        
+        
+        __weak typeof(allArr)weakAllArr=allArr;
+
+        // __weak typeof(self) weself=self;
+        ChangshiModel *model=[allArr objectAtIndex:indexPath.row];
+
+        [loaddata SeturlStr:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/delfavorites.php?delid=%@&formattype=json&authcode=%@",model.fid,[personal getMyAuthkey]] mytest:^(NSDictionary *dicinfo, int errcode) {
+            
+            NSLog(@"取消该收藏的dic==%@",dicinfo);
+            
+            
+            if ([[dicinfo objectForKey:@"errcode"] intValue]==0) {
+                [weakAllArr removeObjectAtIndex:[indexPath row]];  //删除数组里的数据
+
+                
+                [tableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];  //删除对应数据的cell
+
+
+            }
+            
+            
+        }];
+        
+
+        
+    }
+}
+
+
 
 #pragma mark---scrowview的代理
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -424,7 +597,7 @@
     [super viewWillAppear:NO];
     [self setHidesBottomBarWhenPushed:NO];
     
-    
+    [self loadChangshiData];
     
     [self loadRecentlyLookData];
     
@@ -439,6 +612,7 @@
 -(void)successToLogIn
 {
     [self loadChangshiData];
+    
 }
 
 - (void)didReceiveMemoryWarning {

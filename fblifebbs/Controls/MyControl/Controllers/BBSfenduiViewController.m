@@ -119,7 +119,7 @@
     
     UIButton *view_left=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
     //  view_left.backgroundColor=[UIColor redColor];
-    //  [view_left addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+      [view_left addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
     [view_left addSubview:backview];
     
     button_more=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? 26+2:22+5, (44-16)/2, 43/2, 32/2)];
@@ -133,17 +133,7 @@
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:view_left];
     
     
-    
-    
-    //    UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    //    spaceButton.width = MY_MACRO_NAME?-8:5;
-    //
-    //
-    //    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,8,30,44)];
-    //    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    //    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-    //    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-    //    self.navigationItem.leftBarButtonItems=@[spaceButton,back_item];
+ 
     
     
     
@@ -781,6 +771,7 @@
                         
                         
                         NSMutableArray * array = [[NSMutableArray alloc] init];
+                        
                         NSMutableArray *array_=[testbase findall];
                         if ([array_ count]==0) {
                             int mm=   [testbase addbbsname:self.string_name id:[NSString stringWithFormat:@"%@", self.string_id ] ];

@@ -113,7 +113,7 @@
     
     tabbarVC.tabBar.tintColor=[UIColor blackColor];
     
-    tabbarVC.tabBar.backgroundImage = [UIImage imageNamed:@"navigationbg.png"];
+    tabbarVC.tabBar.backgroundImage = [UIImage imageNamed:@"ios7tabbarImage.png"];
     
     tabbarVC.delegate = self;
     

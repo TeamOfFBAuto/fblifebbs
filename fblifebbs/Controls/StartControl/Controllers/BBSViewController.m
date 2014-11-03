@@ -777,14 +777,19 @@
     BOOL isCollected = [self.forum_section_collection_array containsObject:tid];
     NSString * fullUrl = @"";
     
+    NSString * alert_title = @"";
+    
     if (isCollected)
     {
+        alert_title = @"正在取消收藏";
         fullUrl = [NSString stringWithFormat:COLLECTION_CANCEL_FORUM_SECTION_URL_OLD,tid,AUTHKEY];
     }else
     {
+        alert_title = @"正在收藏";
         fullUrl = [NSString stringWithFormat:COLLECTION_FORUM_SECTION_URL_OLD,tid,AUTHKEY];
     }
     
+    MBProgressHUD * hud = [zsnApi showMBProgressWithText:alert_title addToView:self.view];
     
     NSLog(@"收藏取消收藏接口 ----   %@",fullUrl);
     
@@ -799,29 +804,28 @@
     
     [request setCompletionBlock:^{
         
+        [hud hide:YES];
         NSDictionary * dictionary = [collect_request.responseString objectFromJSONString];
-        
         NSLog(@"收藏取消收藏 ----  %@",dictionary);
-        
         if ([[dictionary objectForKey:@"errcode"] intValue] == 0)
         {
             if (isCollected)
             {
+                [zsnApi showAutoHiddenMBProgressWithText:@"成功取消收藏" addToView:self.view];
                 [bself.forum_section_collection_array removeObject:tid];
                 sender.selected = NO;
             }else
             {
+                [zsnApi showAutoHiddenMBProgressWithText:@"收藏成功" addToView:self.view];
                 [bself.forum_section_collection_array addObject:tid];
                 sender.selected = YES;
             }
-            
-//            [bself.myTableView1 reloadData];
-//            sender.selected = YES;
         }else
         {
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:[dictionary objectForKey:@"bbsinfo"] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
-            
-            [alertView show];
+//            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:[dictionary objectForKey:@"bbsinfo"] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
+//            
+//            [alertView show];
+            [zsnApi showAutoHiddenMBProgressWithText:[dictionary objectForKey:@"bbsinfo"] addToView:self.view];
         }
     }];
     

@@ -29,9 +29,11 @@
 
 -(void)setAllView
 {
+    float imageW = (DEVICE_WIDTH-360)<10?76:90;
+    float distance = (DEVICE_WIDTH-360)/5;
     if (!_imageView1)
     {
-        _imageView1 = [[AsyncImageView alloc] initWithFrame:CGRectMake(3.2,3.2,76,76)];
+        _imageView1 = [[AsyncImageView alloc] initWithFrame:CGRectMake(distance,distance,imageW,imageW)];
         _imageView1.userInteractionEnabled = YES;
         _imageView1.tag = 1;
         _imageView1.backgroundColor = [UIColor clearColor];
@@ -44,7 +46,7 @@
     
     if (!_imageView2)
     {
-        _imageView2 = [[AsyncImageView alloc] initWithFrame:CGRectMake(3.2+76+3.2,3.2,76,76)];
+        _imageView2 = [[AsyncImageView alloc] initWithFrame:CGRectMake(distance*2+imageW,distance,imageW,imageW)];
         _imageView2.userInteractionEnabled = YES;
         _imageView2.tag = 2;
         _imageView2.backgroundColor = [UIColor clearColor];
@@ -57,7 +59,7 @@
     
     if (!_imageView3)
     {
-        _imageView3 = [[AsyncImageView alloc] initWithFrame:CGRectMake(3.2+(76+3.2)*2,3.2,76,76)];
+        _imageView3 = [[AsyncImageView alloc] initWithFrame:CGRectMake(distance+(imageW+distance)*2,distance,imageW,imageW)];
         _imageView3.userInteractionEnabled = YES;
         _imageView3.tag = 3;
         _imageView3.backgroundColor = [UIColor clearColor];
@@ -70,7 +72,7 @@
     
     if (!_imageView4)
     {
-        _imageView4 = [[AsyncImageView alloc] initWithFrame:CGRectMake(3.2+(76+3.2)*3,4,76,76)];
+        _imageView4 = [[AsyncImageView alloc] initWithFrame:CGRectMake(distance+(imageW+distance)*3,distance,imageW,imageW)];
         _imageView4.userInteractionEnabled = YES;
         _imageView4.tag = 4;
         _imageView4.backgroundColor = [UIColor clearColor];

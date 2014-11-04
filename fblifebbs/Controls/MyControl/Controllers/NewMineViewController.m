@@ -431,6 +431,9 @@
 {
     float total_height = 0;
     
+    float imageH = 96*((DEVICE_WIDTH-23-7)/2)/145;
+    float imageW = (DEVICE_WIDTH-23-7)/2;
+    
     if (!shangjia_detail_view)
     {
         shangjia_detail_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,472)];
@@ -445,10 +448,10 @@
     
     if (_zixin_array.count > 0 && _zixin_array.count <=2)
     {
-        total_height = 108;
+        total_height = imageH + 12;
     }else if (_zixin_array.count > 2)
     {
-        total_height = 204.5;
+        total_height = imageH*2+12;
     }
     
     for (int i = 0;i < 2;i++)
@@ -461,7 +464,7 @@
             {
                 ShangJiaNewsInfo * info = [_zixin_array objectAtIndex:cout];
                 
-                AsyncImageView * imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(23/2 + 151*j,23/2 + 102*i,145.5,96.5)];
+                AsyncImageView * imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(23/2 + (imageW+7)*j,23/2 + (imageH+6)*i,imageW,imageH)];
                 imageView.userInteractionEnabled = YES;
                 imageView.tag = 100000+j+i*2;
                 [imageView loadImageFromURL:info.photo withPlaceholdImage:nil];
@@ -900,9 +903,12 @@
     _myTableView.delegate = self;
     _myTableView.dataSource = self;
     _myTableView.backgroundColor = [UIColor clearColor];//RGBCOLOR(40, 43, 53);
-    if (IOS_VERSION >= 7.0)
-    {
-        _myTableView.separatorInset = UIEdgeInsetsZero;
+    if ([_myTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [_myTableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([_myTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [_myTableView setLayoutMargins:UIEdgeInsetsZero];
     }
     [self.view addSubview:_myTableView];
     
@@ -1013,13 +1019,9 @@
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         [cell.contentView addSubview:shangjia_detail_view];
-        
         cell.backgroundColor = [UIColor whiteColor];
-        
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        
         return cell;
         
     }else
@@ -1035,19 +1037,23 @@
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         FbFeed * info = [self.data_array objectAtIndex:show_shangjia_jianjie?indexPath.row-1:indexPath.row];
-        
         [cell setAllViewWithType:1];
-        
         [cell setInfo:info withReplysHeight:[tableView rectForRowAtIndexPath:indexPath].size.height WithType:1];
-        
         cell.backgroundColor = [UIColor whiteColor];
-        
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        
         return cell;
-        
+    }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
     }
 }
 

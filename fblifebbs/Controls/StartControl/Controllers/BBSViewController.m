@@ -711,8 +711,9 @@
         CGFloat pageWidth = scrollView.frame.size.width;
         // 根据当前的x坐标和页宽度计算出当前页数
         int current_page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        [_seg_view MyButtonStateWithIndex:current_page];
         current_forum = current_page;
+        [_seg_view MyButtonStateWithIndex:current_page];
+        
     }
 }
 
@@ -832,10 +833,11 @@
     SliderBBSForumModel * first_model = [[_forum_temp_array objectAtIndex:current_forum] objectAtIndex:indexPath.section];
     
     SliderBBSForumModel * second_model = [first_model.forum_sub objectAtIndex:indexPath.row];
-    
     int count = (int)second_model.forum_sub.count;
-    
     int row = count/2 + (count%2?1:0);
+    
+    ///根据不同设备计算长度，34为两边留边，7为间距
+    float theWidth = (DEVICE_WIDTH-34-7)/2;
     
     for (int i = 0;i < row;i++) {
         for (int j = 0;j < 2;j++)
@@ -843,7 +845,7 @@
             if (i*2 + j < count)
             {
                 SliderBBSForumModel * model = [second_model.forum_sub objectAtIndex:i*2+j];
-                UIView * back_view = [[UIView alloc] initWithFrame:CGRectMake(17 + 146*j,11+43*i,139,36)];
+                UIView * back_view = [[UIView alloc] initWithFrame:CGRectMake(17 + (theWidth+7)*j,11+43*i,theWidth,36)];
                 back_view.tag = [model.forum_fid intValue] + 1000000;
                 back_view.backgroundColor = [UIColor whiteColor];
                 back_view.layer.masksToBounds = NO;
@@ -851,11 +853,11 @@
                 back_view.layer.borderWidth = 0.5;
                 [view addSubview:back_view];
                 
-                UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake(100,3,0.5,30)];
+                UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake(theWidth-39,3,0.5,30)];
                 line_view.backgroundColor = RGBCOLOR(209,209,209);
                 [back_view addSubview:line_view];
                 
-                UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(10,0,80,36)];
+                UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(10,0,theWidth-50,36)];
                 name_label.text = model.forum_name;
                 name_label.textAlignment = NSTextAlignmentLeft;
                 name_label.textColor = RGBCOLOR(134,134,134);
@@ -865,7 +867,7 @@
                 
                 
                 ZSNButton * collect_button = [ZSNButton buttonWithType:UIButtonTypeCustom];//收藏按钮
-                collect_button.frame = CGRectMake(105,3,30,30);
+                collect_button.frame = CGRectMake(theWidth-34,3,30,30);
                 [collect_button setImage:[UIImage imageNamed:@"bbs_forum_collect1"] forState:UIControlStateNormal];
                 [collect_button setImage:[UIImage imageNamed:@"bbs_forum_collect2"] forState:UIControlStateSelected];
                 collect_button.myDictionary = [NSDictionary dictionaryWithObject:model.forum_fid forKey:@"tid"];

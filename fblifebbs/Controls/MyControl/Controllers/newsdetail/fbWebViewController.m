@@ -112,12 +112,6 @@
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:leftview];
     self.navigationItem.leftBarButtonItem=back_item;
 
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
-        
-        //iOS 5 new UINavigationBar custom background
-        
-        [self.navigationController.navigationBar setBackgroundImage:IOS_VERSION>=7?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]: [UIImage imageNamed:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-    }
 //    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? -3:5, 0, 12, 43/2)];
 //    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
 //    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
@@ -177,13 +171,13 @@
 
     NSURLRequest *request =[NSURLRequest requestWithURL:url];
     
-    awebview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568-64-40:480-64-40)];
+    awebview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0,DEVICE_WIDTH, DEVICE_HEIGHT-64-40)];
     awebview.delegate=self;
     [awebview loadRequest:request];
     awebview.scalesPageToFit = YES;
     [self.view addSubview:awebview];;
     
-    UIView *toolview=[[UIView alloc]initWithFrame:CGRectMake(0, iPhone5?568-40-64:480-64-40, 320, 40)];
+    UIView *toolview=[[UIView alloc]initWithFrame:CGRectMake(0,DEVICE_HEIGHT-64-40,DEVICE_WIDTH, 40)];
    // toolview.backgroundColor=[UIColor redColor];
     toolview.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"ios7_webviewbar.png"]];
     [self.view addSubview:toolview];
@@ -195,6 +189,9 @@
         
         UIButton *tool_Button=[[UIButton alloc]initWithFrame:CGRectMake(5+i*70, 5, img.size.width, img.size.height)];
         tool_Button.center=CGPointMake(22+i*i*68.5, 20);
+        if (i == 2) {
+            tool_Button.center = CGPointMake(DEVICE_WIDTH-24,20);
+        }
         
         tool_Button.tag=99+i;
         [tool_Button setBackgroundImage:[UIImage imageNamed:[array_imgname objectAtIndex:i]] forState:UIControlStateNormal];

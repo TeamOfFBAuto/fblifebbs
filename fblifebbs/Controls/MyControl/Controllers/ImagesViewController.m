@@ -14,7 +14,8 @@
 @interface ImagesViewController ()
 {
     NSString * _name;
-    
+    ///根据屏幕尺寸获得图片大小
+    float imageW;
 }
 
 @end
@@ -138,6 +139,8 @@
 {
     [super viewDidLoad];
     
+    imageW = (DEVICE_WIDTH-360)<10?76:90;
+    
     self.view.backgroundColor = RGBCOLOR(242,242,242);
     
     
@@ -177,10 +180,10 @@
     
     [self initHttpRequest];
     
-    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,iPhone5?568-20-44:460-44) style:UITableViewStylePlain];
+    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-64) style:UITableViewStylePlain];
     _myTableView.delegate = self;
     _myTableView.dataSource = self;
-    _myTableView.rowHeight = 79.2;
+    _myTableView.rowHeight = (DEVICE_WIDTH-360)/5+imageW;
     _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _myTableView.backgroundColor = RGBCOLOR(242,242,242);
     [self.view addSubview:_myTableView];

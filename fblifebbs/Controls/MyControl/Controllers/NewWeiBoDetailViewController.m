@@ -266,9 +266,12 @@
     self.myTableView.dataSource = self;
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
-    if (IOS_VERSION>=7.0)
-    {
-        self.myTableView.separatorInset = UIEdgeInsetsZero;
+    if ([_myTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [_myTableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([_myTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [_myTableView setLayoutMargins:UIEdgeInsetsZero];
     }
     
     [self.view addSubview:self.myTableView];
@@ -477,7 +480,16 @@
     
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
 
 -(UIView *)returnWeiBocontentView
 {

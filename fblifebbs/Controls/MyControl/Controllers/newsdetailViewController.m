@@ -96,12 +96,15 @@
     
     [text_write resignFirstResponder];
     [self facescrowhiden];
-    if (isiphone5) {
-        aview.frame=CGRectMake(0, 0, 320, 568);
-        
-    }else{
-        aview.frame=CGRectMake(0, 0, 320, 480);
-    }
+//    if (isiphone5) {
+//        aview.frame=CGRectMake(0, 0, DEVICE_WIDTH, 568);
+//        
+//    }else{
+//        aview.frame=CGRectMake(0, 0, DEVICE_WIDTH, 480);
+//    }
+    
+    aview.frame = CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT);
+    
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"newsid"];
     
 
@@ -145,14 +148,14 @@
     zanNumber=0;
     
     
-    self.thezkingAlertV=[[ZkingAlert alloc]initWithFrame:CGRectMake(0, 0, 320, 480) labelString:@""];
+    self.thezkingAlertV=[[ZkingAlert alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 480) labelString:@""];
     _thezkingAlertV.hidden=YES;
     [[UIApplication sharedApplication].keyWindow
      addSubview:_thezkingAlertV];
     
     
     self.navigationController.navigationBarHidden=NO;
-    self.view.frame=CGRectMake(0, 0, 320, 1000);
+    self.view.frame=CGRectMake(0, 0, DEVICE_WIDTH, 1000);
     self.view.backgroundColor=[UIColor greenColor];
     //准备导航栏
     [self prepairNavigationbar];
@@ -168,10 +171,10 @@
     array_peopleid=[[NSMutableArray alloc]init];
     isiphone5=[personal isiphone5];
     if (isiphone5) {
-        aview=[[UIView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:0, 320, 568)];
+        aview=[[UIView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:0, DEVICE_WIDTH, 568)];
         
     }else{
-        aview=[[UIView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:0, 320, 1000)];
+        aview=[[UIView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:0, DEVICE_WIDTH, 1000)];
         
     }
     [self.view addSubview:aview];;
@@ -191,9 +194,9 @@
     _webView.opaque=NO;
     secondWebView.opaque=NO;
     if (isiphone5) {
-        _webView.frame=CGRectMake(0, 0, 320 , 314+88+105-41);
+        _webView.frame=CGRectMake(0, 0, DEVICE_WIDTH , 314+88+105-41);
     }else{
-        _webView.frame=CGRectMake(0, 0,320, 314+105-41+4+2);
+        _webView.frame=CGRectMake(0, 0,DEVICE_WIDTH, 314+105-41+4+2);
     }
     webScroller = (UIScrollView *)[_webView.subviews objectAtIndex:0];
     //webScroller.backgroundColor=[UIColor whiteColor];
@@ -223,12 +226,12 @@
     //评论部分
     
     if (isiphone5) {
-        view_pinglun=[[UIView alloc]initWithFrame:CGRectMake(0, 419+88-42, 320, 41)];
+        view_pinglun=[[UIView alloc]initWithFrame:CGRectMake(0, 419+88-42, DEVICE_WIDTH, 41)];
     }else{
-        view_pinglun=[[UIView alloc]initWithFrame:CGRectMake(0,377, 320, 41)];
+        view_pinglun=[[UIView alloc]initWithFrame:CGRectMake(0,377, DEVICE_WIDTH, 41)];
     }
     
-    barview=[[bottombarview alloc]initWithFrame:CGRectMake(0,iPhone5?419+88-42:377, 320, 41)];
+    barview=[[bottombarview alloc]initWithFrame:CGRectMake(0,iPhone5?419+88-42:377, DEVICE_WIDTH, 41)];
     barview.backgroundColor=[UIColor whiteColor];
     [barview setcommentimage1:@"0"];
     barview.delegate=self;
@@ -277,11 +280,11 @@
     //faceview隐藏的刚开始是
     faceScrollView = [[FaceScrollView alloc] initWithFrame:CGRectMake(0, 900, self.view.frame.size.width, 160) target:self];
     //    faceScrollView.pagingEnabled = YES;
-    // faceScrollView.contentSize = CGSizeMake(320*2, 160);
+    // faceScrollView.contentSize = CGSizeMake(DEVICE_WIDTH*2, 160);
     [self.view addSubview:faceScrollView];
     faceScrollView.delegate=self;
     //pagecontrol
-    pageControl = [[GrayPageControl alloc] initWithFrame:CGRectMake(0,900,320,25)];
+    pageControl = [[GrayPageControl alloc] initWithFrame:CGRectMake(0,900,DEVICE_WIDTH,25)];
     
     pageControl.center = CGPointMake(160,460-12.5);
     
@@ -313,7 +316,7 @@
 
 -(void)prepairCommentTiao{
 
-    inputV=[[CustomInputView alloc]initWithFrame:CGRectMake(0,iPhone5?419+88-42:377, 320, 41)];
+    inputV=[[CustomInputView alloc]initWithFrame:CGRectMake(0,iPhone5?419+88-42:377, DEVICE_WIDTH, 41)];
     
     
     inputV.isShowFenYe = YES;
@@ -337,7 +340,7 @@
                 [array_shu addObject:[NSString stringWithFormat:@"%d",i+1]];
             }
             if (!_SelectPick) {
-                _SelectPick=[[SelectNumberView alloc]initWithFrame:CGRectMake(0,iPhone5? 260:171, 320, 200) receiveArray:array_shu];
+                _SelectPick=[[SelectNumberView alloc]initWithFrame:CGRectMake(0,iPhone5? 260:171, DEVICE_WIDTH, 200) receiveArray:array_shu];
                 
             }
             _SelectPick.delegate=self;
@@ -439,7 +442,7 @@
     
     if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
         //iOS 5 new UINavigationBar custom background
-        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7evaDEVICE_WIDTH_44.png"] forBarMetrics: UIBarMetricsDefault];
         
     }
     
@@ -886,12 +889,12 @@
                 if (dangqianwebview==1)//当前的webview是第一个webview,要让第二个webview的frame变成如下，在下载完之后显示出来
                 {
                     dangqianwebview=2;
-                    secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                    secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
                     
                 }else
                 {
                     dangqianwebview=1;
-                    _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                    _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
                     
                 }
                 
@@ -907,7 +910,7 @@
                 [array_shu addObject:[NSString stringWithFormat:@"%d",i+1]];
             }
             if (!_SelectPick) {
-                _SelectPick=[[SelectNumberView alloc]initWithFrame:CGRectMake(0,iPhone5? 260:171, 320, 200) receiveArray:array_shu];
+                _SelectPick=[[SelectNumberView alloc]initWithFrame:CGRectMake(0,iPhone5? 260:171, DEVICE_WIDTH, 200) receiveArray:array_shu];
                 
             }
             _SelectPick.delegate=self;
@@ -936,11 +939,11 @@
                 currentpage++;
                 if (dangqianwebview==1) {
                     dangqianwebview=2;
-                    secondWebView.frame=CGRectMake(0,iPhone5?314+88+105-41:314+105-41+4+2, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                    secondWebView.frame=CGRectMake(0,iPhone5?314+88+105-41:314+105-41+4+2, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
                     
                 }else{
                     dangqianwebview=1;
-                    _webView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41+4+2, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                    _webView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41+4+2, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
                     
                 }
                 
@@ -977,12 +980,12 @@
         if (dangqianwebview==1)//当前的webview是第一个webview,要让第二个webview的frame变成如下，在下载完之后显示出来
         {
             dangqianwebview=2;
-            secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+            secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
             
         }else
         {
             dangqianwebview=1;
-            _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+            _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
             
         }
         currentpage=number;
@@ -1005,11 +1008,11 @@
         issuccessload=!issuccessload;
         if (dangqianwebview==1) {
             dangqianwebview=2;
-            secondWebView.frame=CGRectMake(0,iPhone5?314+88+105-41:314+105-41+4+2, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+            secondWebView.frame=CGRectMake(0,iPhone5?314+88+105-41:314+105-41+4+2, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
             
         }else{
             dangqianwebview=1;
-            _webView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41+4+2, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+            _webView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41+4+2, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
             
             
         }
@@ -1027,11 +1030,11 @@
 }
 
 -(void)NoticeFrameHigh{
-    aview.frame=CGRectMake(0, -10, 320, iPhone5?568:480);
+    aview.frame=CGRectMake(0, -10, DEVICE_WIDTH, iPhone5?568:480);
 }
 -(void)NoticeFrameLow{
     
-    aview.frame=CGRectMake(0, 0, 320, iPhone5?568:480);
+    aview.frame=CGRectMake(0, 0, DEVICE_WIDTH, iPhone5?568:480);
     
 }
 
@@ -1087,7 +1090,7 @@
         didulabel.textColor=TEXT_COLOR;
         didulabel.textAlignment=NSTextAlignmentCenter;
         didulabel.font=[UIFont boldSystemFontOfSize:13.0f];
-        didulabel.frame=CGRectMake(0,iPhone5?88+320:320, 320, 60);
+        didulabel.frame=CGRectMake(0,iPhone5?88+DEVICE_WIDTH:DEVICE_WIDTH, DEVICE_WIDTH, 60);
         if (!diimgv) {
             diimgv=[[UIImageView alloc]initWithFrame:CGRectMake(40, 2, 20, 50)];
         }
@@ -1122,7 +1125,7 @@
         gaolabel.text=@"下拉进入上一页";
         gaolabel.textColor= TEXT_COLOR;
         gaolabel.textAlignment=NSTextAlignmentCenter;
-        gaolabel.frame=CGRectMake(0, 0, 320, 60);
+        gaolabel.frame=CGRectMake(0, 0, DEVICE_WIDTH, 60);
         gaolabel.font=[UIFont boldSystemFontOfSize:13.0f];
         gaolabel.backgroundColor=[UIColor clearColor];
         if (!gaoimgv) {
@@ -1174,11 +1177,11 @@
             currentpage++;
             if (dangqianwebview==1) {
                 dangqianwebview=2;
-                secondWebView.frame=CGRectMake(0,iPhone5?314+88+105-41:314+105-41+4+2, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                secondWebView.frame=CGRectMake(0,iPhone5?314+88+105-41:314+105-41+4+2, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
                 
             }else{
                 dangqianwebview=1;
-                _webView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41+4+2, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                _webView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41+4+2, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
                 
                 
             }
@@ -1197,12 +1200,12 @@
             if (dangqianwebview==1)//当前的webview是第一个webview,要让第二个webview的frame变成如下，在下载完之后显示出来
             {
                 dangqianwebview=2;
-                secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
                 
             }else
             {
                 dangqianwebview=1;
-                _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
                 
             }
             
@@ -1531,15 +1534,15 @@
             
 //            [UIView beginAnimations:nil context:nil];
 //            [UIView setAnimationDuration:1];
-//            _webView.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
-//            secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+//            _webView.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+//            secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
 //            [UIView commitAnimations];
             
             
             
             [UIView animateWithDuration:1 animations:^{
-                weakWeb.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
-                weakSecondWeb.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakSecondWeb.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
                 
                 
             }completion:^(BOOL finished)
@@ -1557,8 +1560,8 @@
 //            
 //            [UIView beginAnimations:nil context:nil];
 //            [UIView setAnimationDuration:1];
-//            secondWebView.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
-//            _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+//            secondWebView.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+//            _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
 //            [UIView commitAnimations];
             
             
@@ -1567,8 +1570,8 @@
             
             [UIView animateWithDuration:1 animations:^{
                 
-                weakSecondWeb.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
-                weakWeb.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakSecondWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakWeb.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
             }completion:^(BOOL finished)
              
              {
@@ -1593,16 +1596,16 @@
             
 //            [UIView beginAnimations:nil context:nil];
 //            [UIView setAnimationDuration:1];
-//            _webView.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
-//            secondWebView.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+//            _webView.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+//            secondWebView.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
 //            [UIView commitAnimations];
             
             
             
             [UIView animateWithDuration:1 animations:^{
                 
-                weakWeb.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
-                weakSecondWeb.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakSecondWeb.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
             }completion:^(BOOL finished)
              
              {
@@ -1616,14 +1619,14 @@
             
 //            [UIView beginAnimations:nil context:nil];
 //            [UIView setAnimationDuration:1];
-//            secondWebView.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
-//            _webView.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+//            secondWebView.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+//            _webView.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
 //            [UIView commitAnimations];
 //            
             [UIView animateWithDuration:1 animations:^{
                 
-                weakSecondWeb.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
-                weakWeb.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41+4+2), 320 ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakSecondWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakWeb.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
             }completion:^(BOOL finished)
              
              {
@@ -1672,9 +1675,9 @@
     [text_write resignFirstResponder];
     [self facescrowhiden];
     if (isiphone5) {
-        aview.frame=CGRectMake(0, 0, 320, 568);
+        aview.frame=CGRectMake(0, 0, DEVICE_WIDTH, 568);
     }else{
-        aview.frame=CGRectMake(0, 0, 320, 480);
+        aview.frame=CGRectMake(0, 0, DEVICE_WIDTH, 480);
     }
     if (text_write.text.length==0) {
         UIAlertView *viewalert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"评论内容不能为空" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -1778,10 +1781,10 @@
     [text_write resignFirstResponder];
     [self facescrowhiden];
     if (isiphone5) {
-        aview.frame=CGRectMake(0, 0, 320, 568);
+        aview.frame=CGRectMake(0, 0, DEVICE_WIDTH, 568);
         
     }else{
-        aview.frame=CGRectMake(0, 0, 320, 480);
+        aview.frame=CGRectMake(0, 0, DEVICE_WIDTH, 480);
         
     }
     
@@ -2408,18 +2411,18 @@
 //    if (kbSize.height == 252)//中文键盘
 //    {
 //        if (isiphone5) {
-//          //  aview.frame=CGRectMake(0,-252, 320, 568);
+//          //  aview.frame=CGRectMake(0,-252, DEVICE_WIDTH, 568);
 //            
 //        }else{
-//            aview.frame=CGRectMake(0,-252-2, 320, 480);
+//            aview.frame=CGRectMake(0,-252-2, DEVICE_WIDTH, 480);
 //        }
 //    }else//英文键盘
 //    {
 //        if (isiphone5) {
-//            aview.frame=CGRectMake(0,-249+31, 320, 568);
+//            aview.frame=CGRectMake(0,-249+31, DEVICE_WIDTH, 568);
 //            
 //        }else{
-//            aview.frame=CGRectMake(0,-249+31, 320, 480);
+//            aview.frame=CGRectMake(0,-249+31, DEVICE_WIDTH, 480);
 //        }
 //    }
 //    
@@ -2430,9 +2433,9 @@
 //    [UIView beginAnimations:nil context:nil];
 //    [UIView setAnimationDuration:0.3];
 //    if (isiphone5) {
-//        aview.frame = CGRectMake(0,0, 320, 568);
+//        aview.frame = CGRectMake(0,0, DEVICE_WIDTH, 568);
 //    }else{
-//        aview.frame = CGRectMake(0,0, 320, 480);
+//        aview.frame = CGRectMake(0,0, DEVICE_WIDTH, 480);
 //    }
 //    [UIView commitAnimations];
 }
@@ -2453,10 +2456,10 @@
         [UIView setAnimationDuration:0.3];
         if (isiphone5) {
             
-            aview.frame=CGRectMake(0,-249+31, 320, 568);
+            aview.frame=CGRectMake(0,-249+31, DEVICE_WIDTH, 568);
             
         }else{
-            aview.frame=CGRectMake(0,-249+31, 320, 480);
+            aview.frame=CGRectMake(0,-249+31, DEVICE_WIDTH, 480);
         }
         [UIView commitAnimations];
     }
@@ -2495,10 +2498,10 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3];
     if (isiphone5) {
-        aview.frame=CGRectMake(0, 0, 320, 568);
+        aview.frame=CGRectMake(0, 0, DEVICE_WIDTH, 568);
         
     }else{
-        aview.frame=CGRectMake(0, 0, 320, 480);
+        aview.frame=CGRectMake(0, 0, DEVICE_WIDTH, 480);
         
     }
     
@@ -2515,10 +2518,10 @@
         
         [text_write resignFirstResponder];
         if (isiphone5) {
-            aview.frame=CGRectMake(0,-160-2, 320, 568);
+            aview.frame=CGRectMake(0,-160-2, DEVICE_WIDTH, 568);
             
         }else{
-            aview.frame=CGRectMake(0,-160-2, 320, 480);
+            aview.frame=CGRectMake(0,-160-2, DEVICE_WIDTH, 480);
             
         }
         [self facescrowviewshow];
@@ -2529,10 +2532,10 @@
         
         [text_write becomeFirstResponder];
         if (isiphone5) {
-            aview.frame=CGRectMake(0,-249+31, 320, 568);
+            aview.frame=CGRectMake(0,-249+31, DEVICE_WIDTH, 568);
             
         }else{
-            aview.frame=CGRectMake(0,-249+31, 320, 480);
+            aview.frame=CGRectMake(0,-249+31, DEVICE_WIDTH, 480);
             
         }
         [self facescrowhiden];

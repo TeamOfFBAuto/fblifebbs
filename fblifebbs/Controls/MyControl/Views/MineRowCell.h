@@ -11,5 +11,6 @@
 @interface MineRowCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *iconImage;
 @property (strong, nonatomic) IBOutlet UILabel *aTitleLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *arrowImage;
 
 @end

@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    self.arrowImage.left = DEVICE_WIDTH - 20;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

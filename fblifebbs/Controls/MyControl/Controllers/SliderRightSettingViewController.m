@@ -56,7 +56,7 @@
     title_array = [NSArray arrayWithObjects:@"",@"清除缓存",@"意见反馈",@"版本更新",@"关于",@"",@"精品应用",@"",@"",nil];
     
     
-    self.myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,(iPhone5?568:480)-20 - 44) style:UITableViewStylePlain];
+    self.myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT - 20 - 44) style:UITableViewStylePlain];
     
     self.myTableView.delegate = self;
     
@@ -174,7 +174,7 @@
     cell.backgroundColor = [UIColor whiteColor];
     
     
-    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,0.5)];
+    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0.5)];
     
     lineView.backgroundColor = RGBCOLOR(231,231,231);
     
@@ -184,22 +184,24 @@
     {
 //        cell.separatorInset = UIEdgeInsetsZero;
         
-        lineView.center = CGPointMake(160,0.25);
+        lineView.center = CGPointMake(DEVICE_WIDTH / 2.f,0.25);
         
         cell.backgroundColor = RGBCOLOR(248,248,248);
     }else if (indexPath.row == 6)
     {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
-        lineView.center = CGPointMake(160,0.25);
+        lineView.center = CGPointMake(DEVICE_WIDTH / 2.f,0.25);
     }else if (indexPath.row == 7)
     {
-        for (int i=0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             
             if (arrayofjingpinyingyong.count > i) {
                 NSDictionary *dicjingpininfo=[arrayofjingpinyingyong objectAtIndex:i];
                 
-                UIButton *suggest_button=[[UIButton alloc]initWithFrame:CGRectMake(11.25+80*i,18, 115/2, 115/2)];
+                CGFloat everyWidth = DEVICE_WIDTH / 4.f;
+                
+                UIButton *suggest_button=[[UIButton alloc]initWithFrame:CGRectMake((everyWidth - 115/2)/2.f +everyWidth * i,18, 115/2, 115/2)];
                 suggest_button.tag=99+i;
                 suggest_button.backgroundColor=[UIColor clearColor];
                 [suggest_button addTarget:self action:@selector(domysuggestbutton:) forControlEvents:UIControlEventTouchUpInside];
@@ -218,17 +220,21 @@
                 labelofname.backgroundColor = [UIColor clearColor];
                 labelofname.textAlignment=NSTextAlignmentCenter;
                 [cell.contentView addSubview:labelofname];
+                
+                labelofname.center = CGPointMake(suggest_button.center.x, labelofname.center.y);
             }
         }
         
         
-        lineView.center = CGPointMake(174,0.25);
+//        lineView.center = CGPointMake(174,0.25);
+        
+        lineView.left = 20.f;
         
     }else if (indexPath.row == 8)
     {
         cell.backgroundColor = RGBCOLOR(248,248,248);
         
-        lineView.center = CGPointMake(160,0.25);
+        lineView.center = CGPointMake(DEVICE_WIDTH / 2.f,0.25);
         
         BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
         
@@ -238,7 +244,7 @@
         
         logOut_button = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        logOut_button.frame = CGRectMake(14,23,584/2,85/2);
+        logOut_button.frame = CGRectMake(14,23,DEVICE_WIDTH - 14 * 2,85/2);
         
         [logOut_button setTitle:isLogIn?@"退出登录":@"立即登录" forState:UIControlStateNormal];
         
@@ -255,9 +261,9 @@
     {
         NSString * path = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/data"];
         
-        lineView.center = CGPointMake(160,0.25);
+        lineView.center = CGPointMake(DEVICE_WIDTH / 2.f,0.25);
         
-        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(208,0,100,54)];
+        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(DEVICE_WIDTH - 112,0,100,54)];
         
         label.textAlignment = NSTextAlignmentRight;
         
@@ -274,15 +280,22 @@
         
     }else if (indexPath.row == 2)
     {
-        lineView.center = CGPointMake(174,0.25);
+//        lineView.center = CGPointMake(DEVICE_WIDTH - 146,0.25);
+        
+        lineView.left = 20.f;
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }else if (indexPath.row == 3)
     {
-        lineView.center = CGPointMake(174,0.25);
+//        lineView.center = CGPointMake(DEVICE_WIDTH - 146,0.25);
+        lineView.left = 20.f;
+        
     }else if (indexPath.row == 4)
     {
-        lineView.center = CGPointMake(174,0.25);
+        //174
+//        lineView.center = CGPointMake(DEVICE_WIDTH - 146,0.25);
+        
+        lineView.left = 20.f;
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }

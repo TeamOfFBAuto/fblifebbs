@@ -53,7 +53,7 @@
     
     _currentPage = 1;
     
-    ranking_segment = [[RankingListSegmentView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width,56.5) WithBlock:^(int index) {
+    ranking_segment = [[RankingListSegmentView alloc] initWithFrame:CGRectMake(0,0,320,56.5) WithBlock:^(int index) {
         
         bself.currentPage = index + 1;
         

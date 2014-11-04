@@ -79,7 +79,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
     if (!self.isShangJia)
@@ -88,8 +87,8 @@
         
         self.navigationItem.title=@"详细资料";
         
-        UIView *view_header=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
-        headerview =[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320, 20)];
+        UIView *view_header=[[UIView alloc]initWithFrame:CGRectMake(0,0,DEVICE_WIDTH, 30)];
+        headerview =[[UILabel alloc]initWithFrame:CGRectMake(10,10,DEVICE_WIDTH, 20)];
         headerview.font=[UIFont systemFontOfSize:15];
         headerview.textColor = RGBCOLOR(94,94,94);
         headerview.backgroundColor=[UIColor clearColor];
@@ -98,7 +97,7 @@
         
         
         
-        detail_tab=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?iphone5fram:iphone4fram) style:UITableViewStylePlain];
+        detail_tab=[[UITableView alloc]initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-64) style:UITableViewStylePlain];
         detail_tab.backgroundView = nil;
         //    detail_tab.separatorColor = RGBCOLOR(226,226,226);
         detail_tab.backgroundColor=[UIColor whiteColor];//RGBCOLOR(248,248,248);
@@ -133,86 +132,51 @@
     
     
     UIScrollView * scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    
     scrollView.backgroundColor = [UIColor clearColor];
-    
     [self.view addSubview:scrollView];
-    
     
     float height = 0;
     
-    CGRect jianjie_frame = CGRectMake(23/2,25/2,297,10);
-    
+    CGRect jianjie_frame = CGRectMake(23/2,25/2,DEVICE_WIDTH-23,10);
     UIImageView * jianjie_view = [[UIImageView alloc] initWithFrame:jianjie_frame];
-    
     jianjie_view.userInteractionEnabled = YES;
     [scrollView addSubview:jianjie_view];
     
-    
-    UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(5,10,594/2-10,20)];
-    
+    UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(5,10,DEVICE_WIDTH-23-10,20)];
     name_label.text = self.info.service_shopname;
-    
     name_label.backgroundColor = [UIColor clearColor];
-    
     name_label.textColor = RGBCOLOR(70,86,132);
-    
     name_label.textAlignment = NSTextAlignmentLeft;
-    
     [jianjie_view addSubview:name_label];
     
     
-    RTLabel * jianjie_label = [[RTLabel alloc] initWithFrame:CGRectMake(5,30,594/2-10,10)];
-    
+    RTLabel * jianjie_label = [[RTLabel alloc] initWithFrame:CGRectMake(5,30,DEVICE_WIDTH-23-10,10)];
     jianjie_label.lineBreakMode = NSLineBreakByCharWrapping;
-    
     jianjie_label.lineSpacing = 3;
-    
     jianjie_label.backgroundColor = [UIColor clearColor];
-    
     jianjie_label.font = [UIFont systemFontOfSize:15];
-    
     jianjie_label.text = self.info.service_content;
-    
     CGSize optimumSize = [jianjie_label optimumSize];
-    
     height = optimumSize.height;
-    
-    jianjie_label.frame = CGRectMake(5,30,594/2-10,height);
-    
+    jianjie_label.frame = CGRectMake(5,30,DEVICE_WIDTH-23-10,height);
     [jianjie_view addSubview:jianjie_label];
-    
     jianjie_frame.size.height = height + 30 + 10;
-    
     jianjie_view.frame = jianjie_frame;
-    
     jianjie_view.image = [[UIImage imageNamed:@"jianjiebackimage.png"] stretchableImageWithLeftCapWidth:130 topCapHeight:7];
     
-    
     //地图
-    
-    
-    CGRect ditu_back_frame = CGRectMake(23/2,jianjie_frame.origin.y+jianjie_frame.size.height+21/2,297,10);
-    
+    CGRect ditu_back_frame = CGRectMake(23/2,jianjie_frame.origin.y+jianjie_frame.size.height+21/2,DEVICE_WIDTH-23,10);
     UIImageView * ditu_back = [[UIImageView alloc] initWithFrame:ditu_back_frame];
     ditu_back.userInteractionEnabled = YES;
     [scrollView addSubview:ditu_back];
     
-    
-    
-    myMapView = [[MKMapView alloc] initWithFrame:CGRectMake(5,8,287,94)];
-    
+    myMapView = [[MKMapView alloc] initWithFrame:CGRectMake(5,8,DEVICE_WIDTH-23-10,94)];
     myMapView.mapType=MKMapTypeStandard;
-    
     myMapView.delegate=self;
-    
     myMapView.showsUserLocation=NO;
-    
     [ditu_back addSubview:myMapView];
     
-    
     UITapGestureRecognizer * map_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ShowMapView:)];
-    
     [myMapView addGestureRecognizer:map_tap];
     
     MKCoordinateSpan span;
@@ -235,32 +199,20 @@
     
     
     UILabel * gongsidizhi = [[UILabel alloc] initWithFrame:CGRectMake(5,112,80,20)];
-    
     gongsidizhi.text = @"公司地址:";
-    
     gongsidizhi.textColor = RGBCOLOR(71,86,132);
-    
     gongsidizhi.font = [UIFont systemFontOfSize:16];
-    
     gongsidizhi.backgroundColor = [UIColor clearColor];
-    
     gongsidizhi.textAlignment = NSTextAlignmentLeft;
-    
     [ditu_back addSubview:gongsidizhi];
     
     
-    CGRect dizhi_label_frame = CGRectMake(80,113,210,10);
-    
+    CGRect dizhi_label_frame = CGRectMake(80,113,DEVICE_WIDTH-110,10);
     RTLabel * dizhi_label = [[RTLabel alloc] initWithFrame:dizhi_label_frame];
-    
     dizhi_label.lineBreakMode = NSLineBreakByCharWrapping;
-    
     dizhi_label.font = [UIFont systemFontOfSize:15];
-    
     dizhi_label.text = self.info.service_address;
-    
     [ditu_back addSubview:dizhi_label];
-    
     
     CGSize optimumSize11 = [dizhi_label optimumSize];
     dizhi_label_frame.size.height = optimumSize11.height;
@@ -268,64 +220,37 @@
     
     
     ditu_back_frame.size.height = dizhi_label_frame.origin.y + optimumSize11.height + 10;
-    
     ditu_back.frame = ditu_back_frame;
-    
     ditu_back.image = [[UIImage imageNamed:@"jianjiebackimage.png"] stretchableImageWithLeftCapWidth:130 topCapHeight:7];
     
-    
-    
-    UIImageView * phone_imageview = [[UIImageView alloc] initWithFrame:CGRectMake(23/2,ditu_back_frame.origin.y+ditu_back_frame.size.height+23/2,594/2,40)];
+    UIImageView * phone_imageview = [[UIImageView alloc] initWithFrame:CGRectMake(23/2,ditu_back_frame.origin.y+ditu_back_frame.size.height+23/2,DEVICE_WIDTH-23-10,40)];
     phone_imageview.userInteractionEnabled = YES;
     phone_imageview.image = [UIImage imageNamed:@"jianjiebackimage.png"];
-    
     [scrollView addSubview:phone_imageview];
     
-    
     UIImageView * dianhua_tubiao = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,23,23)];
-    
     dianhua_tubiao.center = CGPointMake(8+23/2,phone_imageview.frame.size.height/2);
-    
     dianhua_tubiao.backgroundColor = [UIColor grayColor];
-    
     dianhua_tubiao.layer.cornerRadius = 2;
-    
     dianhua_tubiao.image = [UIImage imageNamed:@"telephoto.png"];
-    
     [phone_imageview addSubview:dianhua_tubiao];
     
-    
-    
     UILabel * gongsidianhua = [[UILabel alloc] initWithFrame:CGRectMake(40,5,80,30)];
-    
     gongsidianhua.textColor = RGBCOLOR(70,86,132);
-    
     gongsidianhua.text = @"公司电话:";
-    
     gongsidianhua.backgroundColor = [UIColor clearColor];
-    
     gongsidianhua.textAlignment = NSTextAlignmentLeft;
-    
     [phone_imageview addSubview:gongsidianhua];
     
-    
-    UILabel * telephone_content_label = [[UILabel alloc] initWithFrame:CGRectMake(120,5,140,30)];
-    
+    UILabel * telephone_content_label = [[UILabel alloc] initWithFrame:CGRectMake(120,5,DEVICE_WIDTH-180,30)];
     telephone_content_label.text = self.info.service_telphone;
-    
     telephone_content_label.textAlignment = NSTextAlignmentLeft;
-    
     telephone_content_label.textColor = [UIColor blackColor];
-    
     telephone_content_label.backgroundColor = [UIColor clearColor];
-    
     [phone_imageview  addSubview:telephone_content_label];
     
-    
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callSomeBody:)];
-    
     [telephone_content_label addGestureRecognizer:tap];
-    
     
     scrollView.contentSize = CGSizeMake(0,phone_imageview.frame.origin.y+phone_imageview.frame.size.height+80);
     
@@ -439,15 +364,10 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    
-    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(11.5,0,297,44)];
-    
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(11.5,0,DEVICE_WIDTH-23,44)];
     imageView.image = [UIImage imageNamed:@"jianjiebackimage.png"];
-    
     cell.backgroundView.backgroundColor = [UIColor clearColor];
-    
     [cell.contentView addSubview:imageView];
-    
     
     label_content=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 60, 44)];
     label_content.text=[[array_all objectAtIndex:indexPath.section ]objectAtIndex:indexPath.row];
@@ -458,7 +378,7 @@
     
     if (array_receive.count != 0)
     {
-        label_receive=[[UILabel alloc]initWithFrame:CGRectMake(85, 0, 320-85, 44)];
+        label_receive=[[UILabel alloc]initWithFrame:CGRectMake(85, 0, DEVICE_WIDTH-85, 44)];
         label_receive.textAlignment=NSTextAlignmentLeft;
         label_receive.font=[UIFont systemFontOfSize:15];
         label_receive.textColor = RGBACOLOR(12,12,12,1);
@@ -476,7 +396,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,35)];
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,35)];
     
     view.backgroundColor = [UIColor clearColor];
     

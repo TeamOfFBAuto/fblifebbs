@@ -28,7 +28,7 @@
     for (int i = 0;i < 3;i++)
     {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(12 + 100*i,12,96,45);
+        button.frame = CGRectMake((DEVICE_WIDTH-320)/2 + 12 + 100*i,12,96,45);
         [button setImage:[UIImage imageNamed:[image_array objectAtIndex:i]] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:[image_array objectAtIndex:i+3]] forState:UIControlStateSelected];
         historyPage = 0;

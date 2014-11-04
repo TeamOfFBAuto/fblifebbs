@@ -352,7 +352,7 @@
     
     
     
-    
+    /*
     
     if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
         //iOS 5 new UINavigationBar custom background
@@ -374,7 +374,9 @@
     [back_view addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
     self.navigationItem.leftBarButtonItems=@[spaceButton,back_item];
+    */
     
+    [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeBack WithRightButtonType:SNViewControllerRightbuttonTypeNull];
     
     //点赞的
     

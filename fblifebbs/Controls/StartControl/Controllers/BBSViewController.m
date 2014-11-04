@@ -102,6 +102,8 @@
     ASINetworkQueue * networkQueue;
     ///排行榜
     BBSRankingView * rangkingView;
+    ///存放所有tableview，方便读取
+    NSMutableArray * table_array;
 }
 
 @end
@@ -123,6 +125,18 @@
     
 }
 
+
+#pragma mark - 选中并刷新当前版块
+-(void)selectedForumWith:(int)index
+{
+    if (current_forum== index) {
+        return ;
+    }
+    current_forum = index;
+    [self.myScrollView setContentOffset:CGPointMake(self.myScrollView.frame.size.width*index,0)animated:YES];
+    [[table_array objectAtIndex:current_forum] reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -135,6 +149,7 @@
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     forum_title_array = [NSArray arrayWithObjects:@"diqu",@"chexing",@"zhuti",@"jiaoyi",nil];
+    table_array = [NSMutableArray array];
     _forum_diqu_array = [NSMutableArray array];
     _forum_chexing_array = [NSMutableArray array];
     _forum_zhuti_array = [NSMutableArray array];
@@ -146,23 +161,16 @@
 
     ///加载顶部选择
     __weak typeof(self)bself = self;
-    __block typeof(current_forum) bcurrent = current_forum;
     _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,70,240,45)];
     [_seg_view setAllViewsWith:[NSArray arrayWithObjects:@"地区",@"车型",@"主题",@"交易",nil] withBlock:^(int index) {
 //        bself.seg_current_page = index;
         
-        if (bcurrent == index) {
-            return ;
-        }
-        bcurrent = index;
-        [bself isHaveCacheDataWith:index];
+        [bself selectedForumWith:index];
     }];
     
     self.navigationItem.titleView = _seg_view;
     
-    
-    /*
-    _myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH+20,DEVICE_HEIGHT-64-49)];
+    _myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,52,DEVICE_WIDTH+20,DEVICE_HEIGHT-64-49-52)];
     _myScrollView.delegate = self;
     _myScrollView.bounces = NO;
     _myScrollView.showsHorizontalScrollIndicator = NO;
@@ -170,16 +178,29 @@
     _myScrollView.pagingEnabled = YES;
     _myScrollView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_myScrollView];
-    _myScrollView.contentSize = CGSizeMake((DEVICE_WIDTH+20)*2,0);
-     */
+    _myScrollView.contentSize = CGSizeMake((DEVICE_WIDTH+20)*4,0);
     
+    
+    for (int i = 0;i < 4;i++)
+    {
+        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake((DEVICE_WIDTH+20)*i,0,DEVICE_WIDTH,DEVICE_HEIGHT-64-49-52) style:UITableViewStylePlain];
+        tableView.tag = 10+i;
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_myScrollView addSubview:tableView];
+        [table_array addObject:tableView];
+    }
+    
+    
+   /*
     ///论坛部分
     _myTableView1 = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-64-49)];
     _myTableView1.delegate = self;
     _myTableView1.dataSource = self;
     _myTableView1.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_myTableView1];
-    
+    */
     UIView *table_sectionV = [[UIView alloc]initWithFrame:CGRectZero];
     table_sectionV.backgroundColor = [UIColor clearColor];
     table_sectionV.backgroundColor = [UIColor whiteColor];
@@ -193,8 +214,7 @@
     bar.layer.borderColor = COLOR_SEARCHBAR.CGColor;
     bar.barTintColor = COLOR_SEARCHBAR;
     [search_bgview addSubview:bar];
-    
-    _myTableView1.tableHeaderView = table_sectionV;
+    [self.view addSubview:table_sectionV];
     
   /*老版选择版块界面
     SliderBBSForumSegmentView * forumSegmentView = [[SliderBBSForumSegmentView alloc] initWithFrame:CGRectMake(0,52,DEVICE_WIDTH,63)];
@@ -314,20 +334,30 @@
     [collection_model loadCollectionDataWith:1 WithPageSize:100 WithFinishedBlock:^(NSMutableArray *array) {
         
         [bself.forum_section_collection_array addObjectsFromArray:collection_model.collect_id_array];
-        [bself.myTableView1 reloadData];
+//        [bself.myTableView1 reloadData];
+        [bself reloadAllTableView];
         
-        rangkingView.bbs_forum_collection_array = [NSMutableArray arrayWithArray:collection_model.collect_id_array];
-        [rangkingView.myTableView reloadData];
-        [[NSUserDefaults standardUserDefaults] setObject:bself.forum_section_collection_array forKey:@"forumSectionCollectionArray"];
+//        rangkingView.bbs_forum_collection_array = [NSMutableArray arrayWithArray:collection_model.collect_id_array];
+//        [rangkingView.myTableView reloadData];
+//        [[NSUserDefaults standardUserDefaults] setObject:bself.forum_section_collection_array forKey:@"forumSectionCollectionArray"];
         
     } WithFailedBlock:^(NSString *string) {
         
         bself.forum_section_collection_array = [[NSUserDefaults standardUserDefaults] objectForKey:@"forumSectionCollectionArray"];
-        [bself.myTableView1 reloadData];
-        rangkingView.bbs_forum_collection_array = [NSMutableArray arrayWithArray:bself.forum_section_collection_array];
-        [rangkingView.myTableView reloadData];
+//        [bself.myTableView1 reloadData];
+        [bself reloadAllTableView];
+//        rangkingView.bbs_forum_collection_array = [NSMutableArray arrayWithArray:bself.forum_section_collection_array];
+//        [rangkingView.myTableView reloadData];
     }];
     
+}
+
+-(void)reloadAllTableView
+{
+    for (int i = 0;i < table_array.count;i++) {
+        UITableView * aTable = (UITableView *)[table_array objectAtIndex:i];
+        [aTable reloadData];
+    }
 }
 
 
@@ -360,7 +390,8 @@
             [[_forum_temp_array objectAtIndex:current_forum] addObject:model];
         }
         
-        [_myTableView1 reloadData];
+//        [_myTableView1 reloadData];
+        [self reloadAllTableView];
     }
 }
 
@@ -427,7 +458,9 @@
                 
                 if (request.tag - 417 == current_forum)
                 {
-                    [_myTableView1 reloadData];
+//                    [_myTableView1 reloadData];
+                    UITableView * aTable = [table_array objectAtIndex:current_forum];
+                    [aTable reloadData];
                 }
             });
         });
@@ -479,138 +512,114 @@
 #pragma mark - UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == _myTableView1) {
-        
-        return [[_forum_temp_array objectAtIndex:current_forum] count];
-    }else
-    {
-        return 1;
-    }
+    NSMutableArray * array = [_forum_temp_array objectAtIndex:tableView.tag-10];
+    return [array count];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == _myTableView1)
-    {
-        SliderBBSForumModel * model = [[_forum_temp_array objectAtIndex:current_forum] objectAtIndex:section];
-        return model.forum_isOpen?model.forum_sub.count:0;
-        
-    }else
-    {
-        return 0;
-    }
+    
+    
+    SliderBBSForumModel * model = [[_forum_temp_array objectAtIndex:tableView.tag-10] objectAtIndex:section];
+    return model.forum_isOpen?model.forum_sub.count:0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == _myTableView1) {
-        static NSString * identifier = @"cell";
-        
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-        
-        for (UIView * view in cell.contentView.subviews)
-        {
-            [view removeFromSuperview];
-        }
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        SliderBBSForumModel * model = [[_forum_temp_array objectAtIndex:current_forum] objectAtIndex:indexPath.section];
-        
-        if (model.forum_isOpen)
-        {
-            SliderBBSForumModel * second_model = [model.forum_sub objectAtIndex:indexPath.row];
-            UILabel * second_name_label = [[UILabel alloc] initWithFrame:CGRectMake(17,0,200,44)];
-            second_name_label.text = second_model.forum_name;
-            second_name_label.font = [UIFont systemFontOfSize:15];
-            second_name_label.textColor = RGBCOLOR(124,124,124);
-            second_name_label.backgroundColor = [UIColor clearColor];
-            [cell.contentView addSubview:second_name_label];
-            
-            UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH-50,5,0.5,34)];
-            line_view.backgroundColor = RGBCOLOR(228,228,228);
-            [cell.contentView addSubview:line_view];
-            
-            
-            //收藏按钮
-            ZSNButton * collection_button = [ZSNButton buttonWithType:UIButtonTypeCustom];
-            collection_button.frame = CGRectMake(DEVICE_WIDTH-49,0,49,44);
-            collection_button.myDictionary = [NSDictionary dictionaryWithObject:second_model.forum_fid forKey:@"tid"];
-            [collection_button setImage:[UIImage imageNamed:@"bbs_forum_collect1"] forState:UIControlStateNormal];
-            [collection_button setImage:[UIImage imageNamed:@"bbs_forum_collect2"] forState:UIControlStateSelected];
-            collection_button.selected = [_forum_section_collection_array containsObject:second_model.forum_fid];
-            [collection_button addTarget:self action:@selector(CollectForumSectionTap:) forControlEvents:UIControlEventTouchUpInside];
-            [cell.contentView addSubview:collection_button];
-            
-            if (!second_model.forum_isHave_sub)
-            {
-                
-            }else
-            {
-                ZSNButton * accessory_button = [ZSNButton buttonWithType:UIButtonTypeCustom];
-                accessory_button.frame = CGRectMake(DEVICE_WIDTH-95,0,40,44);
-                [accessory_button setImage:[UIImage imageNamed:@"bbs_forum_jiantou"] forState:UIControlStateNormal];
-                [accessory_button setImage:[UIImage imageNamed:@"bbs_forum_jiantou-1"] forState:UIControlStateSelected];
-                accessory_button.selected = second_model.forum_isOpen;
-                accessory_button.myDictionary = [NSDictionary dictionaryWithObject:indexPath forKey:@"indexPath"];
-                [accessory_button addTarget:self action:@selector(ShowAndHiddenThirdView:) forControlEvents:UIControlEventTouchUpInside];
-                [cell.contentView addSubview:accessory_button];
-            }
-            
-            
-            UIView * single_line_view = [[UIView alloc] initWithFrame:CGRectMake(16,43.5,DEVICE_WIDTH,0.5)];
-            single_line_view.backgroundColor = RGBCOLOR(225,225,225);
-            [cell.contentView addSubview:single_line_view];
-            
-            
-            if (indexPath.row == model.forum_sub.count - 1)
-            {
-                single_line_view.frame = CGRectMake(0,43.5,DEVICE_WIDTH,0.5);
-            }
-            
-            
-            if (second_model.forum_isOpen)
-            {
-                single_line_view.hidden = YES;
-                
-                UIView * third_view = [self loadthirdViewWithIndexPath:indexPath];
-                
-                [cell.contentView addSubview:third_view];
-            }
-        }
-        
-        return cell;
-    }else
-    {
-        return nil;
+    static NSString * identifier = @"cell";
+    
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    
+    for (UIView * view in cell.contentView.subviews)
+    {
+        [view removeFromSuperview];
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    SliderBBSForumModel * model = [[_forum_temp_array objectAtIndex:tableView.tag-10] objectAtIndex:indexPath.section];
+    
+    if (model.forum_isOpen)
+    {
+        SliderBBSForumModel * second_model = [model.forum_sub objectAtIndex:indexPath.row];
+        UILabel * second_name_label = [[UILabel alloc] initWithFrame:CGRectMake(17,0,200,44)];
+        second_name_label.text = second_model.forum_name;
+        second_name_label.font = [UIFont systemFontOfSize:15];
+        second_name_label.textColor = RGBCOLOR(124,124,124);
+        second_name_label.backgroundColor = [UIColor clearColor];
+        [cell.contentView addSubview:second_name_label];
+        
+        UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH-50,5,0.5,34)];
+        line_view.backgroundColor = RGBCOLOR(228,228,228);
+        [cell.contentView addSubview:line_view];
+        
+        
+        //收藏按钮
+        ZSNButton * collection_button = [ZSNButton buttonWithType:UIButtonTypeCustom];
+        collection_button.frame = CGRectMake(DEVICE_WIDTH-49,0,49,44);
+        collection_button.myDictionary = [NSDictionary dictionaryWithObject:second_model.forum_fid forKey:@"tid"];
+        [collection_button setImage:[UIImage imageNamed:@"bbs_forum_collect1"] forState:UIControlStateNormal];
+        [collection_button setImage:[UIImage imageNamed:@"bbs_forum_collect2"] forState:UIControlStateSelected];
+        collection_button.selected = [_forum_section_collection_array containsObject:second_model.forum_fid];
+        [collection_button addTarget:self action:@selector(CollectForumSectionTap:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:collection_button];
+        
+        if (!second_model.forum_isHave_sub)
+        {
+            
+        }else
+        {
+            ZSNButton * accessory_button = [ZSNButton buttonWithType:UIButtonTypeCustom];
+            accessory_button.frame = CGRectMake(DEVICE_WIDTH-95,0,40,44);
+            [accessory_button setImage:[UIImage imageNamed:@"bbs_forum_jiantou"] forState:UIControlStateNormal];
+            [accessory_button setImage:[UIImage imageNamed:@"bbs_forum_jiantou-1"] forState:UIControlStateSelected];
+            accessory_button.selected = second_model.forum_isOpen;
+            accessory_button.myDictionary = [NSDictionary dictionaryWithObject:indexPath forKey:@"indexPath"];
+            [accessory_button addTarget:self action:@selector(ShowAndHiddenThirdView:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:accessory_button];
+        }
+        
+        
+        UIView * single_line_view = [[UIView alloc] initWithFrame:CGRectMake(16,43.5,DEVICE_WIDTH,0.5)];
+        single_line_view.backgroundColor = RGBCOLOR(225,225,225);
+        [cell.contentView addSubview:single_line_view];
+        
+        
+        if (indexPath.row == model.forum_sub.count - 1)
+        {
+            single_line_view.frame = CGRectMake(0,43.5,DEVICE_WIDTH,0.5);
+        }
+        
+        if (second_model.forum_isOpen)
+        {
+            single_line_view.hidden = YES;
+            UIView * third_view = [self loadthirdViewWithIndexPath:indexPath];
+            [cell.contentView addSubview:third_view];
+        }
+    }
+    
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == _myTableView1)
+    SliderBBSForumModel * first_model = [[_forum_temp_array objectAtIndex:tableView.tag-10] objectAtIndex:indexPath.section];
+    
+    SliderBBSForumModel * second_model = [first_model.forum_sub objectAtIndex:indexPath.row];
+    
+    if (second_model.forum_isOpen)
     {
-        SliderBBSForumModel * first_model = [[_forum_temp_array objectAtIndex:current_forum] objectAtIndex:indexPath.section];
-        
-        SliderBBSForumModel * second_model = [first_model.forum_sub objectAtIndex:indexPath.row];
-        
-        if (second_model.forum_isOpen)
-        {
-            int count = (int)second_model.forum_sub.count;
-            int row = count/2 + (count%2?1:0);
-            float height = 22 + row*36 + (row-1)*7;
-            return height + 44;
-        }else
-        {
-            return 44;
-        }
+        int count = (int)second_model.forum_sub.count;
+        int row = count/2 + (count%2?1:0);
+        float height = 22 + row*36 + (row-1)*7;
+        return height + 44;
     }else
     {
-        return 0;
+        return 44;
     }
 }
 
@@ -622,92 +631,67 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (tableView == _myTableView1)
-    {
-        return 44;
-    }else
-    {
-        return 0;
-    }
+    return 44;
 }
 
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (tableView == _myTableView1)
+    SliderBBSForumModel * model = [[_forum_temp_array objectAtIndex:tableView.tag-10] objectAtIndex:section];
+    
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,44)];
+    view.tag = 10000 + section;
+    view.backgroundColor = [UIColor whiteColor];
+    
+    
+    UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(16,0,200,44)];
+    name_label.text = model.forum_name;
+    name_label.font = [UIFont systemFontOfSize:17];
+    name_label.textAlignment = NSTextAlignmentLeft;
+    name_label.textColor = RGBCOLOR(49,49,49);
+    name_label.backgroundColor = [UIColor clearColor];
+    [view addSubview:name_label];
+    
+    UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH-50,5,0.5,34)];
+    line_view.backgroundColor = RGBCOLOR(228,228,228);
+    [view addSubview:line_view];
+    
+    UIView * bottom_line_view = [[UIView alloc] initWithFrame:CGRectMake(0,43.5,DEVICE_WIDTH,0.5)];
+    bottom_line_view.backgroundColor = RGBCOLOR(228,228,228);
+    [view addSubview:bottom_line_view];
+    
+    if (section == 0)
     {
-        SliderBBSForumModel * model = [[_forum_temp_array objectAtIndex:current_forum] objectAtIndex:section];
-        
-        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,44)];
-        view.tag = 10000 + section;
-        view.backgroundColor = [UIColor whiteColor];
-        
-        
-        UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(16,0,200,44)];
-        name_label.text = model.forum_name;
-        name_label.font = [UIFont systemFontOfSize:17];
-        name_label.textAlignment = NSTextAlignmentLeft;
-        name_label.textColor = RGBCOLOR(49,49,49);
-        name_label.backgroundColor = [UIColor clearColor];
-        [view addSubview:name_label];
-        
-        UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH-50,5,0.5,34)];
-        line_view.backgroundColor = RGBCOLOR(228,228,228);
-        [view addSubview:line_view];
-        
-        UIView * bottom_line_view = [[UIView alloc] initWithFrame:CGRectMake(0,43.5,DEVICE_WIDTH,0.5)];
-        bottom_line_view.backgroundColor = RGBCOLOR(228,228,228);
-        [view addSubview:bottom_line_view];
-        
-        
-        
-        if (section == 0)
-        {
-            UIView * top_line_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0.5)];
-            top_line_view.backgroundColor = RGBCOLOR(228,228,228);
-            [view addSubview:top_line_view];
-        }
-        
-        
-        
-        if (model.forum_isHave_sub)
-        {
-            UIButton * fenlei_button = [UIButton buttonWithType:UIButtonTypeCustom];
-            fenlei_button.userInteractionEnabled = NO;
-            fenlei_button.frame = CGRectMake(DEVICE_WIDTH-49,0,49,44);
-            [fenlei_button setImage:[UIImage imageNamed:@"bbs_forum_fenlei"] forState:UIControlStateNormal];
-            fenlei_button.backgroundColor = [UIColor clearColor];
-            //            [fenlei_button addTarget:self action:@selector(ShowSecondView:) forControlEvents:UIControlEventTouchUpInside];
-            [view addSubview:fenlei_button];
-        }
-        
-        
-        //跳转到对应的版块页
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ShowSecondView:)];
-        
-        [view addGestureRecognizer:tap];
-        
-        return view;
-    }else
-    {
-        return nil;
+        UIView * top_line_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0.5)];
+        top_line_view.backgroundColor = RGBCOLOR(228,228,228);
+        [view addSubview:top_line_view];
     }
     
+    if (model.forum_isHave_sub)
+    {
+        UIButton * fenlei_button = [UIButton buttonWithType:UIButtonTypeCustom];
+        fenlei_button.userInteractionEnabled = NO;
+        fenlei_button.frame = CGRectMake(DEVICE_WIDTH-49,0,49,44);
+        [fenlei_button setImage:[UIImage imageNamed:@"bbs_forum_fenlei"] forState:UIControlStateNormal];
+        fenlei_button.backgroundColor = [UIColor clearColor];
+        //            [fenlei_button addTarget:self action:@selector(ShowSecondView:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:fenlei_button];
+    }
+    
+    
+    //跳转到对应的版块页
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ShowSecondView:)];
+    [view addGestureRecognizer:tap];
+    return view;
 }
 
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == _myTableView1)
-    {
-        SliderBBSForumModel * first_model = [[_forum_temp_array objectAtIndex:current_forum] objectAtIndex:indexPath.section];
-        
-        SliderBBSForumModel * second_model = [first_model.forum_sub objectAtIndex:indexPath.row];
-        
-        [self pushToBBSForumDetailWithId:second_model.forum_fid];
-        
-    }
+    SliderBBSForumModel * first_model = [[_forum_temp_array objectAtIndex:tableView.tag-10] objectAtIndex:indexPath.section];
+    SliderBBSForumModel * second_model = [first_model.forum_sub objectAtIndex:indexPath.row];
+    [self pushToBBSForumDetailWithId:second_model.forum_fid];
 }
 
 
@@ -721,17 +705,14 @@
 //滚动视图释放滚动
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    //判断选择 精选推荐 还是 全部版块
+    //判断选择板块类型
     if (scrollView == _myScrollView)
     {
         CGFloat pageWidth = scrollView.frame.size.width;
         // 根据当前的x坐标和页宽度计算出当前页数
         int current_page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        
         [_seg_view MyButtonStateWithIndex:current_page];
-    }else if (scrollView == _myTableView1)
-    {
-        
+        current_forum = current_page;
     }
 }
 
@@ -913,7 +894,7 @@
 {
     SliderBBSForumModel * model = [[_forum_temp_array objectAtIndex:current_forum] objectAtIndex:sender.view.tag-10000];
     model.forum_isOpen = !model.forum_isOpen;
-    [_myTableView1 reloadSections:[NSIndexSet indexSetWithIndex:sender.view.tag-10000] withRowAnimation:UITableViewRowAnimationFade];
+    [[table_array objectAtIndex:current_forum] reloadSections:[NSIndexSet indexSetWithIndex:sender.view.tag-10000] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
@@ -942,7 +923,7 @@
     }
     
     
-    [_myTableView1 reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,indexP,nil] withRowAnimation:UITableViewRowAnimationNone];
+    [[table_array objectAtIndex:current_forum] reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,indexP,nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 

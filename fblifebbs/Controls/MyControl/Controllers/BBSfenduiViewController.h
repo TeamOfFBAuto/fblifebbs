@@ -16,7 +16,7 @@
 #import "loadingimview.h"
 #import "AdvertisingimageView.h"
 
-@interface BBSfenduiViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,downloaddelegate,ASIHTTPRequestDelegate,EGORefreshTableHeaderDelegate,SelectsalestateViewDelegate,AlertRePlaceViewDelegate,AdvertisingimageViewDelegate>
+@interface BBSfenduiViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,downloaddelegate,ASIHTTPRequestDelegate,EGORefreshTableHeaderDelegate,SelectsalestateViewDelegate,AlertRePlaceViewDelegate,AdvertisingimageViewDelegate>
 {SelectsalestateView *_salestate;
     UITableView *tab_;
     downloadtool *tool_101;

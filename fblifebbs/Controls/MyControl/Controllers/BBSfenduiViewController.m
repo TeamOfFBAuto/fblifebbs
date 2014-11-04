@@ -102,7 +102,7 @@
     //  self.navigationItem.leftBarButtonItem=back_item;
     
     
-    
+ /*
     UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME?5:15, (44-43/2)/2, 24, 43/2)];
     
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
@@ -131,12 +131,10 @@
     
     
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:view_left];
+    */
     
     
- 
-    
-    
-    
+    [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeBack WithRightButtonType:SNViewControllerRightbuttonTypeNull];
     
     button_collect=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?15:10, (44-21)/2, 22, 21)];
     button_collect.tag=999;
@@ -222,11 +220,11 @@
     right_spaceButton.width = MY_MACRO_NAME?-15:5;
     self.navigationItem.rightBarButtonItems=@[right_spaceButton,[[UIBarButtonItem alloc]initWithCustomView:view_right]];
     
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
-        //iOS 5 new UINavigationBar custom background
-        
-        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
-    }
+//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
+//        //iOS 5 new UINavigationBar custom background
+//        
+//        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
+//    }
     
     
     

@@ -85,14 +85,6 @@
     
     comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
     
-//    self.navigationItem.rightBarButtonItem = comment_item;
-
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
-        //iOS 5 new UINavigationBar custom background
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-    }
-    
-    
     UIBarButtonItem * space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     space.width = MY_MACRO_NAME?-10:5;
     
@@ -113,14 +105,6 @@
     
     
     self.navigationItem.title = @"二维码";
-    
-    UIColor * cc = [UIColor blackColor];
-    
-    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-    
-    self.navigationController.navigationBar.titleTextAttributes = dict;
-    
-    
     
     UIImageView *centerimgkuang=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ios7_erweima533_700.png"]];
     centerimgkuang.center=CGPointMake(160, (iPhone5?568-64:480-64)/2);

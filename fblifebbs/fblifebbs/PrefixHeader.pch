@@ -53,8 +53,8 @@ alpha:(a)]
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 #define isHaveNetWork [[LTools checkNetWork ]isEqualToString:@"NONetWork"]?YES:NO
 #define MY_MACRO_NAME ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-//#define IOS7DAOHANGLANBEIJING @"sliderBBSNavigationBarImage_ios7.png"
-#define IOS7DAOHANGLANBEIJING @"ios7backImage.png"
+#define IOS7DAOHANGLANBEIJING @"sliderBBSNavigationBarImage_ios7.png"
+#define IOS7DAOHANGLANBEIJING_PUSH @"ios7backImage.png"
 #define IOS6DAOHANGLANBEIJING @"sliderBBSNavigationBarImage_ios6.png"
 #define TheNavigationBarBackgroundImg MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"]
 

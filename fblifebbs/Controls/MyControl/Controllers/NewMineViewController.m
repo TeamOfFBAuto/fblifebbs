@@ -52,11 +52,8 @@
     }
     
     shangjia_new_request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullUrl]];
-    
-    shangjia_new_request.shouldAttemptPersistentConnection = NO;
-    
+    shangjia_new_request.timeOutSeconds = 30;
     __block typeof(shangjia_new_request) request = shangjia_new_request;
-    
     
     [request setCompletionBlock:^{
         @try {
@@ -120,7 +117,7 @@
     
     
     request_weibo = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullURL]];
-    
+    request_weibo.timeOutSeconds = 30;
     __block typeof(request_weibo) request = request_weibo;
     
     [request setCompletionBlock:^{
@@ -201,9 +198,7 @@
     }
     
     request_mine = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullURL]];
-    
-    request_mine.shouldAttemptPersistentConnection = NO;
-    
+    request_mine.timeOutSeconds = 30;
 
     __block typeof(request_mine) request = request_mine;
     
@@ -438,7 +433,7 @@
     
     if (!shangjia_detail_view)
     {
-        shangjia_detail_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,472)];
+        shangjia_detail_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,472)];
     }else
     {
         for (UIView * view in shangjia_detail_view.subviews)
@@ -467,39 +462,24 @@
                 ShangJiaNewsInfo * info = [_zixin_array objectAtIndex:cout];
                 
                 AsyncImageView * imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(23/2 + 151*j,23/2 + 102*i,145.5,96.5)];
-                
                 imageView.userInteractionEnabled = YES;
-                
                 imageView.tag = 100000+j+i*2;
-                
                 [imageView loadImageFromURL:info.photo withPlaceholdImage:nil];
-                
                 [shangjia_detail_view addSubview:imageView];
                 
                 UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickTap:)];
                 [imageView addGestureRecognizer:tap];
                 
-                
-                
                 UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0,imageView.frame.size.height - 43/2,imageView.frame.size.width,43/2)];
-                
                 view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-                
                 [imageView addSubview:view];
                 
-                
                 UILabel * shangjia_title_label = [[UILabel alloc] initWithFrame:view.bounds];
-                
                 shangjia_title_label.text = info.title;
-                
                 shangjia_title_label.backgroundColor = [UIColor clearColor];
-                
                 shangjia_title_label.textAlignment = NSTextAlignmentCenter;
-                
                 shangjia_title_label.textColor = [UIColor whiteColor];
-                
                 shangjia_title_label.font = [UIFont systemFontOfSize:13];
-                
                 [view addSubview:shangjia_title_label];
             }
         }
@@ -510,53 +490,30 @@
     {
         float height = 0;
         
-        CGRect image_frmae = CGRectMake(23/2,total_height+23/2,594/2,205/2);
-        
+        CGRect image_frmae = CGRectMake(23/2,total_height+23/2,DEVICE_WIDTH-23,205/2);
         UIImageView * jianjie_imageview = [[UIImageView alloc] initWithFrame:image_frmae];
-        
         jianjie_imageview.userInteractionEnabled = YES;
-        
         [shangjia_detail_view addSubview:jianjie_imageview];
         
-        
         UITapGestureRecognizer * jianjie_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jianJieTap)];
-        
         [jianjie_imageview addGestureRecognizer:jianjie_tap];
         
-        
-        
-        UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(5,10,594/2-10,20)];
-        
+        UILabel * name_label = [[UILabel alloc] initWithFrame:CGRectMake(5,10,DEVICE_WIDTH-23-10,20)];
         name_label.text = _per_info.service_shopname;
-        
         name_label.textColor = RGBCOLOR(69,80,139);
-        
         name_label.backgroundColor = [UIColor clearColor];
-        
         name_label.textAlignment = NSTextAlignmentLeft;
-        
         [jianjie_imageview addSubview:name_label];
         
-        
-        RTLabel * jianjie_label = [[RTLabel alloc] initWithFrame:CGRectMake(5,35,594/2-10,10)];
-        
+        RTLabel * jianjie_label = [[RTLabel alloc] initWithFrame:CGRectMake(5,35,DEVICE_WIDTH-23-10,10)];
         jianjie_label.lineBreakMode = NSLineBreakByCharWrapping;
-        
         jianjie_label.lineSpacing = 3;
-        
         jianjie_label.textColor = RGBCOLOR(25,25,25);
-        
         jianjie_label.font = [UIFont systemFontOfSize:15];
-        
-        
         jianjie_label.text = [NSString stringWithFormat:@"%@... [更多]",_per_info.service_simpcontent];
-        
         CGSize optimumSize = [jianjie_label optimumSize];
-        
         height = optimumSize.height;
-        
-        jianjie_label.frame = CGRectMake(5,30,594/2-10,height);
-        
+        jianjie_label.frame = CGRectMake(5,30,DEVICE_WIDTH-23-10,height);
         jianjie_label.text = [NSString stringWithFormat:@"%@...",_per_info.service_simpcontent];
         [jianjie_imageview addSubview:jianjie_label];
         
@@ -567,27 +524,15 @@
         CGPoint point = [personal LinesWidth:[NSString stringWithFormat:@"%@...",_per_info.service_simpcontent] Label:test_label font:[UIFont systemFontOfSize:15]];
         
         UIButton * gengduo_button = [UIButton buttonWithType:UIButtonTypeCustom];
-        
         gengduo_button.frame = CGRectMake(point.x,jianjie_label.frame.origin.y + optimumSize.height-20,50,20);
-        
         [gengduo_button setTitle:@"[更多]" forState:UIControlStateNormal];
-        
         gengduo_button.titleLabel.font = [UIFont systemFontOfSize:14];
-        
         [gengduo_button setTitleColor:RGBCOLOR(76,84,114) forState:UIControlStateNormal];
-        
         [gengduo_button addTarget:self action:@selector(jianJieTap) forControlEvents:UIControlEventTouchUpInside];
-        
         [jianjie_imageview addSubview:gengduo_button];
-        
-        
         image_frmae.size.height = height + 30 + 10;
-        
         jianjie_imageview.frame = image_frmae;
-        
         jianjie_imageview.image = [[UIImage imageNamed:@"jianjiebackimage.png"] stretchableImageWithLeftCapWidth:130 topCapHeight:7];
-        
-        
         total_height = total_height + image_frmae.size.height + 23/2;
     }
     
@@ -595,67 +540,41 @@
     
     if (_per_info.service_address.length > 0)
     {
-        CGRect address_frame = CGRectMake(23/2,total_height+23/2,594/2,10);
-        
+        CGRect address_frame = CGRectMake(23/2,total_height+23/2,DEVICE_WIDTH-23,10);
         UIImageView * address_back_imageview = [[UIImageView alloc] initWithFrame:address_frame];
-        
         [shangjia_detail_view addSubview:address_back_imageview];
         
-        
         UIImageView * ditu_image = [[UIImageView alloc] initWithFrame:CGRectMake(8,8,101/2,101/2)];
-        
         ditu_image.userInteractionEnabled = YES;
-        
         ditu_image.image = [UIImage imageNamed:@"earth_logo.png"];
-        
         ditu_image.backgroundColor = [UIColor grayColor];
-        
         [address_back_imageview addSubview:ditu_image];
         
-        
         UITapGestureRecognizer * ditu_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doDiTu:)];
-        
         [ditu_image addGestureRecognizer:ditu_tap];
         
-        
-        
         UILabel * dizhi = [[UILabel alloc] initWithFrame:CGRectMake(18+101/2,10,221,20)];
-        
         dizhi.text = @"公司地址:";
-        
         dizhi.backgroundColor = [UIColor clearColor];
-        
         dizhi.textColor = RGBCOLOR(70,86,132);
-        
         dizhi.textAlignment = NSTextAlignmentLeft;
-        
         [address_back_imageview addSubview:dizhi];
         
         
-        RTLabel * dizhi_label = [[RTLabel alloc]initWithFrame:CGRectMake(18+101/2,35,221,10)];
-        
+        RTLabel * dizhi_label = [[RTLabel alloc]initWithFrame:CGRectMake(18+101/2,35,DEVICE_WIDTH-100,10)];
         dizhi_label.lineBreakMode = NSLineBreakByCharWrapping;
-        
         dizhi_label.lineSpacing = 3;
-        
         dizhi_label.textColor = RGBCOLOR(50,50,50);
-        
         dizhi_label.font = [UIFont systemFontOfSize:15];
-        
         dizhi_label.text = _per_info.service_address;
-        
         [address_back_imageview addSubview:dizhi_label];
         
         CGSize optimumSize = [dizhi_label optimumSize];
         
-        dizhi_label.frame = CGRectMake(18+101/2,35,221,optimumSize.height);
-        
+        dizhi_label.frame = CGRectMake(18+101/2,35,DEVICE_WIDTH-100,optimumSize.height);
         address_frame.size.height = optimumSize.height + 45 > 66.5?optimumSize.height + 45:66.5;
-        
         total_height = total_height + 23/2 + address_frame.size.height;
-        
         address_back_imageview.frame = address_frame;
-        
         address_back_imageview.image = [[UIImage imageNamed:@"jianjiebackimage.png"] stretchableImageWithLeftCapWidth:130 topCapHeight:7];
     }
     
@@ -663,72 +582,39 @@
     
     if (_per_info.service_telphone.length > 0)
     {
-        UIImageView * phone_imageview = [[UIImageView alloc] initWithFrame:CGRectMake(23/2,total_height+23/2,594/2,40)];
-        
+        UIImageView * phone_imageview = [[UIImageView alloc] initWithFrame:CGRectMake(23/2,total_height+23/2,DEVICE_WIDTH-23,40)];
         phone_imageview.userInteractionEnabled = YES;
-        
         phone_imageview.image = [UIImage imageNamed:@"jianjiebackimage.png"];
-        
         [shangjia_detail_view addSubview:phone_imageview];
-        
         UITapGestureRecognizer * phone_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(phoneTap:)];
-        
         [phone_imageview addGestureRecognizer:phone_tap];
         
-        
-        
         UIImageView * dianhua_tubiao = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,23,23)];
-        
         dianhua_tubiao.center = CGPointMake(8+23/2,phone_imageview.frame.size.height/2);
-        
         dianhua_tubiao.backgroundColor = [UIColor grayColor];
-        
         dianhua_tubiao.layer.masksToBounds = YES;
-        
         dianhua_tubiao.layer.cornerRadius = 2;
-        
         dianhua_tubiao.image = [UIImage imageNamed:@"telephoto.png"];
-        
         [phone_imageview addSubview:dianhua_tubiao];
         
-        
-        
         UILabel * gongsidianhua = [[UILabel alloc] initWithFrame:CGRectMake(40,5,80,30)];
-        
         gongsidianhua.textColor = RGBCOLOR(70,86,132);
-        
         gongsidianhua.text = @"公司电话:";
-        
         gongsidianhua.backgroundColor = [UIColor clearColor];
-        
         gongsidianhua.textAlignment = NSTextAlignmentLeft;
-        
         gongsidianhua.backgroundColor = [UIColor clearColor];
-        
         [phone_imageview addSubview:gongsidianhua];
         
         
-        
-        
-        
-        UILabel * telephone_content_label = [[UILabel alloc] initWithFrame:CGRectMake(120,5,140,30)];
-        
+        UILabel * telephone_content_label = [[UILabel alloc] initWithFrame:CGRectMake(120,5,DEVICE_WIDTH-180,30)];
         telephone_content_label.text = _per_info.service_telphone;
-        
         telephone_content_label.textAlignment = NSTextAlignmentLeft;
-        
         telephone_content_label.textColor = RGBCOLOR(49,49,49);
-        
         [phone_imageview  addSubview:telephone_content_label];
-        
         telephone_content_label.backgroundColor = [UIColor clearColor];
         
-        
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callSomeBody:)];
-        
         [telephone_content_label addGestureRecognizer:tap];
-        
-        
         total_height = total_height + 40 + 10;
         
     }
@@ -1032,6 +918,7 @@
     
     
     _replaceAlertView=[[AlertRePlaceView alloc]initWithFrame:CGRectMake(100, 200, 150, 100) labelString:@"您的网络不给力哦，请检查网络"];
+    _replaceAlertView.center = CGPointMake(DEVICE_WIDTH/2,DEVICE_HEIGHT/2);
     _replaceAlertView.delegate=self;
     _replaceAlertView.hidden=YES;
     [[UIApplication sharedApplication].keyWindow

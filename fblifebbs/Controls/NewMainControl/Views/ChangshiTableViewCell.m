@@ -41,7 +41,7 @@
         
         self.date_label.numberOfLines=0;
         
-        UIView *viewline=[[UIView alloc]initWithFrame:CGRectMake(12, 56.5, 320-24, 0.5)];
+        UIView *viewline=[[UIView alloc]initWithFrame:CGRectMake(12, 56.5, DEVICE_WIDTH-24, 0.5)];
         viewline.backgroundColor=RGBCOLOR(223, 223, 223);
         [self addSubview:viewline];
         

@@ -256,9 +256,7 @@
     self.title = @"微博正文";
     self.photos = [[NSMutableArray alloc] init];
     pageCount = 1;
-    
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    
+        
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
     _dataArray = [[NSMutableArray alloc] init];

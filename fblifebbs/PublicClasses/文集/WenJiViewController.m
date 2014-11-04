@@ -114,46 +114,17 @@
 {
     [super viewDidLoad];
     
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-    {
-        //iOS 5 new UINavigationBar custom background
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-    }
-    
     self.title = @"文集正文";
     
-//    UIColor * cc = [UIColor blackColor];
-//    
-//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-//    
-//    self.navigationController.navigationBar.titleTextAttributes = dict;
-//    
-//    
     self.view.backgroundColor = RGBCOLOR(217,221,219);
-//
-//    
-//    UIBarButtonItem * space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    space.width = MY_MACRO_NAME?-4:5;
-//    
-//    
-//    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10, 8,12,21.5)];
-//    
-//    [button_back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-//    
-//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-//    
-//    self.navigationItem.leftBarButtonItems=@[space,back_item];
-    
     
     [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeBack WithRightButtonType:SNViewControllerRightbuttonTypeNull];
-    
     
 	[self initHttpRequest];
     
     if (!myScrollView)
     {
-        myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,320,iPhone5?568-44-20:480-44-20)];
+        myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-64)];
     }
     
     myScrollView.backgroundColor = [UIColor whiteColor];
@@ -161,7 +132,7 @@
     
     if (!headView)
     {
-        headView = [[AsyncImageView alloc] initWithFrame:CGRectMake(CELL_LEFT, CELL_TOP, 30, 30)];
+        headView = [[AsyncImageView alloc] initWithFrame:CGRectMake(CELL_LEFT,CELL_TOP,30,30)];
         headView.layer.cornerRadius = 5;
         headView.layer.borderColor = (__bridge CGColorRef)([UIColor colorWithRed:220/255.0f green:220/255.0f blue:220/255.0f alpha:1]);
         headView.layer.borderWidth =1.0;
@@ -182,7 +153,7 @@
     
     if (!dateLine_Label)
     {
-        dateLine_Label = [[UILabel alloc] initWithFrame:CGRectMake(180+30,CELL_TOP,100,30)];
+        dateLine_Label = [[UILabel alloc] initWithFrame:CGRectMake(DEVICE_WIDTH-110,CELL_TOP,100,30)];
         dateLine_Label.backgroundColor = [UIColor clearColor];
         dateLine_Label.font = [UIFont systemFontOfSize:10];
         dateLine_Label.textColor = RGBCOLOR(164,132,98);
@@ -193,7 +164,7 @@
     
     if (!title_Label)
     {
-        title_Label = [[UILabel alloc] initWithFrame:CGRectMake(CELL_LEFT,CELL_NAME_TOP+30,320-CELL_LEFT*2,20)];
+        title_Label = [[UILabel alloc] initWithFrame:CGRectMake(CELL_LEFT,CELL_NAME_TOP+30,DEVICE_WIDTH-CELL_LEFT*2,20)];
         title_Label.backgroundColor = [UIColor clearColor];
         title_Label.textAlignment = NSTextAlignmentLeft;
         title_Label.font = [UIFont systemFontOfSize:16];
@@ -203,7 +174,7 @@
     
     if (!line_imageView)
     {
-        line_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,65,320,2)];
+        line_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,65,DEVICE_WIDTH,2)];
         line_imageView.image = [personal getImageWithName:@"blog_sp"];
         [myScrollView addSubview:line_imageView];
     }
@@ -211,7 +182,7 @@
     
     if (!webView)
     {
-        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,64,320,iPhone5?(568-20-44-64):(480-20-44-64))];
+        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,64,DEVICE_WIDTH,DEVICE_HEIGHT-64-64)];
     }
     
     webView.delegate = self;
@@ -223,7 +194,7 @@
     
     if (!Load_view)
     {
-        Load_view = [[loadingview alloc] initWithFrame:CGRectMake(0,0,320,iPhone5?568-20-44:460-44)];
+        Load_view = [[loadingview alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-64)];
         [self.view addSubview:Load_view];
     }else
     {

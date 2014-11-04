@@ -192,7 +192,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     
     myUid = [[NSUserDefaults standardUserDefaults] objectForKey:USER_UID];
     
@@ -381,7 +380,7 @@
     
     [cell1.contentView addSubview:imagetouxiang];
     
-    UILabel * label_username=[[UILabel alloc]initWithFrame:CGRectMake(75,23/2,200, 20)];
+    UILabel * label_username=[[UILabel alloc]initWithFrame:CGRectMake(75,23/2,DEVICE_WIDTH-120, 20)];
     label_username.text = info.username;
     label_username.backgroundColor = [UIColor clearColor];
     label_username.font = [UIFont systemFontOfSize:18];
@@ -394,7 +393,7 @@
         location = @"未知";
     }
     
-    UILabel * label_location=[[UILabel alloc]initWithFrame:CGRectMake(75,41.5,200,20)];
+    UILabel * label_location=[[UILabel alloc]initWithFrame:CGRectMake(75,41.5,DEVICE_WIDTH-120,20)];
     label_location.text = [NSString stringWithFormat:@"所在地:%@",location];
     label_location.font = [UIFont systemFontOfSize:15];
     label_location.backgroundColor = [UIColor clearColor];
@@ -409,7 +408,7 @@
     
     UIButton * attention_button = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    attention_button.frame = CGRectMake(240,22.75,135/2,55/2);
+    attention_button.frame = CGRectMake(DEVICE_WIDTH-80,22.75,135/2,55/2);
     
     attention_button.tag = 100000 + indexPath.row;
     

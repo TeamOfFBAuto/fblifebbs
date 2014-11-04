@@ -100,7 +100,7 @@
     
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IOS7DAOHANGLANBEIJING] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IOS7DAOHANGLANBEIJING_PUSH] forBarMetrics:UIBarMetricsDefault];
     UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spaceButton.width = MY_MACRO_NAME?-5:5;
     

@@ -28,7 +28,7 @@
 #import "ShareView.h"
 
 
-@interface bbsdetailViewController : UIViewController<downloaddelegate,BottombarviewDelegate,SelectNumberViewDelegate,AlertRePlaceViewDelegate,UIWebViewDelegate,MWPhotoBrowserDelegate,UIScrollViewDelegate,UIActionSheetDelegate,WXApiDelegate,MFMailComposeViewControllerDelegate,WeiboSDKDelegate>{
+@interface bbsdetailViewController : SNViewController<downloaddelegate,BottombarviewDelegate,SelectNumberViewDelegate,AlertRePlaceViewDelegate,UIWebViewDelegate,MWPhotoBrowserDelegate,UIScrollViewDelegate,UIActionSheetDelegate,WXApiDelegate,MFMailComposeViewControllerDelegate,WeiboSDKDelegate>{
     
     BOOL isauthor;
     UIWebView *_webView;

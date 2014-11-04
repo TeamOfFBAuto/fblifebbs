@@ -161,7 +161,7 @@
         if (!_delete_button)
         {
             _delete_button = [UIButton buttonWithType:UIButtonTypeCustom];
-            _delete_button.frame = CGRectMake(270,10,60,20);
+            _delete_button.frame = CGRectMake(DEVICE_WIDTH-50,10,60,20);
             [_delete_button setTitle:@"删除" forState:UIControlStateNormal];
             [_delete_button setTitleColor:RGBCOLOR(142,142,142) forState:UIControlStateNormal];
             _delete_button.hidden = YES;

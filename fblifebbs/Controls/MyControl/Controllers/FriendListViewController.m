@@ -323,7 +323,7 @@
     
     searchOrCancell = NO;
     
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     
     self.view.backgroundColor = RGBCOLOR(242,242,242);
     

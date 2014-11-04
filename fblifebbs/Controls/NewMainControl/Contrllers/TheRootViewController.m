@@ -172,7 +172,7 @@
     
     dataArray = [testbase findall];
     
-    UIScrollView *   firstscro=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568-20-40-40-49+3+49:480-19-40-40-49+3+49)];
+    UIScrollView *   firstscro=[[UIScrollView alloc]initWithFrame:CGRectMake((DEVICE_WIDTH-320)/2, 0,320,DEVICE_HEIGHT-64-49-107)];
     firstscro.contentSize=CGSizeMake(0,40* dataArray.count);
     firstscro.pagingEnabled=NO;
     firstscro.showsHorizontalScrollIndicator=NO;
@@ -253,8 +253,8 @@
 //tableview
 -(void)setTabView{
     
-    newsScrow=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 107, 320, iPhone5?568-20-40-40-49+3+49:480-19-40-40-49+3+49)];
-    newsScrow.contentSize=CGSizeMake(320*13, 0);
+    newsScrow=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 107,DEVICE_WIDTH,DEVICE_HEIGHT-64-107-49)];
+    newsScrow.contentSize=CGSizeMake(DEVICE_WIDTH*13, 0);
     newsScrow.pagingEnabled=YES;
     newsScrow.delegate=self;
     newsScrow.showsHorizontalScrollIndicator=NO;
@@ -337,15 +337,15 @@
         ytestButton.tag=9000+i;
         if (i==0) {
             ytestButton.selected=YES;
-            ytestButton.frame=CGRectMake(0, 0, 107, 203/2);
+            ytestButton.frame=CGRectMake((DEVICE_WIDTH-320)/2 + 0, 0, 107, 203/2);
         }else if(i==1){
             ytestButton.selected=NO;
-            ytestButton.frame=CGRectMake(107, 0, 106, 203/2);
+            ytestButton.frame=CGRectMake((DEVICE_WIDTH-320)/2 + 107, 0, 106, 203/2);
             
         }else if(i==2)
         {
             ytestButton.selected=NO;
-            ytestButton.frame=CGRectMake(107+106, 0, 107, 203/2);
+            ytestButton.frame=CGRectMake((DEVICE_WIDTH-320)/2 + 107+106, 0, 107, 203/2);
         }
         UILabel *titleLabel=[LTools createLabelFrame:CGRectMake(0, 0,  DEVICE_WIDTH/3,20) title:titleArr[i] font:14 align:NSTextAlignmentCenter textColor:RGBCOLOR(132, 132, 132)];
         titleLabel.center=CGPointMake(DEVICE_WIDTH/6, 75);
@@ -439,7 +439,7 @@
     sender.selected=YES;
     preTag=sender.tag;
     
-    [newsScrow setContentOffset:CGPointMake(320*(sender.tag-9000), 0)];
+    [newsScrow setContentOffset:CGPointMake(DEVICE_WIDTH*(sender.tag-9000), 0)];
 
     switch (sender.tag) {
         case 9000:

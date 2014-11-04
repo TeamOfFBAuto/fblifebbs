@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Controls/MyControl/Controllers/MyChatViewController.m"
-            timestampString = "436349745.231182"
+            filePath = "Controls/MyControl/Controllers/NewMineViewController.m"
+            timestampString = "436778712.815725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-initHttpRequestWithMaxId:"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-getShangJiaNews"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -93,7 +93,7 @@
             
             _pindaoLabel.frame=CGRectMake(12, 12+labelsize.height+12, 200, 15);
             
-            _timeLabel.frame=CGRectMake(220, _pindaoLabel.frame.origin.y, 100, 15);
+            _timeLabel.frame=CGRectMake(DEVICE_WIDTH - 100, _pindaoLabel.frame.origin.y, 100, 15);
 
 
             
@@ -121,7 +121,7 @@
             
             _pindaoLabel.frame=CGRectMake(12, 12+labelsize.height+12, 200, 15);
             
-            _timeLabel.frame=CGRectMake(220, _pindaoLabel.frame.origin.y, 100, 15);
+            _timeLabel.frame=CGRectMake(DEVICE_WIDTH - 100, _pindaoLabel.frame.origin.y, 100, 15);
 
             
             
@@ -142,7 +142,7 @@
             
             _timeLabel.text=[NSString stringWithFormat:@"今日新贴 %@",[dic objectForKey:@"postcount"]];
             
-            _timeLabel.frame=CGRectMake(200, 12, DEVICE_WIDTH-200-12, 20);
+            _timeLabel.frame=CGRectMake(DEVICE_WIDTH - 100, 12, DEVICE_WIDTH-200-12, 20);
             
             _timeLabel.textAlignment=NSTextAlignmentRight;
             
@@ -169,7 +169,7 @@
             
             //_pindaoLabel.frame=CGRectMake(12, 12+labelsize.height+12, 200, 15);
             
-            _timeLabel.frame=CGRectMake(220, 12+labelsize.height+12, 100, 15);
+            _timeLabel.frame=CGRectMake(DEVICE_WIDTH - 100, 12+labelsize.height+12, 100, 15);
 
             _commentImagev.frame=CGRectMake(12, _timeLabel.frame.origin.y+3, 10, 9.5);
             _commentImagev.image=[UIImage imageNamed:@"newcommentpic20_19.png"];
@@ -202,7 +202,7 @@
             
             _pindaoLabel.frame=CGRectMake(12, 12+labelsize.height+12, 200, 15);
             
-            _timeLabel.frame=CGRectMake(220, _pindaoLabel.frame.origin.y, 100, 15);
+            _timeLabel.frame=CGRectMake(DEVICE_WIDTH - 100, _pindaoLabel.frame.origin.y, 100, 15);
             
             
             
@@ -229,7 +229,7 @@
             
             _pindaoLabel.frame=CGRectMake(12, 12+labelsize.height+12, 200, 15);
             
-            _timeLabel.frame=CGRectMake(220, _pindaoLabel.frame.origin.y, 100, 15);
+            _timeLabel.frame=CGRectMake(DEVICE_WIDTH - 100, _pindaoLabel.frame.origin.y, 100, 15);
             
             
             

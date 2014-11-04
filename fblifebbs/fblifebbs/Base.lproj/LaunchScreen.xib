@@ -19,15 +19,13 @@
                     <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     </variation>
-                    <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    </variation>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="LQj-Q1-u59" secondAttribute="bottom" id="7MI-Mc-KAO"/>
                 <constraint firstItem="LQj-Q1-u59" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="knt-MK-OxW"/>
+                <constraint firstItem="LQj-Q1-u59" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sYT-CD-Baa"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -35,12 +33,14 @@
                 <mask key="constraints">
                     <exclude reference="7MI-Mc-KAO"/>
                     <exclude reference="knt-MK-OxW"/>
+                    <exclude reference="sYT-CD-Baa"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="constraints">
                     <include reference="7MI-Mc-KAO"/>
                     <include reference="knt-MK-OxW"/>
+                    <include reference="sYT-CD-Baa"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="314" y="447"/>

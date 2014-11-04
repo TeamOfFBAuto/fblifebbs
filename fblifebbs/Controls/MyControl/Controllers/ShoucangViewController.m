@@ -53,7 +53,7 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden=NO;
-    
+        
 //    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -15:5, 0
 //                                                                     , 44, 44)];
 //    
@@ -74,8 +74,8 @@
     
     //去掉 新闻和图集
     
-    newsScrow=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568-64:480-64)];
-    newsScrow.contentSize=CGSizeMake(320*2, 0);
+    newsScrow=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT - 64)];
+    newsScrow.contentSize=CGSizeMake(DEVICE_WIDTH * 2, 0);
     newsScrow.pagingEnabled=YES;
     newsScrow.delegate=self;
     newsScrow.showsHorizontalScrollIndicator=NO;
@@ -87,7 +87,7 @@
     
     for (int i=0; i<2; i++) {
         
-        FinalshoucangView *mytesttab=[[FinalshoucangView alloc]initWithFrame:CGRectMake(320*i, 0, 320, iPhone5?568-64:480-64) Type:i + 1];
+        FinalshoucangView *mytesttab=[[FinalshoucangView alloc]initWithFrame:CGRectMake(DEVICE_WIDTH*i, 0, DEVICE_WIDTH, DEVICE_HEIGHT - 64) Type:i + 1];
         mytesttab.tag=i+800;
         mytesttab.delegate=self;
         [newsScrow addSubview:mytesttab];
@@ -95,9 +95,10 @@
     }
     
     
-    _weibo_seg = [[ShoucangSeg alloc] initWithFrame:CGRectMake(0,0,240,45)];
+    _weibo_seg = [[ShoucangSeg alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH - 80,44)];
     
-    UIView *daohangview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, 45)];
+    UIView *daohangview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH - 40, 44)];
+
     [daohangview addSubview:_weibo_seg];
     
     _weibo_seg.delegate = self;
@@ -124,7 +125,7 @@
     
     
     [UIView animateWithDuration:0.3 animations:^{
-        newsScrow.contentOffset=CGPointMake(320*index, 0);
+        newsScrow.contentOffset=CGPointMake(DEVICE_WIDTH*index, 0);
     } completion:^(BOOL finished) {
         
     }];
@@ -149,7 +150,7 @@
     
    if(scrollView ==newsScrow)
     {
-        int   number=scrollView.contentOffset.x/320;
+        int   number=scrollView.contentOffset.x/DEVICE_WIDTH;
         
         NSLog(@"number========%d",number);
         

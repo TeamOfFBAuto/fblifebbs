@@ -18,5 +18,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *genderImage;
 @property (strong, nonatomic) IBOutlet UIButton *userInfo_buttom;
 
+@property (strong, nonatomic) IBOutlet UIImageView *arrowImage;
 
 @end

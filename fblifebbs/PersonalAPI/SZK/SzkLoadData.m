@@ -74,6 +74,10 @@
     
     
     self.mydicinfo=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingMutableLeaves error:&error];
+    
+    
+    
+    
          NSLog(@"dicinfo==%@",self.mydicinfo);
     
     

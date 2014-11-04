@@ -125,21 +125,14 @@
 
 #pragma mark-跳到fb页面
 -(void)ssTurntoFbWebview:(NSNotification*)sender{
-    
-    
-    
-    
     //
     fbWebViewController *fbweb=[[fbWebViewController alloc]init];
     fbweb.urlstring=[NSString stringWithFormat:@"%@",[sender.userInfo objectForKey:@"link"]];
     [fbweb viewWillAppear:YES];
     [self setHidesBottomBarWhenPushed:YES];
-    
     [self.navigationController pushViewController:fbweb animated:YES];
     [self setHidesBottomBarWhenPushed:NO];
-    
     NSLog(@"sender.object===%@",sender.userInfo);
-    
     
 }
 
@@ -359,8 +352,9 @@
 
 -(void)loadChangshiData{
     
-        [allArr removeAllObjects];
-        [_mainTabV reloadData];
+//        [allArr removeAllObjects];
+//        [_mainTabV reloadData];
+    allArr=[NSMutableArray array];
     
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -390,7 +384,7 @@
         
       //  [hudView show:YES];
         
-        __weak typeof(hudView)weakview=hudView;
+//        __weak typeof(hudView)weakview=hudView;
         
         
         SzkLoadData *loadda=[[SzkLoadData alloc]init];

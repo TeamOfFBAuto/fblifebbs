@@ -44,7 +44,7 @@
     //2
     iMagelogo=[[UIImageView alloc]init];
     
-    iMagelogo.frame=CGRectMake(0,iPhone5? 568-188/2:480-188/2, 320, 188/2);
+    iMagelogo.frame=CGRectMake(0,DEVICE_HEIGHT-188/2, DEVICE_WIDTH, 188/2);
     
     iMagelogo.image=[UIImage imageNamed:@"guanggaologo.png"];
 
@@ -80,7 +80,7 @@
     
     //点击跳过的button
     
-    UIButton *buttonTiaoguo=[[UIButton alloc]initWithFrame:CGRectMake(245, 20, 62, 30)];
+    UIButton *buttonTiaoguo=[[UIButton alloc]initWithFrame:CGRectMake(DEVICE_WIDTH-80, 20, 62, 30)];
     [buttonTiaoguo setTitle:@"点击跳过" forState:UIControlStateNormal];
     buttonTiaoguo.titleLabel.font=[UIFont systemFontOfSize:12];
     [buttonTiaoguo setBackgroundColor:RGBACOLOR(245, 245, 245, 0.7)];

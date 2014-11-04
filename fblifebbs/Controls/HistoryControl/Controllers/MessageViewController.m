@@ -57,7 +57,7 @@
     
     ///加载顶部选择
     __weak typeof(self)bself = self;
-    _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,0,220,44)];
+    _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,0,220,45)];
     [_seg_view setAllViewsWith:[NSArray arrayWithObjects:@"私信",@"FB",@"论坛",nil] withBlock:^(int index) {
         [bself.myScrollView setContentOffset:CGPointMake((DEVICE_WIDTH+20)*index,0) animated:YES];
         bself.seg_current_page = index;

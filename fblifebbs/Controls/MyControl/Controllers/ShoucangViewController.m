@@ -105,6 +105,7 @@
     _weibo_seg = [[ShoucangSeg alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH - 80,44)];
     
     UIView *daohangview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH - 40, 44)];
+
     [daohangview addSubview:_weibo_seg];
     
     _weibo_seg.delegate = self;

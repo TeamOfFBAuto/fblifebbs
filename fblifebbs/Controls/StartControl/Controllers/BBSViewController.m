@@ -146,14 +146,15 @@
 
     ///加载顶部选择
     __weak typeof(self)bself = self;
-    _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,70,240,44)];
+    __block typeof(current_forum) bcurrent = current_forum;
+    _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,70,240,45)];
     [_seg_view setAllViewsWith:[NSArray arrayWithObjects:@"地区",@"车型",@"主题",@"交易",nil] withBlock:^(int index) {
 //        bself.seg_current_page = index;
         
-        if (current_forum == index) {
+        if (bcurrent == index) {
             return ;
         }
-        current_forum = index;
+        bcurrent = index;
         [bself isHaveCacheDataWith:index];
     }];
     
@@ -825,13 +826,12 @@
 //            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:[dictionary objectForKey:@"bbsinfo"] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
 //            
 //            [alertView show];
-            [hud hide:YES];
             [zsnApi showAutoHiddenMBProgressWithText:[dictionary objectForKey:@"bbsinfo"] addToView:self.view];
         }
     }];
     
     [request setFailedBlock:^{
-        
+        [hud hide:YES];
         [zsnApi showAutoHiddenMBProgressWithText:isCollected?@"取消收藏失败,请检查您当前网络":@"收藏失败,请检查您当前网络" addToView:self.view];
     }];
     

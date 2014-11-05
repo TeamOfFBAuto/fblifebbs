@@ -60,6 +60,28 @@
     
     [MobClick endEvent:@"commrntbbdViewController"];
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (isup==YES)
+    {
+        [_contenttextview resignFirstResponder];
+        [subjectTextfield resignFirstResponder];
+        [_keytop WhenfaceviewFram];
+        [_keytop FaceAndKeyBoard:2];
+        [self faceviewshow];
+        
+    }else{
+        [self faceviewhide];
+        [_keytop FaceAndKeyBoard:1];
+        if (isbiaoti==1) {
+            [subjectTextfield becomeFirstResponder];
+        }else{
+            [_contenttextview becomeFirstResponder];
+        }
+        [_keytop uping];
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -440,8 +462,7 @@
     }else
     {
         
-        [self dismissModalViewControllerAnimated:YES];
-        
+        [self dismissViewControllerAnimated:YES completion:nil];
         
     }
     
@@ -492,7 +513,7 @@
             NSLog(@"fatie===%d",huizhuti);
             
         }
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
     }else if(buttonIndex == 1)
     {
@@ -500,7 +521,7 @@
         //        _tool.delegate=nil;
         //        request__.delegate=nil;
         
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -603,7 +624,7 @@
         if ([[dic objectForKey:@"errcode"] integerValue]==0)
         {
             NSLog(@"diccomment==%@",dic);
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
             //在发完消息后发出一个通知
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshmydata" object:self.string_content];
@@ -715,7 +736,6 @@
         case 302:
             NSLog(@"点击的是拍照");
             [self takePhoto];
-            
             break;
             
         case 303:
@@ -1035,16 +1055,14 @@
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;//打开相册
     imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;//过渡类型,有四种
     //imagePicker.allowsEditing = NO;//禁止对图片进行编辑
-    [self presentModalViewController:imagePicker animated:YES];//打开模态视图控制器选择图像
-    
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 -(void)pickImageFromCamera{
     imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//照片来源为相机
     imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentModalViewController:imagePicker animated:YES];
-    
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 
@@ -1407,7 +1425,7 @@
     [subjectTextfield resignFirstResponder];
     
     
-    [picker dismissModalViewControllerAnimated:YES];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -1439,7 +1457,7 @@
     NSArray *mediaInfoArray = (NSArray *)info;
     
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     int all = allImageArray.count;
     
@@ -1467,7 +1485,7 @@
 {
     NSLog(@"Cancelled");
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (NSString *)descriptionForSelectingAllAssets:(QBImagePickerController *)imagePickerController

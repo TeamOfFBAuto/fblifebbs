@@ -69,7 +69,15 @@
 {
     [super viewWillAppear:animated];
     
+    if (myTextView)
+    {
+        [myTextView becomeFirstResponder];
+    }
     [MobClick beginEvent:@"ForwardingViewController"];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [myTextView becomeFirstResponder];
 }
 
 
@@ -614,11 +622,11 @@
         {
             [self saveWeiBo];
             
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
             
         }else if(buttonIndex ==1)
         {
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }else
     {

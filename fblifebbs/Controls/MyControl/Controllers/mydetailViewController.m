@@ -369,6 +369,10 @@
     cell.backgroundView.backgroundColor = [UIColor clearColor];
     [cell.contentView addSubview:imageView];
     
+//    cell.backgroundColor = RGBCOLOR(247,247,247);
+//    cell.contentView.backgroundColor = RGBCOLOR(247,247,247);
+    
+    
     label_content=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 60, 44)];
     label_content.text=[[array_all objectAtIndex:indexPath.section ]objectAtIndex:indexPath.row];
     label_content.backgroundColor=[UIColor clearColor];

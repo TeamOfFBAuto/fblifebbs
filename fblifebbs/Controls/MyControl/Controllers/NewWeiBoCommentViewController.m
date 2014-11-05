@@ -56,6 +56,11 @@
     
     [MobClick beginEvent:@"NewWeiBoCommentViewController"];
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [myTextView becomeFirstResponder];
+}
 
 
 - (void)viewDidLoad
@@ -626,7 +631,8 @@
     //@某人
     FriendListViewController * list = [[FriendListViewController alloc] init];
     list.delegate = self;
-    [self presentViewController:list animated:YES completion:nil];
+    UINavigationController * list_nav = [[UINavigationController alloc] initWithRootViewController:list];
+    [self presentViewController:list_nav animated:YES completion:nil];
 }
 
 -(void)face:(UIButton *)button

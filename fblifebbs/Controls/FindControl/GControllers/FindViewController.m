@@ -36,7 +36,7 @@
     
     self.title = @"发现";
     
-    _tabelview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStyleGrouped];
+    _tabelview = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tabelview.delegate = self;
     _tabelview.dataSource = self;
     [self.view addSubview:_tabelview];
@@ -134,13 +134,13 @@
  */
 - (UIView *)createSearchView
 {
-    UIView *search_bgview = [[UIView alloc]initWithFrame:CGRectMake(0, 64, 320, 44)];
+    UIView *search_bgview = [[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 44)];
     //    search_bgview.backgroundColor = [UIColor colorWithHexString:@"cac9ce"];
     
     //    search_bgview.backgroundColor = [UIColor redColor];
     [self.view addSubview:search_bgview];
     
-    UISearchBar *bar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    UISearchBar *bar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     bar.placeholder = @"搜索";
     bar.delegate = self;
     bar.layer.borderWidth = 2.f;
@@ -184,13 +184,13 @@
     if (section == 0) {//搜索条
         view.backgroundColor = RGBCOLOR(238, 238, 238);
         view.frame = CGRectMake(0, 0, 320, 70);
-        UIView *search_bgview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 52)];
+        UIView *search_bgview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 52)];
         //    search_bgview.backgroundColor = [UIColor colorWithHexString:@"cac9ce"];
         
         //    search_bgview.backgroundColor = [UIColor redColor];
         [view addSubview:search_bgview];
         
-        UISearchBar *bar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 52)];
+        UISearchBar *bar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 52)];
         bar.placeholder = @"搜索帖子/版块/用户";
         bar.delegate = self;
         bar.layer.borderWidth = 2.f;

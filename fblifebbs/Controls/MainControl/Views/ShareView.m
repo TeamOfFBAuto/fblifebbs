@@ -55,7 +55,7 @@
             
 //            UIButton *thebutton=[[UIButton alloc]initWithFrame:CGRectMake(34+100*(i%3), 50+80*(i/3), 50, 50)];
             
-            UIButton *thebutton=[[UIButton alloc]initWithFrame:CGRectMake((DEVICE_WIDTH - 150)/3.f + 100*(i%3), 50+80*(i/3), 50, 50)];
+            UIButton *thebutton=[[UIButton alloc]initWithFrame:CGRectMake((DEVICE_WIDTH - 250)/2.f + 100*(i%3), 50+80*(i/3), 50, 50)];
             
             [thebutton setImage:[UIImage imageNamed:[self.array_icon objectAtIndex:i]] forState:UIControlStateNormal];
             
@@ -66,7 +66,7 @@
             [thebutton addTarget:self action:@selector(doshareButton:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:thebutton];
             
-            UILabel *thelabel=[[UILabel alloc]initWithFrame:CGRectMake((DEVICE_WIDTH - 150)/3.f - 10 +100*(i%3), thebutton.frame.origin.y+55, 70, 20)];
+            UILabel *thelabel=[[UILabel alloc]initWithFrame:CGRectMake((DEVICE_WIDTH - 250)/2.f - 10 +100*(i%3), thebutton.frame.origin.y+55, 70, 20)];
             
             thelabel.font=[UIFont systemFontOfSize:12];
             

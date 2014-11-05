@@ -27,6 +27,7 @@
 
 #define COLOR_SEARCHBAR [UIColor colorWithRed:229/255.F green:231/255.F blue:230/255.F alpha:1.0]//搜索条layer颜色
 
+
 #define L_PAGE_SIZE 10 //每页条数
 #define ERROR_INFO @"ERRO_INFO" //错误信息
 
@@ -45,6 +46,19 @@
 
 //是否需要更新
 #define UPDATE_BBSSUB_LIST @"UPDATE_BBSSUB_LIST" //是否论坛加入状态列表
+
+
+//判断系统版本
+#define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
+//判断iPhone5
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f \
+alpha:(a)]
+
+#define NSStringFromFloat(float) [NSString stringWithFormat:@"%f",(float)]
+#define NSStringFromInt(int) [NSString stringWithFormat:@"%d",(int)]
+
 
 typedef void(^ urlRequestBlock)(NSDictionary *result,NSError *erro);
 

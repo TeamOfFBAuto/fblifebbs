@@ -22,13 +22,13 @@
 
 -(void)ShowPick{
     
-    _ToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    _ToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 44)];
     //[_ToolBar setBackgroundImage:[UIImage imageNamed:@"selectbbs.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault ];
    // _ToolBar.barStyle = UIBarStyleBlackOpaque;
     _ToolBar.backgroundColor=RGBCOLOR(244, 244, 246);
     [_ToolBar sizeToFit];
     
-    UIView *lineview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0.5)];
+    UIView *lineview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 0.5)];
     lineview.backgroundColor=RGBCOLOR(179, 179, 181);
     [_ToolBar addSubview:lineview];
 
@@ -45,7 +45,7 @@
     
     
     
-    UIButton *DoneButton=[[UIButton alloc]initWithFrame:CGRectMake(260, 8, 50, 28)];
+    UIButton *DoneButton=[[UIButton alloc]initWithFrame:CGRectMake(DEVICE_WIDTH - 60.f, 8, 50, 28)];
    // [DoneButton setBackgroundImage:[UIImage imageNamed:@"turn5028.png"] forState:UIControlStateNormal];
 
     [DoneButton setTitle:@"确定" forState:UIControlStateNormal];
@@ -64,6 +64,8 @@
     text_label.keyboardType=UIKeyboardTypeNumberPad;
     text_label.delegate=self;
     
+    text_label.center = CGPointMake(DEVICE_WIDTH / 2.f + 2, text_label.center.y);
+    
     
   //  DoneButton.backgroundColor=[UIColor grayColor];
     [DoneButton addTarget:self action:@selector(btnDoneClick) forControlEvents:UIControlEventTouchUpInside];
@@ -74,7 +76,7 @@
     
     [self addSubview:_ToolBar];
     
-    _Pick=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 44, 320, 160)];
+    _Pick=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 44, DEVICE_WIDTH, 160)];
     _Pick.backgroundColor=[UIColor whiteColor];
     _Pick.delegate=self;
     _Pick.dataSource=self;

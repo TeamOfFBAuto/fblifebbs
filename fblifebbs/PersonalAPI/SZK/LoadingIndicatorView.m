@@ -21,7 +21,7 @@
 - (UIView *)maskView
 {
     if (!_maskView) {
-        _maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+        _maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 480)];
         [_maskView setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.1]];
         [_maskView setUserInteractionEnabled:NO];
     }
@@ -90,7 +90,7 @@
 {
     if (indicatorType == 3) {
         // set 3 type
-        [self setFrame:CGRectMake(0, 0, 320, 480)];
+        [self setFrame:CGRectMake(0, 0, DEVICE_WIDTH, 480)];
         [self setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.6]];
         
         UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake(120, 180, 100, 120)];

@@ -82,6 +82,9 @@
     _isloadingIv=[[loadingimview alloc]initWithFrame:CGRectMake(100, 200, 150, 100) labelString:@"正在加载"];
     [[UIApplication sharedApplication].keyWindow
      addSubview:_isloadingIv];
+    
+    
+    
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(sendrequest) name:@"refreshmydata" object:nil];
     //
     isadvertisingImghiden=YES;
@@ -298,12 +301,15 @@
 		_refreshHeaderView = view;
 	}
     //上拉加载view
-    loadview=[[LoadingIndicatorView alloc]initWithFrame:CGRectMake(0, 900, 320, 40)];
+    loadview=[[LoadingIndicatorView alloc]initWithFrame:CGRectMake(0, 900, DEVICE_WIDTH, 40)];
     loadview.backgroundColor=[UIColor clearColor];
     
 	[_refreshHeaderView refreshLastUpdatedDate];
     
-    tab_=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?iphone5fram+49+37:iphone4fram+49+37)];
+    
+    //568-20-40-40
+    
+    tab_=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT - 20 - 40 - 40 +37)];
     tab_.delegate=self;
     //    tab_.separatorColor=[UIColor clearColor];
     // tab_.backgroundColor=[UIColor redColor];
@@ -333,7 +339,7 @@
     //显示广告
     
     if (!advImgV) {
-        advImgV=[[AdvertisingimageView alloc]initWithFrame:CGRectMake(0, 0, 320, 50) ];
+        advImgV=[[AdvertisingimageView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 50) ];
         
     }
     advImgV.delegate=self;
@@ -1091,15 +1097,20 @@
     }
     
     
-    CGSize constraintSize = CGSizeMake(290, MAXFLOAT);
+    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH - 30, MAXFLOAT);
     CGSize labelSize = [titleLabel.text sizeWithFont:titleLabel.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-    titleLabel.frame=CGRectMake(8, 12, 290, labelSize.height);
+    titleLabel.frame=CGRectMake(8, 12, DEVICE_WIDTH - 30, labelSize.height);
     
     
     authorLabel.text=[dic objectForKey:@"author"];
     authorLabel.frame=CGRectMake(8, titleLabel.frame.size.height+20, 80, 20);
     createTimeLabel.frame=CGRectMake(100, titleLabel.frame.size.height+20, 80, 20);
-    repliesLabel.frame=CGRectMake(215, titleLabel.frame.size.height+20, 80, 20);
+    
+    createTimeLabel.center = CGPointMake(DEVICE_WIDTH / 2.f, createTimeLabel.center.y);
+    
+    repliesLabel.frame=CGRectMake(DEVICE_WIDTH - 105, titleLabel.frame.size.height+20, 80, 20);
+    
+    
     NSString *string_time=[personal timchange:[dic objectForKey:@"time"]];
     createTimeLabel.text=string_time;
     repliesLabel.text=[NSString stringWithFormat:@"%@ / %@",[dic objectForKey:@"replies" ],[dic objectForKey:@"views"]];
@@ -1166,7 +1177,9 @@
     int jinghua=[[dic objectForKey:@"digest"] integerValue];
     int displayorder=[[dic objectForKey:@"displayorder"] integerValue];
     NSString *string_chushouqiugou=[NSString stringWithFormat:@"%@",[dic objectForKey:@"typestate"]];
-    CGSize constraintSize = CGSizeMake(290, MAXFLOAT);
+//    CGSize constraintSize = CGSizeMake(290, MAXFLOAT);
+    
+    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH - 30, MAXFLOAT);
     
     if (string_chushouqiugou.length==0) {
         if (jinghua>0||displayorder>0) {

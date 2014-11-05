@@ -148,7 +148,7 @@
     zanNumber=0;
     
     
-    self.thezkingAlertV=[[ZkingAlert alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 480) labelString:@""];
+    self.thezkingAlertV=[[ZkingAlert alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT) labelString:@""];
     _thezkingAlertV.hidden=YES;
     [[UIApplication sharedApplication].keyWindow
      addSubview:_thezkingAlertV];
@@ -171,7 +171,7 @@
     array_peopleid=[[NSMutableArray alloc]init];
     isiphone5=[personal isiphone5];
     if (isiphone5) {
-        aview=[[UIView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:0, DEVICE_WIDTH, 568)];
+        aview=[[UIView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:0, DEVICE_WIDTH, DEVICE_HEIGHT)];
         
     }else{
         aview=[[UIView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:0, DEVICE_WIDTH, 1000)];

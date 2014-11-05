@@ -65,13 +65,28 @@
     
     //1008  832
     imageView = [[UIImageView alloc] initWithImage:[personal getImageWithName:iPhone5?@"newAboultIphone5@2x":@"newAbout@2x"]];
-    imageView.frame = CGRectMake(0,0,320,iPhone5?1008/2:832/2);
+    imageView.frame = CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT - 68);
     //    imageView.center = CGPointMake(160,iPhone5?252:208);
     imageView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:imageView];
     
     
-    UILabel * version_label = [[UILabel alloc] initWithFrame:CGRectMake(0,iPhone5?400:315,320,30)];
+//    UILabel * version_label = [[UILabel alloc] initWithFrame:CGRectMake(0,iPhone5?400:315,DEVICE_WIDTH,30)];
+ 
+    
+    CGFloat frame_y = 0.f;
+    
+    if (iPhone5){
+        frame_y = 400.f;
+    }else if (iPhone6){
+        frame_y = 410.f;
+    }else if (iPhone6PLUS){
+        frame_y = 434.f;
+    }else {
+        frame_y = 315.f;
+    }
+    
+    UILabel * version_label = [[UILabel alloc] initWithFrame:CGRectMake(0,frame_y,DEVICE_WIDTH,30)];
     
     version_label.text = [NSString stringWithFormat:@"版本:%@",NOW_VERSION];
     

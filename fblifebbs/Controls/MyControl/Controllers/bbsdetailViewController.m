@@ -102,7 +102,7 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
-    self.thezkingAlertV=[[ZkingAlert alloc]initWithFrame:CGRectMake(0, 0, 320, 480) labelString:@""];
+    self.thezkingAlertV=[[ZkingAlert alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT) labelString:@""];
     _thezkingAlertV.hidden=YES;
     [[UIApplication sharedApplication].keyWindow
      addSubview:_thezkingAlertV];
@@ -123,8 +123,8 @@
         _replaceAlertView.hidden=YES;
         [[UIApplication sharedApplication].keyWindow
          addSubview:_replaceAlertView];
-
         
+        _replaceAlertView.center = CGPointMake(DEVICE_WIDTH / 2.f,DEVICE_HEIGHT / 2.f);
 
     }else{
         [_replaceAlertView removeFromSuperview];
@@ -134,6 +134,8 @@
         _replaceAlertView.hidden=NO;
         [[UIApplication sharedApplication].keyWindow
          addSubview:_replaceAlertView];
+        
+        _replaceAlertView.center = CGPointMake(DEVICE_WIDTH / 2.f,DEVICE_HEIGHT / 2.f);
     }
     
     
@@ -209,7 +211,7 @@
 //
 //    
 //    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
-//        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
+//        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7evaDEVICE_WIDTH_44.png"] forBarMetrics: UIBarMetricsDefault];
 //        
 //    }
 //    self.navigationItem.rightBarButtonItem=comment_item;
@@ -227,7 +229,7 @@
     UIImage * image =[UIImage imageNamed:@"xiala_new_detail.png"] ;
     xialaView_bbs = [[UIImageView alloc] initWithImage:image];
     xialaView_bbs.userInteractionEnabled = YES;
-    xialaView_bbs.center = CGPointMake(160,MY_MACRO_NAME? image.size.height/2+54: image.size.height/2+54+20);
+    xialaView_bbs.center = CGPointMake(DEVICE_WIDTH / 2.f,MY_MACRO_NAME? image.size.height/2+54: image.size.height/2+54+20);
     xialaView_bbs.tag = 112;
     xialaView_bbs.alpha = 0;
     
@@ -260,7 +262,7 @@
     
     
     
-    aview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, iPhone5?568:480)];
+    aview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT)];
     [self.view addSubview:aview];
     
     aview.backgroundColor=[UIColor clearColor];
@@ -278,7 +280,7 @@
     // _webView.scalesPageToFit=YES;
     _webView.opaque=NO;
     
-    _webView.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41);
+    _webView.frame=CGRectMake(0, 0, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
     //给webview加手势
     _webView.userInteractionEnabled=YES;
     
@@ -326,7 +328,7 @@
     [[UIApplication sharedApplication].keyWindow addSubview:xialaView_bbs];
     
     
-    barview=[[bottombarview alloc]initWithFrame:CGRectMake(0,iPhone5?419+88-42:378, 320, 40)];
+    barview=[[bottombarview alloc]initWithFrame:CGRectMake(0,DEVICE_HEIGHT - 102, DEVICE_WIDTH, 40)];
     [barview setcommentimage2];
     barview.delegate=self;
     [aview addSubview:barview];
@@ -1403,11 +1405,14 @@
                 if (dangqianwebview==1)//当前的webview是第一个webview,要让第二个webview的frame变成如下，在下载完之后显示出来
                 {
                     dangqianwebview=2;
-                    secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41), 320 ,iPhone5? 314+88+105-41:314+105-41);
+//                    secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41);
+                    
+                    secondWebView.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
+                    
                 }else
                 {
                     dangqianwebview=1;
-                    _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41), 320 ,iPhone5? 314+88+105-41:314+105-41);
+                    _webView.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                     
                 }
                 currentpage--;
@@ -1430,7 +1435,7 @@
                 [_SelectPick removeFromSuperview];
                 
             }
-            _SelectPick=[[SelectNumberView alloc]initWithFrame:CGRectMake(0,iPhone5? 260:171, 320, 200) receiveArray:array_shu];
+            _SelectPick=[[SelectNumberView alloc]initWithFrame:CGRectMake(0,DEVICE_HEIGHT - 109 - 195, DEVICE_WIDTH, 200) receiveArray:array_shu];
 
             
             _SelectPick.delegate=self;
@@ -1459,11 +1464,11 @@
                 currentpage++;
                 if (dangqianwebview==1) {
                     dangqianwebview=2;
-                    secondWebView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41, 320 ,iPhone5? 314+88+105-41:314+105-41);
+                    secondWebView.frame=CGRectMake(0,DEVICE_HEIGHT - 102, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                     
                 }else{
                     dangqianwebview=1;
-                    _webView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41, 320 ,iPhone5? 314+88+105-41:314+105-41);
+                    _webView.frame=CGRectMake(0,DEVICE_HEIGHT - 102, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                     
                 }
                 
@@ -1549,7 +1554,7 @@
         didulabel.textColor=TEXT_COLOR;
         didulabel.textAlignment=NSTextAlignmentCenter;
         didulabel.font=[UIFont boldSystemFontOfSize:13.0f];
-        didulabel.frame=CGRectMake(0,iPhone5?88+320:320, 320, 60);
+        didulabel.frame=CGRectMake(0,iPhone5?88+320:320, DEVICE_WIDTH, 60);
         if (!diimgv) {
             diimgv=[[UIImageView alloc]initWithFrame:CGRectMake(40, 2, 20, 50)];
         }
@@ -1559,8 +1564,12 @@
         if (dangqianwebview==1) {
             [_webView addSubview:didulabel];
             
+            didulabel.top = _webView.height - 60;
+            
         }else{
             [secondWebView addSubview:didulabel];
+            
+            didulabel.top = secondWebView.height - 60;
         }
         
         if (currentpage>0&&currentpage<allpages) {
@@ -1587,7 +1596,7 @@
         gaolabel.text=@"下拉进入上一页";
         gaolabel.textColor= TEXT_COLOR;
         gaolabel.textAlignment=NSTextAlignmentCenter;
-        gaolabel.frame=CGRectMake(0, 0, 320, 60);
+        gaolabel.frame=CGRectMake(0, 0, DEVICE_WIDTH, 60);
         gaolabel.font=[UIFont boldSystemFontOfSize:13.0f];
         gaolabel.backgroundColor=[UIColor clearColor];
         if (!gaoimgv) {
@@ -1639,11 +1648,11 @@
             currentpage++;
             if (dangqianwebview==1) {
                 dangqianwebview=2;
-                secondWebView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41, 320 ,iPhone5? 314+88+105-41:314+105-41);
+                secondWebView.frame=CGRectMake(0,DEVICE_HEIGHT - 102, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                 
             }else{
                 dangqianwebview=1;
-                _webView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41, 320 ,iPhone5? 314+88+105-41:314+105-41);
+                _webView.frame=CGRectMake(0,DEVICE_HEIGHT - 102, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                 
                 
             }
@@ -1662,12 +1671,12 @@
             if (dangqianwebview==1)//当前的webview是第一个webview,要让第二个webview的frame变成如下，在下载完之后显示出来
             {
                 dangqianwebview=2;
-                secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41), 320 ,iPhone5? 314+88+105-41:314+105-41);
+                secondWebView.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                 
             }else
             {
                 dangqianwebview=1;
-                _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41), 320 ,iPhone5? 314+88+105-41:314+105-41);
+                _webView.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                 
             }
             
@@ -1691,12 +1700,12 @@
         if (dangqianwebview==1)//当前的webview是第一个webview,要让第二个webview的frame变成如下，在下载完之后显示出来
         {
             dangqianwebview=2;
-            secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41), 320 ,iPhone5? 314+88+105-41:314+105-41);
+            secondWebView.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             
         }else
         {
             dangqianwebview=1;
-            _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41), 320 ,iPhone5? 314+88+105-41:314+105-41);
+            _webView.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             
         }
         currentpage=number;
@@ -1720,11 +1729,11 @@
         issuccessload=!issuccessload;
         if (dangqianwebview==1) {
             dangqianwebview=2;
-            secondWebView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41, 320 ,iPhone5? 314+88+105-41:314+105-41);
+            secondWebView.frame=CGRectMake(0,DEVICE_HEIGHT - 102, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             
         }else{
             dangqianwebview=1;
-            _webView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41, 320 ,iPhone5? 314+88+105-41:314+105-41);
+            _webView.frame=CGRectMake(0,DEVICE_HEIGHT - 102, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             
             
         }
@@ -1738,11 +1747,11 @@
 }
 
 -(void)NoticeFrameHigh{
-    aview.frame=CGRectMake(0, -10, 320, iPhone5?568:480);
+    aview.frame=CGRectMake(0, -10, DEVICE_WIDTH, DEVICE_HEIGHT);
 }
 -(void)NoticeFrameLow{
     
-    aview.frame=CGRectMake(0, 0, 320, iPhone5?568:480);
+    aview.frame=CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT);
     
 }
 #pragma mark-回帖
@@ -1843,6 +1852,8 @@
         _isloadingIv=[[loadingimview alloc]initWithFrame:CGRectMake(100, 200, 150, 100) labelString:@"正在加载"];
         [[UIApplication sharedApplication].keyWindow
          addSubview:_isloadingIv];
+        
+        _isloadingIv.center = CGPointMake(DEVICE_WIDTH / 2.f, DEVICE_HEIGHT / 2.f);
         
     }
     _isloadingIv.hidden=NO;
@@ -1987,8 +1998,8 @@
             
             [UIView beginAnimations:nil context:nil];
             [UIView setAnimationDuration:1];
-            _webView.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41);
-            secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41), 320 ,iPhone5? 314+88+105-41:314+105-41);
+            _webView.frame=CGRectMake(0, 0, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
+            secondWebView.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             [UIView commitAnimations];
             
             
@@ -1998,8 +2009,8 @@
             
             [UIView beginAnimations:nil context:nil];
             [UIView setAnimationDuration:1];
-            secondWebView.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41);
-            _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41), 320 ,iPhone5? 314+88+105-41:314+105-41);
+            secondWebView.frame=CGRectMake(0, 0, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
+            _webView.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             [UIView commitAnimations];
             
         }
@@ -2015,8 +2026,8 @@
             
             [UIView beginAnimations:nil context:nil];
             [UIView setAnimationDuration:1];
-            _webView.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41);
-            secondWebView.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41), 320 ,iPhone5? 314+88+105-41:314+105-41);
+            _webView.frame=CGRectMake(0, 0, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
+            secondWebView.frame=CGRectMake(0, (DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             [UIView commitAnimations];
             
             
@@ -2025,8 +2036,8 @@
             
             [UIView beginAnimations:nil context:nil];
             [UIView setAnimationDuration:1];
-            secondWebView.frame=CGRectMake(0, 0, 320 ,iPhone5? 314+88+105-41:314+105-41);
-            _webView.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41), 320 ,iPhone5? 314+88+105-41:314+105-41);
+            secondWebView.frame=CGRectMake(0, 0, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
+            _webView.frame=CGRectMake(0, (DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             [UIView commitAnimations];
             
         }

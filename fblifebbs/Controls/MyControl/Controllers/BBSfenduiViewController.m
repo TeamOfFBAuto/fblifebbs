@@ -324,7 +324,7 @@
     if (!hud)
     {
         hud = [[ATMHud alloc] initWithDelegate:self];
-        [self.view addSubview:hud.view];
+        [self.navigationController.view addSubview:hud.view];
     }
     
     tab_.tableHeaderView = _refreshHeaderView;
@@ -876,21 +876,24 @@
                     if ([tishi integerValue]==11) {
                         
                         [self Deletebankuai];
-                    }else{
+                    }else if([tishi integerValue] == 0){
                         
                         [button_collect setBackgroundImage:[UIImage imageNamed:@"ios7_collectselect.png"] forState:UIControlStateNormal];
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:nil];
                         [self.collection_array addObject:self.string_id];
                         
-                        //                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"haha" message:@"收藏成功" delegate:nil cancelButtonTitle:@"yes" otherButtonTitles:nil, nil];
-                        //                [alert show];
                         [self Tishibaocunchenggong];
                         
-                        
+                    }else
+                    {
+                        if ([self.collection_array containsObject:self.string_id])
+                        {
+                            [self Deletebankuai];
+                        }else
+                        {
+                            [zsnApi showautoHiddenMBProgressWithTitle:@"" WithContent:[dic objectForKey:@"bbsinfo"] addToView:self.view];
+                        }
                     }
-                    
-                    
-                    
                 }
                     break;
                 case 203://查看收藏
@@ -1247,8 +1250,7 @@
     [tool_101 stop];
     tool_101.delegate=nil;
     [xialaView removeFromSuperview];
-    hud.delegate=nil;
-    
+    [hud hide];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

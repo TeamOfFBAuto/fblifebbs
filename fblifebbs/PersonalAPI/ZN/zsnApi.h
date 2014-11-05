@@ -82,7 +82,8 @@
 
 ///pragma mark - 弹出提示框，1.5秒后消失
 + (void)showAutoHiddenMBProgressWithText:(NSString *)text addToView:(UIView *)aView;
-
+///弹出提示框（包含标题，内容），1.5秒后消失
++(void)showautoHiddenMBProgressWithTitle:(NSString *)title WithContent:(NSString *)content addToView:(UIView *)aView;
 
 
 

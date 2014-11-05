@@ -77,7 +77,6 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    [myTextView becomeFirstResponder];
 }
 
 
@@ -139,27 +138,16 @@
     [button_back setBackgroundImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
     
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-    
     NavTitle.leftBarButtonItems=@[negativeSpacer,back_item];
-    
     UIButton * send_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
     send_button.frame = CGRectMake(0,0,40,40);
-    
     send_button.backgroundColor = [UIColor clearColor];
-    
     [send_button setTitleEdgeInsets:UIEdgeInsetsMake(5,0,0,0)];
-    
     send_button.titleLabel.textAlignment = NSTextAlignmentRight;
-    
     [send_button setTitle:@"发送" forState:UIControlStateNormal];
-    
     send_button.titleLabel.font = [UIFont systemFontOfSize:18];
-    
     [send_button setTitleColor:RGBCOLOR(89,89,89) forState:UIControlStateNormal];
-    
     [send_button addTarget:self action:@selector(fasong:) forControlEvents:UIControlEventTouchUpInside];
-    
     NavTitle.rightBarButtonItems = @[negativeSpacer,[[UIBarButtonItem alloc] initWithCustomView:send_button]];
     //设置barbutton
     [nav setItems:[NSArray arrayWithObject:NavTitle]];
@@ -170,23 +158,16 @@
     }
     
     UILabel * title_label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,100,30)];
-    
     title_label.text = @"转发微博";
-    
     title_label.backgroundColor = [UIColor clearColor];
-    
     title_label.textColor = [UIColor blackColor];
-    
     title_label.font = TITLEFONT;
-    
     title_label.textAlignment = NSTextAlignmentCenter;
-    
     NavTitle.titleView = title_label;
-    
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    myTextView = [[MyTextViewForForward alloc] initWithFrame:CGRectMake(10,IOS_VERSION>=7.0?64:44,300,100)];
+    myTextView = [[MyTextViewForForward alloc] initWithFrame:CGRectMake(10,IOS_VERSION>=7.0?64:44,DEVICE_WIDTH-20,100)];
     myTextView.backgroundColor = [UIColor clearColor];
     myTextView.delegate = self;
     myTextView.delegate1 = self;
@@ -224,48 +205,34 @@
     
     
     
-    backView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,73)];
+    backView = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,73)];
     backView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backView];
     
     
-    face_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,30)];
+    face_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,30)];
     face_view.backgroundColor = [UIColor whiteColor];
     [backView addSubview:face_view];
     
     
     wordsNumber_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    wordsNumber_button.frame = CGRectMake(260,2.5,60,25);
-    
+    wordsNumber_button.frame = CGRectMake(DEVICE_WIDTH-60,2.5,60,25);
     [wordsNumber_button setTitle:@"140" forState:UIControlStateNormal];
-    
     [wordsNumber_button setTitleColor:RGBCOLOR(154,162,166) forState:UIControlStateNormal];
-    
     wordsNumber_button.titleLabel.font = [UIFont systemFontOfSize:14];
-    
     [wordsNumber_button setTitleEdgeInsets:UIEdgeInsetsMake(1,0,0,12)];
-    
     UIImageView *xximg=[[UIImageView alloc]initWithFrame:CGRectMake(40,9,9,9)];
     xximg.image=[UIImage imageNamed:@"writeblog_delete_image.png"];
     [wordsNumber_button addSubview:xximg];
     
-    
-    
     [wordsNumber_button setImageEdgeInsets:UIEdgeInsetsMake(2,35,0,0)];
-    
     [wordsNumber_button addTarget:self action:@selector(doTap:) forControlEvents:UIControlEventTouchUpInside
      ];
-    
-    //    [wordsNumber_button setBackgroundImage:[personal getImageWithName:@"4-121-51@2x"] forState:UIControlStateNormal];
-    
     wordsNumber_button.backgroundColor = [UIColor clearColor];
-    
     [face_view addSubview:wordsNumber_button];
     
     
-    
-    weibo_view = [[UIImageView alloc] initWithFrame:CGRectMake(0,30,320,43)];
+    weibo_view = [[UIImageView alloc] initWithFrame:CGRectMake(0,30,DEVICE_WIDTH,43)];
     weibo_view.userInteractionEnabled = YES;
     weibo_view.image = [personal getImageWithName:@"write_blog_back@2x"];
     [backView addSubview:weibo_view];
@@ -326,25 +293,19 @@
     
     
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(40,0,200,26)];
-    
     label.text = [NSString stringWithFormat:@"同时评论给%@",username];
-    
     label.font = [UIFont systemFontOfSize:15];
-    
     label.textColor = RGBCOLOR(93,100,108);
-    
     label.textAlignment = NSTextAlignmentLeft;
-    
     label.backgroundColor = [UIColor clearColor];
-    
     [face_view addSubview:label];
     
     
-    scrollView = [[WeiBoFaceScrollView alloc] initWithFrame:CGRectMake(0,(iPhone5?(568-215):(480-215))-(MY_MACRO_NAME?0:20),320,215) target:self];
+    scrollView = [[WeiBoFaceScrollView alloc] initWithFrame:CGRectMake(0,DEVICE_HEIGHT-215-(MY_MACRO_NAME?0:20),DEVICE_WIDTH,215) target:self];
     scrollView.hidden = YES;
     scrollView.delegate = self;
     scrollView.bounces = NO;
-    scrollView.contentSize = CGSizeMake(320*3,0);
+    scrollView.contentSize = CGSizeMake(DEVICE_WIDTH*3,0);
     //    [self.view addSubview:scrollView];
     
     
@@ -355,16 +316,10 @@
         [self.view addSubview:hud.view];
     }
     
-    pageControl = [[GrayPageControl alloc] initWithFrame:CGRectMake(0,0,320,25)];
-    
-    //    pageControl.center = CGPointMake(160,(iPhone5?568-20:480-20) - (IOS_VERSION >=7.0?0:20));
-    
-    pageControl.center = CGPointMake(160,215-20);
-    
+    pageControl = [[GrayPageControl alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,25)];
+    pageControl.center = CGPointMake(DEVICE_WIDTH/2,215-20);
     pageControl.numberOfPages = 3;
-    
     pageControl.currentPage = 0;
-    
     [scrollView addSubview:pageControl];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -396,9 +351,9 @@
     CGRect _keyboardRect = [[[notification userInfo] objectForKey:_UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     [UIView animateWithDuration:0.3 animations:^{
-        backView.frame = CGRectMake(0,(iPhone5?568:480)-(IOS_VERSION >= 7.0?0:20)-_keyboardRect.size.height-(myTextView.inputView==scrollView?72:73),320,73);
+        backView.frame = CGRectMake(0,DEVICE_HEIGHT-(IOS_VERSION >= 7.0?0:20)-_keyboardRect.size.height-(myTextView.inputView==scrollView?72:73),320,73);
         
-        myTextView.frame = CGRectMake(myTextView.frame.origin.x,IOS_VERSION>=7.0?64:44,myTextView.frame.size.width,(iPhone5?568-20-73-44-_keyboardRect.size.height:480-20-73-44-_keyboardRect.size.height)-(MY_MACRO_NAME?0:20));
+        myTextView.frame = CGRectMake(myTextView.frame.origin.x,IOS_VERSION>=7.0?64:44,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-_keyboardRect.size.height-(MY_MACRO_NAME?0:20));
     }];
     
 }
@@ -438,12 +393,11 @@
 
 -(void)at:(UIButton *)button
 {
+    [myTextView resignFirstResponder];
     //@某人
     FriendListViewController * list = [[FriendListViewController alloc] init];
     list.delegate = self;
     UINavigationController * list_nav = [[UINavigationController alloc] initWithRootViewController:list];
-
-
     [self presentViewController:list_nav animated:YES completion:NULL];
 }
 
@@ -506,7 +460,7 @@
     
     [self updateLoading];
     
-    backView.frame = CGRectMake(0,(iPhone5?568:480)-(IOS_VERSION >= 7.0?0:20)-72,320,73);
+    backView.frame = CGRectMake(0,DEVICE_HEIGHT-(IOS_VERSION >= 7.0?0:20)-72,DEVICE_WIDTH,73);
     [myTextView resignFirstResponder];
     pageControl.hidden = YES;
     
@@ -559,7 +513,7 @@
                     [delegate ForwardingSuccessWihtTid:self.info.tid IndexPath:self.theIndexPath SelectView:self.theSelectViewIndex WithComment:isZhuanFa];
                 }
                 
-                [self dismissModalViewControllerAnimated:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
             }else
             {
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送失败,请重试" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
@@ -684,8 +638,8 @@
         //弹出表情
         pageControl.hidden = NO;
         [UIView animateWithDuration:0.3 animations:^{
-            backView.frame = CGRectMake(0,(iPhone5?568:480)-(IOS_VERSION >= 7.0?0:20)-72-215,320,73);
-            myTextView.frame = CGRectMake(myTextView.frame.origin.x,IOS_VERSION>=7.0?64:44,myTextView.frame.size.width,(iPhone5?568-20-73-44-215:480-20-73-44-215)-(MY_MACRO_NAME?0:20));
+            backView.frame = CGRectMake(0,DEVICE_HEIGHT-(IOS_VERSION >= 7.0?0:20)-72-215,DEVICE_WIDTH,73);
+            myTextView.frame = CGRectMake(myTextView.frame.origin.x,IOS_VERSION>=7.0?64:44,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-215-(MY_MACRO_NAME?0:20));
             [myTextView resignFirstResponder];
         }];
         myTextView.inputView = scrollView;
@@ -733,8 +687,8 @@
         pageControl.hidden = NO;
         //弹出表情
         [UIView animateWithDuration:0.3 animations:^{
-            backView.frame = CGRectMake(0,(iPhone5?568:480)-(IOS_VERSION >= 7.0?0:20)-72-215,320,73);
-            myTextView.frame = CGRectMake(myTextView.frame.origin.x,IOS_VERSION>=7.0?64:44,myTextView.frame.size.width,(iPhone5?568-20-73-44-215:480-20-73-44-215)-(MY_MACRO_NAME?0:20));
+            backView.frame = CGRectMake(0,DEVICE_HEIGHT-(IOS_VERSION >= 7.0?0:20)-72-215,DEVICE_WIDTH,73);
+            myTextView.frame = CGRectMake(myTextView.frame.origin.x,IOS_VERSION>=7.0?64:44,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-215-(MY_MACRO_NAME?0:20));
             [myTextView resignFirstResponder];
         }];
     }else
@@ -775,15 +729,6 @@
 //内容框字数限制
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    
-    //    if (textView.tag == 100)
-    //    {
-    //        textView.text = @"";
-    //        textView.textColor = [UIColor blackColor];
-    //    }
-    
-    
-    
     if (textView.tag == 100)
     {
         textView.text = @"";
@@ -855,17 +800,15 @@
     [myTextView resignFirstResponder];
     
     [UIView animateWithDuration:0.3 animations:^{
-        backView.frame = CGRectMake(0,(iPhone5?568:480)-(IOS_VERSION >= 7.0?0:20)-73,320,73);
+        backView.frame = CGRectMake(0,(iPhone5?568:480)-(IOS_VERSION >= 7.0?0:20)-73,DEVICE_WIDTH,73);
         
-        myTextView.frame = CGRectMake(myTextView.frame.origin.x,IOS_VERSION>=7.0?64:44,myTextView.frame.size.width,(iPhone5?568-20-73-44:480-20-73-44)-(MY_MACRO_NAME?0:20));
+        myTextView.frame = CGRectMake(myTextView.frame.origin.x,IOS_VERSION>=7.0?64:44,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-(MY_MACRO_NAME?0:20));
     }];
-    
-    
     
     
     if ((myTextView.tag == 100 && [myTextView.text isEqualToString:@"分享新鲜事......"])||[theText isEqualToString:myTextView.text])
     {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }else
     {
         UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存草稿",@"不保存",nil];

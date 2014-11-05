@@ -1321,6 +1321,18 @@
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:1.5];
 }
+#pragma mark - 弹出提示框（包含标题，内容），1.5秒后消失
++(void)showautoHiddenMBProgressWithTitle:(NSString *)title WithContent:(NSString *)content addToView:(UIView *)aView
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:aView animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = title;
+    hud.detailsLabelText = content;
+    hud.margin = 15.f;
+    hud.yOffset = 0.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:1.5];
+}
 
 
 #pragma mark - 解码特殊字符

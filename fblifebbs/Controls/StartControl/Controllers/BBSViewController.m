@@ -808,7 +808,8 @@
 //            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:[dictionary objectForKey:@"bbsinfo"] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
 //            
 //            [alertView show];
-            [zsnApi showAutoHiddenMBProgressWithText:[dictionary objectForKey:@"bbsinfo"] addToView:self.view];
+//            [zsnApi showAutoHiddenMBProgressWithText:[dictionary objectForKey:@"bbsinfo"] addToView:self.view];
+            [zsnApi showautoHiddenMBProgressWithTitle:@"" WithContent:[dictionary objectForKey:@"bbsinfo"] addToView:self.view];
         }
     }];
     

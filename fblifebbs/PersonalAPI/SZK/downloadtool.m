@@ -69,6 +69,7 @@
 
 -(void)stop{
     [_connectin cancel];
+    self.delegate=nil;
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     
@@ -80,8 +81,12 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     
     @try {
-        if (self.delegate&&[delegate respondsToSelector:@selector(downloadtool:didfinishdownloadwithdata:)]) {
+//        if (self.delegate&&[delegate respondsToSelector:@selector(downloadtool:didfinishdownloadwithdata:)]) {
+//        }
+        
+        if (self.delegate) {
             [self.delegate downloadtool:self didfinishdownloadwithdata:_mutabledata];
+
         }
     }
     @catch (NSException *exception) {
@@ -96,9 +101,12 @@
     //    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"当前网络不稳定" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     //    [alert show];
     @try {
-        if (self.delegate&&[delegate respondsToSelector:@selector(downloadtoolError)]) {
+//        if (self.delegate&&[delegate respondsToSelector:@selector(downloadtoolError)]) {
+        if (self.delegate) {
             [self.delegate downloadtoolError];
+
         }
+//        }
     }
     
     @catch (NSException *exception)

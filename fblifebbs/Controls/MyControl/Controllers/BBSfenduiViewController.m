@@ -67,6 +67,18 @@
 
 - (void)dealloc
 {
+//    downloadtool *Collect_Tool;
+//    
+//    downloadtool *Collect_Tool11;
+    
+    Collect_Tool.delegate=nil;
+    [Collect_Tool stop];
+    
+    Collect_Tool11.delegate=nil;
+    
+    [Collect_Tool11 stop];
+    
+    
     NSLog(@"--dealloc-- %@",NSStringFromClass([self class]));
 }
 
@@ -1383,6 +1395,9 @@
     // [self performSelector:@selector(advreback) withObject:nil afterDelay:3.0f];
     
 }
+
+
+
 
 
 - (void)didReceiveMemoryWarning

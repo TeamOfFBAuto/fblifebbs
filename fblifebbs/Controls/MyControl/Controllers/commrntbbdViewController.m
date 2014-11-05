@@ -60,28 +60,7 @@
     
     [MobClick endEvent:@"commrntbbdViewController"];
 }
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    if (isup==YES)
-    {
-        [_contenttextview resignFirstResponder];
-        [subjectTextfield resignFirstResponder];
-        [_keytop WhenfaceviewFram];
-        [_keytop FaceAndKeyBoard:2];
-        [self faceviewshow];
-        
-    }else{
-        [self faceviewhide];
-        [_keytop FaceAndKeyBoard:1];
-        if (isbiaoti==1) {
-            [subjectTextfield becomeFirstResponder];
-        }else{
-            [_contenttextview becomeFirstResponder];
-        }
-        [_keytop uping];
-    }
-}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

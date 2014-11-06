@@ -29,8 +29,8 @@
 
 -(void)setAllView
 {
-    float imageW = (DEVICE_WIDTH-360)<10?76:90;
-    float distance = (DEVICE_WIDTH-360)/5;
+    float imageW = (DEVICE_WIDTH-360)>0?90:76;
+    float distance = (DEVICE_WIDTH-imageW*4)/5;
     if (!_imageView1)
     {
         _imageView1 = [[AsyncImageView alloc] initWithFrame:CGRectMake(distance,distance,imageW,imageW)];

@@ -331,7 +331,7 @@
     }
     
     //第一个参数第一页  第二个参数一页显示多少个，这里要全部的数据所以给1000
-    [collection_model loadCollectionDataWith:1 WithPageSize:100 WithFinishedBlock:^(NSMutableArray *array) {
+    [collection_model loadCollectionDataWith:1 WithPageSize:1000 WithFinishedBlock:^(NSMutableArray *array) {
         
         [bself.forum_section_collection_array addObjectsFromArray:collection_model.collect_id_array];
 //        [bself.myTableView1 reloadData];
@@ -339,7 +339,7 @@
         
 //        rangkingView.bbs_forum_collection_array = [NSMutableArray arrayWithArray:collection_model.collect_id_array];
 //        [rangkingView.myTableView reloadData];
-//        [[NSUserDefaults standardUserDefaults] setObject:bself.forum_section_collection_array forKey:@"forumSectionCollectionArray"];
+        [[NSUserDefaults standardUserDefaults] setObject:bself.forum_section_collection_array forKey:@"forumSectionCollectionArray"];
         
     } WithFailedBlock:^(NSString *string) {
         

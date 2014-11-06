@@ -308,8 +308,7 @@
             break;
             
         case FinalshoucangViewTypebankuai:{
-//            str_search=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/favoritesforums.php?authcode=%@&action=query&formattype=json",string_code];
-            str_search = [NSString stringWithFormat:GET_ALL_COLLECTION_SECTION,string_code,1000];
+            str_search=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/favoritesforums.php?authcode=%@&action=query&formattype=json",string_code];
         }
             
             break;
@@ -453,9 +452,9 @@
         isloadsuccess=NO;
 
         
-    }else if(self.mytype == FinalshoucangViewTypeTiezi)
+    }else if(self.mytype == FinalshoucangViewTypeTiezi && temparray.count > 0)
     {
-        tab_.tableFooterView = loadview;
+        tab_.tableFooterView = loadview; //帖子时特殊处理
     }
     
     

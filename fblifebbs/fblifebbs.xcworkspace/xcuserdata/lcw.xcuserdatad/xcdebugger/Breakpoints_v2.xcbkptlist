@@ -20,22 +20,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Controls/MyControl/Views/FinalshoucangView.m"
-            timestampString = "436958933.03327"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "450"
-            endingLineNumber = "450"
-            landmarkName = "-refreshnewsWithDic:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Controls/MyControl/Views/FinalshoucangView.m"
             timestampString = "436959078.764215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"

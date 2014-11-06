@@ -276,7 +276,7 @@
     [imageView addSubview:deleteImageView];
     
     
-    scrollView = [[WeiBoFaceScrollView alloc] initWithFrame:CGRectMake(0,DEVICE_WIDTH-215-(MY_MACRO_NAME?0:20),DEVICE_WIDTH,215) target:self];
+    scrollView = [[WeiBoFaceScrollView alloc] initWithFrame:CGRectMake(0,DEVICE_HEIGHT-215,DEVICE_WIDTH,215) target:self];
     scrollView.hidden = YES;
     scrollView.delegate = self;
     scrollView.bounces = NO;
@@ -292,7 +292,7 @@
     [scrollView addSubview:pageControl];
     
     
-    morePicView = [[UIView alloc] initWithFrame:CGRectMake(0,iPhone5?(DEVICE_HEIGHT-215-(IOS_VERSION>=7.0?0:20)):(DEVICE_HEIGHT-215-(IOS_VERSION>=7.0?0:20)),DEVICE_WIDTH,215)];
+    morePicView = [[UIView alloc] initWithFrame:CGRectMake(0,DEVICE_HEIGHT-215,DEVICE_WIDTH,215)];
     morePicView.backgroundColor = RGBCOLOR(241,241,241);
     morePicView.hidden = YES;
     [self.view addSubview:morePicView];

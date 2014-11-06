@@ -50,7 +50,6 @@
 
     
     CustomInputView *inputV;//这个是新换的条
-    
 }
 @end
 @implementation newsdetailViewController
@@ -132,8 +131,6 @@
     
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-
-    
     
     if (MY_MACRO_NAME) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -532,7 +529,9 @@
     if ([personal getMyAuthkey].length==0||[[personal getMyAuthkey] isEqualToString:@"(null)"]) {
         
     }else{
-    
+        
+        
+        
         [self panduanIsshoucang:collectButton];
 
     }
@@ -657,7 +656,6 @@
         NSLog(@"收藏返回的数据===%@",dicinfo);
         
         if ([[dicinfo objectForKey:@"errno"] intValue]==0) {
-            
             
             wsender.userInteractionEnabled=YES;
             

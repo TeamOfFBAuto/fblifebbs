@@ -165,7 +165,7 @@
     
     dataArray = [testbase findall];
     
-    UIScrollView *   firstscro=[[UIScrollView alloc]initWithFrame:CGRectMake((DEVICE_WIDTH-320)/2, 0,320,DEVICE_HEIGHT-64-49-107)];
+    UIScrollView *   firstscro=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0,DEVICE_WIDTH,DEVICE_HEIGHT-64-49-107)];
     firstscro.contentSize=CGSizeMake(0,40* dataArray.count);
     firstscro.pagingEnabled=NO;
     firstscro.showsHorizontalScrollIndicator=NO;
@@ -173,10 +173,10 @@
     firstscro.backgroundColor=[UIColor whiteColor];
     [newsScrow addSubview:firstscro];
     
-    
+    float theWidth = (DEVICE_WIDTH- 30 - 10)/2;
     for (int i=0; i<dataArray.count; i++) {
         
-        UIButton *ytestButton=[LTools createButtonWithType:UIButtonTypeCustom frame:CGRectMake(15+150*(i%2), 18+45*(i/2), 281/2, 73/2) normalTitle:nil image:nil backgroudImage:nil superView:firstscro target:self action:@selector(dofenduibutton:)];
+        UIButton *ytestButton=[LTools createButtonWithType:UIButtonTypeCustom frame:CGRectMake(15+(theWidth+10)*(i%2), 18+45*(i/2),theWidth, 73/2) normalTitle:nil image:nil backgroudImage:nil superView:firstscro target:self action:@selector(dofenduibutton:)];
         
         [ytestButton setBackgroundImage:[UIImage imageNamed:@"daduikuang.png"] forState:UIControlStateNormal];
         ytestButton.titleLabel.font=[UIFont systemFontOfSize:14];

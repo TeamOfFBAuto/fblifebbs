@@ -276,7 +276,7 @@
     [imageView addSubview:deleteImageView];
     
     
-    scrollView = [[WeiBoFaceScrollView alloc] initWithFrame:CGRectMake(0,(iPhone5?(568-215):(480-215))-(MY_MACRO_NAME?0:20),DEVICE_WIDTH,215) target:self];
+    scrollView = [[WeiBoFaceScrollView alloc] initWithFrame:CGRectMake(0,DEVICE_WIDTH-215-(MY_MACRO_NAME?0:20),DEVICE_WIDTH,215) target:self];
     scrollView.hidden = YES;
     scrollView.delegate = self;
     scrollView.bounces = NO;
@@ -292,7 +292,7 @@
     [scrollView addSubview:pageControl];
     
     
-    morePicView = [[UIView alloc] initWithFrame:CGRectMake(0,iPhone5?(568-215-(IOS_VERSION>=7.0?0:20)):(480-215-(IOS_VERSION>=7.0?0:20)),DEVICE_WIDTH,215)];
+    morePicView = [[UIView alloc] initWithFrame:CGRectMake(0,iPhone5?(DEVICE_HEIGHT-215-(IOS_VERSION>=7.0?0:20)):(DEVICE_HEIGHT-215-(IOS_VERSION>=7.0?0:20)),DEVICE_WIDTH,215)];
     morePicView.backgroundColor = RGBCOLOR(241,241,241);
     morePicView.hidden = YES;
     [self.view addSubview:morePicView];
@@ -504,7 +504,7 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView1
 {
-    pageControl.center = CGPointMake(160+scrollView1.contentOffset.x,215-20);
+    pageControl.center = CGPointMake(DEVICE_WIDTH/2+scrollView1.contentOffset.x,215-20);
 }
 
 
@@ -586,8 +586,8 @@
              {
                  morePicView.hidden = NO;
                  
-                 options_view.frame =  CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72-215,320,73);
-                 myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-73-20-44-215:480-73-20-44-215)-(MY_MACRO_NAME?0:20));
+                 options_view.frame =  CGRectMake(0,DEVICE_HEIGHT-(MY_MACRO_NAME?0:20)-72-215,DEVICE_WIDTH,73);
+                 myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?DEVICE_HEIGHT-73-20-44-215:DEVICE_HEIGHT-73-20-44-215)-(MY_MACRO_NAME?0:20));
                  [myTextView resignFirstResponder];
              }];
             
@@ -621,8 +621,8 @@
                 [myTextView resignFirstResponder];
                 [UIView animateWithDuration:0.2 animations:^
                  {
-                     options_view.frame = CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72,320,73);
-                     myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44:480-20-73-44)-(MY_MACRO_NAME?0:20));
+                     options_view.frame = CGRectMake(0,DEVICE_HEIGHT-(MY_MACRO_NAME?0:20)-72,DEVICE_WIDTH,73);
+                     myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-(MY_MACRO_NAME?0:20));
                  }];
             }
            
@@ -649,8 +649,8 @@
                 scrollView.hidden = NO;
                 
                 [UIView animateWithDuration:0.3 animations:^{
-                    options_view.frame =  CGRectMake(0,((iPhone5?568:480)-72-215)-(MY_MACRO_NAME?0:20),320,73);
-                    myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-73-20-44-215:480-20-73-44-215)-(MY_MACRO_NAME?0:20));
+                    options_view.frame =  CGRectMake(0,(DEVICE_HEIGHT-72-215)-(MY_MACRO_NAME?0:20),DEVICE_WIDTH,73);
+                    myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-215-(MY_MACRO_NAME?0:20));
                     [myTextView resignFirstResponder];
                 }];
             }else
@@ -660,8 +660,8 @@
                 if (allImageArray.count)
                 {
                     morePicView.hidden = NO;
-                    options_view.frame =  CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-73-215,320,73);
-                    myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44-215:480-20-73-44-215)-(MY_MACRO_NAME?0:20));
+                    options_view.frame =  CGRectMake(0,DEVICE_HEIGHT-(MY_MACRO_NAME?0:20)-73-215,DEVICE_WIDTH,73);
+                    myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-215-(MY_MACRO_NAME?0:20));
                 }else
                 {
                     [myTextView becomeFirstResponder];
@@ -731,9 +731,9 @@
     
     [UIView animateWithDuration:0.3 animations:^
      {
-         options_view.frame = CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-73-_keyboardRect.size.height,320,73);
+         options_view.frame = CGRectMake(0,DEVICE_HEIGHT-(MY_MACRO_NAME?0:20)-73-_keyboardRect.size.height,DEVICE_WIDTH,73);
          
-         myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44-_keyboardRect.size.height:480-20-73-44-_keyboardRect.size.height)-(MY_MACRO_NAME?0:20));
+         myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-_keyboardRect.size.height-(MY_MACRO_NAME?0:20));
      }];
 }
 
@@ -746,9 +746,9 @@
     morePicImageView.hidden = YES;
     
     [UIView animateWithDuration:0.3 animations:^{
-        options_view.frame = CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72,320,73);
+        options_view.frame = CGRectMake(0,DEVICE_HEIGHT-(MY_MACRO_NAME?0:20)-72,DEVICE_WIDTH,73);
         
-        myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44:480-20-73-44)-(MY_MACRO_NAME?0:20));
+        myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-(MY_MACRO_NAME?0:20));
     }];
     
     if ((myTextView.tag == 100 && [myTextView.text isEqualToString:@"分享新鲜事......"])||[theText isEqualToString:myTextView.text])
@@ -804,9 +804,9 @@
     
     [UIView animateWithDuration:0.3 animations:^
      {
-         options_view.frame = CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72,320,73);
+         options_view.frame = CGRectMake(0,DEVICE_HEIGHT-(MY_MACRO_NAME?0:20)-72,DEVICE_WIDTH,73);
          
-         myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44:480-20-73-44)-(MY_MACRO_NAME?0:20));
+         myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-(MY_MACRO_NAME?0:20));
      }];
     
     
@@ -823,7 +823,7 @@
         [myTextView resignFirstResponder];
         pageControl.hidden = YES;
         scrollView.hidden = YES;
-        options_view.frame = CGRectMake(0,(iPhone5?568:480)-50-(MY_MACRO_NAME?0:20),320,73);
+        options_view.frame = CGRectMake(0,DEVICE_HEIGHT-50-(MY_MACRO_NAME?0:20),DEVICE_WIDTH,73);
         
         
         self.navigationItem.rightBarButtonItem.enabled=NO;
@@ -1255,6 +1255,8 @@
     {
         NSLog(@"模拟其中无法打开照相机,请在真机中使用");
     }
+    
+    [myTextView resignFirstResponder];
 }
 
 -(void)localPhoto
@@ -1271,8 +1273,8 @@
     
     
     morePicView.hidden = NO;
-    options_view.frame =  CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72-215,320,73);
-    myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44-215:480-20-73-44-215)-(MY_MACRO_NAME?0:20));
+    options_view.frame =  CGRectMake(0,DEVICE_HEIGHT-(MY_MACRO_NAME?0:20)-72-215,DEVICE_WIDTH,73);
+    myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-215-(MY_MACRO_NAME?0:20));
     [myTextView resignFirstResponder];
 }
 
@@ -1282,6 +1284,8 @@
     UIButton * button = (UIButton *)[self.view viewWithTag:1004];
     isFace = NO;
     morePicView.hidden = YES;
+    pageControl.hidden = YES;
+    scrollView.hidden = YES;
     [button setImage:[personal getImageWithName:isFace?@"write_blog_key@2x":@"smile_write@2x"] forState:UIControlStateNormal];
     
     return YES;
@@ -1391,8 +1395,8 @@
     scrollView.hidden = NO;
     
     [UIView animateWithDuration:0.3 animations:^{
-        options_view.frame =  CGRectMake(0,((iPhone5?568:480)-72-215)-(MY_MACRO_NAME?0:20),320,73);
-        myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-73-20-44-215:480-20-73-44-215)-(MY_MACRO_NAME?0:20));
+        options_view.frame =  CGRectMake(0,(DEVICE_HEIGHT-72-215)-(MY_MACRO_NAME?0:20),DEVICE_WIDTH,73);
+        myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-215-(MY_MACRO_NAME?0:20));
         [myTextView resignFirstResponder];
     }];
 }
@@ -1448,8 +1452,8 @@
     [allImageArray addObject:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
     
     morePicView.hidden = NO;
-    options_view.frame =  CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72-215,320,73);
-    myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44-215:480-20-73-44-215)-(MY_MACRO_NAME?0:20));
+    options_view.frame =  CGRectMake(0,DEVICE_HEIGHT-(MY_MACRO_NAME?0:20)-72-215,DEVICE_WIDTH,73);
+    myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-215-(MY_MACRO_NAME?0:20));
     [myTextView resignFirstResponder];
     
     
@@ -1508,8 +1512,8 @@
     
     
     morePicView.hidden = NO;
-    options_view.frame =  CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72-215,320,73);
-    myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?568-20-73-44-215:480-20-73-44-215)-(MY_MACRO_NAME?0:20));
+    options_view.frame =  CGRectMake(0,DEVICE_HEIGHT-(MY_MACRO_NAME?0:20)-72-215,DEVICE_WIDTH,73);
+    myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,DEVICE_HEIGHT-20-73-44-215-(MY_MACRO_NAME?0:20));
     [myTextView resignFirstResponder];
     
 }

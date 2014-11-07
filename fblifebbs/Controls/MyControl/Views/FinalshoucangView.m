@@ -828,16 +828,16 @@
     if (scrollView==tab_) {
         [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
         
-        if(tab_.contentOffset.y > (tab_.contentSize.height - tab_.frame.size.height+40)&&isloadsuccess==YES&&_mytype!=2&&self.normalarray.count>=10) {
-            
-            
-            [loadview startLoading];
-            numberofpage++;
-            isloadsuccess=!isloadsuccess;
-            
-            [self loadnewsWithPage];
-            
-        }
+//        if(scrollView.contentOffset.y > ((scrollView.contentSize.height - scrollView.frame.size.height-40))&&isloadsuccess==YES&&_mytype!=2&&self.normalarray.count>=10) {
+//            
+//            
+//            [loadview startLoading];
+//            numberofpage++;
+//            isloadsuccess=!isloadsuccess;
+//            
+//            [self loadnewsWithPage];
+//            
+//        }
         
     }
     
@@ -847,6 +847,19 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+   
+    if (scrollView == tab_) {
+        if(scrollView.contentOffset.y > ((scrollView.contentSize.height - scrollView.frame.size.height-40))&&isloadsuccess==YES&&_mytype!=2&&self.normalarray.count>=10) {
+            
+            
+            [loadview startLoading];
+            numberofpage++;
+            isloadsuccess=!isloadsuccess;
+            
+            [self loadnewsWithPage];
+            
+        }
+    }
     
 }
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{

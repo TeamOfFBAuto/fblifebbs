@@ -11,6 +11,9 @@
 #import "SzkLoadData.h"
 
 @interface GuanggaoViewController ()
+{
+    BOOL isHidden;
+}
 
 @end
 
@@ -27,9 +30,13 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-
+    
     [super viewWillAppear:YES];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
+    
+    
 }
 - (void)viewDidLoad
 {
@@ -39,20 +46,20 @@
     //1
     bigimageview=[[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-     bigimageview.backgroundColor=[UIColor colorWithRed:255/255.f green:255/255.f blue:255/255.f alpha:1];
+    bigimageview.backgroundColor=[UIColor colorWithRed:245/255.f green:244/255.f blue:242/255.f alpha:1];
     [self.view addSubview:bigimageview];
     //2
     iMagelogo=[[UIImageView alloc]init];
     
-    iMagelogo.frame=CGRectMake(0,DEVICE_HEIGHT-188/2, DEVICE_WIDTH, 188/2);
+    iMagelogo.frame=CGRectMake(0,iPhone5? 568-217/2:480-217/2, 320, 217/2);
     
-    iMagelogo.image=[UIImage imageNamed:@"guanggaologo.png"];
-
+    iMagelogo.image=[UIImage imageNamed:@"ios7_fengmianlogo2.png"];
+    
     //3
     
     guanggao_image=[[AsyncImageView alloc]init];
     guanggao_image.alpha=0;
-
+    
     guanggao_image.delegate = self;
     
     [bigimageview addSubview:guanggao_image];
@@ -68,7 +75,7 @@
     [redview addSubview:img_TEST];
     NSTimer *theTimer;
     theTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(changepic) userInfo:nil repeats:YES];
-
+    
     //加手势
     
     bigimageview.userInteractionEnabled=YES;
@@ -80,7 +87,7 @@
     
     //点击跳过的button
     
-    UIButton *buttonTiaoguo=[[UIButton alloc]initWithFrame:CGRectMake(DEVICE_WIDTH-80, 20, 62, 30)];
+    UIButton *buttonTiaoguo=[[UIButton alloc]initWithFrame:CGRectMake(245, 20, 62, 30)];
     [buttonTiaoguo setTitle:@"点击跳过" forState:UIControlStateNormal];
     buttonTiaoguo.titleLabel.font=[UIFont systemFontOfSize:12];
     [buttonTiaoguo setBackgroundColor:RGBACOLOR(245, 245, 245, 0.7)];
@@ -97,7 +104,7 @@
     
     
     [self loadGuanggaoData];
-
+    
     
     // Do any additional setup after loading the view.
 }
@@ -107,7 +114,6 @@
 -(void)handleSingleTapFrom{
     
     
-    NSLog(@"string_url===%@.",string_url);
     
     
     
@@ -117,16 +123,16 @@
         NSDictionary *dic_userinfo=@{@"link": string_url};
         
         [[NSNotificationCenter defaultCenter]postNotificationName:@"TouchGuanggao" object:self userInfo:dic_userinfo];
-
+        
         
         
         [self back];
         
     }
-
-
     
-
+    
+    
+    
 }
 
 #pragma mark--请求数据的动画
@@ -177,8 +183,6 @@
 }
 
 
-
-
 #pragma mark-网络数据
 
 -(void)loadGuanggaoData{
@@ -200,7 +204,6 @@
     
     
     
-    
     [loaddata SeturlStr:str_search mytest:^(NSDictionary *dicinfo, int errcode) {
         
         
@@ -208,17 +211,34 @@
         
         NSLog(@"在读。。。数据=%@",dicinfo);
         
-        
-        
-        
-        
+        if (errcode==0&&dicinfo.count!=0) {
+            
+            
+            
             [wself refreshNormalWithDic:dicinfo];
             
+        }else{
             
+            
+            sleep(1);
+            if (!isHidden) {
+                [wself loadGuanggaoData];
+            }
+            
+            
+        }
+        
+        
+        
+        
+        
         
     }];
     
+    
     NSLog(@"广告的接口=。。=%@",str_search);
+    
+    
     
     
 }
@@ -230,7 +250,7 @@
      imgsrc = "http://img10.fblife.com/attachments/20140717/1405565006.jpg";
      url = "http://www.fblife.com";
      }
-
+     
      */
     string_url=[NSString stringWithFormat:@"%@",[dicc objectForKey:@"url"]];
     
@@ -247,20 +267,20 @@
 {
     
     
-        
-        
-        [img_TEST removeFromSuperview];
-        guanggao_image.image=iPhone5?guanggao_image.image:[self getSubImage:CGRectMake(0, (568-480)*2, 640,guanggao_image.image.size.height)];
-        
-        guanggao_image.frame=CGRectMake(0, 0, guanggao_image.image.size.width/2, guanggao_image.image.size.height/2+17);
-        
-        NSLog(@"appdelegate===仔仔到了图片");
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:1.0];
-        guanggao_image.alpha=1;
-        // iMagelogo.frame=CGRectMake(43/2,iPhone5? 413+44+40:413, 566/2, 85/2);
-        [UIView commitAnimations];
-        [self performSelector:@selector(back) withObject:nil afterDelay:4];
+    
+    
+    [img_TEST removeFromSuperview];
+    guanggao_image.image=iPhone5?guanggao_image.image:[self getSubImage:CGRectMake(0, (568-480)*2, 640,guanggao_image.image.size.height)];
+    
+    guanggao_image.frame=CGRectMake(0, 0, guanggao_image.image.size.width/2, guanggao_image.image.size.height/2+2);
+    
+    NSLog(@"appdelegate===仔仔到了图片");
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0];
+    guanggao_image.alpha=1;
+    // iMagelogo.frame=CGRectMake(43/2,iPhone5? 413+44+40:413, 566/2, 85/2);
+    [UIView commitAnimations];
+    [self performSelector:@selector(back) withObject:nil afterDelay:4];
 }
 
 
@@ -285,20 +305,19 @@
 
 -(void)back{
     
-
     
-  
-        [self dismissViewControllerAnimated: NO  completion:NULL];
-        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    isHidden = YES;
+    
+    [self dismissViewControllerAnimated: NO  completion:NULL];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     if (!isBack) {
         isBack=!isBack;
         
         [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshcompre" object:self userInfo:nil];
-
+        
     }
     
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -311,26 +330,26 @@
 
 
 -(void)dealloc{
-
-
+    
+    
     NSLog(@"");
 }
 
 -(void)seccesDownLoad:(UIImage *)image{
-
-
+    
+    
 }
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

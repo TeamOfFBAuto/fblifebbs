@@ -883,7 +883,6 @@
         }
         
         
-        
         NSString * string = [NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/uploadmorephoto.php?formattype=json&fid=%@&authcode=%@",
                              self.string_fid,[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];
         NSString* fullURL = [NSString stringWithFormat:URLIMAGE,[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];

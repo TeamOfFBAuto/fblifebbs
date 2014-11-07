@@ -374,13 +374,17 @@
     
     NSLog(@"收藏新闻的数据==%@",dic);
     
-    if (self.mytype!=2&&self.normalarray.count>=10&&numberofpage==1) {
+    if (self.mytype!=2&&self.normalarray.count>=10 && numberofpage==1) {
+        
         tab_.tableFooterView=loadview;
-    }else if (self.mytype!=2&&self.normalarray.count<10&&numberofpage==1){
+        
+    }else if (self.mytype!=2&&self.normalarray.count<10 && numberofpage==1){
+        
         tab_.tableFooterView=nomore;
         
         
     }
+    
     [loadview stopLoading:1];
     
     if (numberofpage==1) {
@@ -441,13 +445,16 @@
 
     }
     
-    if (temparray.count<10&&numberofpage>1) {
+    if (temparray.count <10 && numberofpage > 1) {
         
         tab_.tableFooterView=nomore;
         
         isloadsuccess=NO;
 
         
+    }else if(self.mytype == FinalshoucangViewTypeTiezi && temparray.count > 0)
+    {
+        tab_.tableFooterView = loadview; //帖子时特殊处理
     }
     
     

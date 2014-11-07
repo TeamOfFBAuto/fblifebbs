@@ -44,6 +44,8 @@
     UIButton *  button_share;
     
     PraiseAndCollectedModel * praise_model;
+    ///是否收藏
+    BOOL isCollected;
 
 }
 
@@ -96,7 +98,7 @@
 {    isauthor=NO;//默认是全部
     
     zanNumber=0;
-
+    isCollected = NO;
     
     if (MY_MACRO_NAME) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -445,8 +447,14 @@
     if ([personal getMyAuthkey].length==0||[[personal getMyAuthkey] isEqualToString:@"(null)"]) {
         
     }else{
-        
-        [self panduanIsshoucang:collectButton];
+        ///判断是否收藏
+        NSMutableArray * collect_array = [[NSUserDefaults standardUserDefaults] objectForKey:@"postSectionCollectionArray"];
+        if ([collect_array containsObject:bbsdetail_tid])
+        {
+            isCollected = YES;
+            [collectButton setImage:[UIImage imageNamed:COLLECTED_IMAGE] forState:UIControlStateNormal];
+        }
+//        [self panduanIsshoucang:collectButton];
         
     }
     
@@ -676,15 +684,25 @@
 
 -(void)shoucang:(UIButton *)sender{
     
-    
     [self panduanIsLogin];
     
+    BOOL isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
     
+    if (isLogin)
+    {
+        if (!isCollected) {
+            [self collected:sender];
+        }else
+        {
+            [self quxiaoShoucang:sender];
+        }
+    }
+}
+///收藏
+-(void)collected:(UIButton *)sender
+{
     sender.userInteractionEnabled=NO;
-    
-    
-    
-    
+
     SzkLoadData *loaddata=[[SzkLoadData alloc]init];
     
     __weak typeof(self) weself=self;
@@ -724,50 +742,21 @@
                 }];
                 
             }];
-            
-            
-            
- //szk
-//            [UIView animateWithDuration:0.6 animations:^{
-//                
-//                sender.frame=CGRectMake(sender.frame.origin.x-5, sender.frame.origin.y-5, 1.4*sender.frame.size.width,  1.4*sender.frame.size.height);
-//                
-//                
-//                
-//                
-//            } completion:^(BOOL finished) {}];
-//            
-//            [UIView animateWithDuration:0.6 animations:^{
-//                
-//                sender.frame=CGRectMake(sender.frame.origin.x+5, sender.frame.origin.y+5, 0.71428571*sender.frame.size.width,  0.71428571*sender.frame.size.height);
-//                
-//                
-//            } completion:^(BOOL finished) {}];
-            
-            
-            
-        }else{
-            
-            
-            [weself quxiaoShoucang:wsender];
-            
-            
-            
+        }else
+        {
+            if ([[dicinfo objectForKey:@"errcode"] intValue] == 3) {
+                [zsnApi showautoHiddenMBProgressWithTitle:[dicinfo objectForKey:@"bbsinfo"] WithContent:@"" addToView:self.view];
+            }else if ([[dicinfo objectForKey:@"errcode"] intValue] == 10)
+            {
+                [zsnApi showautoHiddenMBProgressWithTitle:@"" WithContent:[dicinfo objectForKey:@"bbsinfo"] addToView:self.view];
+            }else
+            {
+                [weself quxiaoShoucang:wsender];
+            }
         }
-        
-        
     }];
-    
-    
-    
 }
-
-//取消收藏
-
-
-
-
-
+///取消收藏
 -(void)quxiaoShoucang:(UIButton *)sender{
     
     sender.userInteractionEnabled=YES;

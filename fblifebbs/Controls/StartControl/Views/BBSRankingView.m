@@ -112,7 +112,9 @@
 #pragma mark - 登陆成功代理方法
 -(void)successLogIn:(NSNotification *)notification
 {
+    [self loadRankingListDataWithIndex:_currentPage];
     [self loadAllBBSPostData];
+    [self loadCollectionForumSectionData];
 }
 
 #pragma mark - 请求收藏的所有的帖子
@@ -163,6 +165,9 @@
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
+                        [[NSUserDefaults standardUserDefaults] setObject:bself.bbs_post_collection_array forKey:@"postSectionCollectionArray"];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
+                        
                         if (bself.currentPage == 1)
                         {
                             [bself.myTableView reloadData];
@@ -181,7 +186,8 @@
     
     
     [request setFailedBlock:^{
-        
+        bself.bbs_post_collection_array = [[NSUserDefaults standardUserDefaults] objectForKey:@"postSectionCollectionArray"];
+        [bself.myTableView reloadData];
     }];
     
     [bbs_request startAsynchronous];
@@ -351,42 +357,50 @@
     
     ASIHTTPRequest * collect_request = [[ASIHTTPRequest alloc] initWithURL:url];
     
-    __block typeof(collect_request) request = collect_request;
+    __weak typeof(collect_request) request = collect_request;
     
     __weak typeof(self) bself = self;
     
     [request setCompletionBlock:^{
         [hud hide:YES];
-        cell.collection_button.selected = !isCollected;
         
-        if (isCollected)//取消收藏
+        NSDictionary * allDic = [request.responseString objectFromJSONString];
+        
+        if ([[allDic objectForKey:@"errcode"] intValue] != 0)
         {
-            if (bself.currentPage == 1)
-            {
-                if ([bself.bbs_post_collection_array containsObject:model.ranking_id])
-                {
-                    [bself.bbs_post_collection_array removeObject:model.ranking_id];
-                }
-            }else
-            {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:   [NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
-            }
-            
-            [zsnApi showAutoHiddenMBProgressWithText:@"成功取消收藏" addToView:self];
-            
-        }else//收藏
+            [zsnApi showautoHiddenMBProgressWithTitle:@"" WithContent:[allDic objectForKey:@"bbsinfo"] addToView:bself];
+        }else
         {
-            if (bself.currentPage == 1)
+            cell.collection_button.selected = !isCollected;
+            
+            if (isCollected)//取消收藏
             {
-                if (![bself.bbs_post_collection_array containsObject:model.ranking_id])
+                if (bself.currentPage == 1)
                 {
-                    [bself.bbs_post_collection_array addObject:model.ranking_id];
+                    if ([bself.bbs_post_collection_array containsObject:model.ranking_id])
+                    {
+                        [bself.bbs_post_collection_array removeObject:model.ranking_id];
+                    }
+                    [zsnApi showAutoHiddenMBProgressWithText:@"成功取消收藏" addToView:self];
+                    
+                }else
+                {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:   [NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
                 }
-            }else
+            }else//收藏
             {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
+                if (bself.currentPage == 1)
+                {
+                    if (![bself.bbs_post_collection_array containsObject:model.ranking_id])
+                    {
+                        [bself.bbs_post_collection_array addObject:model.ranking_id];
+                    }
+                }else
+                {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
+                }
+                [zsnApi showAutoHiddenMBProgressWithText:@"收藏成功" addToView:self];
             }
-            [zsnApi showAutoHiddenMBProgressWithText:@"收藏成功" addToView:self];
         }
     }];
     

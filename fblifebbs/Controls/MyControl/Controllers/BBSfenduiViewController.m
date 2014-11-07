@@ -78,6 +78,10 @@
     
     [Collect_Tool11 stop];
     
+    tool_101.delegate=nil;
+    
+    [tool_101 stop];
+    
     
     NSLog(@"--dealloc-- %@",NSStringFromClass([self class]));
 }
@@ -356,7 +360,7 @@
     }
     advImgV.delegate=self;
     
-    [self testguanggao];
+//    [self testguanggao];
     [self sendrequest];
     
     
@@ -1359,10 +1363,10 @@
     
 }
 -(void)testguanggao{
-    tool_guanggao=[[downloadtool alloc]init];
-    [tool_guanggao setUrl_string:[NSString stringWithFormat:@"http://cast.aim.yoyi.com.cn/afp/door/;ap=u20af583df9a9dcf0001;ct=js;pu=n1428243fc09e7230001;/?"]];
-    [tool_guanggao start];
-    tool_guanggao.delegate=self;
+//    tool_guanggao=[[downloadtool alloc]init];
+//    [tool_guanggao setUrl_string:[NSString stringWithFormat:@"http://cast.aim.yoyi.com.cn/afp/door/;ap=u20af583df9a9dcf0001;ct=js;pu=n1428243fc09e7230001;/?"]];
+//    [tool_guanggao start];
+//    tool_guanggao.delegate=self;
     
     
 }

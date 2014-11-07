@@ -474,8 +474,6 @@
     
     
     [tab_ reloadData];
-    
-    
 }
 
 #pragma - mark 删除操作
@@ -545,6 +543,7 @@
     }];
     
 //    [tab_ reloadData];
+    
 }
 
 
@@ -788,6 +787,8 @@
             //板块 fid
             
             [self deleteWithInfo:dic];
+            
+            [tableView reloadData];
         }
     }
 }
@@ -810,7 +811,6 @@
 {
     _reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:tab_];
-    
 }
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
@@ -847,9 +847,9 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-   
+    
     if (scrollView == tab_) {
-        if(scrollView.contentOffset.y > ((scrollView.contentSize.height - scrollView.frame.size.height-40))&&isloadsuccess==YES&&_mytype!=2&&self.normalarray.count>=10) {
+        if(scrollView.contentOffset.y > ((scrollView.contentSize.height - scrollView.frame.size.height-40))&&isloadsuccess==YES&&_mytype!=2) {
             
             
             [loadview startLoading];

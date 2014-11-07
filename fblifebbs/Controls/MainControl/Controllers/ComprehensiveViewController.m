@@ -1169,6 +1169,8 @@ self.edgesForExtendedLayout = UIRectEdgeNone;
     _reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:mainTabView];
     
+    
+    
 }
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{

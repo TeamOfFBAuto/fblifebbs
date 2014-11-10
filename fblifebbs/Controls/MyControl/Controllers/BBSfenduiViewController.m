@@ -1,6 +1,6 @@
 //
 //  BBSfenduiViewController.m
-//  FbLife
+//  FbLifes
 //
 //  Created by 史忠坤 on 13-3-12.
 //  Copyright (c) 2013年 szk. All rights reserved.

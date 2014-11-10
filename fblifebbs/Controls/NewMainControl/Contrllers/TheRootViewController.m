@@ -354,7 +354,8 @@
     
 //        [allArr removeAllObjects];
 //        [_mainTabV reloadData];
-    allArr=[NSMutableArray array];
+//    allArr=[NSMutableArray array];
+    
     
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -397,12 +398,15 @@
         
         [loadda SeturlStr:string_url mytest:^(NSDictionary *dicinfo, int errcode) {
             
-//            [weakview hide:YES afterDelay:0.4];
             
             NSArray *array=[dicinfo objectForKey:@"bbsinfo"];
             
+            if (array.count>0) {
+                [weakallarr removeAllObjects];
+                [weakmainTabV reloadData];
+            }
+            
             for (NSDictionary *dic in array) {
-//                NSLog(@"dic===%@==end=\n",dic);
                 
                 ChangshiModel *model=[[ChangshiModel alloc]initWithDictionary:dic];
                 [weakallarr addObject:model];

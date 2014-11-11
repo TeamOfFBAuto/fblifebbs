@@ -407,7 +407,7 @@
     {
         NSString * fullUrl = [NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumsbycategory.php?categorytype=%@&formattype=json&authocode=%@",[forum_title_array objectAtIndex:i],AUTHKEY];
         
-       // NSLog(@"请求版块接口-----%@",fullUrl);
+        NSLog(@"请求版块接口-----%@",fullUrl);
         
         ASIHTTPRequest * request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullUrl]];
         request.tag = 417 + i;
@@ -449,9 +449,7 @@
             }
             
             NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-            
             [userDefaults setObject:array forKey:[NSString stringWithFormat:@"forum%@",[forum_title_array objectAtIndex:request.tag-417]]];
-            
             [userDefaults synchronize];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -926,7 +924,7 @@
     }
     
     
-    [[table_array objectAtIndex:current_forum] reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,indexP,nil] withRowAnimation:UITableViewRowAnimationNone];
+    [[table_array objectAtIndex:current_forum] reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,indexP,nil] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 

@@ -536,7 +536,7 @@
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    if (!iPhone5)
+    if (DEVICE_HEIGHT==480)
     {
         if (!isShow)
         {

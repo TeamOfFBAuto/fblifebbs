@@ -962,7 +962,6 @@
 		E35CA93D19F0C47B00A9C4CD /* CustomSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA93C19F0C47B00A9C4CD /* CustomSegmentView.m */; };
 		E35CA94419F0C4B400A9C4CD /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94019F0C4B400A9C4CD /* FindViewController.m */; };
 		E35CA94519F0C4B400A9C4CD /* FindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35CA94119F0C4B400A9C4CD /* FindViewController.xib */; };
-		E35CA94619F0C4B400A9C4CD /* GFoundSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94319F0C4B400A9C4CD /* GFoundSearchViewController.m */; };
 		E35CA94C19F0CEC400A9C4CD /* GFoundSearchViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */; };
 		E38602201A11F46C00477F30 /* fb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38602161A11F46C00477F30 /* fb@2x.png */; };
 		E38602211A11F46C00477F30 /* friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38602171A11F46C00477F30 /* friend@2x.png */; };
@@ -2209,8 +2208,6 @@
 		E35CA93F19F0C4B400A9C4CD /* FindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindViewController.h; sourceTree = "<group>"; };
 		E35CA94019F0C4B400A9C4CD /* FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindViewController.m; sourceTree = "<group>"; };
 		E35CA94119F0C4B400A9C4CD /* FindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindViewController.xib; sourceTree = "<group>"; };
-		E35CA94219F0C4B400A9C4CD /* GFoundSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFoundSearchViewController.h; sourceTree = "<group>"; };
-		E35CA94319F0C4B400A9C4CD /* GFoundSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFoundSearchViewController.m; sourceTree = "<group>"; };
 		E35CA94A19F0CEC400A9C4CD /* GFoundSearchViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFoundSearchViewController3.h; sourceTree = "<group>"; };
 		E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFoundSearchViewController3.m; sourceTree = "<group>"; };
 		E38602161A11F46C00477F30 /* fb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb@2x.png"; sourceTree = "<group>"; };
@@ -4404,8 +4401,6 @@
 				E35CA93F19F0C4B400A9C4CD /* FindViewController.h */,
 				E35CA94019F0C4B400A9C4CD /* FindViewController.m */,
 				E35CA94119F0C4B400A9C4CD /* FindViewController.xib */,
-				E35CA94219F0C4B400A9C4CD /* GFoundSearchViewController.h */,
-				E35CA94319F0C4B400A9C4CD /* GFoundSearchViewController.m */,
 				E35CA94A19F0CEC400A9C4CD /* GFoundSearchViewController3.h */,
 				E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */,
 				56A6E68319F0DB3D0084871E /* FriendCircleViewController.h */,
@@ -5318,7 +5313,6 @@
 				13D42E2919ED310B00261D69 /* ChatInfo.m in Sources */,
 				13D42C9719ED259300261D69 /* MWTapDetectingView.m in Sources */,
 				13D42C6919ED251200261D69 /* GrayPageControl.m in Sources */,
-				E35CA94619F0C4B400A9C4CD /* GFoundSearchViewController.m in Sources */,
 				193D489A19EBCF1900B6E14E /* LoadingIndicatorView.m in Sources */,
 				130C24E019EBDCBD00044F51 /* OHAttributedLabel.m in Sources */,
 				13D42C4019ED1C4900261D69 /* BaseModel.m in Sources */,
@@ -5561,8 +5555,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5589,7 +5583,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PROVISIONING_PROFILE = "42c1f150-b3bf-4543-9e42-f6ff0215aaf4";
+				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5611,8 +5605,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5633,7 +5627,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PROVISIONING_PROFILE = "42c1f150-b3bf-4543-9e42-f6ff0215aaf4";
+				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5646,7 +5640,7 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Framework",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -5674,11 +5668,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
-				PROVISIONING_PROFILE = "04982513-8320-4b53-a111-1fa13ebed498";
-
-				PROVISIONING_PROFILE = "42c1f150-b3bf-4543-9e42-f6ff0215aaf4";
-
+				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -5692,8 +5682,8 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Framework",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -5721,11 +5711,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
-				PROVISIONING_PROFILE = "04982513-8320-4b53-a111-1fa13ebed498";
-
-				PROVISIONING_PROFILE = "42c1f150-b3bf-4543-9e42-f6ff0215aaf4";
-
+				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";

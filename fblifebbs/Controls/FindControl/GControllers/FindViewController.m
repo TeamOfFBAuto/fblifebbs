@@ -184,7 +184,10 @@
     
     
     GFoundSearchViewController3 *gfoundSearchVC3 = [[GFoundSearchViewController3 alloc]init];
-    [self presentViewController:gfoundSearchVC3 animated:YES completion:^{
+    
+    UINavigationController * search_nav = [[UINavigationController alloc] initWithRootViewController:gfoundSearchVC3];
+    
+    [self presentViewController:search_nav animated:YES completion:^{
         
     }];
 //    [self PushControllerWith:gfoundSearchVC3 WithAnimation:YES];

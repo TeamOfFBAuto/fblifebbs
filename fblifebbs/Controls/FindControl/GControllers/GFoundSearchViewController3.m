@@ -19,6 +19,12 @@
     [request_search clearDelegatesAndCancel];
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -114,7 +120,7 @@
 //    cancelButton.backgroundColor = [UIColor redColor];
     cancelButton.userInteractionEnabled=YES;
     //  [ cancelButton setBackgroundImage:[UIImage imageNamed:@"searchcancell.png"] forState:UIControlStateNormal];
-    [cancelButton setTitle:@"搜索"  forState:UIControlStateNormal];//文字
+    [cancelButton setTitle:@"取消"  forState:UIControlStateNormal];//文字
     
     [cancelButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -124,7 +130,7 @@
     
     
     
-    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,IOS_VERSION>=7?108: 88,self.view.bounds.size.width,self.view.bounds.size.height-(IOS_VERSION>=7?168:148)) style:UITableViewStylePlain];
+    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,IOS_VERSION>=7?108: 88,self.view.bounds.size.width,self.view.bounds.size.height-(IOS_VERSION>=7?168-64:148-64)) style:UITableViewStylePlain];
     
     _myTableView.delegate = self;
     
@@ -135,7 +141,7 @@
     
     searchloadingview =[[LoadingIndicatorView alloc]initWithFrame:CGRectMake(0, 900, self.view.bounds.size.width, 40)];
     searchloadingview.backgroundColor=[UIColor clearColor];
-    searchloadingview.normalLabel.text=@"上拉加载更多";
+    searchloadingview.normalLabel.text=@"";
     
     _myTableView.tableFooterView = searchloadingview;
 }
@@ -143,13 +149,16 @@
 
 #pragma mark - 消失 ------------- 现在是navigation推过来的 不是模态出来的 所以这里是不是取消 是搜索
 
+
 -(void)searchcancell
 {
-    //    [request_search clearDelegatesAndCancel];
-    //
-    //    [self dismissViewControllerAnimated:YES completion:NULL];
     
-    [self searchbythenetework];
+    [request_search clearDelegatesAndCancel];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+//    [self searchbythenetework];
     
 }
 
@@ -393,9 +402,6 @@
             {
                 
 #pragma mark - 版块===已修改
-                
-                //            NSLog(@"点击的是资讯");
-                //            string_searchurl=[NSString stringWithFormat:@"http://so.fblife.com/api/searchapi.php?query=%@&fromtype=%d&pagesize=10&formattype=json&charset=utf8&page=%d",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],2,mysearchPage];
                 
                 NSLog(@"点击的是版块");
                 string_searchurl = [NSString stringWithFormat: @"http://bbs.fblife.com/bbsapinew/searchforums.php?sk=%@&formattype=json",[_searchbar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

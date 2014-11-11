@@ -547,14 +547,14 @@
                         
                         if (arr.count >0) {
                             
-                            [self.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"bbsinfo"]];
+                            self.array_searchresault = [dicofsearch objectForKey:@"bbsinfo"];
                             
                         }
                     }
                     
                     [array_search_bankuai removeAllObjects];
                     [array_search_bankuai addObjectsFromArray:self.array_searchresault];
-                    
+                    searchloadingview.normalLabel.text = @"没有更多了";
                     [self.myTableView reloadData];
                     return;
                 }

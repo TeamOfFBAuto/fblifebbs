@@ -66,13 +66,20 @@
             
             if ([[allDic objectForKey:@"errno"] intValue] == 0)
             {
-                if (bself.data_array.count >= [[allDic objectForKey:@"pages"] intValue])
-                {
-                    return;
-                }
                 if (bself.myTableView.pageNum == 1) {
                     [bself.data_array removeAllObjects];
                 }
+                
+                if (bself.data_array.count >= [[allDic objectForKey:@"pages"] intValue])
+                {
+                    bself.myTableView.isHaveMoreData = NO;
+                    [bself.myTableView finishReloadigData];
+                    return;
+                }else
+                {
+                    bself.myTableView.isHaveMoreData = YES;
+                }
+                
                 
                 NSArray * array = [allDic objectForKey:@"app"];
                 
@@ -84,7 +91,7 @@
                     }
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [bself.myTableView reloadData];
+                        [bself.myTableView finishReloadigData];
                     });
                     
                 });

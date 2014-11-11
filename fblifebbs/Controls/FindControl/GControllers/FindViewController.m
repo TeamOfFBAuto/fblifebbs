@@ -36,7 +36,13 @@
     
     self.title = @"发现";
     
-    _tabelview = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    CGRect r = self.view.bounds;
+    
+    
+    r.size.height  = DEVICE_HEIGHT-64-44;
+    
+    
+    _tabelview = [[UITableView alloc]initWithFrame:r style:UITableViewStyleGrouped];
     _tabelview.delegate = self;
     _tabelview.dataSource = self;
     [self.view addSubview:_tabelview];
@@ -60,7 +66,7 @@
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -68,8 +74,10 @@
     
     if (section == 0) {
         num = 1;
-    }else if (section ==1){
+    }else if (section ==1 || section == 2){
         num = 2;
+    }else if (section == 3){
+        num = 3;
     }
     return num;
 }
@@ -98,14 +106,29 @@
     
     
     if (indexPath.row == 0 && indexPath.section == 0) {
-        titleImv.image = [UIImage imageNamed:@"friend.png"];
+        titleImv.image = [UIImage imageNamed:@"fb.png"];
         titleLabel.text = @"好友动态";
     }else if (indexPath.row == 0 && indexPath.section == 1){
+        titleImv.image = [UIImage imageNamed:@"jingxuan.png"];
+        titleLabel.text = @"论坛精选";
+    }else if (indexPath.row == 1 && indexPath.section == 1){
+        titleImv.image = [UIImage imageNamed:@"huodong.png"];
+        titleLabel.text = @"论坛活动";
+    }else if (indexPath.row == 0 && indexPath.section == 2){
+        titleImv.image = [UIImage imageNamed:@"fujin.png"];
+        titleLabel.text = @"附近的人";
+    }else if (indexPath.row == 1 && indexPath.section == 2){
+        titleImv.image = [UIImage imageNamed:@"tuijian.png"];
+        titleLabel.text = @"推荐用户";
+    }else if (indexPath.row == 0 && indexPath.section == 3){
         titleImv.image = [UIImage imageNamed:@"news.png"];
         titleLabel.text = @"e族新闻";
-    }else if (indexPath.row == 1 && indexPath.section == 1){
+    }else if (indexPath.row == 1 && indexPath.section == 3){
         titleImv.image = [UIImage imageNamed:@"shangcheng.png"];
         titleLabel.text = @"e族商城";
+    }else if (indexPath.row == 2 && indexPath.section == 3){
+        titleImv.image = [UIImage imageNamed:@"saoyisao.png"];
+        titleLabel.text = @"扫一扫";
     }
     
     
@@ -117,8 +140,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 70;
-    }else if (section == 1){
+        return 70-17;
+    }else{
         return 17;
     }
     return 0.01;
@@ -209,11 +232,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 1 && indexPath.section == 1) {//e族商城
+    if (indexPath.row == 1 && indexPath.section == 1) {//论坛活动
         
-        GwebViewController * vv = [[GwebViewController alloc]init];
-        vv.urlstring = @"http://m.fblife.com/mall/";
-        [self PushControllerWith:vv WithAnimation:YES];
         
     }else if (indexPath.section == 0 && indexPath.row == 0){//好友动态
         
@@ -227,10 +247,23 @@
         FriendCircleViewController * circle = [[FriendCircleViewController alloc] init];
         [self PushControllerWith:circle WithAnimation:YES];
         
-    }else if (indexPath.row == 0 && indexPath.section == 1){//e族新闻
+    }else if (indexPath.row == 0 && indexPath.section == 1){//论坛精选
+        
+        
+    }else if (indexPath.row == 0 && indexPath.section == 2){//附近的人
+        
+    }else if (indexPath.row == 1 && indexPath.section == 2){//推荐用户
+        
+    }else if (indexPath.row == 0 && indexPath.section == 3){//e族新闻
         GwebViewController * cc = [[GwebViewController alloc]init];
         cc.urlstring = @"http://m.fblife.com/news";
         [self PushControllerWith:cc WithAnimation:YES];
+    }else if (indexPath.row == 1 && indexPath.section == 3){//e族商城
+        GwebViewController * vv = [[GwebViewController alloc]init];
+        vv.urlstring = @"http://m.fblife.com/mall/";
+        [self PushControllerWith:vv WithAnimation:YES];
+    }else if (indexPath.row == 2 && indexPath.section == 3){//扫一扫
+        
     }
     
     

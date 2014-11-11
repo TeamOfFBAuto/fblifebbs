@@ -8,6 +8,7 @@
 
 #import "FindViewController.h"
 #import "FriendCircleViewController.h"
+#import "BBSRecommendViewController.h"
 
 
 
@@ -253,7 +254,8 @@
         [self PushControllerWith:circle WithAnimation:YES];
         
     }else if (indexPath.row == 0 && indexPath.section == 1){//论坛精选
-        
+        BBSRecommendViewController * bbs = [[BBSRecommendViewController alloc] init];
+        [self PushControllerWith:bbs WithAnimation:YES];
         
     }else if (indexPath.row == 0 && indexPath.section == 2){//附近的人
         

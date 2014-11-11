@@ -181,8 +181,13 @@
 - (void)clickToSearch:(UIButton *)sender
 {
     NSLog(@"searchPage  跳转到搜索页面");
+    
+    
     GFoundSearchViewController3 *gfoundSearchVC3 = [[GFoundSearchViewController3 alloc]init];
-    [self PushControllerWith:gfoundSearchVC3 WithAnimation:YES];
+    [self presentViewController:gfoundSearchVC3 animated:YES completion:^{
+        
+    }];
+//    [self PushControllerWith:gfoundSearchVC3 WithAnimation:YES];
     
     
 }
@@ -208,9 +213,6 @@
         view.backgroundColor = RGBCOLOR(238, 238, 238);
         view.frame = CGRectMake(0, 0, 320, 70);
         UIView *search_bgview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 52)];
-        //    search_bgview.backgroundColor = [UIColor colorWithHexString:@"cac9ce"];
-        
-        //    search_bgview.backgroundColor = [UIColor redColor];
         [view addSubview:search_bgview];
         
         UISearchBar *bar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 52)];

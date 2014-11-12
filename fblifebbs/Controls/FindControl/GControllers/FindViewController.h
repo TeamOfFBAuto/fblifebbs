@@ -18,4 +18,9 @@
 {
     UITableView *_tabelview;
 }
+
+
+-(void)erweimapushWithString:(NSString *)str;
+
 @end
+

@@ -964,6 +964,11 @@
 		E35CA94419F0C4B400A9C4CD /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94019F0C4B400A9C4CD /* FindViewController.m */; };
 		E35CA94519F0C4B400A9C4CD /* FindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35CA94119F0C4B400A9C4CD /* FindViewController.xib */; };
 		E35CA94C19F0CEC400A9C4CD /* GFoundSearchViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */; };
+		E37ABE6F1A135537004F90B0 /* GmFoundScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37ABE6E1A135537004F90B0 /* GmFoundScanViewController.m */; };
+		E37ABE711A135D3B004F90B0 /* saoyisao_bg_640_996@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E37ABE701A135D3B004F90B0 /* saoyisao_bg_640_996@2x.png */; };
+		E37ABE741A135DA1004F90B0 /* fkuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E37ABE721A135DA1004F90B0 /* fkuang@2x.png */; };
+		E37ABE751A135DA1004F90B0 /* fshan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E37ABE731A135DA1004F90B0 /* fshan@2x.png */; };
+		E37ABE771A136156004F90B0 /* fanhui-daohanglan-20_38@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E37ABE761A136156004F90B0 /* fanhui-daohanglan-20_38@2x.png */; };
 		E38602201A11F46C00477F30 /* fb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38602161A11F46C00477F30 /* fb@2x.png */; };
 		E38602211A11F46C00477F30 /* friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38602171A11F46C00477F30 /* friend@2x.png */; };
 		E38602221A11F46C00477F30 /* fujin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38602181A11F46C00477F30 /* fujin@2x.png */; };
@@ -2213,6 +2218,12 @@
 		E35CA94119F0C4B400A9C4CD /* FindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindViewController.xib; sourceTree = "<group>"; };
 		E35CA94A19F0CEC400A9C4CD /* GFoundSearchViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFoundSearchViewController3.h; sourceTree = "<group>"; };
 		E35CA94B19F0CEC400A9C4CD /* GFoundSearchViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFoundSearchViewController3.m; sourceTree = "<group>"; };
+		E37ABE6D1A135537004F90B0 /* GmFoundScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GmFoundScanViewController.h; sourceTree = "<group>"; };
+		E37ABE6E1A135537004F90B0 /* GmFoundScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GmFoundScanViewController.m; sourceTree = "<group>"; };
+		E37ABE701A135D3B004F90B0 /* saoyisao_bg_640_996@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saoyisao_bg_640_996@2x.png"; sourceTree = "<group>"; };
+		E37ABE721A135DA1004F90B0 /* fkuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fkuang@2x.png"; sourceTree = "<group>"; };
+		E37ABE731A135DA1004F90B0 /* fshan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fshan@2x.png"; sourceTree = "<group>"; };
+		E37ABE761A136156004F90B0 /* fanhui-daohanglan-20_38@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fanhui-daohanglan-20_38@2x.png"; sourceTree = "<group>"; };
 		E38602161A11F46C00477F30 /* fb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb@2x.png"; sourceTree = "<group>"; };
 		E38602171A11F46C00477F30 /* friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friend@2x.png"; sourceTree = "<group>"; };
 		E38602181A11F46C00477F30 /* fujin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fujin@2x.png"; sourceTree = "<group>"; };
@@ -2232,6 +2243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5668E1F119EBA2E20091A4B0 /* AVFoundation.framework in Frameworks */,
 				5668E1E719EBA2AD0091A4B0 /* MessageUI.framework in Frameworks */,
 				562DE00719ECBDBB00CAF790 /* CFNetwork.framework in Frameworks */,
 				5668E20119EBA3860091A4B0 /* Foundation.framework in Frameworks */,
@@ -2246,7 +2258,6 @@
 				5668E1F519EBA2EF0091A4B0 /* CoreVideo.framework in Frameworks */,
 				5668E1F319EBA2E90091A4B0 /* CoreMedia.framework in Frameworks */,
 				193D48ED19ECC4DE00B6E14E /* libWeChatSDK.a in Frameworks */,
-				5668E1F119EBA2E20091A4B0 /* AVFoundation.framework in Frameworks */,
 				193D48EF19ECC4DE00B6E14E /* libUMSocial_Sdk_Comment_2.2.1.a in Frameworks */,
 				5668E1EF19EBA2DC0091A4B0 /* MapKit.framework in Frameworks */,
 				5668E1ED19EBA2D50091A4B0 /* libiconv.dylib in Frameworks */,
@@ -4403,6 +4414,8 @@
 		E35CA93E19F0C4B400A9C4CD /* GControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E37ABE6D1A135537004F90B0 /* GmFoundScanViewController.h */,
+				E37ABE6E1A135537004F90B0 /* GmFoundScanViewController.m */,
 				E35CA93F19F0C4B400A9C4CD /* FindViewController.h */,
 				E35CA94019F0C4B400A9C4CD /* FindViewController.m */,
 				E35CA94119F0C4B400A9C4CD /* FindViewController.xib */,
@@ -4419,6 +4432,10 @@
 		E38602151A11F46C00477F30 /* GFoundImages */ = {
 			isa = PBXGroup;
 			children = (
+				E37ABE761A136156004F90B0 /* fanhui-daohanglan-20_38@2x.png */,
+				E37ABE721A135DA1004F90B0 /* fkuang@2x.png */,
+				E37ABE731A135DA1004F90B0 /* fshan@2x.png */,
+				E37ABE701A135D3B004F90B0 /* saoyisao_bg_640_996@2x.png */,
 				E38602161A11F46C00477F30 /* fb@2x.png */,
 				E38602171A11F46C00477F30 /* friend@2x.png */,
 				E38602181A11F46C00477F30 /* fujin@2x.png */,
@@ -4520,6 +4537,7 @@
 				56F6D7EC19EBFA5200B99CAC /* MainViewController.m in Resources */,
 				5637240519E922D800BEF45C /* menewz37_36@2x.png in Resources */,
 				13ACB6C619EFD6420092318B /* 2.png in Resources */,
+				E37ABE711A135D3B004F90B0 /* saoyisao_bg_640_996@2x.png in Resources */,
 				193D48EC19ECC4DE00B6E14E /* UMSocialLocalizable.strings in Resources */,
 				13ACB72919EFD8930092318B /* redheart42_37@2x.png in Resources */,
 				131514A519EE7EAF00F31595 /* nav_bar_bg@2x.png in Resources */,
@@ -4818,6 +4836,7 @@
 				13ACB6EA19EFD84D0092318B /* bigandlittle@2x.png in Resources */,
 				13ACB65E19EFA96F0092318B /* quanzikuang_sel@2x.png in Resources */,
 				563724E519E9232900BEF45C /* 114@2x.png in Resources */,
+				E37ABE771A136156004F90B0 /* fanhui-daohanglan-20_38@2x.png in Resources */,
 				5668E26219EBC14B0091A4B0 /* friend@2x.png in Resources */,
 				563723F619E922D800BEF45C /* bolang@2x.png in Resources */,
 				563D438D19F50A0900FFCAE5 /* mel@2x.png in Resources */,
@@ -4942,6 +4961,7 @@
 				5635894819F79359005F6F55 /* face43.png in Resources */,
 				563724EE19E9232900BEF45C /* ios7_sanjiaolan@2x.png in Resources */,
 				5635896119F79359005F6F55 /* face54_1.png in Resources */,
+				E37ABE741A135DA1004F90B0 /* fkuang@2x.png in Resources */,
 				13ACB65919EFA96F0092318B /* jiaguanzhu_sel@2x.png in Resources */,
 				1315149719EE7EAF00F31595 /* background@2x.png in Resources */,
 				13ACB68D19EFADD70092318B /* atlas_zhuanfa@2x.png in Resources */,
@@ -4972,6 +4992,7 @@
 				1315149C19EE7EAF00F31595 /* item_cancel_selected@2x.png in Resources */,
 				563724EA19E9232900BEF45C /* ios7_collectselect@2x.png in Resources */,
 				13ACB6DA19EFD6420092318B /* input-toolbar-bg.png in Resources */,
+				E37ABE751A135DA1004F90B0 /* fshan@2x.png in Resources */,
 				13ACB73C19EFD8930092318B /* zixunred47_42@2x.png in Resources */,
 				563589A619F7937F005F6F55 /* Expression_6@2x.png in Resources */,
 				5637251419E9232900BEF45C /* ios7_loading61_12_1@2x.png in Resources */,
@@ -5447,6 +5468,7 @@
 				5668E22119EBB0330091A4B0 /* personal.m in Sources */,
 				130C24B919EBDB6900044F51 /* LActionSheet.m in Sources */,
 				13D42CD219ED289200261D69 /* ATMTextLayer.m in Sources */,
+				E37ABE6F1A135537004F90B0 /* GmFoundScanViewController.m in Sources */,
 				13D42D6B19ED2E7C00261D69 /* ReplysFeed.m in Sources */,
 				13D42D9819ED2FEF00261D69 /* ImagesCell.m in Sources */,
 				13D42E3519ED317C00261D69 /* AdvertisingimageView.m in Sources */,
@@ -5561,8 +5583,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5589,7 +5611,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
+				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5611,8 +5633,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5633,7 +5655,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
+				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5646,7 +5668,8 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Framework",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -5674,7 +5697,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
+				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -5688,8 +5711,8 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Framework",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -5717,7 +5740,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
+				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";

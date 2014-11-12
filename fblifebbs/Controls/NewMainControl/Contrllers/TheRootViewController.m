@@ -5,7 +5,6 @@
 //  Created by szk on 14-10-28.
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
-
 #import "TheRootViewController.h"
 
 #import "AppDelegate.h"

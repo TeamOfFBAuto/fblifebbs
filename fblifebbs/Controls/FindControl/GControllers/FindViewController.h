@@ -22,5 +22,8 @@
 
 -(void)erweimapushWithString:(NSString *)str;
 
+-(void)pushMyerweimaVcWithUid:(NSString *)str;
+
+
 @end
 

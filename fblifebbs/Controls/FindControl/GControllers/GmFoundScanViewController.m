@@ -95,9 +95,9 @@
     [btn setTitle:@"我的二维码" forState:UIControlStateNormal];
     [btn setTitleColor:RGBCOLOR(87, 151, 226) forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-//    [btn addTarget:self action:@selector(myErweima) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(myErweima) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
-    btn.hidden = YES;
+    
     
     
     upOrdown = NO;
@@ -296,58 +296,27 @@
 }
 
 
-//少男二维码
-//-(void)findString:(NSString *)stringreplace
-//{
-//    string_uid=[personal getuidwithstring:stringreplace];
-//    
-//    
-//    if ([string_uid isEqualToString:@"0"] || string_uid.length == 0 || [string_uid isEqual:[NSNull null]])
-//    {
-//        if ([stringreplace rangeOfString:@"http://"].length && [stringreplace rangeOfString:@"."].length)
-//        {
-//            
-//            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"是否打开此链接" message:stringreplace delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
-//            alert.delegate = self;
-//            
-//            alert.tag = 100000;
-//            
-//            [alert show];
-//            
-//        }else
-//        {
-//            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"未识别的二维码" message:stringreplace delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil,nil];
-//            [alert show];
-//        }
-//    }else
-//    {
-//        NSLog(@"_____stringuid===%@_____",string_uid);
-//        [self pushtonewmine];
-//        
-//    }
-//}
 
 
 
 
 
-//#pragma mark - 点击我的二维码跳转
-//-(void)myErweima{
-//    NSLog(@"%s",__FUNCTION__);
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        
-//        
-//        if (self.delegate) {
-//            [self.delegate pushMyerweimaVc];
-//        }else if (self.delegate2){
-//            [self.delegate2 pushMyerweimaVc];
-//        }
-//        
-//        
-//    }];
-//    
-//    
-//}
+
+#pragma mark - 点击我的二维码跳转
+-(void)myErweima{
+    NSLog(@"%s",__FUNCTION__);
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        
+        if (self.delegate) {
+            [self.delegate pushMyerweimaVcWithUid:[[NSUserDefaults standardUserDefaults] objectForKey:USER_UID]];
+        }
+        
+        
+    }];
+    
+    
+}
 
 
 //点击返回按钮的跳转

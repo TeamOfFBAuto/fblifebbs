@@ -616,6 +616,12 @@
     [self.navigationController pushViewController:_newM animated:YES];
 }
 
+-(void)pushMyerweimaVcWithUid:(NSString *)str{
+    QrcodeViewController *ddd = [[QrcodeViewController alloc]init];
+    ddd.uid = str;
+    [self.navigationController pushViewController:ddd animated:YES];
+}
+
 
 @end
 

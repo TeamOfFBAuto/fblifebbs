@@ -672,7 +672,6 @@
 		5637240A19E922D800BEF45C /* redheart42_37@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723EA19E922D800BEF45C /* redheart42_37@2x.png */; };
 		5637240B19E922D800BEF45C /* roundblue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723EB19E922D800BEF45C /* roundblue@2x.png */; };
 		5637240C19E922D800BEF45C /* roundgray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723EC19E922D800BEF45C /* roundgray@2x.png */; };
-		5637240D19E922D800BEF45C /* sanjiao21_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723ED19E922D800BEF45C /* sanjiao21_8@2x.png */; };
 		5637240E19E922D800BEF45C /* sharefriendquan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563723EF19E922D800BEF45C /* sharefriendquan@2x.png */; };
 		563724B119E9232900BEF45C /* chat_people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5637241319E9232800BEF45C /* chat_people@2x.png */; };
 		563724B219E9232900BEF45C /* choosepictureno@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5637241419E9232800BEF45C /* choosepictureno@2x.png */; };
@@ -1888,7 +1887,6 @@
 		563723EA19E922D800BEF45C /* redheart42_37@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redheart42_37@2x.png"; sourceTree = "<group>"; };
 		563723EB19E922D800BEF45C /* roundblue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundblue@2x.png"; sourceTree = "<group>"; };
 		563723EC19E922D800BEF45C /* roundgray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundgray@2x.png"; sourceTree = "<group>"; };
-		563723ED19E922D800BEF45C /* sanjiao21_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sanjiao21_8@2x.png"; sourceTree = "<group>"; };
 		563723EF19E922D800BEF45C /* sharefriendquan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharefriendquan@2x.png"; sourceTree = "<group>"; };
 		5637241319E9232800BEF45C /* chat_people@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_people@2x.png"; sourceTree = "<group>"; };
 		5637241419E9232800BEF45C /* choosepictureno@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "choosepictureno@2x.png"; sourceTree = "<group>"; };
@@ -3926,7 +3924,6 @@
 				563723EA19E922D800BEF45C /* redheart42_37@2x.png */,
 				563723EB19E922D800BEF45C /* roundblue@2x.png */,
 				563723EC19E922D800BEF45C /* roundgray@2x.png */,
-				563723ED19E922D800BEF45C /* sanjiao21_8@2x.png */,
 			);
 			path = allImages;
 			sourceTree = "<group>";
@@ -5049,7 +5046,6 @@
 				56A6E68D19F0F7C70084871E /* pinglun-xiao@2x.png in Resources */,
 				5635897319F79359005F6F55 /* face7.png in Resources */,
 				5635897119F79359005F6F55 /* face63.png in Resources */,
-				5637240D19E922D800BEF45C /* sanjiao21_8@2x.png in Resources */,
 				563723F419E922D800BEF45C /* bigandlittle@2x.png in Resources */,
 				5668E27519EBC14B0091A4B0 /* woman@2x.png in Resources */,
 				19FF0E3019E7D28500D5DC6A /* Images.xcassets in Resources */,
@@ -5565,8 +5561,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5588,12 +5584,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "${SRCROOT}/**";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
+				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5615,8 +5611,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5632,12 +5628,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "${SRCROOT}/**";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
+				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5650,7 +5646,7 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Framework",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -5678,7 +5674,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
+				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -5692,8 +5688,8 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Framework",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -5721,7 +5717,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d6e3383f-794f-401d-afc3-edda7577aa1c";
+				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";

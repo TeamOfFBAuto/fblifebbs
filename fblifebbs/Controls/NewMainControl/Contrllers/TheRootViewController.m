@@ -39,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     //广告的逻辑
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(ssTurntoFbWebview:) name:@"TouchGuanggao" object:nil];//点击了广告

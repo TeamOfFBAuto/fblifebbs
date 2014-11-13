@@ -114,7 +114,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
     
-    images_arr = @[@"",@"",@"",@"shoucang@2x.png",@"tiezi@2x.png",@"friend@2x.png",@"",@"mingpian@2x.png",@"youxiang@2x.png",@"lishijilu@2x.png"];
+    images_arr = @[@"",@"",@"",@"shoucang@2x.png",@"tiezi@2x.png",@"friend_my@2x.png",@"",@"mingpian@2x.png",@"youxiang@2x.png",@"lishijilu@2x.png"];
     names_arr = @[@"",@"",@"",@"我的收藏",@"我的帖子",@"我的好友",@"",@"我的名片",@"草稿箱",@"历史浏览"];
     
     self.navigationItem.title = @"我";
@@ -194,6 +194,10 @@
     if ([user.gender integerValue] == 1) {
         NSLog(@"man");
         
+//        headerCell.genderImage.hidden = NO;
+        
+        headerCell.genderImage.selected = NO;
+        
     }else
     {
         NSLog(@"women");
@@ -201,7 +205,9 @@
         headerCell.genderImage.selected = YES;
         
     }
+    
     headerCell.genderImage.hidden = NO;
+    
     headerCell.genderImage.left = headerCell.nameLabel.right + 10;
     
     NSString *des = [NSString stringWithFormat:@"简介:%@",user.aboutme.length ? user.aboutme : @"无"];

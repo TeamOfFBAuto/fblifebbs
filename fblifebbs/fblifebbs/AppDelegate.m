@@ -26,6 +26,10 @@
 #import "ComprehensiveViewController.h"
 #import "AFNetworkReachabilityManager.h"
 
+#define WXAPPID @"wx4fb411c415f89047"//综合客户端key,未更换
+#define SINAAPPID @"1552967260"
+#define UMENG_APPKEY @"54646d3efd98c5657c005abc"
+
 
 @interface AppDelegate ()
 
@@ -43,10 +47,17 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     
-    [WXApi registerApp:@"wx4fb411c415f89047"];
     
-    [ WeiboSDK registerApp:@"2335514239"];
-    [ WeiboSDK enableDebugMode:YES ];
+    [UMSocialData setAppKey:UMENG_APPKEY];
+    [WXApi registerApp:WXAPPID];
+    
+    [WeiboSDK registerApp:SINAAPPID];
+    [WeiboSDK enableDebugMode:YES ];
+    
+    
+    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:BATCH channelId:nil];
+    
+    [MobClick setLogEnabled:YES];
 
     [self setTabbarViewcontroller];
     

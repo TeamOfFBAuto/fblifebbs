@@ -6,10 +6,15 @@
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
+
+#import "BBSfenduiViewController.h"
+
+
 #import "BBSRecommendViewController.h"
 #import "CompreTableViewCell.h"
 #import "NewMainViewModel.h"
 #import "bbsdetailViewController.h"
+
 
 
 
@@ -136,7 +141,10 @@
     
     [cell normalsetDic:dictemp cellStyle:CompreTableViewCellStyleText thecellbloc:^(NSString *thebuttontype,NSDictionary *dic,NSString * theWhateverid) {
         
-//        [wself turntoOtherVCwithtype:thebuttontype thedic:dic theid:theWhateverid];
+        
+//        NSLog(@"sh===%@===dic===%@===thewhateverid===%@",thebuttontype,dic,theWhateverid);
+        
+       [wself turntoOtherVCwithtype:thebuttontype thedic:dic theid:theWhateverid];
     }];
     
     
@@ -147,13 +155,13 @@
     return cell;
 }
 
-//#pragma mark--处理各种跳转
+#pragma mark--处理各种跳转
 //
-//-(void)turntoOtherVCwithtype:(NSString *)thebuttontype thedic:(NSDictionary *)mydic theid:(NSString *)theWhateverid{
+-(void)turntoOtherVCwithtype:(NSString *)thebuttontype thedic:(NSDictionary *)mydic theid:(NSString *)theWhateverid{
 //    //（1新闻，2图集，3论坛，4商城
 //    
-//    NewMainViewModel *_newmodel=[[NewMainViewModel alloc]init];
-//    [_newmodel NewMainViewModelSetdic:mydic];
+   NewMainViewModel *_newmodel=[[NewMainViewModel alloc]init];
+    [_newmodel NewMainViewModelSetdic:mydic];
 //    
 //    if ([thebuttontype isEqualToString:@"big"]) {
 //        //点击的是大的button
@@ -224,13 +232,13 @@
 //                break;
 //            case 3:
 //            {
-//                BBSfenduiViewController *_bbsVC=[[BBSfenduiViewController alloc]init];\
+              BBSfenduiViewController *_bbsVC=[[BBSfenduiViewController alloc]init];\
+    
+              _bbsVC.string_id=_newmodel.bbsfid;
 //                
-//                _bbsVC.string_id=_newmodel.bbsfid;
+//               _bbsVC.collection_array = self.forum_section_collection_array;
 //                
-//                _bbsVC.collection_array = self.forum_section_collection_array;
-//                
-//                [self.navigationController pushViewController:_bbsVC animated:YES];
+               [self.navigationController pushViewController:_bbsVC animated:YES];
 //            }
 //                break;
 //            case 4:
@@ -248,8 +256,11 @@
 //    //   NSLog(@"xxxx==%@",mydic);
 //    //
 //    
-//    
-//}
+//
+    
+    
+    
+}
 
 #pragma mark - RefreshDelegate
 - (void)loadNewData

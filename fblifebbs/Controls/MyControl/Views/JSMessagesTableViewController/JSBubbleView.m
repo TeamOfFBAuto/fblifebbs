@@ -5,7 +5,7 @@
 //  Copyright (c) 2013 Hexed Bits. All rights reserved.
 //
 //  http://www.hexedbits.com
-//
+//s
 //
 //  Largely based on work by Sam Soffes
 //  https://github.com/soffes

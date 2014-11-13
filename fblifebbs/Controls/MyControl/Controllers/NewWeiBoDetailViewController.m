@@ -337,7 +337,6 @@
         {
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"该篇微博不存在" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
             [alert show];
-        
             return;
         }
         

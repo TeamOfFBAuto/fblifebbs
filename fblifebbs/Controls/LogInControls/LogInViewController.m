@@ -68,7 +68,7 @@
 
 -(void)loadDown
 {
-    logoImageView.center = CGPointMake(logoImageView.frame.origin.x,42 + 49.5/2 + (IOS_VERSION>=7.0?64:44));
+    logoImageView.center = CGPointMake(logoImageView.center.x,42 + 49.5/2 + (IOS_VERSION>=7.0?64:44));
     
     denglu_imageView.frame = CGRectMake(denglu_imageView.frame.origin.x,logoImageView.center.y+25+10,296.5,185);
     
@@ -521,7 +521,7 @@
     [userNameField resignFirstResponder];
     
     [UIView animateWithDuration:0.3 animations:^{
-        logoImageView.center = CGPointMake(logoImageView.frame.origin.x,42 + 49.5/2 + (IOS_VERSION>=7.0?64:44));
+        logoImageView.center = CGPointMake(logoImageView.center.x,42 + 49.5/2 + (IOS_VERSION>=7.0?64:44));
         
         denglu_imageView.frame = CGRectMake(denglu_imageView.frame.origin.x,logoImageView.center.y+25+10,296.5,185);
         

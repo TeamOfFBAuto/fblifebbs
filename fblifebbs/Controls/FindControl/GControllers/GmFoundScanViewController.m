@@ -219,72 +219,42 @@
     
     [_session stopRunning];
 
-    [self dismissViewControllerAnimated:YES completion:^
-     {
-         [timer invalidate];
-         NSLog(@"123");
-         
-         NSLog(@"%@",stringValue);
-         
-         
-         
-//         if([stringValue hasPrefix:@"UID"]){//加好友
-//             NSString *str = [stringValue substringFromIndex:4];
-//             NSArray *arr = [str componentsSeparatedByString:@"\n"];
-//             NSString *userId = arr[0];
-//             
-//             NSLog(@"%@",userId);
-//             if ([userId isEqualToString:[SzkAPI getUid]]) {//扫出的二维码是自己
-//                 if (self.delegate) {//发现vc
-//                     [self.delegate pushToGrxx4];
-//                 }else if (self.delegate2){//我vc扫一扫加好友
-//                     [self.delegate2 pushToGrxx4];
-//                 }
-//             }else{//不是自己的二维码
-//                 if (self.delegate) {//发现vc
-//                     [self.delegate pushToPersonInfoVcWithStr:userId];
-//                 }else if (self.delegate2){//我vc扫一扫加好友
-//                     [self.delegate2 pushToPersonInfoVcWithStr:userId];
-//                 }
-//             }
-//             
-//         }else{//webView
-//             if (self.delegate) {//发现vc
-//                 [self.delegate pushWebViewWithStr:stringValue];
-//             }else if (self.delegate2){//我vc扫一扫加好友
-//                 [self.delegate2 pushWebViewWithStr:stringValue];
-//             }
-//         }
-         
+    [timer invalidate];
+    NSLog(@"123");
+    
+    NSLog(@"%@",stringValue);
+    
     NSString* string_uid=[personal getuidwithstring:stringValue];
-
-
+    
+    
     if ([string_uid isEqualToString:@"0"] || string_uid.length == 0 || [string_uid isEqual:[NSNull null]])
     {
         if ([stringValue rangeOfString:@"http://"].length && [stringValue rangeOfString:@"."].length)
         {
-
+            
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"是否打开此链接" message:stringValue delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-
+            
             alert.tag = 100000;
-
+            
+            _urlStr = stringValue;
+            
             [alert show];
-
+            
         }else
         {
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"未识别的二维码" message:stringValue delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil,nil];
+            alert.tag = 30;
             [alert show];
         }
-    }else
-    {
-        NSLog(@"_____stringuid===%@_____",string_uid);
-        [self pushtonewmineWithUid:string_uid];
+    }else{
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            NSLog(@"_____stringuid===%@_____",string_uid);
+            [self pushtonewmineWithUid:string_uid];
+        }];
+        
         
     }
-         
-         
-
-     }];
     
     
 }
@@ -296,6 +266,25 @@
 }
 
 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    
+    if (alertView.tag == 100000) {
+        if (buttonIndex == 1) {//确定
+            if (_urlStr) {
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [self.delegate pushWebViewWithStr:_urlStr];
+                }];
+                
+            }
+        }
+    }else if (alertView.tag == 30){
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }
+}
 
 
 

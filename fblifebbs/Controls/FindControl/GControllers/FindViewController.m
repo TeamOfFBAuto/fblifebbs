@@ -21,7 +21,7 @@
 #import "BBSRecommendViewController.h"
 #import "GmFoundScanViewController.h"
 
-
+#import "GwebViewController.h"
 
 
 
@@ -609,18 +609,31 @@
 
 
 
+//扫一扫的回调方法 代理方法
+-(void)pushWebViewWithStr:(NSString *)stringValue{
+    NSLog(@"%s",__FUNCTION__);
+    GwebViewController *fbwebvc = [[GwebViewController alloc]init];
+    fbwebvc.urlstring = stringValue;
+    [self  PushControllerWith:fbwebvc WithAnimation:YES];
+    
+    
+}
+
 
 -(void)erweimapushWithString:(NSString *)str{
     NewMineViewController *_newM=[[NewMineViewController alloc]init];
     _newM.uid=str;
-    [self.navigationController pushViewController:_newM animated:YES];
+    
+    [self PushControllerWith:_newM WithAnimation:YES];
 }
 
 -(void)pushMyerweimaVcWithUid:(NSString *)str{
     QrcodeViewController *ddd = [[QrcodeViewController alloc]init];
     ddd.uid = str;
-    [self.navigationController pushViewController:ddd animated:YES];
+    
+    [self PushControllerWith:ddd WithAnimation:YES];
 }
+
 
 
 @end

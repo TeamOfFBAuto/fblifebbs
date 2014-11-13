@@ -13,11 +13,12 @@
 
 @class FindViewController;
 
-@interface GmFoundScanViewController : UIViewController<AVCaptureMetadataOutputObjectsDelegate>
+@interface GmFoundScanViewController : UIViewController<AVCaptureMetadataOutputObjectsDelegate,UIAlertViewDelegate>
 {
     int num;
     BOOL upOrdown;
     NSTimer * timer;
+    NSString *_urlStr;
     
     
 }

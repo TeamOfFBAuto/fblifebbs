@@ -24,6 +24,7 @@
 
 -(void)pushMyerweimaVcWithUid:(NSString *)str;
 
+-(void)pushWebViewWithStr:(NSString *)stringValue;
 
 @end
 

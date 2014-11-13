@@ -240,8 +240,7 @@
             
             [alert show];
             
-        }else
-        {
+        }else{
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"未识别的二维码" message:stringValue delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil,nil];
             alert.tag = 30;
             [alert show];

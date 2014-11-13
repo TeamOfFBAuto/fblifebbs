@@ -101,7 +101,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KJi-RC-Vsi">
-                        <rect key="frame" x="151" y="18" width="9" height="22"/>
+                        <rect key="frame" x="151" y="14" width="9" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" image="man.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,8 +126,8 @@
     </objects>
     <resources>
         <image name="jiantou.png" width="7" height="12"/>
-        <image name="man.png" width="9" height="9"/>
-        <image name="woman.png" width="7" height="10"/>
+        <image name="man.png" width="9" height="11"/>
+        <image name="woman.png" width="9" height="11"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

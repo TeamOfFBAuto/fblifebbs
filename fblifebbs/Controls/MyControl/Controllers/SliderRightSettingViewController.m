@@ -480,59 +480,67 @@
 
 -(void)checkVersionUpdate
 {
-    NSURL * fullUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/version.php?appversion=%@",NOW_VERSION]];
-    
-    ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:fullUrl];
-    
-    __block ASIHTTPRequest * _request = request;
-    
-    
-    request.delegate = self;
-    
-    [_request setCompletionBlock:^{
+
+    [[LTools shareInstance]versionForAppid:@"904576362" Block:^(BOOL isNewVersion, NSString *updateUrl, NSString *updateContent) {
         
-        @try {
-            NSDictionary * dic = [request.responseData objectFromJSONData];
-            
-            NSString * bbsInfo = [NSString stringWithFormat:@"%@",[dic objectForKey:@"bbsinfo"]];
-            NSLog(@"dic===%@",dic);
-            if (![bbsInfo isEqualToString:NOW_VERSION])
-            {
-                NSString * new = [NSString stringWithFormat:@"我们的%@版本已经上线了,赶快去更新吧!",bbsInfo];
-                
-                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"发现新版本" message:new delegate:self cancelButtonTitle:@"立即升级" otherButtonTitles:@"稍后提示",nil];
-                
-                alert.delegate = self;
-                
-                alert.tag = 10000;
-                
-                [alert show];
-                
-                
-            }else
-            {
-                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"版本更新检查" message:@"您目前使用的是最新版本" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil,nil];
-                [alert show];
-            }
-        }
-        @catch (NSException *exception) {
-            
-        }
-        @finally {
-            
-        }
-        
-        
+        NSLog(@"updateContent %@ %@",updateUrl,updateContent);
         
     }];
+  
     
-    
-    [_request setFailedBlock:^{
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"检测失败,请检查您当前网络是否正常" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
-        [alert show];
-    }];
-    
-    [request startAsynchronous];
+//    NSURL * fullUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/version.php?appversion=%@",NOW_VERSION]];
+//    
+//    ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:fullUrl];
+//    
+//    __block ASIHTTPRequest * _request = request;
+//    
+//    
+//    request.delegate = self;
+//    
+//    [_request setCompletionBlock:^{
+//        
+//        @try {
+//            NSDictionary * dic = [request.responseData objectFromJSONData];
+//            
+//            NSString * bbsInfo = [NSString stringWithFormat:@"%@",[dic objectForKey:@"bbsinfo"]];
+//            NSLog(@"dic===%@",dic);
+//            if (![bbsInfo isEqualToString:NOW_VERSION])
+//            {
+//                NSString * new = [NSString stringWithFormat:@"我们的%@版本已经上线了,赶快去更新吧!",bbsInfo];
+//                
+//                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"发现新版本" message:new delegate:self cancelButtonTitle:@"立即升级" otherButtonTitles:@"稍后提示",nil];
+//                
+//                alert.delegate = self;
+//                
+//                alert.tag = 10000;
+//                
+//                [alert show];
+//                
+//                
+//            }else
+//            {
+//                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"版本更新检查" message:@"您目前使用的是最新版本" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil,nil];
+//                [alert show];
+//            }
+//        }
+//        @catch (NSException *exception) {
+//            
+//        }
+//        @finally {
+//            
+//        }
+//        
+//        
+//        
+//    }];
+//    
+//    
+//    [_request setFailedBlock:^{
+//        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"检测失败,请检查您当前网络是否正常" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+//        [alert show];
+//    }];
+//    
+//    [request startAsynchronous];
 }
 
 

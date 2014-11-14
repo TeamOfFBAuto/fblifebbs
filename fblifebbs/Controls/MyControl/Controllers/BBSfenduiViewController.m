@@ -1046,24 +1046,24 @@
                     Essence_imageV=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"jinghua_31x31.png"]];
                     Essence_imageV.frame=CGRectMake(8, 14, 16, 16);
                     [imageviewcell addSubview:Essence_imageV];
-                    titleLabel.text=[NSString stringWithFormat:@"      %@",[dic objectForKey:@"title"]];
+                    titleLabel.text=[NSString stringWithFormat:@"      %@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
                     
                 }else{
-                    titleLabel.text=[dic objectForKey:@"title"];
+                    titleLabel.text=[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]];
                 }
                 break;
             case 1:{
                 Essence_imageV=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"1_31x31.png"]];
                 Essence_imageV.frame=CGRectMake(8, 14, 16, 16);
                 [imageviewcell addSubview:Essence_imageV];
-                titleLabel.text=[NSString stringWithFormat:@"      %@",[dic objectForKey:@"title"]];
+                titleLabel.text=[NSString stringWithFormat:@"      %@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
             }
                 break;
             case 2:{
                 Essence_imageV=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"2_31x31.png"]];
                 Essence_imageV.frame=CGRectMake(8, 14, 16, 16);
                 [imageviewcell addSubview:Essence_imageV];
-                titleLabel.text=[NSString stringWithFormat:@"      %@",[dic objectForKey:@"title"]];
+                titleLabel.text=[NSString stringWithFormat:@"      %@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
                 
             }
                 break;
@@ -1071,7 +1071,7 @@
                 Essence_imageV=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"3_31x31.png"]];
                 Essence_imageV.frame=CGRectMake(8, 14, 16, 16);
                 [imageviewcell addSubview:Essence_imageV];
-                titleLabel.text=[NSString stringWithFormat:@"      %@",[dic objectForKey:@"title"]];
+                titleLabel.text=[NSString stringWithFormat:@"      %@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
                 
             }
                 break;
@@ -1081,7 +1081,7 @@
     }else{
         button_more.hidden=NO;
         
-        titleLabel.text=[NSString stringWithFormat:@"                      %@",[dic objectForKey:@"title"]];
+        titleLabel.text=[NSString stringWithFormat:@"                      %@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
         
         
         trasactionstatelabel.frame=CGRectMake(1, 12, 65,20);
@@ -1104,7 +1104,7 @@
             locationlabel.frame = CGRectMake(8, 3, 50, 20);
             titleLabel.frame = CGRectMake(titleLabel.frame.origin.x-50,titleLabel.frame.origin.y, titleLabel.frame.size.width,titleLabel.frame.size.height);
             
-            titleLabel.text=[NSString stringWithFormat:@"           %@",[dic objectForKey:@"title"]];
+            titleLabel.text=[NSString stringWithFormat:@"           %@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
             
             
         }

@@ -870,7 +870,7 @@
         if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
             WXMediaMessage *message = [WXMediaMessage message];
             message.title = [zsnApi ddecodeSpecialCharactersStringWith:string_title];
-            message.description = string_title;
+            message.description = [zsnApi ddecodeSpecialCharactersStringWith:string_title];
             NSLog(@"????share==%@",self.imgforshare);
             
             [message setThumbImage:[UIImage imageNamed:@"Icon@2x.png"]] ;
@@ -956,7 +956,7 @@
             pageObject.description = [zsnApi ddecodeSpecialCharactersStringWith:string_title];
             pageObject.webpageUrl = string_url;
             WBMessageObject *message = [ [ WBMessageObject alloc ] init ];
-            message.text =[NSString stringWithFormat:@"%@（分享自@越野e族）",string_title] ;
+            message.text =[NSString stringWithFormat:@"%@（分享自@越野e族）",[zsnApi ddecodeSpecialCharactersStringWith:string_title]] ;
             
             message.mediaObject = pageObject;
             WBSendMessageToWeiboRequest *req = [ [  WBSendMessageToWeiboRequest alloc ] init  ];

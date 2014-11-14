@@ -24,8 +24,8 @@
 {
     if ([self init]) {
         _blogid=[conentJson objectForKey:BLOG_ID];
-        _title=[personal strReplace:[conentJson objectForKey:BLOG_TITLE]];
-        _content= [personal strReplace:[conentJson objectForKey:BLOG_CONTENT]==nil||[@"" isEqualToString:[conentJson objectForKey:BLOG_CONTENT]]?@"...":[conentJson objectForKey:BLOG_CONTENT]];
+        _title=[personal strReplace:[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:BLOG_TITLE]]];
+        _content= [personal strReplace:[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:BLOG_CONTENT]]==nil||[@"" isEqualToString:[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:BLOG_CONTENT]]]?@"...":[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:BLOG_CONTENT]]];
         _dateline=  [personal timestamp:[conentJson objectForKey:BLOG_DATELINE]];
         _photo=[conentJson objectForKey:BLOG_PHOTO];
         

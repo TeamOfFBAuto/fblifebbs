@@ -25,8 +25,8 @@
 {
     if ([self init])
     {
-        _title=[NSString stringWithFormat:@"%@",[conentJson objectForKey:FB_EX_TITLE]];
-        _forum_content = [NSString stringWithFormat:@"%@",[conentJson objectForKey:FB_EX_FORUM_CONTENT]];
+        _title=[NSString stringWithFormat:@"%@",[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:FB_EX_TITLE]]];
+        _forum_content = [NSString stringWithFormat:@"%@",[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:FB_EX_FORUM_CONTENT]]];
         
         _author=[NSString stringWithFormat:@"%@",[conentJson objectForKey:FB_EX_AUTHOR]];
         _authorid= [NSString stringWithFormat:@"%@",[conentJson objectForKey:FB_EX_AUTHORID]];

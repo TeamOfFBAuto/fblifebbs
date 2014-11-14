@@ -840,22 +840,53 @@
         if (_map_flg)
         {
             //带经纬度上传
-            fullURL = [NSString stringWithFormat:URLJWD,[contetn stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],@"0",[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD],longitude,lattitude,[map_name stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding]];
+            fullURL = [NSString stringWithFormat:URLJWD,[[zsnApi encodeSpecialCharactersString:contetn] stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],@"0",[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD],longitude,lattitude,[map_name stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding]];
             NSLog(@"地理位置信息1 =  %f---%f----%@",longitude,lattitude,map_name);
         }else
         {
-            fullURL = [NSString stringWithFormat:URL_UPLOAD,[contetn stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];
+            fullURL = [NSString stringWithFormat:URL_UPLOAD,[[zsnApi encodeSpecialCharactersString:contetn] stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];
         }
+//        http://fb.fblife.com/openapi/index.php?mod=doweibo&code=add&content=%@&imgid=%@&fromtype=b5eeec0b&authkey=%@&jing_lng=%f&wei_lat=%f&locality=%@&map=google&fbtype=json
+        
+        ASIFormDataRequest * up_request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://fb.fblife.com/openapi/index.php?mod=doweibo&code=add&fromtype=b5eeec0b&map=google&fbtype=json"]];
+        [up_request setPostValue:[zsnApi encodeSpecialCharactersString:contetn] forKey:@"content"];
+        [up_request setPostValue:[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD] forKey:@"authkey"];
+        [up_request setPostValue:[NSString stringWithFormat:@"%f",longitude] forKey:@"jing_lng"];
+        [up_request setPostValue:[NSString stringWithFormat:@"%f",lattitude] forKey:@"wei_lat"];
+        [up_request setPostValue:map_name forKey:@"locality"];
+        
+        __weak typeof(self)bself = self;
+        __weak typeof(up_request)brequest = up_request;
+        [brequest setCompletionBlock:^{
+            nav.userInteractionEnabled = YES;
+            [hud hide];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshmydata" object:myTextView.text];
+            
+            [bself dismissViewControllerAnimated:YES completion:NULL];
+            NSLog(@"request.tag22222 = 2 ==%@",[brequest responseString]);
+        }];
+        
+        [brequest setFailedBlock:^{
+            NSLog(@"error = %@",brequest.error);
+            
+            [bself saveWeiBo];
+            
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络不稳定,已保存到草稿箱" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
+            alertView.delegate = self;
+            [alertView show];
+        }];
+        
+        [up_request startAsynchronous];
+        
         
         NSLog(@"18请求的url：%@",fullURL);
-        
+        /*
         
         ASIHTTPRequest * request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullURL]];
         request.tag = 3;
         request.delegate = self;
-        
         [request startAsynchronous];
-        
+        */
     }
     
     
@@ -988,17 +1019,54 @@
                     contetn = @"分享图片";
                 }
                 
+                //        http://fb.fblife.com/openapi/index.php?mod=doweibo&code=add&content=%@&imgid=%@&fromtype=b5eeec0b&authkey=%@&jing_lng=%f&wei_lat=%f&locality=%@&map=google&fbtype=json
+                
+                ASIFormDataRequest * up_request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://fb.fblife.com/openapi/index.php?mod=doweibo&code=add&fromtype=b5eeec0b&map=google&fbtype=json"]];
+                [up_request setPostValue:[zsnApi encodeSpecialCharactersString:contetn] forKey:@"content"];
+                [up_request setPostValue:[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD] forKey:@"authkey"];
+                [up_request setPostValue:[NSString stringWithFormat:@"%f",longitude] forKey:@"jing_lng"];
+                [up_request setPostValue:[NSString stringWithFormat:@"%f",lattitude] forKey:@"wei_lat"];
+                [up_request setPostValue:map_name forKey:@"locality"];
+                [up_request setPostValue:authod forKey:@"imgid"];
+                
+                __weak typeof(self)bself = self;
+                __weak typeof(up_request)brequest = up_request;
+                [brequest setCompletionBlock:^{
+                    nav.userInteractionEnabled = YES;
+                    [hud hide];
+                    NSDictionary * jieguo = [brequest.responseData objectFromJSONData];
+                    
+                    NSLog(@"request.tag1111 = 2 ==%@",[jieguo objectForKey:@"data"]);
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshmydata" object:myTextView.text];
+                    
+                    [bself dismissViewControllerAnimated:YES completion:NULL];
+                }];
+                
+                [brequest setFailedBlock:^{
+                    NSLog(@"error = %@",brequest.error);
+                    
+                    [bself saveWeiBo];
+                    
+                    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络不稳定,已保存到草稿箱" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
+                    alertView.delegate = self;
+                    [alertView show];
+                }];
+                
+                [up_request startAsynchronous];
+
+                
+                /*
                 
                 NSString* fullURL;
                 if (_map_flg)
                 {
                     _map_flg=NO;
                     //带经纬度上传
-                    fullURL = [NSString stringWithFormat:URLJWD,[contetn stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[authod stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD],longitude,lattitude,[map_name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                    fullURL = [NSString stringWithFormat:URLJWD,[[zsnApi encodeSpecialCharactersString:contetn] stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[authod stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD],longitude,lattitude,[map_name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
                     
                 }else
                 {
-                    fullURL = [NSString stringWithFormat:URLIMAGEID,[contetn stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[authod stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];
+                    fullURL = [NSString stringWithFormat:URLIMAGEID,[[zsnApi encodeSpecialCharactersString:contetn] stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[authod stringByAddingPercentEscapesUsingEncoding:  NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD]];
                 }
                 
                 NSLog(@"19请求的url：%@",fullURL);
@@ -1009,6 +1077,8 @@
                 request1.delegate = self;
                 
                 [request1 startAsynchronous];
+                 
+                 */
             }else
             {
                 nav.userInteractionEnabled = YES;

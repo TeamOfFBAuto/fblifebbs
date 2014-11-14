@@ -293,7 +293,7 @@
                 
                 BBSfenduiViewController * fendui = [[BBSfenduiViewController alloc] init];
                 fendui.string_id = model.ranking_id;
-//                fendui.collection_array = bself.forum_section_collection_array;
+                //                fendui.collection_array = bself.forum_section_collection_array;
                 fendui.hidesBottomBarWhenPushed = YES;
                 [bself.navigationController pushViewController:fendui animated:YES];
             }
@@ -352,9 +352,9 @@
 
 -(void)loadChangshiData{
     
-//        [allArr removeAllObjects];
-//        [_mainTabV reloadData];
-//    allArr=[NSMutableArray array];
+    //        [allArr removeAllObjects];
+    //        [_mainTabV reloadData];
+    //    allArr=[NSMutableArray array];
     
     
     
@@ -383,9 +383,9 @@
         hudView=[LTools MBProgressWithText:LOADING_TITLE addToView:self.view];
         
         
-      //  [hudView show:YES];
+        //  [hudView show:YES];
         
-//        __weak typeof(hudView)weakview=hudView;
+        //        __weak typeof(hudView)weakview=hudView;
         
         
         SzkLoadData *loadda=[[SzkLoadData alloc]init];
@@ -438,7 +438,7 @@
     preTag=sender.tag;
     
     [newsScrow setContentOffset:CGPointMake(DEVICE_WIDTH*(sender.tag-9000), 0)];
-
+    
     switch (sender.tag) {
         case 9000:
         {
@@ -550,10 +550,10 @@
         
         
         __weak typeof(allArr)weakAllArr=allArr;
-
+        
         // __weak typeof(self) weself=self;
         ChangshiModel *model=[allArr objectAtIndex:indexPath.row];
-
+        
         [loaddata SeturlStr:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/delfavorites.php?delid=%@&formattype=json&authcode=%@",model.fid,[personal getMyAuthkey]] mytest:^(NSDictionary *dicinfo, int errcode) {
             
             NSLog(@"取消该收藏的dic==%@",dicinfo);
@@ -561,17 +561,17 @@
             
             if ([[dicinfo objectForKey:@"errcode"] intValue]==0) {
                 [weakAllArr removeObjectAtIndex:[indexPath row]];  //删除数组里的数据
-
+                
                 
                 [tableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];  //删除对应数据的cell
-
-
+                
+                
             }
             
             
         }];
         
-
+        
         
     }
 }
@@ -580,21 +580,36 @@
 
 #pragma mark---scrowview的代理
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-
+    
     if (scrollView==newsScrow) {
         
         
         
         
     }
-
-
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:NO];
     [self setHidesBottomBarWhenPushed:NO];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    UIButton *preButton=(UIButton *)[self.view viewWithTag:9002];
+    
+    
+    if (![defaults boolForKey:USER_IN]) {
+        
+        [self doActionButton:preButton];
+        
+        return;
+        
+    }
+    
+    
     
     [self loadChangshiData];
     

@@ -1,7 +1,7 @@
 //
 //  commrntbbdViewController.m
 //  FbLife
-//
+//zzz
 //  Created by 史忠坤 on 13-3-19.
 //  Copyright (c) 2013年 szk. All rights reserved.
 //
@@ -100,25 +100,25 @@
     
     
     
-//    //创建barbutton 创建系统样式的
-//    button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,IOS_VERSION>=7.0?0:8,12,21.5)];
-//    
-//    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-//    
+    //    //创建barbutton 创建系统样式的
+    //    button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,IOS_VERSION>=7.0?0:8,12,21.5)];
+    //
+    //    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+    //    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    //
     
     //创建barbutton 创建系统样式的
     button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,0,30,44)];
     
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    //    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
     
     [button_back setImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
-
-//    button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,31/2,32/2)];
-//    
-//    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-//    [button_back setBackgroundImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
+    
+    //    button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,31/2,32/2)];
+    //
+    //    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+    //    [button_back setBackgroundImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
     
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
     NavTitle.leftBarButtonItems=@[space_button,back_item];
@@ -427,9 +427,7 @@
     //    request__.delegate=nil;
     
     
-    faceScrollView.hidden = YES;
     
-    morePicImageView.hidden = YES;
     
     if (![_contenttextview.text isEqualToString:@""] || ![subjectTextfield.text isEqualToString:@""] || allImageArray.count != 0 || [_contenttextview.text isEqualToString:string_content] || [subjectTextfield.text isEqualToString:string_subject])
     {
@@ -439,7 +437,9 @@
         
     }else
     {
+        faceScrollView.hidden = YES;
         
+        morePicImageView.hidden = YES;
         [self dismissViewControllerAnimated:YES completion:nil];
         
     }
@@ -491,15 +491,24 @@
             NSLog(@"fatie===%d",huizhuti);
             
         }
+        faceScrollView.hidden = YES;
+        
+        morePicImageView.hidden = YES;
         [self dismissViewControllerAnimated:YES completion:nil];
         
     }else if(buttonIndex == 1)
     {
+        faceScrollView.hidden = YES;
+        
+        morePicImageView.hidden = YES;
         //[_tool stop];
         //        _tool.delegate=nil;
         //        request__.delegate=nil;
         
         [self dismissViewControllerAnimated:YES completion:nil];
+    } else{
+        
+        NSLog(@"xxxxoooo===%d",buttonIndex);
     }
 }
 
@@ -566,18 +575,18 @@
             [alertview_ show];
         }else
         {    [self updateLoading];
-
+            
             [_tool setUrl_string:[NSString stringWithFormat: @"http://bbs.fblife.com/bbsapinew/postthread.php?fid=%@&&subject=%@&message=%@&formattype=json&authcode=%@",self.string_fid,[subjectTextfield.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[_contenttextview.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD]]];
         }
         
     }else if([self.string_distinguish isEqualToString:@"回帖"])
     {    [self updateLoading];
-
+        
         [_tool setUrl_string:[NSString stringWithFormat: @"http://bbs.fblife.com/bbsapinew/postreply.php?fid=%@&tid=%@&subject=%@&message=%@&formattype=json&authcode=%@",self.string_fid,self.string_tid,[subjectTextfield.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[_contenttextview.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD]]];
     }else{
         NSLog(@"回复某一楼层");
         [self updateLoading];
-
+        
         [_tool setUrl_string:[NSString stringWithFormat: @"http://bbs.fblife.com/bbsapinew/quote.php?fid=%@&tid=%@&pid=%@&message=%@&number=%@&formattype=json&authcode=%@",self.string_fid,self.string_tid,self.string_pid,[_contenttextview.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],self.string_floor,[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD]]];
         
     }

@@ -100,24 +100,45 @@
     
     
     //帖子版块用户下面的view
-    UIView *selectview=[[UIView alloc]initWithFrame:CGRectMake(0,IOS_VERSION>=7?64: 44, self.view.bounds.size.width, 44)];
+//    UIView *selectview=[[UIView alloc]initWithFrame:CGRectMake(0,IOS_VERSION>=7?64: 44, self.view.bounds.size.width, 44)];
+//    selectview.backgroundColor=RGBACOLOR(247, 247, 247, 1);
+//    [searchheaderview addSubview:selectview];
+//    mysegment=[[CustomSegmentView alloc]initWithFrame:CGRectMake(12, (44-28.5)/2, self.view.bounds.size.width-24, 57/2)];
+//    [mysegment setAllViewWithArray:[NSArray arrayWithObjects:@"ios7_newsunselect.png",@"ios7_bbsunselect.png",@"ios7_userunselect.png", @"ios7_newsselected.png",@"ios7_bbsselected.png",@"userselected.png",nil]];
+//    
+//    [mysegment settitleWitharray:[NSArray arrayWithObjects:@"帖子",@"版块",@"用户", nil]];
+//    [selectview addSubview:mysegment];
+//    mysegment.delegate=self;
+//    
+//    
+//    UIImageView *imgvline=[[UIImageView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:44, self.view.bounds.size.width, 1)];
+//    imgvline.image=[UIImage imageNamed:@"line-2.png"];
+//    [searchheaderview addSubview:imgvline];
+    
+    
+    
+    UIView *selectview=[[UIView alloc]initWithFrame:CGRectMake(0,IOS_VERSION>=7?64: 44, DEVICE_WIDTH, 44)];
     selectview.backgroundColor=RGBACOLOR(247, 247, 247, 1);
     [searchheaderview addSubview:selectview];
-    mysegment=[[CustomSegmentView alloc]initWithFrame:CGRectMake(12, (44-28.5)/2, self.view.bounds.size.width-24, 57/2)];
-    [mysegment setAllViewWithArray:[NSArray arrayWithObjects:@"ios7_newsunselect.png",@"ios7_bbsunselect.png",@"ios7_userunselect.png", @"ios7_newsselected.png",@"ios7_bbsselected.png",@"userselected.png",nil]];
+    mysegment=[[CustomSegmentView alloc]initWithFrame:CGRectMake(12, (44-28.5)/2, DEVICE_WIDTH-20, 57/2)];
+    [mysegment setAllViewWithArray:[NSArray arrayWithObjects:@"ios7_newsunselect.png",@"ios7_fbunselect.png",@"ios7_userunselect.png", @"ios7_newsselected.png",@"ios7_fbselected.png",@"userselected.png",nil]];
     [mysegment settitleWitharray:[NSArray arrayWithObjects:@"帖子",@"版块",@"用户", nil]];
+    // mysegment.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"segbackground.png"]];
     [selectview addSubview:mysegment];
     mysegment.delegate=self;
     
-    
-    UIImageView *imgvline=[[UIImageView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:44, self.view.bounds.size.width, 1)];
+    UIImageView *imgvline=[[UIImageView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:44, DEVICE_WIDTH, 1)];
     imgvline.image=[UIImage imageNamed:@"line-2.png"];
     [searchheaderview addSubview:imgvline];
     
     
     
+    
+    
+    
+    
     cancelButton=[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_searchbar.frame)+3, 6, 40, 61/2)];
-//    cancelButton.backgroundColor = [UIColor redColor];
+
     cancelButton.userInteractionEnabled=YES;
     //  [ cancelButton setBackgroundImage:[UIImage imageNamed:@"searchcancell.png"] forState:UIControlStateNormal];
     [cancelButton setTitle:@"取消"  forState:UIControlStateNormal];//文字

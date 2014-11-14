@@ -329,7 +329,7 @@
     
     if (section == 0) {
         
-        return 70-17;
+        return 70-18;
         
     }else if (section == 2){
         
@@ -593,7 +593,10 @@
         
         GmFoundScanViewController *ggg = [[GmFoundScanViewController alloc]init];
         ggg.delegate = self;
-        [self presentViewController:ggg animated:YES completion:^{
+        
+        UINavigationController *ddd = [[UINavigationController alloc]initWithRootViewController:ggg];
+        
+        [self presentViewController:ddd animated:YES completion:^{
             
         }];
         

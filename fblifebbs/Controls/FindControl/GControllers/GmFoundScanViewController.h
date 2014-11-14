@@ -13,7 +13,7 @@
 
 @class FindViewController;
 
-@interface GmFoundScanViewController : UIViewController<AVCaptureMetadataOutputObjectsDelegate,UIAlertViewDelegate>
+@interface GmFoundScanViewController : SNViewController<AVCaptureMetadataOutputObjectsDelegate,UIAlertViewDelegate>
 {
     int num;
     BOOL upOrdown;

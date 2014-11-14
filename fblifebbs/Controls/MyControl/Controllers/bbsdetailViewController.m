@@ -856,12 +856,8 @@
         if ([[NSUserDefaults standardUserDefaults] boolForKey:USER_IN])
         {
             WriteBlogViewController * writeBlogView = [[WriteBlogViewController alloc] init];
-            
-            writeBlogView.theText = [NSString stringWithFormat:@"分享论坛:“%@”,链接:%@",string_title,string_url] ;
-            
-            [self presentModalViewController:writeBlogView animated:YES];
-            
-            
+            writeBlogView.theText = [NSString stringWithFormat:@"分享论坛:“%@”,链接:%@",[zsnApi ddecodeSpecialCharactersStringWith:string_title],string_url] ;
+            [self presentViewController:writeBlogView animated:YES completion:nil];
         }
         else{
             //没有激活fb，弹出激活提示
@@ -873,7 +869,7 @@
     }else if(buttonIndex==2){
         if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
             WXMediaMessage *message = [WXMediaMessage message];
-            message.title = string_title;
+            message.title = [zsnApi ddecodeSpecialCharactersStringWith:string_title];
             message.description = string_title;
             NSLog(@"????share==%@",self.imgforshare);
             
@@ -913,7 +909,7 @@
         //
         //        snsPlatform.snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
         
-        NSString *string_bodyofemail=[NSString stringWithFormat:@"%@ \n %@ \n\n 下载越野e族客户端 http://mobile.fblife.com/download.php",string_title,string_url] ;
+        NSString *string_bodyofemail=[NSString stringWithFormat:@"%@ \n %@ \n\n 下载越野e族客户端 http://mobile.fblife.com/download.php",[zsnApi ddecodeSpecialCharactersStringWith:string_title],string_url] ;
         [self okokokokokokowithstring:string_bodyofemail];
         
         
@@ -923,8 +919,8 @@
         
         if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
             WXMediaMessage *message = [WXMediaMessage message];
-            message.title = string_title;
-            message.description = string_title;
+            message.title = [zsnApi ddecodeSpecialCharactersStringWith:string_title];
+            message.description = [zsnApi ddecodeSpecialCharactersStringWith:string_title];
             NSLog(@"????share==%@",self.imgforshare);
             
             [message setThumbImage:[UIImage imageNamed:@"Icon@2x.png"]] ;
@@ -957,7 +953,7 @@
             pageObject.objectID =@"nimeideid";
             pageObject.thumbnailData =UIImageJPEGRepresentation([UIImage imageNamed:@"Icon@2x.png"], 1);
             pageObject.title = @"分享自越野e族客户端";
-            pageObject.description = string_title;
+            pageObject.description = [zsnApi ddecodeSpecialCharactersStringWith:string_title];
             pageObject.webpageUrl = string_url;
             WBMessageObject *message = [ [ WBMessageObject alloc ] init ];
             message.text =[NSString stringWithFormat:@"%@（分享自@越野e族）",string_title] ;
@@ -974,13 +970,6 @@
             [myAlert show];
         
         }
-        
-        
-       
-        
-        
-        
-        
     }
     //分享编辑页面的接口
     //

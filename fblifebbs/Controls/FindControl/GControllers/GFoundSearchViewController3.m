@@ -154,6 +154,7 @@
 {
     
     [request_search clearDelegatesAndCancel];
+    [_searchbar resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];

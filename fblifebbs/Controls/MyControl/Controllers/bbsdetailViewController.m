@@ -62,6 +62,17 @@
     }
     return self;
 }
+
+- (void)dealloc
+{
+    all_tool.delegate = nil;
+    authortool.delegate = nil;
+    hud.delegate = nil;
+    hud = nil;
+    
+    NSLog(@"%s",__FUNCTION__);
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     
     [MobClick beginEvent:@"bbsdetailViewController"];

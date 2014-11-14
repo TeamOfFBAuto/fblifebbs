@@ -55,7 +55,7 @@
 
     
         
-        if (![defaults boolForKey:USER_IN]) {
+    if (![defaults boolForKey:USER_IN]) {
             
             LogInViewController *login = [[LogInViewController alloc] init];
             
@@ -114,6 +114,8 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginOut:) name:@"logoutToChangeHeader" object:nil];
+    
     images_arr = @[@"",@"",@"",@"shoucang@2x.png",@"tiezi@2x.png",@"friend_my@2x.png",@"",@"mingpian@2x.png",@"youxiang@2x.png",@"lishijilu@2x.png"];
     names_arr = @[@"",@"",@"",@"我的收藏",@"我的帖子",@"我的好友",@"",@"我的名片",@"草稿箱",@"历史浏览"];
     
@@ -125,6 +127,20 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+/**
+ *  退出登录通知
+ */
+- (void)loginOut:(NSNotification *)notify
+{
+    [LTools cache:nil ForKey:@"userInfo"];
+    
+    NSDictionary *dic = [LTools cacheForKey:@"userInfo"];
+    
+    UserModel *user = [[UserModel alloc]initWithDictionary:dic];
+    
+    [self getDataWithUserModel:user];
 }
 
 - (void)loginSuccess:(NSNotification *)notify
@@ -191,6 +207,9 @@
     
     headerCell.nameLabel.width = [LTools widthForText:user.username font:16];
     
+    
+    headerCell.genderImage.hidden = NO;
+    
     if ([user.gender integerValue] == 1) {
         NSLog(@"man");
         
@@ -198,15 +217,18 @@
         
         headerCell.genderImage.selected = NO;
         
-    }else
+    }else if([user.gender integerValue] == 0)
     {
         NSLog(@"women");
         
         headerCell.genderImage.selected = YES;
         
+    }else
+    {
+        headerCell.genderImage.hidden = YES;
+        NSLog(@"未知 sex");
     }
     
-    headerCell.genderImage.hidden = NO;
     
     headerCell.genderImage.left = headerCell.nameLabel.right + 10;
     

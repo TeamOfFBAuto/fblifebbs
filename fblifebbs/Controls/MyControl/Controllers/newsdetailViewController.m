@@ -123,7 +123,12 @@
     //  self.navigationController.navigationBarHidden = YES;
 }
 
-
+-(void)dealloc
+{
+    newstool.delegate = nil;
+    newstool = nil;
+    
+}
 
 - (void)viewDidLoad
 {
@@ -543,14 +548,6 @@
 
 }
 
--(void)dealloc
-{
-    
-    
-    
-
-
-}
 
 #pragma mark--点赞的
 

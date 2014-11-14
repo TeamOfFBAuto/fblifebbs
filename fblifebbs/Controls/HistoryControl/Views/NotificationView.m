@@ -36,6 +36,7 @@
 
 -(void)setup
 {
+    self.backgroundColor = RGBCOLOR(238,238,238);
     uread_array = [NSMutableArray array];
     read_array = [NSMutableArray array];
     bbs_array = [NSMutableArray array];
@@ -345,8 +346,8 @@
         
     }
     
-    cell.backgroundColor = RGBCOLOR(248,248,248);
-    cell.contentView.backgroundColor = RGBCOLOR(248,248,248);
+    cell.backgroundColor = RGBCOLOR(238,238,238);
+    cell.contentView.backgroundColor = RGBCOLOR(238,238,238);
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     return cell;

@@ -416,24 +416,29 @@
             
             NSDictionary * dic = [data objectFromJSONData];
             
+            NSLog(@"开通微博数据 -----  %@ ----  %@",[dic objectForKey:@"errcode"],[dic objectForKey:@"data"]);
             if ([[dic objectForKey:@"errcode"] intValue] == 1)
             {
                 NSLog(@"开通成功");
                 
-                [self loadDown];
-                
-                //激活成功保存用户信息
-                [[NSUserDefaults standardUserDefaults] setObject:userNameField.text forKey:USER_NAME] ;
+                //登陆成功保存用户信息
+                //                [[NSUserDefaults standardUserDefaults] setObject:userNameField.text forKey:USER_NAME] ;
                 [[NSUserDefaults standardUserDefaults] setObject:pwNameField.text forKey:USER_PW] ;
                 [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"bbsinfo"] forKey:USER_AUTHOD] ;
-                // [[NSUserDefaults standardUserDefaults]setObject:[dictionary objectForKey:@""] forKey:<#(NSString *)#>];
+                [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"uid"] forKey:USER_UID] ;
+                [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"username"] forKey:USER_NAME] ;
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_IN];
                 [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:USER_AUTHOD object:[dictionary objectForKey:@"bbsinfo"]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGIN_SUCCESS object:nil];
+                
                 [self.delegate successToLogIn];
                 pwNameField.text = @"";
+                
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"LogIn" object:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:USER_AUTHOD object:[dictionary objectForKey:@"bbsinfo"]];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"clearolddata" object:nil];
+                
+                [self loadDown];
                 
                 [self dismissViewControllerAnimated:YES completion:NULL];
             }else

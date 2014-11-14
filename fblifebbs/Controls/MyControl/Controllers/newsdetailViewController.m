@@ -128,6 +128,8 @@
     newstool.delegate = nil;
     newstool = nil;
     
+    [newstool stop];
+    
 }
 
 - (void)viewDidLoad

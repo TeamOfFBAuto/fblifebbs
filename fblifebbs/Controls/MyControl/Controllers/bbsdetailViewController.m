@@ -65,8 +65,11 @@
 
 - (void)dealloc
 {
-    all_tool.delegate = nil;
-    authortool.delegate = nil;
+    
+    [all_tool stop];
+    
+    [authortool stop];
+    
     hud.delegate = nil;
     hud = nil;
     

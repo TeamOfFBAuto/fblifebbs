@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 #import "GFoundSearchViewController3.h"//搜索   用户 帖子 论坛
 #import "GwebViewController.h"//商城
-
+#import "fbWebViewController.h"
 
 @interface FindViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {

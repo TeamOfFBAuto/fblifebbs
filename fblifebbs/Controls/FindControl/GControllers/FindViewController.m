@@ -575,7 +575,7 @@
         
     }else if (indexPath.row == 0 && indexPath.section == 3){//e族新闻
         
-        GwebViewController * cc = [[GwebViewController alloc]init];
+        fbWebViewController * cc = [[fbWebViewController alloc]init];
         
         cc.urlstring = @"http://m.fblife.com/news";
         
@@ -583,7 +583,7 @@
         
     }else if (indexPath.row == 1 && indexPath.section == 3){//e族商城
         
-        GwebViewController * vv = [[GwebViewController alloc]init];
+        fbWebViewController * vv = [[fbWebViewController alloc]init];
         
         vv.urlstring = @"http://m.fblife.com/mall/";
         
@@ -612,7 +612,7 @@
 //扫一扫的回调方法 代理方法
 -(void)pushWebViewWithStr:(NSString *)stringValue{
     NSLog(@"%s",__FUNCTION__);
-    GwebViewController *fbwebvc = [[GwebViewController alloc]init];
+    fbWebViewController *fbwebvc = [[fbWebViewController alloc]init];
     fbwebvc.urlstring = stringValue;
     [self  PushControllerWith:fbwebvc WithAnimation:YES];
     

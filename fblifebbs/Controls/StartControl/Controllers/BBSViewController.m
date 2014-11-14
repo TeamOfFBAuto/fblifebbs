@@ -944,7 +944,8 @@
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     GFoundSearchViewController3 * search = [[GFoundSearchViewController3 alloc] init];
-    [self PushControllerWith:search WithAnimation:YES];
+    UINavigationController * naVC = [[UINavigationController alloc] initWithRootViewController:search];
+    [self presentViewController:naVC animated:YES completion:nil];
     
     return NO;
 }

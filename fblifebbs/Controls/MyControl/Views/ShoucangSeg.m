@@ -58,7 +58,7 @@
         
         if (index == i)
         {
-            lineImageView.center = CGPointMake(button.center.x,self.frame.size.height-1);
+            lineImageView.center = CGPointMake(button.center.x,self.frame.size.height);
         }
         
          button.tag = 100 + i;
@@ -101,7 +101,7 @@
     }
     
     [UIView animateWithDuration:0.3 animations:^{
-        lineImageView.center = CGPointMake(sender.center.x,self.frame.size.height-1);
+        lineImageView.center = CGPointMake(sender.center.x,self.frame.size.height);
     } completion:^(BOOL finished) {
         
     }];
@@ -113,7 +113,7 @@
     UIButton * sender = (UIButton *)[self viewWithTag:index+100];
     
     [UIView animateWithDuration:0.3 animations:^{
-        lineImageView.center = CGPointMake(sender.center.x,self.frame.size.height-1);
+        lineImageView.center = CGPointMake(sender.center.x,self.frame.size.height);
     } completion:^(BOOL finished) {
         
     }];

@@ -1363,10 +1363,11 @@
 +(NSString *)ddecodeSpecialCharactersStringWith:(NSString *)input
 {
     input = [input stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-    input = [input stringByReplacingOccurrencesOfString:@"quot;" withString:@"\""];
+    input = [input stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
     input = [input stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];
     input = [input stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
     input = [input stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    input = [input stringByReplacingOccurrencesOfString:@"&#8226;" withString:@"•"];
     return input;
 }
 

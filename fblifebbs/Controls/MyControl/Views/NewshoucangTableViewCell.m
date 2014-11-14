@@ -79,7 +79,7 @@
             
             _newsView.frame=self.bounds;
             
-            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
+            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
             _pindaoLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"channel_name"]];
             _timeLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"dateline"]];
             
@@ -107,7 +107,7 @@
             
             _newsView.frame=self.bounds;
             
-            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"subject"]];
+            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"subject"]]];
             _pindaoLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"forumname"]];
             _timeLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"dateline"]];
             
@@ -136,7 +136,7 @@
             
             _newsView.frame=self.bounds;
             
-            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
+            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"name"]]];
 
             _bigTitleLabel.frame=CGRectMake(12, 12, DEVICE_WIDTH-24, 20);
             
@@ -155,7 +155,7 @@
         {
             _newsView.frame=self.bounds;
             
-            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
+            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
           //  _pindaoLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"forumname"]];
             _timeLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"dateline"]];
             
@@ -188,7 +188,7 @@
             
             _newsView.frame=self.bounds;
             
-            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"subject"]];
+            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"subject"]]];
             _pindaoLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"forumname"]];
             _timeLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"dateline"]];
             
@@ -215,7 +215,7 @@
             
             _newsView.frame=self.bounds;
             
-            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"subject"]];
+            _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"subject"]]];
             _pindaoLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"forumname"]];
             _timeLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"dateline"]];
             

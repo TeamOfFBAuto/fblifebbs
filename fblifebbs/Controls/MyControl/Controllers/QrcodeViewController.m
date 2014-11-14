@@ -104,7 +104,7 @@
     
     
     
-    self.navigationItem.title = @"二维码";
+    self.navigationItem.title = @"我的名片";
     
     UIImageView *centerimgkuang=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ios7_erweima533_700.png"]];
     centerimgkuang.center=CGPointMake(DEVICE_WIDTH / 2.f, (DEVICE_HEIGHT - 64)/2);

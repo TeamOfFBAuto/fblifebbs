@@ -32,8 +32,14 @@
 -(void)setAllViewsWith:(NSArray *)array index:(int)index
 {
     if (array.count==2) {
-        lineImageView.frame=CGRectMake(0,self.frame.size.height,self.frame.size.width/array.count-47,1);
-
+        
+        CGFloat aWidth = 0.f;
+        NSString *title = [array objectAtIndex:0];
+        
+        aWidth = 18.f * title.length;
+        
+        lineImageView.frame=CGRectMake(0,self.frame.size.height,aWidth,1);
+//        lineImageView.frame=CGRectMake(0,self.frame.size.height,self.frame.size.width/array.count-47,1);
     }
     
     for (int i = 0;i < array.count;i++)

@@ -26,7 +26,7 @@
 #import "ComprehensiveViewController.h"
 #import "AFNetworkReachabilityManager.h"
 
-#define WXAPPID @"wx4fb411c415f89047"//综合客户端key,未更换
+#define WXAPPID @"wxda592c816f3e5c23"
 #define SINAAPPID @"1552967260"
 #define UMENG_APPKEY @"54646d3efd98c5657c005abc"
 

@@ -1,7 +1,7 @@
 //
 //  commrntbbdViewController.m
 //  FbLife
-//
+//zzz
 //  Created by 史忠坤 on 13-3-19.
 //  Copyright (c) 2013年 szk. All rights reserved.
 //
@@ -427,9 +427,7 @@
     //    request__.delegate=nil;
     
     
-    faceScrollView.hidden = YES;
-    
-    morePicImageView.hidden = YES;
+
     
     if (![_contenttextview.text isEqualToString:@""] || ![subjectTextfield.text isEqualToString:@""] || allImageArray.count != 0 || [_contenttextview.text isEqualToString:string_content] || [subjectTextfield.text isEqualToString:string_subject])
     {
@@ -439,7 +437,9 @@
         
     }else
     {
+        faceScrollView.hidden = YES;
         
+        morePicImageView.hidden = YES;
         [self dismissViewControllerAnimated:YES completion:nil];
         
     }
@@ -491,15 +491,24 @@
             NSLog(@"fatie===%d",huizhuti);
             
         }
+        faceScrollView.hidden = YES;
+        
+        morePicImageView.hidden = YES;
         [self dismissViewControllerAnimated:YES completion:nil];
         
     }else if(buttonIndex == 1)
     {
+        faceScrollView.hidden = YES;
+        
+        morePicImageView.hidden = YES;
         //[_tool stop];
         //        _tool.delegate=nil;
         //        request__.delegate=nil;
         
         [self dismissViewControllerAnimated:YES completion:nil];
+    } else{
+    
+        NSLog(@"xxxxoooo===%d",buttonIndex);
     }
 }
 

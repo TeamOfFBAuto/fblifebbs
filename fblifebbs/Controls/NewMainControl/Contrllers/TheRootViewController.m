@@ -596,6 +596,21 @@
     [super viewWillAppear:NO];
     [self setHidesBottomBarWhenPushed:NO];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    UIButton *preButton=(UIButton *)[self.view viewWithTag:9002];
+
+    
+    if (![defaults boolForKey:USER_IN]) {
+    
+        [self doActionButton:preButton];
+    
+        return;
+    
+    }
+    
+    
+    
     [self loadChangshiData];
     
     [self loadRecentlyLookData];

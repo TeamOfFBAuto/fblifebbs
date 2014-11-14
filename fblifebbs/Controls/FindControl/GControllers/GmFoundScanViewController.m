@@ -16,7 +16,9 @@
 
 
 @interface GmFoundScanViewController ()
-
+{
+    UIImageView * _fourJiaoImageView;
+}
 @end
 
 @implementation GmFoundScanViewController
@@ -79,14 +81,14 @@
     
     
     //四个角
-    UIImageView * imageView = [[UIImageView alloc]initWithFrame:ScanKuangFrame];
-    imageView.image = [UIImage imageNamed:@"fkuang.png"];
-    [self.view addSubview:imageView];
+    _fourJiaoImageView = [[UIImageView alloc]initWithFrame:ScanKuangFrame];
+    _fourJiaoImageView.image = [UIImage imageNamed:@"fkuang.png"];
+    [self.view addSubview:_fourJiaoImageView];
     
     
     //文字提示label
     
-    UILabel *tishiLabel = [[UILabel alloc]initWithFrame:CGRectMake(imageView.frame.origin.x, CGRectGetMaxY(imageView.frame)+28, imageView.frame.size.width, 12)];
+    UILabel *tishiLabel = [[UILabel alloc]initWithFrame:CGRectMake(_fourJiaoImageView.frame.origin.x, CGRectGetMaxY(_fourJiaoImageView.frame)+28, _fourJiaoImageView.frame.size.width, 12)];
     tishiLabel.font = [UIFont systemFontOfSize:12];
     tishiLabel.textColor = [UIColor whiteColor];
     tishiLabel.backgroundColor = [UIColor clearColor];
@@ -163,11 +165,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:_fourJiaoImageView animated:YES];
     dispatch_async(dispatch_get_main_queue(), ^{
         if (!TARGET_IPHONE_SIMULATOR) {
             [self setupCamera];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideHUDForView:_fourJiaoImageView animated:YES];
         }
     });
 

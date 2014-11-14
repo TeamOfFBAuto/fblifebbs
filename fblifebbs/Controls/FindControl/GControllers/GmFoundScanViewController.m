@@ -229,7 +229,7 @@
     
     if ([string_uid isEqualToString:@"0"] || string_uid.length == 0 || [string_uid isEqual:[NSNull null]])
     {
-        if ([stringValue rangeOfString:@"http://"].length && [stringValue rangeOfString:@"."].length)
+        if (([stringValue rangeOfString:@"http://"].length && [stringValue rangeOfString:@"."].length)||([stringValue rangeOfString:@"https://"].length && [stringValue rangeOfString:@"."].length))
         {
             
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"是否打开此链接" message:stringValue delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -277,6 +277,10 @@
                 }];
                 
             }
+        }else{
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+            }];
         }
     }else if (alertView.tag == 30){
         [self dismissViewControllerAnimated:YES completion:^{

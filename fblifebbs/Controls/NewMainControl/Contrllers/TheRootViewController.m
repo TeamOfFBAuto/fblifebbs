@@ -612,7 +612,6 @@
  
     
     
-    
     [self loadChangshiData];
     
     [self loadRecentlyLookData];

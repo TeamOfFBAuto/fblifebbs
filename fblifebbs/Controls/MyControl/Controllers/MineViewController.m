@@ -301,7 +301,7 @@
     cell.aTitleLabel.text = [names_arr objectAtIndex:indexPath.row];
     cell.bottomLine.height = 0.5f;
     
-    if (indexPath.row == images_arr.count - 1) {
+    if (indexPath.row == images_arr.count - 1 || indexPath.row == 5) {
         cell.bottomLine.hidden = YES;
     }else{
         cell.bottomLine.hidden = NO;

@@ -25,7 +25,7 @@
         
         self.ranking_num = [zsnApi exchangeStringForDeleteNULL:[dic objectForKey:@"num"]];
         
-        self.ranking_title = [zsnApi exchangeStringForDeleteNULL:[dic objectForKey:@"title"]];
+        self.ranking_title = [zsnApi exchangeStringForDeleteNULL:[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
     }
     
     return self;

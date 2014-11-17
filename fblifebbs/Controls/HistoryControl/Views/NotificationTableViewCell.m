@@ -55,11 +55,11 @@
     
     CGSize constraintSize = CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT);
     CGSize labelSize = [content_string sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-    _content_label.frame=CGRectMake(72, 38,DEVICE_WIDTH-100, labelSize.height+1);
+    _content_label.frame=CGRectMake(72,42,DEVICE_WIDTH-100, labelSize.height+1);
     _content_label.text = content_string;
     UIImage *image=[UIImage imageNamed:@"talk2.png"];
     _background_imageView.image = [image stretchableImageWithLeftCapWidth:22.f topCapHeight:22.f];
-    _background_imageView.frame=CGRectMake(57, 33, DEVICE_WIDTH-80,labelSize.height+10);
+    _background_imageView.frame=CGRectMake(57, 33, DEVICE_WIDTH-80,labelSize.height+20);
 }
 
 

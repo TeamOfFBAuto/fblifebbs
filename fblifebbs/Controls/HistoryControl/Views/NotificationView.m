@@ -916,7 +916,7 @@
             
         }
         CGSize constraintSize = CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT);
-        CGSize labelSize = [model.fb_content sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize labelSize = [model.fb_content sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
         
         return labelSize.height+60;
         
@@ -938,7 +938,7 @@
         
         NotificationBBSModel * model =[bbs_array objectAtIndex:indexPath.row];
         CGSize constraintSize = CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT);
-        CGSize labelSize = [model.message sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize labelSize = [model.message sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
         
         return labelSize.height+60;
     }

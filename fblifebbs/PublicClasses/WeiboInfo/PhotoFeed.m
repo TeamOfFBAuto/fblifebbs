@@ -23,7 +23,7 @@
         
         _aid=[NSString stringWithFormat:@"%@",[conentJson objectForKey:PHOTO_AID]];
         
-        _title=[NSString stringWithFormat:@"%@",[conentJson objectForKey:PHOTO_TITLE]];
+        _title=[NSString stringWithFormat:@"%@",[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:PHOTO_TITLE]]];
         _dateline=[personal timestamp:[conentJson objectForKey:PHOTO_DATELINE]];
         _image= [[conentJson objectForKey:PHOTO_CONTENT] componentsSeparatedByString:@"|"];
         

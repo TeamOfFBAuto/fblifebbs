@@ -61,6 +61,13 @@
 
     [self setTabbarViewcontroller];
     
+    
+    [[LTools shareInstance]versionForAppid:@"933737704" Block:^(BOOL isNewVersion, NSString *updateUrl, NSString *updateContent) {
+        
+        NSLog(@"updateContent %@ %@",updateUrl,updateContent);
+        
+    }];
+    
     return YES;
 }
 

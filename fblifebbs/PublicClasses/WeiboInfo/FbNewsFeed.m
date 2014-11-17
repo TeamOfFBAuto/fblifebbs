@@ -24,9 +24,9 @@
 {
     if ([self init])
     {
-        _title=[personal strReplace:[conentJson objectForKey:FB_BBS_TITLE] ];
+        _title=[personal strReplace:[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:FB_BBS_TITLE]] ];
         
-        _content=[personal strReplace:[conentJson objectForKey:FB_BBS_CONTENT]==nil||[@"" isEqualToString:[conentJson objectForKey:BLOG_CONTENT]]?@"...":[conentJson objectForKey:FB_BBS_CONTENT]];
+        _content=[personal strReplace:[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:FB_BBS_CONTENT]]==nil||[@"" isEqualToString:[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:BLOG_CONTENT]]]?@"...":[zsnApi dddddecodeSpecialCharactersStringWith:[conentJson objectForKey:FB_BBS_CONTENT]]];
         
         _bbsid=[conentJson objectForKey:FB_BBS_BBSID];
         

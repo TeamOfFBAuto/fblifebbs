@@ -12,11 +12,13 @@
 
 
 
-#define ScanKuangFrame CGRectMake(50, 70+89-6, 220, 220)
+#define ScanKuangFrame CGRectMake(50, 90, 220, 223)
 
 
 @interface GmFoundScanViewController ()
-
+{
+    UIImageView * _fourJiaoImageView;
+}
 @end
 
 @implementation GmFoundScanViewController
@@ -33,53 +35,60 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     
-    //上面的view
-    UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 64)];
-    topView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:topView];
-    //返回view
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 74, 64)];
-    backView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *ttt = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tttback)];
-    [backView addGestureRecognizer:ttt];
-    [topView addSubview:backView];
-    //返回箭头
-    UIImageView *backImv = [[UIImageView alloc]initWithFrame:CGRectMake(8, 12+20, 12, 20)];
-    [backImv setImage:[UIImage imageNamed:@"fanhui-daohanglan-20_38.png"]];
-    backImv.userInteractionEnabled = YES;
-    [backView addSubview:backImv];
-    //返回文字
-    UILabel *backLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(backImv.frame)+8, backImv.frame.origin.y, 34, 20)];
-    backLabel.textColor = [UIColor whiteColor];
-    backLabel.userInteractionEnabled = YES;
-    backLabel.text = @"取消";
-    [backView addSubview:backLabel];
+//    //上面的view
+//    UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 64)];
+//    topView.backgroundColor = [UIColor blackColor];
+//    [self.view addSubview:topView];
+//    //返回view
+//    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 74, 64)];
+//    backView.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *ttt = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tttback)];
+//    [backView addGestureRecognizer:ttt];
+//    [topView addSubview:backView];
+//    //返回箭头
+//    UIImageView *backImv = [[UIImageView alloc]initWithFrame:CGRectMake(8, 12+20, 12, 20)];
+//    [backImv setImage:[UIImage imageNamed:@"fanhui-daohanglan-20_38.png"]];
+//    backImv.userInteractionEnabled = YES;
+//    [backView addSubview:backImv];
+//    //返回文字
+//    UILabel *backLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(backImv.frame)+8, backImv.frame.origin.y, 34, 20)];
+//    backLabel.textColor = [UIColor whiteColor];
+//    backLabel.userInteractionEnabled = YES;
+//    backLabel.text = @"取消";
+//    [backView addSubview:backLabel];
+//    
+//    //title
+//    UILabel *titleLable = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(backLabel.frame)+65, backLabel.frame.origin.y+2, 52, 18)];
+//    
+//    titleLable.textColor = [UIColor whiteColor];
+//    titleLable.text = @"二维码";
+//    titleLable.font = [UIFont boldSystemFontOfSize:17];
+//    [topView addSubview:titleLable];
     
-    //title
-    UILabel *titleLable = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(backLabel.frame)+65, backLabel.frame.origin.y+2, 52, 18)];
     
-    titleLable.textColor = [UIColor whiteColor];
-    titleLable.text = @"二维码";
-    titleLable.font = [UIFont boldSystemFontOfSize:17];
-    [topView addSubview:titleLable];
+//    self.navigationItem.title = @"二维码";
+    
+    
+    [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeBack WithRightButtonType:SNViewControllerRightbuttonTypeNull];
+    self.title = @"二维码";
     
     
     
     //半透明的浮层
-    UIImageView *backImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64+5.4-6, 320, 568-64-6)];
+    UIImageView *backImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64)];
     backImageView.image = [UIImage imageNamed:@"saoyisao_bg_640_996.png"];
     [self.view addSubview:backImageView];
     
     
     //四个角
-    UIImageView * imageView = [[UIImageView alloc]initWithFrame:ScanKuangFrame];
-    imageView.image = [UIImage imageNamed:@"fkuang.png"];
-    [self.view addSubview:imageView];
+    _fourJiaoImageView = [[UIImageView alloc]initWithFrame:ScanKuangFrame];
+    _fourJiaoImageView.image = [UIImage imageNamed:@"fkuang.png"];
+    [self.view addSubview:_fourJiaoImageView];
     
     
     //文字提示label
     
-    UILabel *tishiLabel = [[UILabel alloc]initWithFrame:CGRectMake(imageView.frame.origin.x, CGRectGetMaxY(imageView.frame)+28, imageView.frame.size.width, 12)];
+    UILabel *tishiLabel = [[UILabel alloc]initWithFrame:CGRectMake(_fourJiaoImageView.frame.origin.x, CGRectGetMaxY(_fourJiaoImageView.frame)+28, _fourJiaoImageView.frame.size.width, 12)];
     tishiLabel.font = [UIFont systemFontOfSize:12];
     tishiLabel.textColor = [UIColor whiteColor];
     tishiLabel.backgroundColor = [UIColor clearColor];
@@ -104,7 +113,7 @@
     num =0;
     
     //上下滚动的条
-    _line = [[UIImageView alloc]initWithFrame:CGRectMake(40, 70+89-18-6, 240, 18)];
+    _line = [[UIImageView alloc]initWithFrame:CGRectMake(40, 6+89-18-6, 240, 18)];
     [_line setImage:[UIImage imageNamed:@"fshan.png"]];
     [self.view addSubview:_line];
     
@@ -117,13 +126,22 @@
     
     
 }
+
+//左边按钮点击方法
+-(void)leftButtonTap:(UIButton *)sender{
+    [self dismissViewControllerAnimated:YES completion:^{
+        [timer invalidate];
+    }];
+}
+
+
 -(void)animation1
 {
     //一个条
     if (upOrdown == NO) {
         num ++;
         
-        _line.frame = CGRectMake(40, 70+89-9-6+2*num, 240, 18);
+        _line.frame = CGRectMake(40, 6+89-9-6+2*num, 240, 18);
         if (2*num == 220) {
             
             upOrdown = YES;
@@ -132,7 +150,7 @@
     }
     else {
         num --;
-        _line.frame = CGRectMake(40, 70+89-9-6+2*num, 240, 18);
+        _line.frame = CGRectMake(40, 6+89-9-6+2*num, 240, 18);
         if (num == 0) {
             upOrdown = NO;
         }
@@ -140,22 +158,21 @@
     
     
 }
--(void)backAction
-{
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        [timer invalidate];
-    }];
-}
+
 
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
     
-    if (!TARGET_IPHONE_SIMULATOR) {
-        [self setupCamera];
-    }
+    [MBProgressHUD showHUDAddedTo:_fourJiaoImageView animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (!TARGET_IPHONE_SIMULATOR) {
+            [self setupCamera];
+            [MBProgressHUD hideHUDForView:_fourJiaoImageView animated:YES];
+        }
+    });
+
     
 }
 
@@ -311,13 +328,7 @@
 }
 
 
-//点击返回按钮的跳转
--(void)tttback{
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
+
 
 
 @end

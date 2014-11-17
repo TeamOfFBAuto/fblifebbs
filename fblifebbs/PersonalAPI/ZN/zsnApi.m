@@ -649,7 +649,7 @@
         [obj setTid:[value objectForKey:FB_TID]];
         [obj setUid:[value objectForKey:FB_UID]];
         [obj setUserName:[value objectForKey:FB_USERNAME]];
-        [obj setContent: [self FBImageChange:[value objectForKey:FB_CONTENT]]];
+        [obj setContent: [zsnApi dddddecodeSpecialCharactersStringWith:[self FBImageChange:[value objectForKey:FB_CONTENT]]]];
         
         if ([[value objectForKey:FB_IMAGEID] isEqualToString:@"0"])
         {
@@ -876,7 +876,7 @@
         {
             NSDictionary * atlas_dic = [[value objectForKey:FB_EXTENSION] objectFromJSONString];
             
-            NSString * title = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"title"]];
+            NSString * title = [zsnApi exchangeStringForDeleteNULL:[zsnApi dddddecodeSpecialCharactersStringWith:[atlas_dic objectForKey:@"title"]]];
             
             NSString * photo = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"photo"]];
             
@@ -1357,6 +1357,7 @@
     input = [input stringByReplacingOccurrencesOfString:@"'" withString:@"&#039;"];
     input = [input stringByReplacingOccurrencesOfString:@"<" withString:@"&lt"];
     input = [input stringByReplacingOccurrencesOfString:@">" withString:@"&gt"];
+    input = [input stringByReplacingOccurrencesOfString:@"•" withString:@"&#8226;"];
     return input;
 }
 #pragma mark - 特殊字符编码转换成特殊字符
@@ -1371,7 +1372,17 @@
     return input;
 }
 
-
+#pragma mark - 无奈的编码，只在这里显示用的特殊字符编码转换成特殊字符
++(NSString *)dddddecodeSpecialCharactersStringWith:(NSString *)input
+{
+    input = [input stringByReplacingOccurrencesOfString:@"amp;" withString:@"&"];
+    input = [input stringByReplacingOccurrencesOfString:@"quot;" withString:@"\""];
+    input = [input stringByReplacingOccurrencesOfString:@"#039;" withString:@"'"];
+    input = [input stringByReplacingOccurrencesOfString:@"lt;" withString:@"<"];
+    input = [input stringByReplacingOccurrencesOfString:@"gt;" withString:@">"];
+    input = [input stringByReplacingOccurrencesOfString:@"&#8226;" withString:@"•"];
+    return input;
+}
 
 
 

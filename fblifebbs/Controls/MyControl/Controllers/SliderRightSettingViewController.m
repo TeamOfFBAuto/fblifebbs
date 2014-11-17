@@ -481,9 +481,15 @@
 -(void)checkVersionUpdate
 {
 
-    [[LTools shareInstance]versionForAppid:@"904576362" Block:^(BOOL isNewVersion, NSString *updateUrl, NSString *updateContent) {
+    [[LTools shareInstance]versionForAppid:@"933737704" Block:^(BOOL isNewVersion, NSString *updateUrl, NSString *updateContent) {
         
         NSLog(@"updateContent %@ %@",updateUrl,updateContent);
+        
+        if (!isNewVersion) {
+         
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"版本更新检查" message:@"您目前使用的是最新版本" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
         
     }];
   

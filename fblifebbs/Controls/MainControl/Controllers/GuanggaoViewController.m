@@ -51,7 +51,7 @@
     //2
     iMagelogo=[[UIImageView alloc]init];
     
-    iMagelogo.frame=CGRectMake(0,iPhone5? 568-217/2:480-217/2, 320, 217/2);
+    iMagelogo.frame=CGRectMake(0,DEVICE_HEIGHT-217/2,DEVICE_WIDTH, 217/2);
     
     iMagelogo.image=[UIImage imageNamed:@"ios7_fengmianlogo2.png"];
     
@@ -67,11 +67,11 @@
     
     //4
     
-    UIView *redview=[[UIView alloc]initWithFrame:CGRectMake(0, iPhone5?568/2-40:480/2-40, 320, 12)];
+    UIView *redview=[[UIView alloc]initWithFrame:CGRectMake(0, DEVICE_HEIGHT/2-40,DEVICE_WIDTH, 12)];
     redview.backgroundColor=[UIColor clearColor];
     [bigimageview addSubview:redview];
     img_TEST=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ios7_loading61_12_4.png"]];
-    img_TEST.center=CGPointMake(160, 6);
+    img_TEST.center=CGPointMake(DEVICE_WIDTH/2, 6);
     [redview addSubview:img_TEST];
     NSTimer *theTimer;
     theTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(changepic) userInfo:nil repeats:YES];
@@ -87,7 +87,7 @@
     
     //点击跳过的button
     
-    UIButton *buttonTiaoguo=[[UIButton alloc]initWithFrame:CGRectMake(245, 20, 62, 30)];
+    UIButton *buttonTiaoguo=[[UIButton alloc]initWithFrame:CGRectMake(DEVICE_WIDTH-75, 20, 62, 30)];
     [buttonTiaoguo setTitle:@"点击跳过" forState:UIControlStateNormal];
     buttonTiaoguo.titleLabel.font=[UIFont systemFontOfSize:12];
     [buttonTiaoguo setBackgroundColor:RGBACOLOR(245, 245, 245, 0.7)];

@@ -65,8 +65,8 @@
     
     //1008  832
     imageView = [[UIImageView alloc] initWithImage:[personal getImageWithName:iPhone5?@"newAboultIphone5@2x":@"newAbout@2x"]];
-    imageView.frame = CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT - 68);
-    //    imageView.center = CGPointMake(160,iPhone5?252:208);
+    imageView.frame = CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT - 64);
+
     imageView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:imageView];
     

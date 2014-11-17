@@ -117,11 +117,12 @@
                 <outlet property="genderImage" destination="KJi-RC-Vsi" id="rsT-dA-g6P"/>
                 <outlet property="guanzhu_num_label" destination="fJe-Sl-FrY" id="iQW-HD-w7c"/>
                 <outlet property="headImage" destination="g9U-gH-kfI" id="bLT-i5-95h"/>
+                <outlet property="lineView" destination="Alg-Hg-KEC" id="XDt-j1-zEp"/>
                 <outlet property="nameLabel" destination="Ypk-ut-XXr" id="MPp-La-zwI"/>
                 <outlet property="tiezi_num_label" destination="aTG-Z1-EK9" id="Rfs-og-GXd"/>
                 <outlet property="userInfo_buttom" destination="2MK-mU-AXI" id="U1u-c4-M7x"/>
             </connections>
-            <point key="canvasLocation" x="-39" y="154"/>
+            <point key="canvasLocation" x="-221" y="137"/>
         </tableViewCell>
     </objects>
     <resources>

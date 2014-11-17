@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *userInfo_buttom;
 
 @property (strong, nonatomic) IBOutlet UIImageView *arrowImage;
+@property (strong, nonatomic) IBOutlet UIView *lineView;
 
 @end

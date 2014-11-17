@@ -12,5 +12,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *iconImage;
 @property (strong, nonatomic) IBOutlet UILabel *aTitleLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *arrowImage;
+@property (strong, nonatomic) IBOutlet UIView *bottomLine;
 
 @end

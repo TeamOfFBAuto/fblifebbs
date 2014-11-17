@@ -286,6 +286,7 @@
             
             [self getDataWithUserModel:user];
         }
+        headerCell.lineView.height = 0.5f;
         
         return headerCell;
     }
@@ -298,6 +299,13 @@
     
     cell.iconImage.image = [UIImage imageNamed:[images_arr objectAtIndex:indexPath.row]];
     cell.aTitleLabel.text = [names_arr objectAtIndex:indexPath.row];
+    cell.bottomLine.height = 0.5f;
+    
+    if (indexPath.row == images_arr.count - 1) {
+        cell.bottomLine.hidden = YES;
+    }else{
+        cell.bottomLine.hidden = NO;
+    }
     
     return cell;
     

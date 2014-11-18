@@ -104,6 +104,8 @@
     BBSRankingView * rangkingView;
     ///存放所有tableview，方便读取
     NSMutableArray * table_array;
+    ///数据加载中
+    MBProgressHUD * forum_hud;
 }
 
 @end
@@ -288,7 +290,21 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HaveNetWork:) name:NOTIFICATION_HAVE_NETWORK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NoNetWork:) name:NOTIFICATION_NO_NETWORK object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:NOTIFICATION_LOGOUT_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+}
+
+#pragma mark - 退出登陆成功
+-(void)logout
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSMutableArray array] forKey:@"forumSectionCollectionArray"];
+    [self.forum_section_collection_array removeAllObjects];
+    [self reloadAllTableView];
+}
+#pragma mark - 登陆成功
+-(void)login
+{
+    [self loadCollectionForumSectionData];
 }
 
 #pragma mark - 获取论坛版块收藏更改通知
@@ -403,6 +419,8 @@
         networkQueue = [[ASINetworkQueue alloc] init];
     }
     
+    forum_hud = [zsnApi showMBProgressWithText:@"正在加载..." addToView:self.view];
+    
     for (int i = 0;i < 4;i++)
     {
         NSString * fullUrl = [NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumsbycategory.php?categorytype=%@&formattype=json&authocode=%@",[forum_title_array objectAtIndex:i],AUTHKEY];
@@ -411,6 +429,7 @@
         
         ASIHTTPRequest * request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullUrl]];
         request.tag = 417 + i;
+        request.timeOutSeconds = 60;
         [networkQueue addOperation:request];
     }
     
@@ -478,6 +497,7 @@
 
 - (void)queueFinished:(ASIHTTPRequest *)request
 {
+    [forum_hud hide:YES];
     if ([networkQueue requestsCount] == 0) {
         
         networkQueue = nil;
@@ -711,9 +731,9 @@
         CGFloat pageWidth = scrollView.frame.size.width;
         // 根据当前的x坐标和页宽度计算出当前页数
         int current_page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        current_forum = current_page;
+//        current_forum = current_page;
         [_seg_view MyButtonStateWithIndex:current_page];
-        
+        [self selectedForumWith:current_page];
     }
 }
 

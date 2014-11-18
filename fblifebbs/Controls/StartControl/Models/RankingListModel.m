@@ -45,7 +45,7 @@
     __weak typeof(self) bself = self;
     
     _myRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullUrl]];
-    
+    _myRequest.timeOutSeconds = 30.0f;
     __block typeof(_myRequest) request = _myRequest;
     
     [request setCompletionBlock:^{

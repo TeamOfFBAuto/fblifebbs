@@ -71,7 +71,8 @@
     
     _myTableView.tableHeaderView = ranking_segment;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogIn:) name:@"LogIn" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogIn:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogOut:) name:NOTIFICATION_LOGOUT_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bbsDetailCollectChanged:) name:@"bbsDetailCollectChanged" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bbsForumCollectChanged:) name:@"forumSectionChange" object:nil];
@@ -118,6 +119,17 @@
     [self loadAllBBSPostData];
     [self loadCollectionForumSectionData];
 }
+#pragma mark - 退出登陆成功代理方法
+-(void)successLogOut:(NSNotification *)notification
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSMutableArray array] forKey:@"postSectionCollectionArray"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSMutableArray array] forKey:@"forumSectionCollectionArray"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.bbs_post_collection_array removeAllObjects];
+    [self.bbs_forum_collection_array removeAllObjects];
+    [self.myTableView reloadData];
+}
+
 
 #pragma mark - 请求收藏的所有的帖子
 -(void)loadAllBBSPostData

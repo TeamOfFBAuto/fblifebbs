@@ -317,32 +317,39 @@
     HeaderV.backgroundColor=RGBCOLOR(234, 234, 234);
     
     NSArray *titleArr=@[@"最近浏览",@"收藏版块",@"排行榜"];
-    NSArray *unSelectimgArr=@[@"shouyeliulan.png",@"shouyeshoucang.png",@"shouyepaihang.png"];
-    NSArray *selectedArr=@[@"shouyeliulan1.png",@"shouyeshoucan1g.png",@"shouyepaihang1.png"];
+    
+    NSArray * imgArr=@[@"root_liulan.png",@"root_shoucang.png",@"root_paihang.png"];
+//    NSArray * selectedArr=@[@"liulan5.png",@"shoucan5.png",@"paihang5.png"];
     
     for (int i=0; i<3; i++) {
         UIButton *ytestButton=[LTools createButtonWithType:UIButtonTypeCustom frame:CGRectMake(i*DEVICE_WIDTH/3, 0, DEVICE_WIDTH/3, 203/2) normalTitle:nil image:nil backgroudImage:nil superView:HeaderV target:self action:@selector(doActionButton:)];
         
-        [ytestButton setBackgroundImage:[UIImage imageNamed:unSelectimgArr[i]] forState:UIControlStateNormal];
-        [ytestButton setBackgroundImage:[UIImage imageNamed:selectedArr[i]] forState:UIControlStateSelected];
-        [ytestButton setBackgroundImage:[UIImage imageNamed:selectedArr[i]] forState:UIControlStateHighlighted];
+//        [ytestButton setBackgroundImage:[UIImage imageNamed:imgArr[i]] forState:UIControlStateNormal];
+        [ytestButton setBackgroundImage:[UIImage imageNamed:@"root_selected_image.png"] forState:UIControlStateSelected];
+        [ytestButton setBackgroundImage:[UIImage imageNamed:@"root_unselected_image.png"] forState:UIControlStateNormal];
         
         ytestButton.tag=9000+i;
         if (i==0) {
             ytestButton.selected=YES;
-            ytestButton.frame=CGRectMake((DEVICE_WIDTH-320)/2 + 0, 0, 107, 203/2);
+            ytestButton.frame=CGRectMake(0, 0,DEVICE_WIDTH/3, 203/2);
         }else if(i==1){
             ytestButton.selected=NO;
-            ytestButton.frame=CGRectMake((DEVICE_WIDTH-320)/2 + 107, 0, 106, 203/2);
+            ytestButton.frame=CGRectMake(DEVICE_WIDTH/3, 0,DEVICE_WIDTH/3, 203/2);
             
         }else if(i==2)
         {
             ytestButton.selected=NO;
-            ytestButton.frame=CGRectMake((DEVICE_WIDTH-320)/2 + 107+106, 0, 107, 203/2);
+            ytestButton.frame=CGRectMake(DEVICE_WIDTH/3*2, 0,DEVICE_WIDTH/3, 203/2);
         }
+        
         UILabel *titleLabel=[LTools createLabelFrame:CGRectMake(0, 0,  DEVICE_WIDTH/3,20) title:titleArr[i] font:14 align:NSTextAlignmentCenter textColor:RGBCOLOR(132, 132, 132)];
-        titleLabel.center=CGPointMake(DEVICE_WIDTH/6, 75);
+        titleLabel.center=CGPointMake(ytestButton.frame.size.width/2, 75);
         [ytestButton addSubview:titleLabel];
+        
+        UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,50,50)];
+        imageView.image = [UIImage imageNamed:imgArr[i]];
+        imageView.center = CGPointMake(ytestButton.frame.size.width/2,36.5);
+        [ytestButton addSubview:imageView];
     }
     [self.view addSubview:HeaderV];
     

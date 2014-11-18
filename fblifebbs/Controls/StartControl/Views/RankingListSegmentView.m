@@ -23,14 +23,17 @@
 
 -(void)setup
 {
-    NSArray * image_array = [NSArray arrayWithObjects:@"bbs_rankinglist_zhuti1",@"bbs_rankinglist_chexing1",@"bbs_rankinglist_dadui1",@"bbs_rankinglist_zhuti",@"bbs_rankinglist_chexing",@"bbs_rankinglist_dadui",nil];
-    
+//    NSArray * image_array = [NSArray arrayWithObjects:@"bbs_rankinglist_zhuti1",@"bbs_rankinglist_chexing1",@"bbs_rankinglist_dadui1",@"bbs_rankinglist_zhuti",@"bbs_rankinglist_chexing",@"bbs_rankinglist_dadui",nil];
+    NSArray * title_array = [NSArray arrayWithObjects:@"主题",@"车型",@"大队",nil];
     for (int i = 0;i < 3;i++)
     {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake((DEVICE_WIDTH-320)/2 + 12 + 100*i,12,96,45);
-        [button setImage:[UIImage imageNamed:[image_array objectAtIndex:i]] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:[image_array objectAtIndex:i+3]] forState:UIControlStateSelected];
+        button.frame = CGRectMake(12 + ((DEVICE_WIDTH-32)/3+4)*i,12,(DEVICE_WIDTH-32)/3,45);
+        [button setBackgroundImage:[UIImage imageNamed:@"bbs_rankinglist_unselected"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"bbs_rankinglist_selected"] forState:UIControlStateSelected];
+        [button setTitle:[title_array objectAtIndex:i] forState:UIControlStateNormal];
+        [button setTitleColor:RGBCOLOR(130,130,130) forState:UIControlStateNormal];
+        [button setTitleColor:RGBCOLOR(3,3,3) forState:UIControlStateSelected];
         historyPage = 0;
         
         button.tag = 100+i;

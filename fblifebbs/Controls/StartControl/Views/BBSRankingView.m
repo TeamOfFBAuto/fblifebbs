@@ -82,13 +82,13 @@
 -(void)bbsDetailCollectChanged:(NSNotification *)notification
 {
 //    [self loadAllBBSPostData];
-    [self performSelector:@selector(loadAllBBSPostData) withObject:nil afterDelay:1.0f];
+    [self performSelector:@selector(loadAllBBSPostData) withObject:nil afterDelay:2.0f];
 }
 #pragma mark - 版块收藏变更
 -(void)bbsForumCollectChanged:(NSNotification *)notification
 {
 //    [self loadCollectionForumSectionData];
-    [self performSelector:@selector(loadCollectionForumSectionData) withObject:nil afterDelay:1.0f];
+//    [self performSelector:@selector(loadCollectionForumSectionData) withObject:nil afterDelay:2.0f];
 }
 #pragma mark - 请求排行榜数据
 
@@ -218,7 +218,7 @@
         {
             [bself.bbs_forum_collection_array removeAllObjects];
         }
-       
+        NSLog(@"变更之前 ------  %d",bself.bbs_forum_collection_array.count);
         [bself.bbs_forum_collection_array addObjectsFromArray:collection_model.collect_id_array];
          NSLog(@"变更成功 -------  %d",bself.bbs_forum_collection_array.count);
         [bself.myTableView reloadData];
@@ -409,7 +409,7 @@
                     }
                 }else
                 {
-                    if ([bself.bbs_forum_collection_array containsObject:model.ranking_id])
+                    if (![bself.bbs_forum_collection_array containsObject:model.ranking_id])
                     {
                         [bself.bbs_forum_collection_array addObject:model.ranking_id];
                     }
@@ -417,7 +417,7 @@
                 }
                 [zsnApi showAutoHiddenMBProgressWithText:@"收藏成功" addToView:self];
             }
-            NSLog(@"malegedan ------  %d",bself.bbs_forum_collection_array.count);
+            NSLog(@"malegedan -----  %@ ------  %@",model.ranking_id,bself.bbs_forum_collection_array);
         }
     }];
     

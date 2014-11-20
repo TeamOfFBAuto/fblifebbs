@@ -1,6 +1,6 @@
 //
 //  NewMainViewModel.m
-//  越野e族
+//  越野e族xxx
 //
 //  Created by 史忠坤 on 14-7-8.
 //  Copyright (c) 2014年 soulnear. All rights reserved.

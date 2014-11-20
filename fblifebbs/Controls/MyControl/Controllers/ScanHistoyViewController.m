@@ -49,7 +49,7 @@
     
     self.navigationController.navigationBar.titleTextAttributes = dict;
     
-    self.navigationItem.title = @"历史浏览";
+    self.navigationItem.title = @"最近浏览";
     
     [self loadRecentlyLookData];
 }

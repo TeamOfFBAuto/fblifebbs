@@ -117,7 +117,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginOut:) name:@"logoutToChangeHeader" object:nil];
     
     images_arr = @[@"",@"",@"",@"shoucang@2x.png",@"tiezi@2x.png",@"friend_my@2x.png",@"",@"mingpian@2x.png",@"youxiang@2x.png",@"lishijilu@2x.png"];
-    names_arr = @[@"",@"",@"",@"我的收藏",@"我的帖子",@"我的好友",@"",@"我的名片",@"草稿箱",@"历史浏览"];
+    names_arr = @[@"",@"",@"",@"我的收藏",@"我的帖子",@"我的好友",@"",@"我的名片",@"草稿箱",@"最近浏览"];
     
     self.navigationItem.title = @"我";
     
@@ -286,6 +286,7 @@
             
             [self getDataWithUserModel:user];
         }
+        headerCell.lineView.height = 0.5f;
         
         return headerCell;
     }
@@ -298,6 +299,13 @@
     
     cell.iconImage.image = [UIImage imageNamed:[images_arr objectAtIndex:indexPath.row]];
     cell.aTitleLabel.text = [names_arr objectAtIndex:indexPath.row];
+    cell.bottomLine.height = 0.5f;
+    
+    if (indexPath.row == images_arr.count - 1 || indexPath.row == 5) {
+        cell.bottomLine.hidden = YES;
+    }else{
+        cell.bottomLine.hidden = NO;
+    }
     
     return cell;
     

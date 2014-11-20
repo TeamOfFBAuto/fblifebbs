@@ -180,13 +180,23 @@
     
     [cell.contentView addSubview:lineView];
     
-    if (indexPath.row == 0 || indexPath.row == 5)
+    if (indexPath.row == 0) {
+        lineView.hidden = YES;
+        
+        cell.backgroundColor = RGBCOLOR(248,248,248);
+    }else
     {
-//        cell.separatorInset = UIEdgeInsetsZero;
+        lineView.hidden = NO;
+    }
+    
+    if (indexPath.row == 5)
+    {
+        cell.separatorInset = UIEdgeInsetsZero;
         
         lineView.center = CGPointMake(DEVICE_WIDTH / 2.f,0.25);
         
         cell.backgroundColor = RGBCOLOR(248,248,248);
+        
     }else if (indexPath.row == 6)
     {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

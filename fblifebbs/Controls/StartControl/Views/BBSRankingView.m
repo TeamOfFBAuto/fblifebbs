@@ -71,7 +71,8 @@
     
     _myTableView.tableHeaderView = ranking_segment;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogIn:) name:@"LogIn" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogIn:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogOut:) name:NOTIFICATION_LOGOUT_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bbsDetailCollectChanged:) name:@"bbsDetailCollectChanged" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bbsForumCollectChanged:) name:@"forumSectionChange" object:nil];
@@ -80,12 +81,14 @@
 #pragma mark - 主题收藏变更通知
 -(void)bbsDetailCollectChanged:(NSNotification *)notification
 {
-    [self loadAllBBSPostData];
+//    [self loadAllBBSPostData];
+    [self performSelector:@selector(loadAllBBSPostData) withObject:nil afterDelay:2.0f];
 }
 #pragma mark - 版块收藏变更
 -(void)bbsForumCollectChanged:(NSNotification *)notification
 {
-    [self loadCollectionForumSectionData];
+//    [self loadCollectionForumSectionData];
+//    [self performSelector:@selector(loadCollectionForumSectionData) withObject:nil afterDelay:2.0f];
 }
 #pragma mark - 请求排行榜数据
 
@@ -116,6 +119,17 @@
     [self loadAllBBSPostData];
     [self loadCollectionForumSectionData];
 }
+#pragma mark - 退出登陆成功代理方法
+-(void)successLogOut:(NSNotification *)notification
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSMutableArray array] forKey:@"postSectionCollectionArray"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSMutableArray array] forKey:@"forumSectionCollectionArray"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.bbs_post_collection_array removeAllObjects];
+    [self.bbs_forum_collection_array removeAllObjects];
+    [self.myTableView reloadData];
+}
+
 
 #pragma mark - 请求收藏的所有的帖子
 -(void)loadAllBBSPostData
@@ -126,14 +140,6 @@
     {
 //        rangking_block(2,nil);
         return;
-    }
-    
-    
-    if (!_bbs_post_collection_array) {
-        _bbs_post_collection_array = [NSMutableArray array];
-    }else
-    {
-        [_bbs_post_collection_array removeAllObjects];
     }
     
     NSString * fullUrl = [NSString stringWithFormat:GET_COLLECTION_BBS_POST_URL,AUTHKEY];
@@ -154,26 +160,28 @@
             
             if ([[allDic objectForKey:@"errcode"] intValue] == 0)
             {
+                
+                if (!bself.bbs_post_collection_array) {
+                    bself.bbs_post_collection_array = [NSMutableArray array];
+                }else
+                {
+                    [bself.bbs_post_collection_array removeAllObjects];
+                }
+                
                 NSArray * array = [allDic objectForKey:@"bbsinfo"];
                 
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
-                    
                     for (NSDictionary * dic in array)
                     {
                         [bself.bbs_post_collection_array addObject:[dic objectForKey:@"tid"]];
                     }
                     
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        [[NSUserDefaults standardUserDefaults] setObject:bself.bbs_post_collection_array forKey:@"postSectionCollectionArray"];
-                        [[NSUserDefaults standardUserDefaults] synchronize];
-                        
-                        if (bself.currentPage == 1)
-                        {
-                            [bself.myTableView reloadData];
-                        }
-                    });
-                });
+                    if (bself.currentPage == 1)
+                    {
+                        [bself.myTableView reloadData];
+                    }
+                
+                [[NSUserDefaults standardUserDefaults] setObject:bself.bbs_post_collection_array forKey:@"postSectionCollectionArray"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             }
         }
         @catch (NSException *exception) {
@@ -200,23 +208,24 @@
     
     __weak typeof(self) bself = self;
     
-    if (!_bbs_forum_collection_array)
-    {
-        _bbs_forum_collection_array = [NSMutableArray array];
-    }else
-    {
-        [_bbs_forum_collection_array removeAllObjects];
-    }
-    
     //第一个参数第一页  第二个参数一页显示多少个，这里要全部的数据所以给1000
-    [collection_model loadCollectionDataWith:1 WithPageSize:100 WithFinishedBlock:^(NSMutableArray *array) {
+    [collection_model loadCollectionDataWith:1 WithPageSize:1000 WithFinishedBlock:^(NSMutableArray *array) {
         
+        if (!bself.bbs_forum_collection_array)
+        {
+            bself.bbs_forum_collection_array = [NSMutableArray array];
+        }else
+        {
+            [bself.bbs_forum_collection_array removeAllObjects];
+        }
+        NSLog(@"变更之前 ------  %d",bself.bbs_forum_collection_array.count);
         [bself.bbs_forum_collection_array addObjectsFromArray:collection_model.collect_id_array];
+         NSLog(@"变更成功 -------  %d",bself.bbs_forum_collection_array.count);
         [bself.myTableView reloadData];
         
         [[NSUserDefaults standardUserDefaults] setObject:bself.bbs_forum_collection_array forKey:@"forumSectionCollectionArray"];
     } WithFailedBlock:^(NSString *string) {
-        
+        NSLog(@"获取版块收藏失败 ----  %@",string);
         bself.bbs_forum_collection_array = [[NSUserDefaults standardUserDefaults] objectForKey:@"forumSectionCollectionArray"];
         [bself.myTableView reloadData];
     }];
@@ -381,12 +390,15 @@
                     {
                         [bself.bbs_post_collection_array removeObject:model.ranking_id];
                     }
-                    [zsnApi showAutoHiddenMBProgressWithText:@"成功取消收藏" addToView:self];
-                    
                 }else
                 {
+                    if ([bself.bbs_forum_collection_array containsObject:model.ranking_id])
+                    {
+                        [bself.bbs_forum_collection_array removeObject:model.ranking_id];
+                    }
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:   [NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
                 }
+                [zsnApi showAutoHiddenMBProgressWithText:@"成功取消收藏" addToView:self];
             }else//收藏
             {
                 if (bself.currentPage == 1)
@@ -397,10 +409,15 @@
                     }
                 }else
                 {
+                    if (![bself.bbs_forum_collection_array containsObject:model.ranking_id])
+                    {
+                        [bself.bbs_forum_collection_array addObject:model.ranking_id];
+                    }
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
                 }
                 [zsnApi showAutoHiddenMBProgressWithText:@"收藏成功" addToView:self];
             }
+            NSLog(@"malegedan -----  %@ ------  %@",model.ranking_id,bself.bbs_forum_collection_array);
         }
     }];
     

@@ -585,9 +585,9 @@
             [UIView animateWithDuration:0.3 animations:^
              {
                  morePicView.hidden = NO;
-                 
+                 morePicImageView.hidden = NO;
                  options_view.frame =  CGRectMake(0,DEVICE_HEIGHT-(MY_MACRO_NAME?0:20)-72-215,DEVICE_WIDTH,73);
-                 myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(iPhone5?DEVICE_HEIGHT-73-20-44-215:DEVICE_HEIGHT-73-20-44-215)-(MY_MACRO_NAME?0:20));
+                 myTextView.frame = CGRectMake(myTextView.frame.origin.x,myTextView.frame.origin.y,myTextView.frame.size.width,(DEVICE_HEIGHT-73-20-44-215)-(MY_MACRO_NAME?0:20));
                  [myTextView resignFirstResponder];
              }];
             
@@ -742,7 +742,7 @@
     [myTextView resignFirstResponder];
     
     scrollView.hidden = YES;
-    
+    morePicView.hidden = YES;
     morePicImageView.hidden = YES;
     
     [UIView animateWithDuration:0.3 animations:^{

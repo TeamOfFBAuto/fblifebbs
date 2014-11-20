@@ -25,7 +25,7 @@
         
         self.ranking_num = [zsnApi exchangeStringForDeleteNULL:[dic objectForKey:@"num"]];
         
-        self.ranking_title = [zsnApi exchangeStringForDeleteNULL:[dic objectForKey:@"title"]];
+        self.ranking_title = [zsnApi exchangeStringForDeleteNULL:[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
     }
     
     return self;
@@ -45,7 +45,7 @@
     __weak typeof(self) bself = self;
     
     _myRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullUrl]];
-    
+    _myRequest.timeOutSeconds = 30.0f;
     __block typeof(_myRequest) request = _myRequest;
     
     [request setCompletionBlock:^{

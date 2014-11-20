@@ -9,7 +9,7 @@
 ///
 
 
-
+#define ICON_IMAGE @"Icon-60@3x.png"
 
 #import "PraiseAndCollectedModel.h"
 
@@ -873,7 +873,7 @@
             message.description = [zsnApi ddecodeSpecialCharactersStringWith:string_title];
             NSLog(@"????share==%@",self.imgforshare);
             
-            [message setThumbImage:[UIImage imageNamed:@"Icon@2x.png"]] ;
+            [message setThumbImage:[UIImage imageNamed:ICON_IMAGE]] ;
             WXWebpageObject *ext = [WXWebpageObject object];
             //ext.imageData = _weburl_Str;
             ext.webpageUrl=string_url;
@@ -923,7 +923,7 @@
             message.description = [zsnApi ddecodeSpecialCharactersStringWith:string_title];
             NSLog(@"????share==%@",self.imgforshare);
             
-            [message setThumbImage:[UIImage imageNamed:@"Icon@2x.png"]] ;
+            [message setThumbImage:[UIImage imageNamed:ICON_IMAGE]] ;
             WXWebpageObject *ext = [WXWebpageObject object];
             //ext.imageData = _weburl_Str;
             ext.webpageUrl=string_url;

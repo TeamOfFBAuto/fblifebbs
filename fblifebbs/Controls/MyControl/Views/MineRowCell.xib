@@ -40,6 +40,7 @@
             <connections>
                 <outlet property="aTitleLabel" destination="ilh-0y-I6q" id="vub-yM-0n8"/>
                 <outlet property="arrowImage" destination="09C-4e-agm" id="X7C-FS-CqP"/>
+                <outlet property="bottomLine" destination="Zw0-rM-ZUm" id="9WM-5x-wue"/>
                 <outlet property="iconImage" destination="hop-94-Ze6" id="tJx-p1-L4M"/>
             </connections>
             <point key="canvasLocation" x="33" y="150"/>

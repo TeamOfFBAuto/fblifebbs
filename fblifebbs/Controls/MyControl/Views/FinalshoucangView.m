@@ -218,10 +218,6 @@
             
         }
         
-        
-        
-        
-        
     }else if(self.mytype==FinalshoucangViewTypebankuai){
         
         NSDictionary *_dic=[self.normalarray objectAtIndex:indexPath.row];
@@ -308,7 +304,9 @@
             break;
             
         case FinalshoucangViewTypebankuai:{
-            str_search=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/favoritesforums.php?authcode=%@&action=query&formattype=json",string_code];
+//            str_search=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/favoritesforums.php?authcode=%@&action=query&formattype=json",string_code];
+            
+            str_search=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/favoritesforums.php?authcode=%@&action=query&formattype=json&pagesize=1000",string_code];
         }
             
             break;

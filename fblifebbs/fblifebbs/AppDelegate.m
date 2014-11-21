@@ -10,7 +10,7 @@
 
 #import "BBSViewController.h"
 
-#import "MainViewController.h"
+//#import "MainViewController.h"
 
 #import "FindViewController.h"
 

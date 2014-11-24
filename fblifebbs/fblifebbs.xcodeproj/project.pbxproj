@@ -5647,11 +5647,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-
-				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
-
 				PROVISIONING_PROFILE = "f0f07b52-40c5-4f8a-86b2-fee6114d7a20";
-
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5695,11 +5691,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-
-				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
-
 				PROVISIONING_PROFILE = "f0f07b52-40c5-4f8a-86b2-fee6114d7a20";
-
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5741,11 +5733,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
-				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
-
 				PROVISIONING_PROFILE = "f0f07b52-40c5-4f8a-86b2-fee6114d7a20";
-
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -5788,11 +5776,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
-				PROVISIONING_PROFILE = "79f3bc67-5c7f-4ea2-b196-aa897aebeeb7";
-
 				PROVISIONING_PROFILE = "f0f07b52-40c5-4f8a-86b2-fee6114d7a20";
-
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";

@@ -71,8 +71,6 @@
     }
 }
 
-
-
 ////////////////////////////////////////////
 
 
@@ -148,6 +146,10 @@
         _title_label.lineBreakMode = NSLineBreakByCharWrapping;
         _title_label.backgroundColor = [UIColor clearColor];
         [self addSubview:_title_label];
+        
+       
+        
+        
     }else
     {
         _title_label.text = nil;
@@ -178,6 +180,7 @@
         _content_label = [[RTLabel alloc] init];
         _content_label.lineSpacing = _line_space;
         _content_label.delegate = self;
+        _content_label.userInteractionEnabled = YES;
         _content_label.font = [UIFont systemFontOfSize:_content_font];
         _content_label.lineBreakMode = NSLineBreakByCharWrapping;
         [self addSubview:_content_label];

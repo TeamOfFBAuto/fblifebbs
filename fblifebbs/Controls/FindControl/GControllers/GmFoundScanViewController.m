@@ -75,13 +75,27 @@
     
     
     //半透明的浮层
-    UIImageView *backImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64)];
+    UIImageView *backImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT-64)];
     backImageView.image = [UIImage imageNamed:@"saoyisao_bg_640_996.png"];
     [self.view addSubview:backImageView];
     
     
     //四个角
-    _fourJiaoImageView = [[UIImageView alloc]initWithFrame:ScanKuangFrame];
+    _fourJiaoImageView =[[UIImageView alloc]init];
+    
+    if (iPhone6){
+        [_fourJiaoImageView setFrame:CGRectMake(58, 108, 258, 266)];
+    }else{
+        [_fourJiaoImageView setFrame:ScanKuangFrame];
+    }
+    
+    NSLog(@"%f",DEVICE_WIDTH);
+    
+    if (DEVICE_WIDTH == 414) {
+        [_fourJiaoImageView setFrame:CGRectMake(65, 120, 285, 298)]; //150 270
+        
+    }
+    
     _fourJiaoImageView.image = [UIImage imageNamed:@"fkuang.png"];
     [self.view addSubview:_fourJiaoImageView];
     
@@ -141,8 +155,31 @@
     if (upOrdown == NO) {
         num ++;
         
-        _line.frame = CGRectMake(40, 6+89-9-6+2*num, 240, 18);
-        if (2*num == 220) {
+        
+        
+        if (iPhone6){
+            [_line setFrame:CGRectMake(48, 6+107-9-6+2*num, 278, 18)];
+        }else{
+            
+            _line.frame = CGRectMake(40, 6+89-9-6+2*num, 240, 18);
+            //CGRectMake(50, 90, 220, 223)
+        }
+        
+        NSLog(@"%f",DEVICE_WIDTH);
+        
+        if (DEVICE_WIDTH == 414) {
+            [_line setFrame:CGRectMake(55, 6+119-9-6+2*num, 305, 18)]; //150 270
+            
+        }
+        
+        
+        int hh = _fourJiaoImageView.frame.size.height;
+        
+        if (hh == 223) {
+            hh =220;
+        }
+        
+        if (2*num == hh) {
             
             upOrdown = YES;
         }
@@ -150,7 +187,21 @@
     }
     else {
         num --;
-        _line.frame = CGRectMake(40, 6+89-9-6+2*num, 240, 18);
+        
+        if (iPhone6){
+            [_line setFrame:CGRectMake(48, 6+107-9-6+2*num, 278, 18)];
+        }else{
+            _line.frame = CGRectMake(40, 6+89-9-6+2*num, 240, 18);
+        }
+        
+        NSLog(@"%f",DEVICE_WIDTH);
+        
+        if (DEVICE_WIDTH == 414) {
+            [_line setFrame:CGRectMake(55, 6+119-9-6+2*num, 305, 18)];
+            
+        }
+        
+        
         if (num == 0) {
             upOrdown = NO;
         }
@@ -211,7 +262,7 @@
     _preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
     
     //_preview.frame =CGRectMake(20,110,280,280);
-    _preview.frame = CGRectMake(0, 0, 320, 568);
+    _preview.frame = CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT);
     
     [self.view.layer insertSublayer:self.preview atIndex:0];
     

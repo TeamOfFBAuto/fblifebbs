@@ -51,9 +51,9 @@
     //2
     iMagelogo=[[UIImageView alloc]init];
     
-    iMagelogo.frame=CGRectMake(0,DEVICE_HEIGHT-217/2,DEVICE_WIDTH, 217/2);
+    iMagelogo.frame=CGRectMake(0,DEVICE_HEIGHT-(217/2)*DEVICE_WIDTH/320-2,DEVICE_WIDTH,2+ (217/2)*DEVICE_WIDTH/320);
     
-    iMagelogo.image=[UIImage imageNamed:@"ios7_fengmianlogo2.png"];
+    iMagelogo.image=[UIImage imageNamed:@"logobuttomplus.png"];
     
     //3
     
@@ -90,21 +90,20 @@
     UIButton *buttonTiaoguo=[[UIButton alloc]initWithFrame:CGRectMake(DEVICE_WIDTH-75, 20, 62, 30)];
     [buttonTiaoguo setTitle:@"点击跳过" forState:UIControlStateNormal];
     buttonTiaoguo.titleLabel.font=[UIFont systemFontOfSize:12];
-    [buttonTiaoguo setBackgroundColor:RGBACOLOR(245, 245, 245, 0.7)];
+//    [buttonTiaoguo setBackgroundColor:RGBACOLOR(245, 245, 245, 0.3)];
+    
+    [buttonTiaoguo setBackgroundColor:[RGBCOLOR(245, 245, 245) colorWithAlphaComponent:0.5]];
     [buttonTiaoguo setTitleColor:RGBCOLOR(80, 80, 80) forState:UIControlStateNormal];
     
     CALayer *l = [buttonTiaoguo layer];   //获取ImageView的层
     [l setMasksToBounds:YES];
     [l setCornerRadius:2.0f];
     
-    
     [buttonTiaoguo addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [bigimageview addSubview:buttonTiaoguo];
     
     
-    
     [self loadGuanggaoData];
-    
     
     // Do any additional setup after loading the view.
 }
@@ -197,7 +196,7 @@
     
     int mytime=arc4random()%10000;
     
-    NSString *str_search=[NSString stringWithFormat:@"http://cmsweb.fblife.com/data/app.ad.txt?updatetime=%d",mytime];
+    NSString *str_search=[NSString stringWithFormat:@"http://cmsweb.fblife.com/data/app.ad_new.txt?updatetime=%d",mytime];
     
     
     NSLog(@"在读。。。===%@",str_search);
@@ -211,11 +210,15 @@
         
         NSLog(@"在读。。。数据=%@",dicinfo);
         
+        NSDictionary *mybbsdic=[dicinfo objectForKey:@"bbs"];
+        NSLog(@"dicbbs===%@",mybbsdic);
+        
+        
         if (errcode==0&&dicinfo.count!=0) {
             
             
             
-            [wself refreshNormalWithDic:dicinfo];
+            [wself refreshNormalWithDic:mybbsdic];
             
         }else{
             
@@ -230,15 +233,10 @@
         
         
         
-        
-        
-        
     }];
     
     
     NSLog(@"广告的接口=。。=%@",str_search);
-    
-    
     
     
 }
@@ -257,7 +255,8 @@
     NSString *str_guanggao=[NSString stringWithFormat:@"%@",[dicc objectForKey:@"imgsrc"]];
     [guanggao_image loadImageFromURL:str_guanggao withPlaceholdImage:nil];
     
-    NSLog(@"xxx==%@",str_guanggao);
+    NSLog(@"xxx==%@====sss==%@",str_guanggao,string_url);
+    
     
 }
 
@@ -266,13 +265,19 @@
 -(void)handleImageLayout:(AsyncImageView *)tag
 {
     
-    
-    
-    
     [img_TEST removeFromSuperview];
-    guanggao_image.image=iPhone5?guanggao_image.image:[self getSubImage:CGRectMake(0, (568-480)*2, 640,guanggao_image.image.size.height)];
+    guanggao_image.image=DEVICE_HEIGHT<568?[self getSubImage:CGRectMake(0, (568-480)*2, 640,guanggao_image.image.size.height)]:guanggao_image.image;
     
-    guanggao_image.frame=CGRectMake(0, 0, guanggao_image.image.size.width/2, guanggao_image.image.size.height/2+2);
+   
+    
+    guanggao_image.frame=CGRectMake(0, 0, DEVICE_WIDTH ,3+(936/2)*(DEVICE_WIDTH/320));
+    
+    
+    NSLog(@"guanggao_image.frame==%f-----%f",guanggao_image.frame.size.width,guanggao_image.frame.size.height);
+    
+    
+    NSLog(@"imgae==%f-----%f",guanggao_image.image.size.width,guanggao_image.image.size.height);
+
     
     NSLog(@"appdelegate===仔仔到了图片");
     [UIView beginAnimations:nil context:nil];
@@ -282,7 +287,6 @@
     [UIView commitAnimations];
     [self performSelector:@selector(back) withObject:nil afterDelay:4];
 }
-
 
 #pragma mark-修改图片的大小
 

@@ -325,7 +325,7 @@
         UIButton *ytestButton=[LTools createButtonWithType:UIButtonTypeCustom frame:CGRectMake(i*DEVICE_WIDTH/3, 0, DEVICE_WIDTH/3, 203/2) normalTitle:nil image:nil backgroudImage:nil superView:HeaderV target:self action:@selector(doActionButton:)];
         
 //        [ytestButton setBackgroundImage:[UIImage imageNamed:imgArr[i]] forState:UIControlStateNormal];
-        [ytestButton setBackgroundImage:[UIImage imageNamed:@"root_selected_image.png"] forState:UIControlStateSelected];
+        [ytestButton setBackgroundImage:[UIImage imageNamed:@"root_selected_image.png"] forState:UIControlStateDisabled|UIControlStateSelected];
         [ytestButton setBackgroundImage:[UIImage imageNamed:@"root_unselected_image.png"] forState:UIControlStateNormal];
         
         ytestButton.tag=9000+i;

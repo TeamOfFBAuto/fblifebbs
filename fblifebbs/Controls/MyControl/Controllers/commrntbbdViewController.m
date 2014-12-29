@@ -160,7 +160,7 @@
     NavTitle.titleView = title_label;
     
     
-    UIView *back_zhutiview=[[UIView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:44, 320, 38)];
+    UIView *back_zhutiview=[[UIView alloc]initWithFrame:CGRectMake(0, MY_MACRO_NAME?64:44, DEVICE_WIDTH, 38)];
     back_zhutiview.backgroundColor=RGBCOLOR(242, 242, 242);
     [self.view addSubview:back_zhutiview];
     
@@ -174,7 +174,7 @@
     zhutilabel.font=[UIFont systemFontOfSize:18];
     
     //回复的帖子的主题
-    subjectTextfield=[[UITextField alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? 55:55,zhutilabel.frame.origin.y, 280, 28)];
+    subjectTextfield=[[UITextField alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? 55:55,zhutilabel.frame.origin.y, DEVICE_WIDTH - 40, 28)];
     subjectTextfield.backgroundColor=[UIColor clearColor];
     subjectTextfield.delegate=self;
     [back_zhutiview addSubview:subjectTextfield];
@@ -184,7 +184,7 @@
     //    image_blog_sp.image=[UIImage imageNamed:@"blog_sp.png"];
     //    [self.view addSubview:image_blog_sp];
     //帖子回复的内容
-    _contenttextview=[[UITextView alloc]initWithFrame:CGRectMake(0,IOS_VERSION>=7? 64+28+4:44+28+4, 320, 205)];
+    _contenttextview=[[UITextView alloc]initWithFrame:CGRectMake(0,IOS_VERSION>=7? 64+28+4:44+28+4, DEVICE_WIDTH, 205)];
     [_contenttextview setBackgroundColor:[UIColor clearColor]];
     _contenttextview.font=[UIFont systemFontOfSize:15];
     _contenttextview.delegate=self;
@@ -204,14 +204,13 @@
     if (IOS_VERSION>=7) {
         
         
-        
-        
-        _keytop=[[keyboardtopview alloc]initWithFrame:CGRectMake(0, iPhone5?205+88+20:205+20, 320, 40)];
+        _keytop=[[keyboardtopview alloc]initWithFrame:CGRectMake(0, DEVICE_HEIGHT - 275 +20, DEVICE_WIDTH, 40)];
         
     }else{
-        _keytop=[[keyboardtopview alloc]initWithFrame:CGRectMake(0, iPhone5?205+88:205, 320, 40)];
+        _keytop=[[keyboardtopview alloc]initWithFrame:CGRectMake(0, iPhone5?205+88:205, DEVICE_WIDTH, 40)];
         
     }
+    
     [_keytop FaceAndKeyBoard:1];
     _keytop.delegate=self;
     [self.view addSubview:_keytop];
@@ -233,25 +232,25 @@
     //动态获取键盘高度
     
     //faceview隐藏的刚开始是
-    faceScrollView = [[WeiBoFaceScrollView alloc] initWithFrame:CGRectMake(0, 900, self.view.frame.size.width, 160+55) target:self];
+    faceScrollView = [[WeiBoFaceScrollView alloc] initWithFrame:CGRectMake(0, 900, DEVICE_WIDTH, 160+55) target:self];
     //    faceScrollView.pagingEnabled = YES;
     // faceScrollView.contentSize = CGSizeMake(320*2, 160);
     [self.view addSubview:faceScrollView];
     faceScrollView.delegate=self;
     //pagecontrol
-    pageControl = [[GrayPageControl alloc] initWithFrame:CGRectMake(0,900,320,25)];
+    pageControl = [[GrayPageControl alloc] initWithFrame:CGRectMake(0,900,DEVICE_WIDTH,25)];
     
-    pageControl.center = CGPointMake(160,460-12.5);
+    pageControl.center = CGPointMake(DEVICE_WIDTH,460-12.5);
     
     pageControl.numberOfPages = 3;
     
     pageControl.currentPage = 0;
     
-    [self.view addSubview:pageControl];
+//    [self.view addSubview:pageControl];
     
     
     
-    morePicView = [[UIView alloc] initWithFrame:CGRectMake(0,IOS_VERSION>=7?iPhone5?548-215+20:460-215+20: iPhone5?548-215:460-215,320,215)];
+    morePicView = [[UIView alloc] initWithFrame:CGRectMake(0,DEVICE_HEIGHT-215+20,DEVICE_WIDTH,215)];
     
     morePicView.backgroundColor = [UIColor whiteColor];
     
@@ -260,7 +259,7 @@
     [self.view addSubview:morePicView];
     
     
-    morePicImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,320,135)];
+    morePicImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,135)];
     
     morePicImageView.userInteractionEnabled = YES;
     
@@ -304,7 +303,7 @@
     [morePicView addSubview:highPic_titleLabel];
     
     
-    UISwitch * highPicSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(160,156,80,25)];
+    UISwitch * highPicSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(DEVICE_WIDTH - 80,156,80,25)];
     
     highPicSwitch.on = YES;
     
@@ -385,7 +384,7 @@
         for (int j = 0;j < 5;j++)
         {
             UIButton * imageV = [UIButton buttonWithType:UIButtonTypeCustom];
-            imageV.frame = CGRectMake(5 + 62.75*j,7+62.75*i,59,59);
+            imageV.frame = CGRectMake(5 + ((DEVICE_WIDTH-10-59*5)/4+59)*j,7+62.75*i,59,59);
             imageV.imageView.clipsToBounds = YES;
             imageV.imageView.contentMode = UIViewContentModeScaleAspectFill;
             if (i == 0 && j == 0)
@@ -695,19 +694,25 @@
 
 #pragma mark-keyviewdelegate
 -(void)clickbutton:(UIButton *)sender{
+    
+    morePicView.hidden = YES;
     switch (sender.tag) {
         case 301:
             
-            morePicView.hidden = YES;
+            //            morePicView.hidden = YES;
             
             isup=!isup;
             //刚开始的时候是NO，然后点击之后是yes,faceview show!
             if (isup==YES) {
                 [_contenttextview resignFirstResponder];
                 [subjectTextfield resignFirstResponder];
-                [_keytop WhenfaceviewFram];
-                [_keytop FaceAndKeyBoard:2];
-                [self faceviewshow];
+                //                [_keytop WhenfaceviewFram];
+                [_keytop FaceAndKeyBoard:2];//变换图片
+                [self faceviewshow];//显示表情面板
+                
+                //更新 工具条frame
+                
+                _keytop.top = faceScrollView.top - _keytop.height;
                 
             }else{
                 [self faceviewhide];
@@ -717,17 +722,20 @@
                 }else{
                     [_contenttextview becomeFirstResponder];
                 }
-                [_keytop uping];
+                //                [_keytop uping];
             }
             
             break;
         case 302:
             NSLog(@"点击的是拍照");
             [self takePhoto];
+            
             break;
             
         case 303:
             NSLog(@"点击的是相册");
+            
+            [self faceviewhide];
             [self localPhoto];
             break;
             
@@ -769,7 +777,7 @@
     
     morePicView.hidden = NO;
     
-    [_keytop uping];
+    //    [_keytop uping];
     
     [_contenttextview resignFirstResponder];
     [subjectTextfield resignFirstResponder];
@@ -781,6 +789,9 @@
     //        return;
     //    }
     
+    //更新工具条 frame
+    
+    _keytop.top = morePicView.top - _keytop.height;
     
 }
 
@@ -1123,66 +1134,75 @@
 - (void) keyboardWillShow:(NSNotification *)notification {
     
     NSDictionary * info = [notification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    CGRect kbRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     //
     //    [UIView beginAnimations:nil context:nil];
     //    [UIView setAnimationDuration:0.1];
     
-    if (kbSize.height == 252) {
-        ischinese=0;
-        [_keytop chinesekeyuping];
-        
-        
-    }else {
-        ischinese=1;
-        
-        [_keytop uping];
-    }
+    NSLog(@"----- %f",kbRect.size.height);
+    
+    NSLog(@"----- y : %f",kbRect.origin.y);
+    
+    CGFloat keyboad_y = kbRect.origin.y;
+    
+    _keytop.top = keyboad_y - _keytop.height;
     
     
     
-    int heightofkeyboard=(int)kbSize.height;
-    switch (heightofkeyboard) {
-        case 252:
-        {
-            ischinese=0;
-            [_keytop chinesekeyuping];
-            
-            
-        }
-            break;
-            
-            
-        case 216:
-        {
-            ischinese=1;
-            
-            [_keytop uping];
-            
-        }
-            break;
-        case 251:
-        {
-            ischinese=2;
-            [_keytop jiugonggechineseuping];
-            
-            
-        }
-            break;
-        case 184:
-        {
-            ischinese=3;
-            [_keytop jiugonggepinyinuping];
-            
-            
-        }
-            break;
-            
-            
-            
-        default:
-            break;
-    }
+    //    if (kbSize.height == 252) {
+    //        ischinese=0;
+    //        [_keytop chinesekeyuping];
+    //
+    //
+    //    }else {
+    //        ischinese=1;
+    //
+    //        [_keytop uping];
+    //    }
+    //
+    //
+    //    int heightofkeyboard=(int)kbSize.height;
+    //    switch (heightofkeyboard) {
+    //        case 252:
+    //        {
+    //            ischinese=0;
+    //            [_keytop chinesekeyuping];
+    //
+    //
+    //        }
+    //            break;
+    //
+    //
+    //        case 216:
+    //        {
+    //            ischinese=1;
+    //
+    //            [_keytop uping];
+    //
+    //        }
+    //            break;
+    //        case 251:
+    //        {
+    //            ischinese=2;
+    //            [_keytop jiugonggechineseuping];
+    //
+    //
+    //        }
+    //            break;
+    //        case 184:
+    //        {
+    //            ischinese=3;
+    //            [_keytop jiugonggepinyinuping];
+    //
+    //
+    //        }
+    //            break;
+    //            
+    //            
+    //            
+    //        default:
+    //            break;
+    //    }
     
     
     
@@ -1195,25 +1215,27 @@
     
     
 }
+
 -(void)faceviewshow{
     if (IOS_VERSION>=7) {
-        faceScrollView.frame = CGRectMake(0, iPhone5?568-140-44+3+20-55:480-140-44+3+20-55, self.view.frame.size.width, 215) ;
-        pageControl.frame=CGRectMake(0, iPhone5?568-44+3:480-44+3, 320, 25);
+        faceScrollView.frame = CGRectMake(0, DEVICE_HEIGHT - 140-44+3+20-55, DEVICE_WIDTH, 215) ;
+        pageControl.frame=CGRectMake(0, DEVICE_HEIGHT - 44+3, 320, 25);
         
     }else{
-        faceScrollView.frame = CGRectMake(0, iPhone5?568-140-44+3-55:480-140-44+3-55, self.view.frame.size.width, 215) ;
-        pageControl.frame=CGRectMake(0, iPhone5?568-44+3-20:480-44+3-20, 320, 25);
+        faceScrollView.frame = CGRectMake(0, DEVICE_HEIGHT - 140-44+3-55, DEVICE_WIDTH, 215) ;
+        pageControl.frame=CGRectMake(0, DEVICE_HEIGHT - 44+3-20, 320, 25);
         
     }
     
     [_contenttextview resignFirstResponder];
 }
 -(void)faceviewhide{
-    faceScrollView.frame= CGRectMake(0, 900, self.view.frame.size.width, 215) ;
-    pageControl.frame=CGRectMake(0, 900, 320, 25);
+    faceScrollView.frame= CGRectMake(0, 900, DEVICE_WIDTH, 215) ;
+    pageControl.frame=CGRectMake(0, 900, DEVICE_WIDTH, 25);
     [_contenttextview resignFirstResponder];
     
 }
+
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView1
 {
     //获取当前页码

@@ -121,36 +121,7 @@
     //  self.navigationItem.leftBarButtonItem=back_item;
     
     
- /*
-    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME?5:15, (44-43/2)/2, 24, 43/2)];
-    
-    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    // [button_back setBackgroundImage:[UIImage imageNamed:@"ios7_back.png"] forState:UIControlStateNormal];
-    
-    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-    
-    UIButton *backview=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME?-10:-10, 0, 40, 44)];
-    backview.backgroundColor=[UIColor clearColor];
-    [backview addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [backview addSubview:button_back];
-    
-    
-    
-    UIButton *view_left=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
-    //  view_left.backgroundColor=[UIColor redColor];
-      [view_left addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [view_left addSubview:backview];
-    
-    button_more=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? 26+2:22+5, (44-16)/2, 43/2, 32/2)];
-    
-    [button_more addTarget:self action:@selector(salestate) forControlEvents:UIControlEventTouchUpInside];
-    [button_more setBackgroundImage:[UIImage imageNamed:@"ios7_more43_32.png"] forState:UIControlStateNormal];
-    [view_left addSubview:button_more];
-    button_more.hidden=YES;
-    
-    
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:view_left];
-    */
+ 
     
     
     [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeBack WithRightButtonType:SNViewControllerRightbuttonTypeNull];
@@ -371,14 +342,20 @@
 -(void)showPopoverView:(UIButton *)button
 {
     isHidden = !isHidden;
+    
     UIImageView * xiala = (UIImageView *)[[UIApplication sharedApplication].keyWindow viewWithTag:111];
+    
     UIImageView * tipView = (UIImageView *)[self.navigationItem.titleView viewWithTag:102];
     
     [UIView animateWithDuration:0.3 animations:^{
+        
         tipView.image = [personal getImageWithName:isHidden?@"arrow":@"arrow_up"];
+        
         xiala.alpha = isHidden?0:1;
+        
     }completion:^(BOOL finished)
      {
+         
      }];
 }
 
@@ -423,12 +400,18 @@
         selecttionofxialaview=2;
     }
     else  if (imageView.tag==3){
+        
+        
+        
         imageView.image=[personal getImageWithName:@"bg_sel"];
         UIImageView * imageView1 = (UIImageView *)[xiala viewWithTag:2];
         imageView1.image=nil;
         UIImageView * imageView2 = (UIImageView *)[xiala viewWithTag:1];
         imageView2.image=nil;
         selecttionofxialaview=3;
+        
+        
+        
         
     }
     [self sendrequest];
@@ -665,7 +648,7 @@
     [self showloadingview];
     
     
-    NSLog(@"zouni....");
+  //  NSLog(@"zouni....");
     currentpage=1;
     // [_array_info removeAllObjects];
     if (tool_101==nil) {
@@ -674,17 +657,40 @@
     }
     switch (selecttionofxialaview) {
         case 1:
+            
+            //最后回复
             [tool_101 setUrl_string:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumthread.php?fid=%@&page=%d&orderby=2&formattype=json&authcode=%@",self.string_id,currentpage,[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD]]];
             
-            NSLog(@"请求的地址为====%@",[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumthread.php?fid=%@&page=%d&orderby=2&formattype=json&authcode=%@",self.string_id,currentpage,[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD]]);
+            NSLog(@"最后回复的接口为====%@",[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumthread.php?fid=%@&page=%d&orderby=2&formattype=json&authcode=%@",self.string_id,currentpage,[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD]]);
+            
+            
+            
             
             
             break;
         case 2:
+            
+            
+            NSLog(@"最新发帖的接口===%@",[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumthread.php?fid=%@&page=%d&orderby=1&formattype=json&authcode=%@",self.string_id,currentpage,[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD]]);
+            
+            //最新发帖
+            
+            
+            
             [tool_101 setUrl_string:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumthread.php?fid=%@&page=%d&orderby=1&formattype=json&authcode=%@",self.string_id,currentpage,[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD]]];
             break;
         case 3:
+            
+            
+            NSLog(@"精华帖的接口==%@",[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumdigest.php?fid=%@&page=%d&formattype=json&authcode=%@",self.string_id,currentpage,[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD]]);
+            //精华帖
+            
+           
+            
             [tool_101 setUrl_string:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getforumdigest.php?fid=%@&page=%d&formattype=json&authcode=%@",self.string_id,currentpage,[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD]]];
+            
+            
+            
             
             break;
             
@@ -739,6 +745,9 @@
 
 -(void)downloadtool:(downloadtool *)tool didfinishdownloadwithdata:(NSData *)data
 {
+    
+    
+    
     @try {
         _isloadingIv.hidden=YES;
         
@@ -947,6 +956,9 @@
     
 }
 -(void)downloadtoolError{
+    
+    
+    
     //    UIAlertView *alert_=[[UIAlertView alloc]initWithTitle:@"提示" message:@"网络连接超时，请检查您的网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     //    [alert_ show];
     _replaceAlertView.hidden=NO;
@@ -954,6 +966,9 @@
 }
 #pragma mark-显示框
 -(void)hidefromview{
+    
+    
+    
     [self performSelector:@selector(hidealert) withObject:nil afterDelay:2];
     NSLog(@"?????");
 }

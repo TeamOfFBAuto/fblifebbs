@@ -1401,11 +1401,9 @@
 }
 -(void)advimgdismiss{
     
-    
     //    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
     //    NSTimeInterval a=[dat timeIntervalSince1970];
     //    NSString *timeString = [NSString stringWithFormat:@"%f", a];
-    //
     //    [[NSUserDefaults standardUserDefaults] setObject:timeString forKey:[NSString stringWithFormat:@"dismisstimechange"]];
     isadvertisingImghiden=YES;
     [tab_ reloadData];

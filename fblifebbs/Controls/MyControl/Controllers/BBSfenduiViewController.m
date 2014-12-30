@@ -233,7 +233,7 @@
     
 #pragma mark-----这里还要考虑打电话的情况
     
-    xialaView.center = CGPointMake(160,MY_MACRO_NAME? image.size.height/2+54:image.size.height/2+34);
+    xialaView.center = CGPointMake(DEVICE_WIDTH/2,MY_MACRO_NAME? image.size.height/2+54:image.size.height/2+34);
     
     
     
@@ -1009,6 +1009,26 @@
     UILabel *trasactionstatelabel;
     UILabel *locationlabel;
     
+    //改吧：
+    
+    AsyncImageView *imageHead=[[AsyncImageView alloc]initWithFrame:CGRectMake(12, 16, 28, 28)];
+    
+    CALayer *l = [imageHead layer];   //获取ImageView的层
+    [l setMasksToBounds:YES];
+    [l setCornerRadius:14.f];
+    
+    NSString *str_headurl=[NSString stringWithFormat:@"%@",[dic objectForKey:@"authorid"]];
+    
+   str_headurl= [zsnApi returnUrl:str_headurl];
+    
+    [imageHead loadImageFromURL:str_headurl withPlaceholdImage:nil];
+    
+    imageHead.backgroundColor=[UIColor grayColor];
+    
+    [cell.contentView addSubview:imageHead];
+    
+       //gaiwan
+    
     titleLabel=[[UILabel alloc]init];
     titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0];
     titleLabel.textColor=RGBCOLOR(49, 49, 49);
@@ -1023,18 +1043,22 @@
     authorLabel.backgroundColor = [UIColor clearColor];
     [imageviewcell addSubview:authorLabel];
     
+    
+    
+    
+    
     createTimeLabel=[[UILabel alloc]init];
     createTimeLabel.font = [UIFont systemFontOfSize:11];
     createTimeLabel.textColor= [UIColor lightGrayColor];
     createTimeLabel.backgroundColor = [UIColor clearColor];
-    createTimeLabel.textAlignment=NSTextAlignmentRight;
+    createTimeLabel.textAlignment=NSTextAlignmentLeft;
     [imageviewcell addSubview:createTimeLabel];
     
     repliesLabel=[[UILabel alloc]init];
     repliesLabel.font = [UIFont systemFontOfSize:11];
     repliesLabel.textColor=[UIColor grayColor];
     repliesLabel.backgroundColor = [UIColor clearColor];
-    repliesLabel.textAlignment=NSTextAlignmentRight;
+    repliesLabel.textAlignment=NSTextAlignmentLeft;
     [imageviewcell addSubview:repliesLabel];
     
     trasactionstatelabel=[[UILabel alloc]init];
@@ -1047,6 +1071,9 @@
     locationlabel.textColor=[UIColor lightGrayColor];
     locationlabel.backgroundColor = [UIColor clearColor];
     locationlabel.textAlignment=NSTextAlignmentLeft;
+    
+    
+    
     
     
     int jinghua=[[dic objectForKey:@"digest"] integerValue];
@@ -1117,7 +1144,7 @@
             trasactionstatelabel.textColor=[UIColor clearColor];
             
             locationlabel.frame = CGRectMake(8, 3, 50, 20);
-            titleLabel.frame = CGRectMake(titleLabel.frame.origin.x-50,titleLabel.frame.origin.y, titleLabel.frame.size.width,titleLabel.frame.size.height);
+            titleLabel.frame = CGRectMake(titleLabel.frame.origin.x-56,titleLabel.frame.origin.y, titleLabel.frame.size.width,titleLabel.frame.size.height);
             
             titleLabel.text=[NSString stringWithFormat:@"           %@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
             
@@ -1131,26 +1158,50 @@
     }
     
     
-    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH - 30, MAXFLOAT);
+    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH - 50, MAXFLOAT);
     CGSize labelSize = [titleLabel.text sizeWithFont:titleLabel.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-    titleLabel.frame=CGRectMake(8, 12, DEVICE_WIDTH - 30, labelSize.height);
+    titleLabel.frame=CGRectMake(8, 12, DEVICE_WIDTH - 60, labelSize.height);
     
     
     authorLabel.text=[dic objectForKey:@"author"];
-    authorLabel.frame=CGRectMake(8, titleLabel.frame.size.height+20, 80, 20);
-    createTimeLabel.frame=CGRectMake(100, titleLabel.frame.size.height+20, 80, 20);
+    authorLabel.frame=CGRectMake(30, titleLabel.frame.size.height+20, 80, 20);
+    createTimeLabel.frame=CGRectMake(100, titleLabel.frame.size.height+20, 120, 20);
     
-    createTimeLabel.center = CGPointMake(DEVICE_WIDTH / 2.f, createTimeLabel.center.y);
+    createTimeLabel.center = CGPointMake(DEVICE_WIDTH / 2.f-20, createTimeLabel.center.y);
+    createTimeLabel.backgroundColor=[UIColor whiteColor];
     
-    repliesLabel.frame=CGRectMake(DEVICE_WIDTH - 105, titleLabel.frame.size.height+20, 80, 20);
+    
+    repliesLabel.frame=CGRectMake(DEVICE_WIDTH - 140, titleLabel.frame.size.height+20, 80, 20);
     
     
-    NSString *string_time=[personal timchange:[dic objectForKey:@"time"]];
+    NSString *string_time=[personal timechange:[dic objectForKey:@"time"]];
     createTimeLabel.text=string_time;
     repliesLabel.text=[NSString stringWithFormat:@"%@ / %@",[dic objectForKey:@"replies" ],[dic objectForKey:@"views"]];
     
-    imageviewcell.frame=CGRectMake(8, 0, 310,titleLabel.frame.size.height+25 );
+    imageviewcell.frame=CGRectMake(44, 0, DEVICE_WIDTH-44,titleLabel.frame.size.height+25 );
     [cell.contentView addSubview:imageviewcell];
+    
+    
+    
+    //三个小图标
+    
+    UIImageView *personlittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(authorLabel.left-22, authorLabel.top+2, 33/2, 28/2)];
+    personlittleiConImageV.image=[UIImage imageNamed:@"bbsfenduipeople.png"];
+    [imageviewcell addSubview:personlittleiConImageV];
+    
+    UIImageView *timelittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(createTimeLabel.left-22, createTimeLabel.top+2, 35/2, 36/2)];
+    timelittleiConImageV.image=[UIImage imageNamed:@"bbsfenduisendtime.png"];
+    [imageviewcell addSubview:timelittleiConImageV];
+    
+    UIImageView *replaylittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(repliesLabel.left-22, repliesLabel.top+3, 36/2, 33/2)];
+    replaylittleiConImageV.image=[UIImage imageNamed:@"bbsfenduireplayss.png"];
+    [imageviewcell addSubview:replaylittleiConImageV];
+    
+
+    
+    
+    
+    imageviewcell.backgroundColor=[UIColor whiteColor];
     cell.contentView.backgroundColor=[UIColor whiteColor];
     cell.backgroundColor=[UIColor whiteColor];
     
@@ -1213,7 +1264,7 @@
     NSString *string_chushouqiugou=[NSString stringWithFormat:@"%@",[dic objectForKey:@"typestate"]];
 //    CGSize constraintSize = CGSizeMake(290, MAXFLOAT);
     
-    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH - 30, MAXFLOAT);
+    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH - 56, MAXFLOAT);
     
     if (string_chushouqiugou.length==0) {
         if (jinghua>0||displayorder>0) {
@@ -1400,22 +1451,15 @@
     
 }
 -(void)advimgdismiss{
-    
     //    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
     //    NSTimeInterval a=[dat timeIntervalSince1970];
     //    NSString *timeString = [NSString stringWithFormat:@"%f", a];
     //    [[NSUserDefaults standardUserDefaults] setObject:timeString forKey:[NSString stringWithFormat:@"dismisstimechange"]];
     isadvertisingImghiden=YES;
     [tab_ reloadData];
-    
     NSLog(@"在这完成广告位消失以及改变tabv的frame的动画");
     // [self performSelector:@selector(advreback) withObject:nil afterDelay:3.0f];
-    
 }
-
-
-
-
 
 - (void)didReceiveMemoryWarning
 {

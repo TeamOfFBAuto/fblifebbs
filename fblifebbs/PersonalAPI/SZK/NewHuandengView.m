@@ -9,7 +9,7 @@
 #import "NewHuandengView.h"
 #import "SGFocusImageItem.h"
 #import <objc/runtime.h>
-#define ITEM_WIDTH 320.0
+#define ITEM_WIDTH DEVICE_WIDTH
 
 @interface NewHuandengView () {
     UIScrollView *_scrollView;
@@ -92,31 +92,31 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
 #pragma mark - private methods
 - (void)setupViews
 {
-    greenlabel=[[UILabel alloc]initWithFrame:CGRectMake(12, 164+13, 320, 18)];
+    greenlabel=[[UILabel alloc]initWithFrame:CGRectMake(12, (164+13)*DEVICE_WIDTH/320, DEVICE_WIDTH, 18)];
     greenlabel.font=[UIFont boldSystemFontOfSize:16];
     greenlabel.textAlignment=NSTextAlignmentLeft;
     greenlabel.textColor=RGBCOLOR(42, 42, 42);
     greenlabel.backgroundColor=[UIColor clearColor];
     
     NSArray *imageItems = objc_getAssociatedObject(self, (const void *)SG_FOCUS_ITEM_ASS_KEY);
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 191)];
-    _scrollView.backgroundColor=[UIColor whiteColor];
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 191*DEVICE_WIDTH/320)];
+    _scrollView.backgroundColor=[UIColor clearColor];
     _scrollView.scrollsToTop = NO;
     //pagecontrol
-    _pagecontrol = [[SMPageControl alloc]initWithFrame:CGRectMake(-4, 1,  320-255, 25)];
+    _pagecontrol = [[SMPageControl alloc]initWithFrame:CGRectMake(-4, 1,  DEVICE_WIDTH-255, 25)];
     
     _pagecontrol.backgroundColor = [UIColor clearColor];
     _pagecontrol.numberOfPages = 5;
     _pagecontrol.indicatorMargin=8.0f;
     [_pagecontrol setPageIndicatorImage:[UIImage imageNamed:@"roundgray.png"]];
     [_pagecontrol setCurrentPageIndicatorImage:[UIImage imageNamed:@"roundblue.png"]];
-    _pagecontrol.center=CGPointMake(280, 135+13);
+    _pagecontrol.center=CGPointMake(DEVICE_WIDTH-40, (135+13)*DEVICE_WIDTH/320);
     
     _pagecontrol.currentPage = 0;
     
     //黑色小条
     
-    UIView *_duantiaoview=[[UIView alloc]initWithFrame:CGRectMake(0,MY_MACRO_NAME? self.frame.size.height-158/2+5:self.frame.size.height-158/2+5, 320, 150/2)];
+    UIView *_duantiaoview=[[UIView alloc]initWithFrame:CGRectMake(0,MY_MACRO_NAME? self.frame.size.height-158/2+5:self.frame.size.height-158/2+5, DEVICE_WIDTH, 150/2)];
     _duantiaoview.userInteractionEnabled = NO;
     _duantiaoview.autoresizesSubviews=YES;
     
@@ -130,12 +130,12 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
     [self addSubview:greenlabel];
     //三角
     _sanJiaoImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sanjiao21_8.png"]];
-    _sanJiaoImageView.center=CGPointMake(255, 148+13);
-    [self addSubview:_sanJiaoImageView];
+    _sanJiaoImageView.center=CGPointMake(DEVICE_WIDTH-83+14*_scrollView.contentOffset.x/DEVICE_WIDTH,163*DEVICE_WIDTH/320-2);
+     [self addSubview:_sanJiaoImageView];
     
     //line
     
-    UIView *viewLine=[[UIView alloc]initWithFrame:CGRectMake(12, 191-0.5+13, 320-24, 0.5)];
+    UIView *viewLine=[[UIView alloc]initWithFrame:CGRectMake(12, (191-0.5+13)*DEVICE_WIDTH/320, DEVICE_WIDTH-24, 0.5)];
     viewLine.backgroundColor=RGBCOLOR(76, 104, 138);
     [self addSubview:viewLine];
     
@@ -161,9 +161,9 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
     for (int i = 0; i < imageItems.count; i++) {
         
         //        SGFocusImageItem *item = [imageItems objectAtIndex:i];
-        AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(i * 320, 0, 320, 163) ];
+        AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(i * DEVICE_WIDTH, 0, DEVICE_WIDTH, 163*DEVICE_WIDTH/320) ];
         //加载图片
-         //imageView.backgroundColor = i%2?[UIColor greenColor]:[UIColor blueColor];
+        //imageView.backgroundColor = i%2?[UIColor greenColor]:[UIColor blueColor];
         SGFocusImageItem *item = [imageItems objectAtIndex:i];
         
         [ imageView loadImageFromURL:item.image withPlaceholdImage:[UIImage imageNamed:@"bigimplace.png"]];
@@ -271,11 +271,12 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
         if ([self.delegate respondsToSelector:@selector(testfoucusImageFrame:currentItem:)])
         {
             [self.delegate testfoucusImageFrame:self currentItem:page];
-       }
+        }
     }
-    _sanJiaoImageView.center=CGPointMake(237+14*_scrollView.contentOffset.x/320, 148+13);
-
-
+    
+    _sanJiaoImageView.center=CGPointMake(DEVICE_WIDTH-83+14*_scrollView.contentOffset.x/DEVICE_WIDTH,_sanJiaoImageView.center.y);
+    
+    
     _pagecontrol.currentPage = page;
     
     
@@ -291,7 +292,7 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
         
         
         
-          }
+    }
 }
 
 
@@ -315,10 +316,10 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
 
 
 -(void)setimageItems:(NSArray *)items{
-
-
-
-
+    
+    
+    
+    
 }
 
 
@@ -337,7 +338,7 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
 //-(void)dongqilai{
 //        [UIView beginAnimations:nil context:nil];
 //        [UIView setAnimationDuration:0.5];
-//        self.contentOffset=CGPointMake(320*iscount, 0);
+//        self.contentOffset=CGPointMake(DEVICE_WIDTH*iscount, 0);
 //        [UIView commitAnimations];
 //
 //

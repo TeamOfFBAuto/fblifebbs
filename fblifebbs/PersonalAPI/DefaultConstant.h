@@ -471,8 +471,8 @@ alpha:(a)]
 #define GET_SHOUYE_SHOUCANG_URL @"http://bbs.fblife.com/bbsapinew/favoritesforums.php?authcode=%@&action=query&formattype=json"
 
 
-
-
+#pragma mark - 论坛精选推荐幻灯数据接口
+#define GET_BBS_SLIDESHOW_URL @"http://cmsweb.fblife.com/ajax.php?c=newstwo&a=newsslide&classname=appbbs&type=json"
 
 
 

@@ -24,10 +24,10 @@
 #import "GuanggaoViewController.h"//广告
 
 #import "fbWebViewController.h"//
+#import "RecommendView.h"
 
 
-
-@interface TheRootViewController (){
+@interface TheRootViewController ()<RecommendViewDelegate>{
     
     NSArray *dataArray;
     
@@ -165,7 +165,7 @@
     
     dataArray = [testbase findall];
     
-    UIScrollView *   firstscro=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0,DEVICE_WIDTH,DEVICE_HEIGHT-64-49-107)];
+    UIScrollView *   firstscro=[[UIScrollView alloc]initWithFrame:CGRectMake(DEVICE_WIDTH, 0,DEVICE_WIDTH,DEVICE_HEIGHT-64-49-107)];
     firstscro.contentSize=CGSizeMake(0,40* dataArray.count);
     firstscro.pagingEnabled=NO;
     firstscro.showsHorizontalScrollIndicator=NO;
@@ -246,7 +246,7 @@
 //tableview
 -(void)setTabView{
     
-    newsScrow=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 107,DEVICE_WIDTH,DEVICE_HEIGHT-64-107-49)];
+    newsScrow=[[UIScrollView alloc]initWithFrame:CGRectMake(0,107,DEVICE_WIDTH,DEVICE_HEIGHT-64-107-49)];
     newsScrow.contentSize=CGSizeMake(DEVICE_WIDTH*13, 0);
     newsScrow.pagingEnabled=YES;
     newsScrow.delegate=self;
@@ -256,12 +256,18 @@
     newsScrow.scrollEnabled=NO;
     [self.view addSubview:newsScrow];
     
-    //第一屏，最近浏览的
+    
+    //第一层，精选推荐
+    RecommendView * recommendView = [[RecommendView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,newsScrow.height)];
+    recommendView.delegate = self;
+    [newsScrow addSubview:recommendView];
+    
+    //第二屏，最近浏览的
     
     
     
-    //第二屏，我收藏的版块
-    _mainTabV=[[UITableView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH, 0, DEVICE_WIDTH, DEVICE_HEIGHT-49-107-64)];
+    //第三屏，我收藏的版块
+    _mainTabV=[[UITableView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH*2, 0, DEVICE_WIDTH, DEVICE_HEIGHT-49-107-64)];
     _mainTabV.delegate=self;
     _mainTabV.dataSource=self;
     _mainTabV.separatorColor=[UIColor clearColor];
@@ -269,9 +275,9 @@
     [newsScrow addSubview:_mainTabV];
     [self settabviewHederView];
     
-    //第三屏，soulnear的排行榜
+    //第四屏，soulnear的排行榜
     CGRect ranking_frame = _mainTabV.frame;
-    ranking_frame.origin.x = DEVICE_WIDTH*2;
+    ranking_frame.origin.x = DEVICE_WIDTH*3;
     BBSRankingView * rangkingView = [[BBSRankingView alloc] initWithFrame:ranking_frame];
     [newsScrow addSubview:rangkingView];
     __weak typeof(self)bself = self;
@@ -314,35 +320,39 @@
 -(void)settabviewHederView{
     
     UIView *HeaderV=[[UIView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 107)];
-    HeaderV.backgroundColor=RGBCOLOR(234, 234, 234);
+    HeaderV.backgroundColor = RGBCOLOR(234, 234, 234);
     
-    NSArray *titleArr=@[@"最近浏览",@"收藏版块",@"排行榜"];
+    NSArray *titleArr=@[@"精选推荐",@"最近浏览",@"收藏版块",@"排行榜"];
     
-    NSArray * imgArr=@[@"root_liulan.png",@"root_shoucang.png",@"root_paihang.png"];
+    NSArray * imgArr=@[@"root_jingxuan.png",@"root_liulan.png",@"root_shoucang.png",@"root_paihang.png"];
 //    NSArray * selectedArr=@[@"liulan5.png",@"shoucan5.png",@"paihang5.png"];
     
-    for (int i=0; i<3; i++) {
-        UIButton *ytestButton=[LTools createButtonWithType:UIButtonTypeCustom frame:CGRectMake(i*DEVICE_WIDTH/3, 0, DEVICE_WIDTH/3, 203/2) normalTitle:nil image:nil backgroudImage:nil superView:HeaderV target:self action:@selector(doActionButton:)];
+    for (int i=0; i<4; i++) {
+        UIButton *ytestButton=[LTools createButtonWithType:UIButtonTypeCustom frame:CGRectMake(i*DEVICE_WIDTH/4, 0, DEVICE_WIDTH/4, 203/2) normalTitle:nil image:nil backgroudImage:nil superView:HeaderV target:self action:@selector(doActionButton:)];
         
 //        [ytestButton setBackgroundImage:[UIImage imageNamed:imgArr[i]] forState:UIControlStateNormal];
-        [ytestButton setBackgroundImage:[UIImage imageNamed:@"root_selected_image.png"] forState:UIControlStateDisabled|UIControlStateSelected];
+        [ytestButton setBackgroundImage:[UIImage imageNamed:@"root_selected_image.png"] forState:UIControlStateSelected|UIControlStateSelected];
         [ytestButton setBackgroundImage:[UIImage imageNamed:@"root_unselected_image.png"] forState:UIControlStateNormal];
         
         ytestButton.tag=9000+i;
         if (i==0) {
             ytestButton.selected=YES;
-            ytestButton.frame=CGRectMake(0, 0,DEVICE_WIDTH/3, 203/2);
+            ytestButton.frame=CGRectMake(0, 0,DEVICE_WIDTH/4, 203/2);
         }else if(i==1){
             ytestButton.selected=NO;
-            ytestButton.frame=CGRectMake(DEVICE_WIDTH/3, 0,DEVICE_WIDTH/3, 203/2);
+            ytestButton.frame=CGRectMake(DEVICE_WIDTH/4, 0,DEVICE_WIDTH/4, 203/2);
             
         }else if(i==2)
         {
             ytestButton.selected=NO;
-            ytestButton.frame=CGRectMake(DEVICE_WIDTH/3*2, 0,DEVICE_WIDTH/3, 203/2);
+            ytestButton.frame=CGRectMake(DEVICE_WIDTH/4*2, 0,DEVICE_WIDTH/4, 203/2);
+        }else if(i==3)
+        {
+            ytestButton.selected=NO;
+            ytestButton.frame=CGRectMake(DEVICE_WIDTH/4*3, 0,DEVICE_WIDTH/4, 203/2);
         }
         
-        UILabel *titleLabel=[LTools createLabelFrame:CGRectMake(0, 0,  DEVICE_WIDTH/3,20) title:titleArr[i] font:14 align:NSTextAlignmentCenter textColor:RGBCOLOR(132, 132, 132)];
+        UILabel *titleLabel=[LTools createLabelFrame:CGRectMake(0, 0,  DEVICE_WIDTH/4,20) title:titleArr[i] font:14 align:NSTextAlignmentCenter textColor:RGBCOLOR(132, 132, 132)];
         titleLabel.center=CGPointMake(ytestButton.frame.size.width/2, 75);
         [ytestButton addSubview:titleLabel];
         
@@ -445,14 +455,19 @@
     preTag=sender.tag;
     
     [newsScrow setContentOffset:CGPointMake(DEVICE_WIDTH*(sender.tag-9000), 0)];
-    
+    NSLog(@"xxxxxxxxxx -------   %f",DEVICE_WIDTH*(sender.tag-9000));
     switch (sender.tag) {
         case 9000:
+        {
+            NSLog(@"精选推荐");
+        }
+            break;
+        case 9001:
         {
             NSLog(@"跳转到最近浏览");
         }
             break;
-        case 9001:
+        case 9002:
         {
             if (allArr.count==0) {
                 [self loadChangshiData];
@@ -460,7 +475,7 @@
             NSLog(@"跳转到最搜藏板块");
         }
             break;
-        case 9002:
+        case 9003:
         {
             NSLog(@"跳转到排行榜");
         }
@@ -603,19 +618,19 @@
     [super viewWillAppear:NO];
     [self setHidesBottomBarWhenPushed:NO];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    UIButton *preButton=(UIButton *)[self.view viewWithTag:9002];
-
-    
-    if (![defaults boolForKey:USER_IN]) {
-    
-        [self doActionButton:preButton];
-    
-        return;
-    
-    
-    }
+//    UIButton *preButton=(UIButton *)[self.view viewWithTag:9002];
+//
+//    
+//    if (![defaults boolForKey:USER_IN]) {
+//    
+//        [self doActionButton:preButton];
+//    
+//        return;
+//    
+//    
+//    }
  
     
     

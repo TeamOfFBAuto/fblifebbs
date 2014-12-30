@@ -863,6 +863,8 @@
 		5642C7E41A07744D00984860 /* ios7backImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5642C7E31A07744D00984860 /* ios7backImage@2x.png */; };
 		5646FC3319E7E30000AA35E0 /* SNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5646FC3219E7E30000AA35E0 /* SNViewController.m */; };
 		5646FC3D19E7E64F00AA35E0 /* SliderBBSTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5646FC3C19E7E64F00AA35E0 /* SliderBBSTitleView.m */; };
+		5655CCA21A528AB500482034 /* RecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5655CCA11A528AB500482034 /* RecommendView.m */; };
+		5655CCA41A52954100482034 /* root_jingxuan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5655CCA31A52954100482034 /* root_jingxuan@2x.png */; };
 		5658D1E81A11FF0A00F777C4 /* BBSRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658D1E71A11FF0A00F777C4 /* BBSRecommendViewController.m */; };
 		5658D1EA1A12099D00F777C4 /* smallimplace.png in Resources */ = {isa = PBXBuildFile; fileRef = 5658D1E91A12099D00F777C4 /* smallimplace.png */; };
 		5668E1AD19EB69CF0091A4B0 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E1A819EB69CF0091A4B0 /* LogInViewController.m */; };
@@ -2092,6 +2094,9 @@
 		5646FC3419E7E33700AA35E0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		5646FC3B19E7E64F00AA35E0 /* SliderBBSTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderBBSTitleView.h; sourceTree = "<group>"; };
 		5646FC3C19E7E64F00AA35E0 /* SliderBBSTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderBBSTitleView.m; sourceTree = "<group>"; };
+		5655CCA01A528AB500482034 /* RecommendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendView.h; sourceTree = "<group>"; };
+		5655CCA11A528AB500482034 /* RecommendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendView.m; sourceTree = "<group>"; };
+		5655CCA31A52954100482034 /* root_jingxuan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "root_jingxuan@2x.png"; sourceTree = "<group>"; };
 		5658D1E61A11FF0A00F777C4 /* BBSRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSRecommendViewController.h; sourceTree = "<group>"; };
 		5658D1E71A11FF0A00F777C4 /* BBSRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSRecommendViewController.m; sourceTree = "<group>"; };
 		5658D1E91A12099D00F777C4 /* smallimplace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallimplace.png; sourceTree = "<group>"; };
@@ -3370,6 +3375,7 @@
 		19B1BA7E1A036D3A003D8522 /* shouyeimages */ = {
 			isa = PBXGroup;
 			children = (
+				5655CCA31A52954100482034 /* root_jingxuan@2x.png */,
 				56D72EE81A1A32DB00339192 /* root_liulan@2x.png */,
 				56D72EE91A1A32DB00339192 /* root_unselected_image@2x.png */,
 				56D72EEA1A1A32DB00339192 /* root_shoucang@2x.png */,
@@ -3563,6 +3569,8 @@
 				193D48FB19ECEE1D00B6E14E /* ShareView.m */,
 				193D48B019EBD24200B6E14E /* CompreTableViewCell.h */,
 				193D48B119EBD24200B6E14E /* CompreTableViewCell.m */,
+				5655CCA01A528AB500482034 /* RecommendView.h */,
+				5655CCA11A528AB500482034 /* RecommendView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4797,6 +4805,7 @@
 				5637256119E9247800BEF45C /* bbs_forum_earth-1@2x.png in Resources */,
 				5635899B19F7937F005F6F55 /* Expression_19@2x.png in Resources */,
 				13D42E6819ED32AD00261D69 /* addMorePicture@2x.png in Resources */,
+				5655CCA41A52954100482034 /* root_jingxuan@2x.png in Resources */,
 				13ACB65D19EFA96F0092318B /* quanzikuang_sel.png in Resources */,
 				5637253719E9232900BEF45C /* weiboChoosePicturesback@2x.png in Resources */,
 				19C49C3A19F0D4EF0090F00E /* finds@2x.png in Resources */,
@@ -5398,6 +5407,7 @@
 				13D42E2619ED30F200261D69 /* MyChatViewCell.m in Sources */,
 				13D42D9519ED2FD800261D69 /* ImagesViewController.m in Sources */,
 				13D42C6719ED251200261D69 /* FaceScrollView.m in Sources */,
+				5655CCA21A528AB500482034 /* RecommendView.m in Sources */,
 				13D42D2F19ED2AA500261D69 /* newslooked.m in Sources */,
 				1315146E19EE7E4E00F31595 /* UMTableViewController.m in Sources */,
 				13D42CD019ED289200261D69 /* ATMProgressLayer.m in Sources */,

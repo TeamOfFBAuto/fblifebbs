@@ -26,9 +26,9 @@
 #import "ComprehensiveViewController.h"
 #import "AFNetworkReachabilityManager.h"
 
-#define WXAPPID @"wxda592c816f3e5c23"
-#define SINAAPPID @"1552967260"
-#define UMENG_APPKEY @"54646d3efd98c5657c005abc"
+#define UMENG_APPKEY @"54646d3efd98c5657c005abc" //mobile
+#define WXAPPID @"wxda592c816f3e5c23" //mobile
+#define SINAAPPID @"1120368104" //mobile  //secret:090bb93d6584fb23287221f5c22b4276
 
 
 @interface AppDelegate ()

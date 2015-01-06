@@ -131,6 +131,7 @@
     fbWebViewController *fbweb=[[fbWebViewController alloc]init];
     fbweb.urlstring=[NSString stringWithFormat:@"%@",[sender.userInfo objectForKey:@"link"]];
     [fbweb viewWillAppear:YES];
+    fbweb.hidesBottomBarWhenPushed = YES;
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:fbweb animated:YES];
     [self setHidesBottomBarWhenPushed:NO];
@@ -223,7 +224,7 @@
     _fendui.string_name=theName;
     
     _fendui.string_id=theId;
-    
+    _fendui.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:_fendui animated:YES];//跳入下一个View
     
 }

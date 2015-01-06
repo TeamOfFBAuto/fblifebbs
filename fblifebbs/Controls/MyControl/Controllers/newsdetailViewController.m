@@ -197,11 +197,12 @@
     [aview addSubview:secondWebView];
     _webView.opaque=NO;
     secondWebView.opaque=NO;
-    if (isiphone5) {
-        _webView.frame=CGRectMake(0, 0, DEVICE_WIDTH , 314+88+105-41);
-    }else{
-        _webView.frame=CGRectMake(0, 0,DEVICE_WIDTH, 314+105-41+4+2);
-    }
+//    if (isiphone5) {
+//        _webView.frame=CGRectMake(0, 0, DEVICE_WIDTH , 314+88+105-41);
+//    }else{
+//        _webView.frame=CGRectMake(0, 0,DEVICE_WIDTH, 314+105-41+4+2);
+//    }
+    _webView.frame = CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-64-41);
     webScroller = (UIScrollView *)[_webView.subviews objectAtIndex:0];
     //webScroller.backgroundColor=[UIColor whiteColor];
     webScroller.delegate=self;
@@ -320,7 +321,7 @@
 
 -(void)prepairCommentTiao{
 
-    inputV=[[CustomInputView alloc]initWithFrame:CGRectMake(0,iPhone5?419+88-42:377, DEVICE_WIDTH, 41)];
+    inputV=[[CustomInputView alloc]initWithFrame:CGRectMake(0,DEVICE_HEIGHT-64-41, DEVICE_WIDTH, 41)];
     
     
     inputV.isShowFenYe = YES;

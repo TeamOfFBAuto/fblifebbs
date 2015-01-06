@@ -416,6 +416,7 @@
 {
     if (_delegate) {
         UIViewController * vc = (UIViewController *)self.delegate;
+        aVC.hidesBottomBarWhenPushed = YES;
         [vc.navigationController pushViewController:aVC animated:YES];
     }
 }

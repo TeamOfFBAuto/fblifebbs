@@ -48,14 +48,16 @@
     
     
     [self prepairNavigationBar];
-    [self setTabView];
+    
     dataArray=[NSArray array];
     currentpage=1;
     allArr=[NSMutableArray array];
     preTag=9000;
     
     [self loadRecentlyLookData];
+    [self setTabView];
     
+    [self settabviewHederView];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -187,10 +189,7 @@
         [ytestButton setTitle:test.name forState:UIControlStateNormal];
         
         ytestButton.tag=200+i;
-        
-        
     }
-    
 }
 
 
@@ -246,7 +245,7 @@
 //tableview
 -(void)setTabView{
     
-    newsScrow=[[UIScrollView alloc]initWithFrame:CGRectMake(0,107,DEVICE_WIDTH,DEVICE_HEIGHT-64-107-49)];
+    newsScrow=[[UIScrollView alloc]initWithFrame:CGRectMake(0,96,DEVICE_WIDTH,DEVICE_HEIGHT-64-96-49)];
     newsScrow.contentSize=CGSizeMake(DEVICE_WIDTH*13, 0);
     newsScrow.pagingEnabled=YES;
     newsScrow.delegate=self;
@@ -273,7 +272,7 @@
     _mainTabV.separatorColor=[UIColor clearColor];
     _mainTabV.backgroundColor=RGBCOLOR(234, 234, 234);
     [newsScrow addSubview:_mainTabV];
-    [self settabviewHederView];
+    
     
     //第四屏，soulnear的排行榜
     CGRect ranking_frame = _mainTabV.frame;
@@ -320,7 +319,11 @@
 -(void)settabviewHederView{
     
     UIView *HeaderV=[[UIView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 107)];
-    HeaderV.backgroundColor = RGBCOLOR(234, 234, 234);
+    HeaderV.backgroundColor = [UIColor clearColor];
+    
+    UIView * background_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,96)];
+    background_view.backgroundColor = RGBCOLOR(234, 234, 234);
+    [HeaderV addSubview:background_view];
     
     NSArray *titleArr=@[@"精选推荐",@"最近浏览",@"收藏版块",@"排行榜"];
     

@@ -288,10 +288,6 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
         CGFloat targetX = _scrollView.contentOffset.x + _scrollView.frame.size.width;
         targetX = (int)(targetX/ITEM_WIDTH) * ITEM_WIDTH;
         [self moveToTargetPosition:targetX];
-        
-        
-        
-        
     }
 }
 

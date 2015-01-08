@@ -15,6 +15,9 @@
 #import "LogInViewController.h"
 #import "fbWebViewController.h"
 
+
+#define LINESPACEINGS 4
+
 //101更新   102加载   202收藏  203查看收藏
 @interface BBSfenduiViewController (){
     UIButton *button_collect;
@@ -968,7 +971,6 @@
 -(void)hidefromview{
     
     
-    
     [self performSelector:@selector(hidealert) withObject:nil afterDelay:2];
     NSLog(@"?????");
 }
@@ -1011,11 +1013,11 @@
     
     //改吧：
     
-    AsyncImageView *imageHead=[[AsyncImageView alloc]initWithFrame:CGRectMake(12, 15, 31, 31)];
+    AsyncImageView *imageHead=[[AsyncImageView alloc]initWithFrame:CGRectMake(12, 15, 40, 40)];
     
     CALayer *l = [imageHead layer];   //获取ImageView的层
     [l setMasksToBounds:YES];
-    [l setCornerRadius:15.5f];
+    [l setCornerRadius:20.f];
     
     NSString *str_headurl=[NSString stringWithFormat:@"%@",[dic objectForKey:@"authorid"]];
     
@@ -1029,8 +1031,8 @@
     
        //gaiwan
     
-    titleLabel=[[UILabel alloc]init];
-    titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+    titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(8, 12, DEVICE_WIDTH - 70, 400)];
+    titleLabel.font = [UIFont systemFontOfSize:16];
     titleLabel.textColor=RGBCOLOR(49, 49, 49);
     titleLabel.numberOfLines=0;
     titleLabel.lineBreakMode = NSLineBreakByWordWrapping|NSLineBreakByTruncatingTail;
@@ -1067,7 +1069,6 @@
     locationlabel.textColor=[UIColor lightGrayColor];
     locationlabel.backgroundColor = [UIColor clearColor];
     locationlabel.textAlignment=NSTextAlignmentLeft;
-    
     
     
     
@@ -1154,42 +1155,73 @@
     }
     
     
-    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH - 50, MAXFLOAT);
-    CGSize labelSize = [titleLabel.text sizeWithFont:titleLabel.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-    titleLabel.frame=CGRectMake(8, 12, DEVICE_WIDTH - 56, labelSize.height);
+//    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH - 50, MAXFLOAT);
+//    CGSize labelSize = [titleLabel.text sizeWithFont:titleLabel.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+//    titleLabel.frame=CGRectMake(8, 12, DEVICE_WIDTH - 56, labelSize.height);
+    
+    NSMutableAttributedString * attributedString1 = [[NSMutableAttributedString alloc] initWithString:titleLabel.text];
+    NSMutableParagraphStyle * paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle1 setLineSpacing:LINESPACEINGS];
+    [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [titleLabel.text length])];
+    
+    [titleLabel setAttributedText:attributedString1];
+    [titleLabel sizeToFit];
     
     
-    authorLabel.text=[dic objectForKey:@"author"];
-    authorLabel.frame=CGRectMake(30, titleLabel.frame.size.height+20, 80, 20);
-    createTimeLabel.frame=CGRectMake(100, titleLabel.frame.size.height+20, 120, 20);
+    NSLog(@"titleheight===%f",titleLabel.frame.size.height);
     
-    createTimeLabel.center = CGPointMake(DEVICE_WIDTH / 2.f-20, createTimeLabel.center.y);
-    createTimeLabel.backgroundColor=[UIColor whiteColor];
+    if (titleLabel.frame.size.height<24.f) {
+        
+        
+        authorLabel.text=[dic objectForKey:@"author"];
+        authorLabel.frame=CGRectMake(30, titleLabel.frame.size.height+14, 80, 20);
+        createTimeLabel.frame=CGRectMake(100, titleLabel.frame.size.height+14, 120, 20);
+        
+        createTimeLabel.center = CGPointMake(DEVICE_WIDTH / 2.f-20, createTimeLabel.center.y);
+        createTimeLabel.backgroundColor=[UIColor whiteColor];
+        
+        
+        repliesLabel.frame=CGRectMake(DEVICE_WIDTH - 140, titleLabel.frame.size.height+14, 80, 20);
+        
+        
+    }else{
+        authorLabel.text=[dic objectForKey:@"author"];
+        authorLabel.frame=CGRectMake(30, titleLabel.frame.size.height+20, 80, 20);
+        createTimeLabel.frame=CGRectMake(100, titleLabel.frame.size.height+20, 120, 20);
+        
+        createTimeLabel.center = CGPointMake(DEVICE_WIDTH / 2.f-20, createTimeLabel.center.y);
+        createTimeLabel.backgroundColor=[UIColor whiteColor];
+        
+        
+        repliesLabel.frame=CGRectMake(DEVICE_WIDTH - 140, titleLabel.frame.size.height+20, 80, 20);
     
     
-    repliesLabel.frame=CGRectMake(DEVICE_WIDTH - 140, titleLabel.frame.size.height+20, 80, 20);
+    }
+    
+    
+  
     
     
     NSString *string_time=[personal timechange:[dic objectForKey:@"time"]];
     createTimeLabel.text=string_time;
     repliesLabel.text=[NSString stringWithFormat:@"%@ / %@",[dic objectForKey:@"replies" ],[dic objectForKey:@"views"]];
     
-    imageviewcell.frame=CGRectMake(44, 0, DEVICE_WIDTH-44,titleLabel.frame.size.height+25 );
+    imageviewcell.frame=CGRectMake(60, 0, DEVICE_WIDTH-60,titleLabel.frame.size.height+25 );
     [cell.contentView addSubview:imageviewcell];
     
     
     
     //三个小图标
     
-    UIImageView *personlittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(authorLabel.left-22, authorLabel.top+2, 33/2, 28/2)];
+    UIImageView *personlittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(authorLabel.left-22, authorLabel.top, 26/2, 32/2)];
     personlittleiConImageV.image=[UIImage imageNamed:@"bbsfenduipeople.png"];
     [imageviewcell addSubview:personlittleiConImageV];
     
-    UIImageView *timelittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(createTimeLabel.left-22, createTimeLabel.top+2, 35/2, 36/2)];
+    UIImageView *timelittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(createTimeLabel.left-22, createTimeLabel.top+1, 30/2, 31/2)];
     timelittleiConImageV.image=[UIImage imageNamed:@"bbsfenduisendtime.png"];
     [imageviewcell addSubview:timelittleiConImageV];
     
-    UIImageView *replaylittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(repliesLabel.left-22, repliesLabel.top+3, 36/2, 33/2)];
+    UIImageView *replaylittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(repliesLabel.left-22, repliesLabel.top+2, 30/2, 27/2)];
     replaylittleiConImageV.image=[UIImage imageNamed:@"bbsfenduireplayss.png"];
     [imageviewcell addSubview:replaylittleiConImageV];
     
@@ -1260,23 +1292,66 @@
     NSString *string_chushouqiugou=[NSString stringWithFormat:@"%@",[dic objectForKey:@"typestate"]];
 //    CGSize constraintSize = CGSizeMake(290, MAXFLOAT);
     
-    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH - 56, MAXFLOAT);
+    
+    UILabel * cLabel = [[UILabel alloc]initWithFrame:CGRectMake(8, 12, DEVICE_WIDTH - 70, 400)];
+    cLabel.numberOfLines = 0;
+    cLabel.font = [UIFont systemFontOfSize :16];
+//    CGSize constraintSize = CGSizeMake(DEVICE_WIDTH - 56, MAXFLOAT);
     
     if (string_chushouqiugou.length==0) {
         if (jinghua>0||displayorder>0) {
-            CGSize labelSize = [[NSString stringWithFormat:@"      %@",[dic objectForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:15.0]constrainedToSize:constraintSize lineBreakMode:NSLineBreakByCharWrapping];
-            return labelSize.height+40+7;
+//            CGSize labelSize = [[NSString stringWithFormat:@"      %@",[dic objectForKey:@"title"]] sizeWithFont:cLabel.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByCharWrapping];
+            
+            
+   
+            
+            NSMutableAttributedString * attributedString1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"      %@",[dic objectForKey:@"title"]]];
+            NSMutableParagraphStyle * paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+            [paragraphStyle1 setLineSpacing:LINESPACEINGS];
+            [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [[NSString stringWithFormat:@"      %@",[dic objectForKey:@"title"]] length])];
+            
+            [cLabel setAttributedText:attributedString1];
+            [cLabel sizeToFit];
+            
+            
+            
+            return cLabel.frame.size.height+40+7;
             
         }else{
             
-            CGSize labelSize = [[NSString stringWithFormat:@"           %@",[dic objectForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:15.0]constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-            return labelSize.height+40+7;
+//            CGSize labelSize = [[NSString stringWithFormat:@"           %@",[dic objectForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:15.0]constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+            
+            
+            NSMutableAttributedString * attributedString1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"           %@",[dic objectForKey:@"title"]]];
+            NSMutableParagraphStyle * paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+            [paragraphStyle1 setLineSpacing:LINESPACEINGS];
+            [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [[NSString stringWithFormat:@"           %@",[dic objectForKey:@"title"]] length])];
+            
+            [cLabel setAttributedText:attributedString1];
+            [cLabel sizeToFit];
+            
+            
+            
+            return cLabel.frame.size.height+40+7;
+
+            
             
         }
         
     }else{
-        CGSize labelSize = [[NSString stringWithFormat:@"                      %@",[dic objectForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:15.0]constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-        return labelSize.height+40+7;
+//        CGSize labelSize = [[NSString stringWithFormat:@"                      %@",[dic objectForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:15.0]constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        
+        NSMutableAttributedString * attributedString1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"                      %@",[dic objectForKey:@"title"]]];
+        NSMutableParagraphStyle * paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle1 setLineSpacing:LINESPACEINGS];
+        [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [[NSString stringWithFormat:@"                      %@",[dic objectForKey:@"title"]] length])];
+        
+        [cLabel setAttributedText:attributedString1];
+        [cLabel sizeToFit];
+        
+        
+        
+        return cLabel.frame.size.height+40+7;
     }
     
     

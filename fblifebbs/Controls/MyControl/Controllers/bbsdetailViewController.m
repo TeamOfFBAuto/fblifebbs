@@ -1888,6 +1888,7 @@
         authortool.delegate=self;
         
         NSString *stringurl=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreadauthornew.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode];
+        
         NSLog(@"查看楼主的url=%@",stringurl);
     }
     

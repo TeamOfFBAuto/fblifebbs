@@ -267,7 +267,7 @@
     
     
     //第三屏，我收藏的版块
-    _mainTabV=[[UITableView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH*2, 0, DEVICE_WIDTH, DEVICE_HEIGHT-49-107-64)];
+    _mainTabV=[[UITableView alloc] initWithFrame:CGRectMake(DEVICE_WIDTH*2, 0, DEVICE_WIDTH, DEVICE_HEIGHT-49-107-64+20)];
     _mainTabV.delegate=self;
     _mainTabV.dataSource=self;
     _mainTabV.separatorColor=[UIColor clearColor];

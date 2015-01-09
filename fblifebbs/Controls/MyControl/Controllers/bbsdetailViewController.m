@@ -1870,24 +1870,24 @@
     if (!isauthor) {
         all_tool=[[downloadtool alloc]init];
         
-        [all_tool setUrl_string:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreadsnew.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode]];
+        [all_tool setUrl_string:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreads2015_new.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode]];
       //  [all_tool setUrl_string:@"http://bbs2.fblife.com/bbsapinew/getthreadsnew_tmp.php?tid=2999060&page=1&formattype=json"];
         [all_tool start];
         all_tool.tag=107;
         all_tool.delegate=self;
         
-        NSString *stringurl=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreadsnew.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode];
+        NSString *stringurl=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreads2015_new.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode];
         NSLog(@"查看全部url=%@",stringurl);
         
     }else{
         authortool=[[downloadtool alloc]init];
-        [authortool setUrl_string:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreadauthornew.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode]];
+        [authortool setUrl_string:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreads2015_new.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode]];
         
         [authortool start];
         authortool.tag=107;
         authortool.delegate=self;
         
-        NSString *stringurl=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreadauthornew.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode];
+        NSString *stringurl=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreads2015_new.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode];
         
         NSLog(@"查看楼主的url=%@",stringurl);
     }

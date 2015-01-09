@@ -47,17 +47,12 @@
     
     
     
-    [self prepairNavigationBar];
     
     dataArray=[NSArray array];
     currentpage=1;
     allArr=[NSMutableArray array];
     preTag=9000;
     
-    [self loadRecentlyLookData];
-    [self setTabView];
-    
-    [self settabviewHederView];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -146,9 +141,30 @@
     
     
     GuanggaoViewController *_guanggaoVC=[[GuanggaoViewController alloc]init];
+    
+    
+    GuanggaoViewController *_sguanggaoVC=[[GuanggaoViewController alloc]init];
+
+    __weak typeof(self)wself=self;
+    
+    _guanggaoVC.view.frame=self.view.frame;
+    
+    
+    [self.view addSubview:_guanggaoVC.view];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO ];
     
-    [self presentViewController:_guanggaoVC animated:NO completion:NULL];
+    [self presentViewController:_guanggaoVC animated:NO completion:^{
+        
+        [wself prepairNavigationBar];
+        [wself setTabView];
+        [wself settabviewHederView];
+        [wself loadRecentlyLookData];
+        
+
+
+    
+    }];
     
 }
 

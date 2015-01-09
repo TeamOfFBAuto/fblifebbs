@@ -167,7 +167,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 4;
+    return 1;
     
 }
 
@@ -179,23 +179,24 @@
     
     
     
-    if (section == 0) {
-        
-        num = 1;
-        
-    }else if (section ==1){
-        
-        num = 1;
-        
-    }else if (section == 2){
-        
-        num = 0;
-        
-    }else if (section == 3){
-        
-        num = 3;
-        
-    }
+//    if (section == 0) {
+//        
+//        num = 1;
+//        
+//    }else if (section ==1){
+//        
+//        num = 0;
+//        
+//    }else if (section == 2){
+//        
+//        num = 0;
+//        
+//    }else if (section == 3){
+//        
+//        num = 3;
+//        
+//    }
+    num = 4;
     
     return num;
     
@@ -259,59 +260,81 @@
     
     
     
-    if (indexPath.row == 0 && indexPath.section == 0) {
-        
+//    if (indexPath.row == 0 && indexPath.section == 0) {
+//        
+//        titleImv.image = [UIImage imageNamed:@"fb.png"];
+//        
+//        titleLabel.text = @"好友动态";
+//        
+//    }else if (indexPath.row == 0 && indexPath.section == 1){
+//        
+//        titleImv.image = [UIImage imageNamed:@"jingxuan.png"];
+//        
+//        titleLabel.text = @"论坛精选";
+//        
+//    }else if (indexPath.row == 1 && indexPath.section == 1){
+//        
+//        titleImv.image = [UIImage imageNamed:@"huodong.png"];
+//        
+//        titleLabel.text = @"论坛活动";
+//        
+//    }else if (indexPath.row == 0 && indexPath.section == 2){
+//        
+//        titleImv.image = [UIImage imageNamed:@"fujin.png"];
+//        
+//        titleLabel.text = @"附近的人";
+//        
+//    }else if (indexPath.row == 1 && indexPath.section == 2){
+//        
+//        titleImv.image = [UIImage imageNamed:@"tuijian.png"];
+//        
+//        titleLabel.text = @"推荐用户";
+//        
+//    }else if (indexPath.row == 0 && indexPath.section == 3){
+//        
+//        titleImv.image = [UIImage imageNamed:@"news.png"];
+//        
+//        titleLabel.text = @"e族新闻";
+//        
+//    }else if (indexPath.row == 1 && indexPath.section == 3){
+//        
+//        titleImv.image = [UIImage imageNamed:@"shangcheng.png"];
+//        
+//        titleLabel.text = @"e族商城";
+//        
+//    }else if (indexPath.row == 2 && indexPath.section == 3){
+//        
+//        titleImv.image = [UIImage imageNamed:@"saoyisao.png"];
+//        
+//        titleLabel.text = @"扫一扫";
+//        
+//    }
+    
+    
+    
+    if (indexPath.row == 0) {
+
         titleImv.image = [UIImage imageNamed:@"fb.png"];
-        
+
         titleLabel.text = @"好友动态";
-        
-    }else if (indexPath.row == 0 && indexPath.section == 1){
-        
-        titleImv.image = [UIImage imageNamed:@"jingxuan.png"];
-        
-        titleLabel.text = @"论坛精选";
-        
-    }else if (indexPath.row == 1 && indexPath.section == 1){
-        
-        titleImv.image = [UIImage imageNamed:@"huodong.png"];
-        
-        titleLabel.text = @"论坛活动";
-        
-    }else if (indexPath.row == 0 && indexPath.section == 2){
-        
-        titleImv.image = [UIImage imageNamed:@"fujin.png"];
-        
-        titleLabel.text = @"附近的人";
-        
-    }else if (indexPath.row == 1 && indexPath.section == 2){
-        
-        titleImv.image = [UIImage imageNamed:@"tuijian.png"];
-        
-        titleLabel.text = @"推荐用户";
-        
-    }else if (indexPath.row == 0 && indexPath.section == 3){
-        
+
+    }else if (indexPath.row == 1){
+
         titleImv.image = [UIImage imageNamed:@"news.png"];
-        
+
         titleLabel.text = @"e族新闻";
-        
-    }else if (indexPath.row == 1 && indexPath.section == 3){
-        
+
+    }else if (indexPath.row == 2){
+
         titleImv.image = [UIImage imageNamed:@"shangcheng.png"];
-        
         titleLabel.text = @"e族商城";
-        
-    }else if (indexPath.row == 2 && indexPath.section == 3){
-        
+
+    }else if (indexPath.row == 3){
+
         titleImv.image = [UIImage imageNamed:@"saoyisao.png"];
-        
         titleLabel.text = @"扫一扫";
         
     }
-    
-    
-    
-    
     
     
     
@@ -331,7 +354,7 @@
         
         return 70-18;
         
-    }else if (section == 2){
+    }else if (section == 1 || section == 2 ||section == 3){
         
         return 0.01;
         
@@ -527,13 +550,7 @@
     
     
     
-    if (indexPath.row == 1 && indexPath.section == 1) {//论坛活动
-        
-        
-        
-        
-        
-    }else if (indexPath.section == 0 && indexPath.row == 0){//好友动态
+    if (indexPath.row == 0){//好友动态
         
         
         
@@ -557,23 +574,7 @@
         
         
         
-    }else if (indexPath.row == 0 && indexPath.section == 1){//论坛精选
-        
-        BBSRecommendViewController * bbs = [[BBSRecommendViewController alloc] init];
-        
-        [self PushControllerWith:bbs WithAnimation:YES];
-        
-        
-        
-    }else if (indexPath.row == 0 && indexPath.section == 2){//附近的人
-        
-        
-        
-    }else if (indexPath.row == 1 && indexPath.section == 2){//推荐用户
-        
-        
-        
-    }else if (indexPath.row == 0 && indexPath.section == 3){//e族新闻
+    }else if (indexPath.row == 1){//e族新闻
         
         fbWebViewController * cc = [[fbWebViewController alloc]init];
         
@@ -581,7 +582,7 @@
         
         [self PushControllerWith:cc WithAnimation:YES];
         
-    }else if (indexPath.row == 1 && indexPath.section == 3){//e族商城
+    }else if (indexPath.row == 2){//e族商城
         
         fbWebViewController * vv = [[fbWebViewController alloc]init];
         
@@ -589,7 +590,7 @@
         
         [self PushControllerWith:vv WithAnimation:YES];
         
-    }else if (indexPath.row == 2 && indexPath.section == 3){//扫一扫
+    }else if (indexPath.row == 3){//扫一扫
         
         GmFoundScanViewController *ggg = [[GmFoundScanViewController alloc]init];
         ggg.delegate = self;

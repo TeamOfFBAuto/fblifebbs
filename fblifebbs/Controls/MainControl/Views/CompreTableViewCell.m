@@ -304,9 +304,14 @@
                     
                     _bigLeixing.frame=CGRectMake(100+10, BIGORIGIN, 30, 18);
                     
-                    CGSize titleSize = [_newmodel.forumname sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
-                    [_littleLeixing setTitle:_newmodel.forumname forState:UIControlStateNormal];
-                    _littleLeixing.frame=CGRectMake(100+10, BIGORIGIN, titleSize.width+2, 18);
+                    if (_newmodel.forumname.length == 0) {
+                        _littleLeixing.width = 0;
+                    }else
+                    {
+                        CGSize titleSize = [_newmodel.forumname sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
+                        [_littleLeixing setTitle:_newmodel.forumname forState:UIControlStateNormal];
+                        _littleLeixing.frame=CGRectMake(100+10, BIGORIGIN, titleSize.width+2, 18);
+                    }
                     
                     [_bigLeixing setTitle:@"论坛" forState:UIControlStateNormal];
                     //[_bigLabel:RGBCOLOR(103, 103, 103)];
@@ -333,7 +338,6 @@
                 }
                 
                 //底部的线
-                
                 
                 
             }

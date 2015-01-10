@@ -235,6 +235,7 @@
     }else{
         view_pinglun=[[UIView alloc]initWithFrame:CGRectMake(0,377, DEVICE_WIDTH, 41)];
     }
+    view_pinglun = [[UIView alloc]initWithFrame:CGRectMake(0,377, DEVICE_WIDTH, 41)];
     
     barview=[[bottombarview alloc]initWithFrame:CGRectMake(0,iPhone5?419+88-42:377, DEVICE_WIDTH, 41)];
     barview.backgroundColor=[UIColor whiteColor];
@@ -1175,11 +1176,11 @@
             currentpage++;
             if (dangqianwebview==1) {
                 dangqianwebview=2;
-                secondWebView.frame=CGRectMake(0,iPhone5?314+88+105-41:314+105-41+4+2, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                secondWebView.frame=CGRectMake(0,DEVICE_HEIGHT - 102, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                 
             }else{
                 dangqianwebview=1;
-                _webView.frame=CGRectMake(0,iPhone5? 314+88+105-41:314+105-41+4+2, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                _webView.frame=CGRectMake(0,DEVICE_HEIGHT - 102, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                 
                 
             }
@@ -1198,12 +1199,12 @@
             if (dangqianwebview==1)//当前的webview是第一个webview,要让第二个webview的frame变成如下，在下载完之后显示出来
             {
                 dangqianwebview=2;
-                secondWebView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                secondWebView.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                 
             }else
             {
                 dangqianwebview=1;
-                _webView.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                _webView.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                 
             }
             
@@ -1539,8 +1540,8 @@
             
             
             [UIView animateWithDuration:1 animations:^{
-                weakWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
-                weakSecondWeb.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
+                weakSecondWeb.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
                 
                 
             }completion:^(BOOL finished)
@@ -1568,8 +1569,8 @@
             
             [UIView animateWithDuration:1 animations:^{
                 
-                weakSecondWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
-                weakWeb.frame=CGRectMake(0, -(iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakSecondWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
+                weakWeb.frame=CGRectMake(0, -(DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             }completion:^(BOOL finished)
              
              {
@@ -1602,8 +1603,8 @@
             
             [UIView animateWithDuration:1 animations:^{
                 
-                weakWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
-                weakSecondWeb.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
+                weakSecondWeb.frame=CGRectMake(0, (DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             }completion:^(BOOL finished)
              
              {
@@ -1623,8 +1624,8 @@
 //            
             [UIView animateWithDuration:1 animations:^{
                 
-                weakSecondWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
-                weakWeb.frame=CGRectMake(0, (iPhone5? 314+88+105-41:314+105-41+4+2), DEVICE_WIDTH ,iPhone5? 314+88+105-41:314+105-41+4+2);
+                weakSecondWeb.frame=CGRectMake(0, 0, DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
+                weakWeb.frame=CGRectMake(0, (DEVICE_HEIGHT - 102), DEVICE_WIDTH ,DEVICE_HEIGHT - 102);
             }completion:^(BOOL finished)
              
              {

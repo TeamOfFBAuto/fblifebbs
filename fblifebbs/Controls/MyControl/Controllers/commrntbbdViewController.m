@@ -27,6 +27,7 @@
     BOOL image_quality;
     UINavigationBar *nav;
     
+    CGFloat _keyboard_y;//记录键盘y
     
 }
 
@@ -1145,8 +1146,16 @@
     
     CGFloat keyboad_y = kbRect.origin.y;
     
-    _keytop.top = keyboad_y - _keytop.height;
+    _keyboard_y = keyboad_y;
     
+    if (isbiaoti) {
+        
+        [_keytop bottoming];
+    }else
+    {
+        _keytop.top = keyboad_y - _keytop.height;
+
+    }
 
 }
 - (void)keyboardWillHide:(NSNotification *)note
@@ -1196,88 +1205,46 @@
     //    subjectTextfield.text=
     //text_write.text=[NSString stringWithFormat:@"%@%@",text_write.text,name];
 }
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    isbiaoti=1;
-}
--(void)textViewDidEndEditing:(UITextView *)textView{
-    isbiaoti=0;
-}
--(void)textViewDidBeginEditing:(UITextView *)textView{
-    isbiaoti=0;
-    isup=NO;
-    [_keytop FaceAndKeyBoard:1];
-    //    if (ischinese==0) {
-    //        [_keytop chinesekeyuping];
-    //    }else{
-    //        [_keytop uping];
-    //    }
-    //    switch (ischinese) {
-    //        case 0:
-    //        {
-    //            [_keytop chinesekeyuping];
-    //        }
-    //            break;
-    //        case 1:
-    //        {
-    //            [_keytop uping];
-    //
-    //        }
-    //            break;
-    //        case 2:
-    //        {
-    //            [_keytop jiugonggechineseuping];
-    //
-    //        }
-    //            break;
-    //        case 3:
-    //        {
-    //            [_keytop jiugonggepinyinuping];
-    //
-    //        }
-    //            break;
-    //
-    //        default:
-    //            break;
-    //    }
-    [subjectTextfield resignFirstResponder];
-}
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    [_contenttextview resignFirstResponder];
+
+#pragma mark UITextFieldDelegate
+
+-(void)textFieldDiEditing:(UITextField *)textField{
     
-    isbiaoti=1;
-    isup=NO;
-    [_keytop FaceAndKeyBoard:1];
-    //    switch (ischinese) {
-    //        case 0:
-    //        {
-    //            [_keytop chinesekeyuping];
-    //        }
-    //            break;
-    //        case 1:
-    //        {
-    //            [_keytop uping];
-    //
-    //        }
-    //            break;
-    //        case 2:
-    //        {
-    //            [_keytop jiugonggechineseuping];
-    //
-    //        }
-    //            break;
-    //        case 3:
-    //        {
-    //            [_keytop jiugonggepinyinuping];
-    //            
-    //        }
-    //            break;
-    //            
-    //        default:
-    //            break;
-    //    }
-    
+//    isbiaoti = 1;//是标题
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    [_contenttextview resignFirstResponder];
+    
+    [_keytop bottoming];//隐藏
+    
+    isbiaoti=1;
+    isup = NO;
+    
+    [_keytop FaceAndKeyBoard:1];
+}
+
+#pragma mark UITextViewDelegate
+
+-(void)textViewDidEndEditing:(UITextView *)textView{
+//    isbiaoti = 0;
+    
+}
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    
+    
+    if (isbiaoti) {
+        
+        [subjectTextfield resignFirstResponder];
+        isbiaoti = 0;
+    }
+    isup = NO;
+    [_keytop FaceAndKeyBoard:1];
+    
+    _keytop.top = _keyboard_y - _keytop.height;//显示
+    
+}
 
 
 #pragma mark - QBImagePickerControllerDelegate

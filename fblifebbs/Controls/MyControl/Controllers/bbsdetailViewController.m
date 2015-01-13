@@ -1881,15 +1881,19 @@
         
     }else{
         authortool=[[downloadtool alloc]init];
-        [authortool setUrl_string:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreads2015_new.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode]];
+        [authortool setUrl_string:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreads2015_lou.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode]];
         
         [authortool start];
         authortool.tag=107;
         authortool.delegate=self;
         
-        NSString *stringurl=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreads2015_new.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode];
+        NSString *stringurl=[NSString stringWithFormat:@"http://bbs1.fblife.com/bbsapinew/getthreads2015_lou.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode];
         
         NSLog(@"查看楼主的url=%@",stringurl);
+        
+        
+        
+        
     }
     
 }

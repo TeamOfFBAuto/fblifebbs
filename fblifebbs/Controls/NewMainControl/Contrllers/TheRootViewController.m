@@ -99,7 +99,7 @@
                 alert.delegate = self;
                 
                 alert.tag = 10000;
-                [alert show];
+//                [alert show];
                 
                 
             }

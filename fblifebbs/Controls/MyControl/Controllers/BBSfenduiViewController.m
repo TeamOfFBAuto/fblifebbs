@@ -1172,7 +1172,7 @@
         
         authorLabel.text=[dic objectForKey:@"author"];
         
-        authorLabel.frame=CGRectMake(30, titleLabel.frame.size.height+14, 80, 20);
+        authorLabel.frame=CGRectMake(28, titleLabel.frame.size.height+14, 80, 20);
         
         createTimeLabel.frame=CGRectMake(100, titleLabel.frame.size.height+14, 120, 20);
         
@@ -1186,7 +1186,7 @@
         
     }else{
         authorLabel.text=[dic objectForKey:@"author"];
-        authorLabel.frame=CGRectMake(30, titleLabel.frame.size.height+20, 80, 20);
+        authorLabel.frame=CGRectMake(28, titleLabel.frame.size.height+20, 80, 20);
         createTimeLabel.frame=CGRectMake(100, titleLabel.frame.size.height+20, 120, 20);
         
         createTimeLabel.center = CGPointMake(DEVICE_WIDTH / 2.f +20 , createTimeLabel.center.y);
@@ -1213,7 +1213,7 @@
     
     //三个小图标
     
-    UIImageView *personlittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(authorLabel.left-15, authorLabel.top+4, 19/2, 21/2)];
+    UIImageView *personlittleiConImageV=[[UIImageView alloc] initWithFrame:CGRectMake(titleLabel.left, authorLabel.top+4, 19/2, 21/2)];
     personlittleiConImageV.image=[UIImage imageNamed:@"bbsfenduipeople.png"];
     [imageviewcell addSubview:personlittleiConImageV];
     

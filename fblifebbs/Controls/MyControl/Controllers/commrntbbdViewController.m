@@ -1147,68 +1147,7 @@
     
     _keytop.top = keyboad_y - _keytop.height;
     
-    
-    
-    //    if (kbSize.height == 252) {
-    //        ischinese=0;
-    //        [_keytop chinesekeyuping];
-    //
-    //
-    //    }else {
-    //        ischinese=1;
-    //
-    //        [_keytop uping];
-    //    }
-    //
-    //
-    //    int heightofkeyboard=(int)kbSize.height;
-    //    switch (heightofkeyboard) {
-    //        case 252:
-    //        {
-    //            ischinese=0;
-    //            [_keytop chinesekeyuping];
-    //
-    //
-    //        }
-    //            break;
-    //
-    //
-    //        case 216:
-    //        {
-    //            ischinese=1;
-    //
-    //            [_keytop uping];
-    //
-    //        }
-    //            break;
-    //        case 251:
-    //        {
-    //            ischinese=2;
-    //            [_keytop jiugonggechineseuping];
-    //
-    //
-    //        }
-    //            break;
-    //        case 184:
-    //        {
-    //            ischinese=3;
-    //            [_keytop jiugonggepinyinuping];
-    //
-    //
-    //        }
-    //            break;
-    //            
-    //            
-    //            
-    //        default:
-    //            break;
-    //    }
-    
-    
-    
-    
-    
-    //    [UIView commitAnimations];
+
 }
 - (void)keyboardWillHide:(NSNotification *)note
 {
@@ -1272,34 +1211,34 @@
     //    }else{
     //        [_keytop uping];
     //    }
-    switch (ischinese) {
-        case 0:
-        {
-            [_keytop chinesekeyuping];
-        }
-            break;
-        case 1:
-        {
-            [_keytop uping];
-            
-        }
-            break;
-        case 2:
-        {
-            [_keytop jiugonggechineseuping];
-            
-        }
-            break;
-        case 3:
-        {
-            [_keytop jiugonggepinyinuping];
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
+    //    switch (ischinese) {
+    //        case 0:
+    //        {
+    //            [_keytop chinesekeyuping];
+    //        }
+    //            break;
+    //        case 1:
+    //        {
+    //            [_keytop uping];
+    //
+    //        }
+    //            break;
+    //        case 2:
+    //        {
+    //            [_keytop jiugonggechineseuping];
+    //
+    //        }
+    //            break;
+    //        case 3:
+    //        {
+    //            [_keytop jiugonggepinyinuping];
+    //
+    //        }
+    //            break;
+    //
+    //        default:
+    //            break;
+    //    }
     [subjectTextfield resignFirstResponder];
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -1308,38 +1247,36 @@
     isbiaoti=1;
     isup=NO;
     [_keytop FaceAndKeyBoard:1];
-    switch (ischinese) {
-        case 0:
-        {
-            [_keytop chinesekeyuping];
-        }
-            break;
-        case 1:
-        {
-            [_keytop uping];
-            
-        }
-            break;
-        case 2:
-        {
-            [_keytop jiugonggechineseuping];
-            
-        }
-            break;
-        case 3:
-        {
-            [_keytop jiugonggepinyinuping];
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
+    //    switch (ischinese) {
+    //        case 0:
+    //        {
+    //            [_keytop chinesekeyuping];
+    //        }
+    //            break;
+    //        case 1:
+    //        {
+    //            [_keytop uping];
+    //
+    //        }
+    //            break;
+    //        case 2:
+    //        {
+    //            [_keytop jiugonggechineseuping];
+    //
+    //        }
+    //            break;
+    //        case 3:
+    //        {
+    //            [_keytop jiugonggepinyinuping];
+    //            
+    //        }
+    //            break;
+    //            
+    //        default:
+    //            break;
+    //    }
     
 }
-
-
 
 
 

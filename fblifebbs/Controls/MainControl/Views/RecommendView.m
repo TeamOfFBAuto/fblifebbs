@@ -90,7 +90,7 @@
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [wself.mainTabView loadFail];
     }];
     
     [request start];
@@ -325,9 +325,7 @@
     [request setFailedBlock:^{
         [hud hide:YES];
         [zsnApi showAutoHiddenMBProgressWithText:@"加载失败，请重试" addToView:self];
-        if (bself.mainTabView.isLoadMoreData) {
-            bself.mainTabView.pageNum--;
-        }
+        [bself.mainTabView loadFail];
     }];
     
     

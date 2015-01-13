@@ -57,8 +57,8 @@
         array_search_user = [[NSMutableArray alloc] init];
     }
     
-    if (!self.array_searchresault) {
-        self.array_searchresault = [NSMutableArray array];
+    if (!_array_searchresault) {
+        _array_searchresault = [NSMutableArray array];
     }
     
     _photos = [NSMutableArray array];
@@ -459,7 +459,7 @@
         
         _requset.delegate = self;
         [_requset setTimeOutSeconds:120];
-        
+        __weak typeof(self)bself = self;
         [_requset setCompletionBlock:^{
             
             
@@ -468,7 +468,7 @@
                 issearchloadsuccess=NO;
                 if (mysearchPage==1)
                 {
-                    [self.array_searchresault removeAllObjects];
+                    [bself.array_searchresault removeAllObjects];
                 }
                 
                 NSDictionary * dicofsearch = [request_search.responseData objectFromJSONData];
@@ -515,9 +515,9 @@
                             }
                             
                             [array_search_user removeAllObjects];
-                            [_array_searchresault removeAllObjects];
+                            [bself.array_searchresault removeAllObjects];
                             
-                            self.myTableView.contentOffset = CGPointMake(0,0);
+                            bself.myTableView.contentOffset = CGPointMake(0,0);
                             
                         }else
                         {
@@ -537,12 +537,12 @@
                             
                             if (info2.username.length !=0)
                             {
-                                [_array_searchresault addObject:info2];
+                                [bself.array_searchresault addObject:info2];
                                 [array_search_user addObject:info2];
                             }
                         }
                         
-                        [self.myTableView reloadData];
+                        [bself.myTableView reloadData];
                         
                         return;
                         
@@ -569,15 +569,15 @@
                         
                         if (arr.count >0) {
                             
-                            self.array_searchresault = [dicofsearch objectForKey:@"bbsinfo"];
+                            bself.array_searchresault = [dicofsearch objectForKey:@"bbsinfo"];
                             
                         }
                     }
                     
                     [array_search_bankuai removeAllObjects];
-                    [array_search_bankuai addObjectsFromArray:self.array_searchresault];
+                    [array_search_bankuai addObjectsFromArray:bself.array_searchresault];
                     searchloadingview.normalLabel.text = @"没有更多了";
-                    [self.myTableView reloadData];
+                    [bself.myTableView reloadData];
                     return;
                 }
                 
@@ -587,7 +587,7 @@
                     
                     if ([[dicofsearch objectForKey:@"allnumbers"] integerValue]>0) {
                         
-                        [self.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"searchinfo"]];
+                        [bself.array_searchresault addObjectsFromArray:[dicofsearch objectForKey:@"searchinfo"]];
                         NSLog(@"是有数据的");
                         
                         
@@ -614,24 +614,24 @@
                 {
                     
                     [array_search_bbs removeAllObjects];
-                    [array_search_bbs addObjectsFromArray:self.array_searchresault];
+                    [array_search_bbs addObjectsFromArray:bself.array_searchresault];
                     
                     
                 }else if (mysegment.currentPage==1){
 #pragma mark - 版块====== 已修改  以为版块接口返回的数据类型和 用户 帖子不同 所以 这里不会走的 上面有判断currentPage == 1 的时候有数据 赋值后 直接return了
                     [array_search_bankuai removeAllObjects];
-                    [array_search_bankuai addObjectsFromArray:self.array_searchresault];
+                    [array_search_bankuai addObjectsFromArray:bself.array_searchresault];
                     
                 }else if (mysegment.currentPage==2)
                 {
                     [array_search_user removeAllObjects];
-                    [array_search_user addObjectsFromArray:self.array_searchresault];
+                    [array_search_user addObjectsFromArray:bself.array_searchresault];
                 }
                 
-                NSLog(@"self.array_searchresault===%@",self.array_searchresault);
+                NSLog(@"self.array_searchresault===%@",bself.array_searchresault);
                 
                 
-                [self.myTableView reloadData];
+                [bself.myTableView reloadData];
                 //        }
             }
             @catch (NSException *exception) {
@@ -780,7 +780,7 @@
 {
     if (buttonSelected != current_select)
     {
-        [_array_searchresault removeAllObjects];
+        _array_searchresault = [NSMutableArray array];
         [self.myTableView reloadData];
     }
     

@@ -85,9 +85,18 @@
     
     [tool_101 stop];
     
+    [xialaView removeFromSuperview];
+    xialaView = nil;
     
     NSLog(@"--dealloc-- %@",NSStringFromClass([self class]));
 }
+
+-(void)leftButtonTap:(UIButton *)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 
 - (void)viewDidLoad
 {
@@ -318,8 +327,8 @@
     }
     
     tab_.tableHeaderView = _refreshHeaderView;
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:xialaView];
+    [self.navigationController.view addSubview:xialaView];
+//    [[UIApplication sharedApplication].keyWindow addSubview:xialaView];
     _replaceAlertView=[[AlertRePlaceView alloc]initWithFrame:CGRectMake(100, 200, 150, 100) labelString:@"您的网络不给力哦，请检查网络"];
     _replaceAlertView.delegate=self;
     _replaceAlertView.hidden=YES;
@@ -346,7 +355,7 @@
 {
     isHidden = !isHidden;
     
-    UIImageView * xiala = (UIImageView *)[[UIApplication sharedApplication].keyWindow viewWithTag:111];
+    UIImageView * xiala = (UIImageView *)[self.navigationController.view viewWithTag:111];
     
     UIImageView * tipView = (UIImageView *)[self.navigationItem.titleView viewWithTag:102];
     
@@ -366,7 +375,7 @@
 {
     [self showPopoverView:nil];
     
-    UIImageView * xiala = (UIImageView *)[[UIApplication sharedApplication].keyWindow viewWithTag:111];
+    UIImageView * xiala = (UIImageView *)[self.navigationController.view viewWithTag:111];
     
     
     _titleLabel.text = [array_chose objectAtIndex:sender.view.tag - 1];
@@ -1381,10 +1390,10 @@
 }
 -(void)backto{
     
-    if (!isHidden)
-    {
-        [self showPopoverView:nil];
-    }
+//    if (!isHidden)
+//    {
+//        [self showPopoverView:nil];
+//    }
     
     [Collect_Tool stop];
     Collect_Tool.delegate = nil;
@@ -1395,6 +1404,7 @@
     [tool_101 stop];
     tool_101.delegate=nil;
     [xialaView removeFromSuperview];
+    xialaView = nil;
     [hud hide];
     [self.navigationController popViewControllerAnimated:YES];
 }

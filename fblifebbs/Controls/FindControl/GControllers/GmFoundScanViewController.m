@@ -219,7 +219,7 @@
     [MBProgressHUD showHUDAddedTo:_fourJiaoImageView animated:YES];
     dispatch_async(dispatch_get_main_queue(), ^{
         if (!TARGET_IPHONE_SIMULATOR) {
-            [self setupCamera];
+            [self checkAVAuthorizationStatus];
             [MBProgressHUD hideHUDForView:_fourJiaoImageView animated:YES];
         }
     });
@@ -227,7 +227,18 @@
     
 }
 
-
+- (void)checkAVAuthorizationStatus
+{
+    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+//    NSString *tips = NSLocalizedString(@"AVAuthorization", @"您没有权限访问相机");
+    if(status == AVAuthorizationStatusAuthorized) {
+        // authorized
+        [self setupCamera];
+    } else {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您没有权限访问相机,请到设置界面打开相机设置" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
+        [alertView show];
+    }
+}
 
 - (void)setupCamera
 {

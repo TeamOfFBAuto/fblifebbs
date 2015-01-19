@@ -1592,7 +1592,7 @@
         diimgv.image=[UIImage imageNamed:@"bluedown.png"];
     }
     if (scrollView.contentOffset.y< (scrollView.contentSize.height - scrollView.frame.size.height+55)&&scrollView.contentOffset.y>0) {
-        NSLog(@"慢慢来吧，总会到达的！");
+//        NSLog(@"慢慢来吧，总会到达的！");
         didulabel.hidden=YES;
     }
     
@@ -1880,6 +1880,9 @@
         NSLog(@"查看全部url=%@",stringurl);
         
     }else{
+        
+        
+        
         authortool=[[downloadtool alloc]init];
         [authortool setUrl_string:[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreads2015_lou.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode]];
         
@@ -1887,7 +1890,9 @@
         authortool.tag=107;
         authortool.delegate=self;
         
-        NSString *stringurl=[NSString stringWithFormat:@"http://bbs1.fblife.com/bbsapinew/getthreads2015_lou.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode];
+        NSString *stringurl=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getthreads2015_lou.php?tid=%@&page=%d&formattype=json&authcode=%@",self.bbsdetail_tid,currentpage,string_authcode];
+        
+        
         
         NSLog(@"查看楼主的url=%@",stringurl);
         

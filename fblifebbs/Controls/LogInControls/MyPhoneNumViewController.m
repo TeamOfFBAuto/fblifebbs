@@ -7,6 +7,7 @@
 //testsvn
 
 #import "MyPhoneNumViewController.h"
+#import "PrivacyPolicyViewController.h"
 
 @interface MyPhoneNumViewController ()
 {
@@ -82,7 +83,7 @@
 //    self.navigationItem.leftBarButtonItems = @[space_button,back_item];
     
     
-    [self setSNViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeOther WithRightButtonType:MyViewControllerRightbuttonTypeNull];
+    [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeOther WithRightButtonType:SNViewControllerRightbuttonTypeNull];
     self.leftImageName = @"logIn_close.png";
     
     
@@ -168,7 +169,9 @@
 
 -(void)chakanxieyi:(UIButton *)sender
 {
-    
+    PrivacyPolicyViewController * ppVC = [[PrivacyPolicyViewController alloc] init];
+    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:ppVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 

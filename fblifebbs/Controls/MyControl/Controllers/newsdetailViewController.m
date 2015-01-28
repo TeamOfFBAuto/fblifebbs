@@ -44,7 +44,7 @@
     UIButton *button_comment;
     loadingview *_loadingview;
     AlertRePlaceView *_replaceAlertView;
-    NewMineViewController *_people;
+    SNMineViewController *_people;
     AlertRePlaceView *_alertnodata;
 //    PraiseAndCollectedModel * praise_model;
 
@@ -1268,8 +1268,8 @@
             NSLog(@"number=%@",string_realnumber);
             Selectatindexofphotonumber=[string_realnumber integerValue];
             // [self ShowbigImage];
-            _people =[[NewMineViewController alloc]init];
-            _people.uid=[NSString stringWithFormat:@"%@",[array_peopleid objectAtIndex:Selectatindexofphotonumber]];
+            _people =[[SNMineViewController alloc]init];
+            _people.theUid=[NSString stringWithFormat:@"%@",[array_peopleid objectAtIndex:Selectatindexofphotonumber]];
             [self.navigationController pushViewController:_people animated:YES];
         }
         else{

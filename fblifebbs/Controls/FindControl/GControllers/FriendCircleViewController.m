@@ -343,8 +343,8 @@
 
 -(void)clickHeadImage:(NSString *)uid
 {
-    NewMineViewController * mine = [[NewMineViewController alloc] init];
-    mine.uid = uid;
+    SNMineViewController * mine = [[SNMineViewController alloc] init];
+    mine.theUid = uid;
     [self PushControllerWith:mine WithAnimation:YES];
 }
 
@@ -407,16 +407,16 @@
 -(void)showAtSomeBody:(NSString *)theUrl WithFBFeed:(FbFeed *)info
 {
     NSLog(@"theUrl ------   %@",theUrl);
-    NewMineViewController * people = [[NewMineViewController alloc] init];
+    SNMineViewController * people = [[SNMineViewController alloc] init];
     if ([theUrl rangeOfString:@"fb://PhotoDetail/id="].length)
     {
-        people.uid = [theUrl stringByReplacingOccurrencesOfString:@"fb://PhotoDetail/id=" withString:@""];
+        people.theUid = [theUrl stringByReplacingOccurrencesOfString:@"fb://PhotoDetail/id=" withString:@""];
     }else if([theUrl rangeOfString:@"fb://atSomeone@/"].length)
     {
-        people.uid = [theUrl stringByReplacingOccurrencesOfString:@"fb://atSomeone@/" withString:@""];
+        people.theUid = [theUrl stringByReplacingOccurrencesOfString:@"fb://atSomeone@/" withString:@""];
     }else
     {
-        people.uid = info.ruid;
+        people.theUid = info.ruid;
     }
     
     [self PushControllerWith:people WithAnimation:YES];

@@ -24,11 +24,6 @@
 
 - (void)viewDidLoad
 {
-    
-    
-    NSArray *family=[UIFont familyNames];
-    NSLog(@"famlilyname=%@",family);
-    
 
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor colorWithRed:245/255.f green:245/255.f blue:245/255.f alpha:1];

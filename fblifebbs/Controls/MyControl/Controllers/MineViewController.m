@@ -28,7 +28,7 @@
 #import "SliderRightSettingViewController.h"
 
 #import "ScanHistoyViewController.h"
-
+#import "SNMineViewController.h"
 #import "AppDelegate.h"
 
 #define CURRENT_USER_HEADIMAGE @"HEADIMAGE"//头像
@@ -411,13 +411,9 @@
 
 -(void)returnUserName:(NSString *)username Uid:(NSString *)uid
 {
-    NewMineViewController * mine = [[NewMineViewController alloc] init];
-    
-    mine.uid = uid;
-    
-    
+    SNMineViewController * mine = [[SNMineViewController alloc] init];
+    mine.theUid = uid;
     mine.hidesBottomBarWhenPushed = YES;
-    
     [self.navigationController pushViewController:mine animated:YES];
 }
 

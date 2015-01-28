@@ -625,8 +625,8 @@
 
 
 -(void)erweimapushWithString:(NSString *)str{
-    NewMineViewController *_newM=[[NewMineViewController alloc]init];
-    _newM.uid=str;
+    SNMineViewController *_newM=[[SNMineViewController alloc]init];
+    _newM.theUid=str;
     
     [self PushControllerWith:_newM WithAnimation:YES];
 }

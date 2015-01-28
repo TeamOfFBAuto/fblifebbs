@@ -117,7 +117,7 @@
     
     
     request_weibo = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullURL]];
-    request_weibo.timeOutSeconds = 30;
+    request_weibo.timeOutSeconds = 60;
     __block typeof(request_weibo) request = request_weibo;
     
     [request setCompletionBlock:^{
@@ -198,7 +198,7 @@
     }
     
     request_mine = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullURL]];
-    request_mine.timeOutSeconds = 30;
+    request_mine.timeOutSeconds = 60;
 
     __block typeof(request_mine) request = request_mine;
     

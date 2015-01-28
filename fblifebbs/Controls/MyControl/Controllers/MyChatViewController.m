@@ -269,14 +269,14 @@
     NSString * myUid = [[NSUserDefaults standardUserDefaults] objectForKey:USER_UID];
     
     
-    NewMineViewController * mine = [[NewMineViewController alloc] init];
+    SNMineViewController * mine = [[SNMineViewController alloc] init];
     
     if ([myUid isEqualToString:self.info.to_uid])
     {
-        mine.uid = self.info.from_uid;
+        mine.theUid = self.info.from_uid;
     }else
     {
-        mine.uid = self.info.to_uid;
+        mine.theUid = self.info.to_uid;
     }
     
     [self.navigationController pushViewController:mine animated:YES];

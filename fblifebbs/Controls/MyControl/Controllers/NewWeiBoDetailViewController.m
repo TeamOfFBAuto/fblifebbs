@@ -617,20 +617,20 @@
 
 -(void)myheadTap:(UITapGestureRecognizer *)sender
 {
-    NewMineViewController * mine = [[NewMineViewController alloc] init];
+    SNMineViewController * mine = [[SNMineViewController alloc] init];
     
-    mine.uid = self.info.uid;
+    mine.theUid = self.info.uid;
     
     [self.navigationController pushViewController:mine animated:YES];
 }
 
 -(void)headTap:(UITapGestureRecognizer *)sender
 {
-    NewMineViewController * mine = [[NewMineViewController alloc] init];
+    SNMineViewController * mine = [[SNMineViewController alloc] init];
     
     ReplysFeed * feeds = [self.dataArray objectAtIndex:sender.view.tag-100];
     
-    mine.uid = feeds.uid;
+    mine.theUid = feeds.uid;
     
     [self.navigationController pushViewController:mine animated:YES];
 }
@@ -797,17 +797,17 @@
 
 -(void)showAtSomeBody:(NSString *)theUrl WithFBFeed:(FbFeed *)info
 {
-    NewMineViewController * people = [[NewMineViewController alloc] init];
+    SNMineViewController * people = [[SNMineViewController alloc] init];
     
     if ([theUrl rangeOfString:@"fb://PhotoDetail/id="].length)
     {
-        people.uid = [theUrl stringByReplacingOccurrencesOfString:@"fb://PhotoDetail/id=" withString:@""];
+        people.theUid = [theUrl stringByReplacingOccurrencesOfString:@"fb://PhotoDetail/id=" withString:@""];
     }else if([theUrl rangeOfString:@"fb://atSomeone@/"].length)
     {
-        people.uid = [theUrl stringByReplacingOccurrencesOfString:@"fb://atSomeone@/" withString:@""];
+        people.theUid = [theUrl stringByReplacingOccurrencesOfString:@"fb://atSomeone@/" withString:@""];
     }else
     {
-        people.uid = info.ruid;
+        people.theUid = info.ruid;
     }
     
     [self.navigationController pushViewController:people animated:YES];

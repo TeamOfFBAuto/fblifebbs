@@ -33,9 +33,9 @@
 #import "WeiboSDK.h"
 #import "UMSocial.h"
 #import "DraftDatabase.H"
-
+#import "AFHTTPRequestOperation.h"
 #import "MyViewController.h"
-
+#import "SNMineViewController.h"
 
 #pragma mark - 自定义的宏，方便调动
 ///颜色

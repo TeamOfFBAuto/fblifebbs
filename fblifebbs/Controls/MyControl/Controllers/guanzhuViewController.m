@@ -228,10 +228,10 @@
     [self initHttpRequest];
     
     
-    loadview=[[LoadingIndicatorView alloc]initWithFrame:CGRectMake(0, 900, 320, 40)];
+    loadview=[[LoadingIndicatorView alloc]initWithFrame:CGRectMake(0, 900,DEVICE_WIDTH, 40)];
     loadview.backgroundColor=[UIColor clearColor];
     
-    _guanzhu_tab=[[UITableView alloc]initWithFrame:CGRectMake(0,0,320,iPhone5?iphone5fram:iphone4fram) style:UITableViewStylePlain];
+    _guanzhu_tab=[[UITableView alloc]initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-64) style:UITableViewStylePlain];
     _guanzhu_tab.backgroundColor = RGBCOLOR(248,248,248);
     _guanzhu_tab.delegate=self;
     
@@ -260,7 +260,7 @@
     
     if (!Load_view)
     {
-        Load_view = [[loadingview alloc] initWithFrame:CGRectMake(0,0,320,iPhone5?568-20-44:460-44)];
+        Load_view = [[loadingview alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-64)];
         [self.view addSubview:Load_view];
     }else
     {
@@ -446,8 +446,8 @@
     
 //    [self.leveyTabBarController hidesTabBar:YES animated:YES];
     
-    NewMineViewController * mine = [[NewMineViewController alloc] init];
-    mine.uid = info.uid;
+    SNMineViewController * mine = [[SNMineViewController alloc] init];
+    mine.theUid = info.uid;
     //    mine.isPop = YES;
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:mine animated:YES];

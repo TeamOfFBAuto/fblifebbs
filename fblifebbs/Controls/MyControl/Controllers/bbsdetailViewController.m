@@ -1510,8 +1510,8 @@
             
             NSString *string_realnumber=[request.URL.absoluteString substringFromIndex:5];
             NSLog(@"number=%@",string_realnumber);
-            NewMineViewController *   _people =[[NewMineViewController alloc]init];
-            _people.uid=[NSString stringWithFormat:@"%@",string_realnumber];
+            SNMineViewController *   _people =[[SNMineViewController alloc]init];
+            _people.theUid=[NSString stringWithFormat:@"%@",string_realnumber];
             [self.navigationController pushViewController:_people animated:YES];        }
         else{
             //没有激活fb，弹出激活提示

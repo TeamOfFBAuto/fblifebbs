@@ -399,24 +399,24 @@
     
     
     
-    if (![defaults boolForKey:USER_IN]) {
-        
-        LogInViewController *login = [[LogInViewController alloc] init];
-        
-        login.delegate = self;
-        
-        UITabBarController *root = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-        
-        [root presentViewController:login animated:YES completion:^{
-            
-            //            int index = [[defaults objectForKey:@"lastVC"]integerValue];
-            
-            //            root.selectedIndex = index;
-            
-        }];
-        
-    }else
-    {
+//    if (![defaults boolForKey:USER_IN]) {
+//        
+//        LogInViewController *login = [[LogInViewController alloc] init];
+//        
+//        login.delegate = self;
+//        
+//        UITabBarController *root = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+//        
+//        [root presentViewController:login animated:YES completion:^{
+//            
+//            //            int index = [[defaults objectForKey:@"lastVC"]integerValue];
+//            
+//            //            root.selectedIndex = index;
+//            
+//        }];
+//        
+//    }else
+//    {
         hudView=[LTools MBProgressWithText:LOADING_TITLE addToView:self.view];
         
         
@@ -435,10 +435,12 @@
         
         [loadda SeturlStr:string_url mytest:^(NSDictionary *dicinfo, int errcode) {
             
-            
+            if ([[dicinfo objectForKey:@"bbsinfo"] isKindOfClass:[NSString class]]) {
+                return ;
+            }
             NSArray *array=[dicinfo objectForKey:@"bbsinfo"];
             
-            if (array.count>0) {
+            if (array.count>0 && [array isKindOfClass:[NSArray class]]) {
                 [weakallarr removeAllObjects];
                 [weakmainTabV reloadData];
             }
@@ -453,7 +455,7 @@
             
             
         }];
-    }
+//    }
     
     
     

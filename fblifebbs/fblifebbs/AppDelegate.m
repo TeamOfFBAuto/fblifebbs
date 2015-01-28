@@ -151,12 +151,12 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if (tabBarController.selectedIndex != 4) {
+    if (tabBarController.selectedIndex != 4 && tabBarController.selectedIndex != 3) {
         [defaults setObject:[NSString stringWithFormat:@"%d",tabBarController.selectedIndex] forKey:@"lastVC"];
         [defaults synchronize];
     }else
     {
-
+        
     }
 }
 

@@ -299,7 +299,10 @@
             
         case FinalshoucangViewTypeTiezi:{
             
-            str_search=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/favoritesthread.php?authcode=%@&action=query&formattype=json&page=1&pagesize=2&page=%d&pagesize=10",string_code,numberofpage];        }
+//            str_search=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/favoritesthread.php?authcode=%@&action=query&formattype=json&page=1&pagesize=2&page=%d&pagesize=10",string_code,numberofpage];
+            
+            str_search=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/favoritesthread.php?authcode=%@&action=query&formattype=json&page=%d&pagesize=10",string_code,numberofpage];
+        }
             
             break;
             
@@ -350,6 +353,8 @@
         
         if (errcode==0) {
             
+            NSLog(@"---> %@",str_search);
+            
             [wself refreshnewsWithDic:dicinfo];
             
             
@@ -370,7 +375,7 @@
 
 -(void)refreshnewsWithDic:(NSDictionary *)dic{
     
-    NSLog(@"收藏新闻的数据==%@",dic);
+    NSLog(@"收藏的数据==%@",dic);
     
     if (self.mytype!=2&&self.normalarray.count>=10 && numberofpage==1) {
         

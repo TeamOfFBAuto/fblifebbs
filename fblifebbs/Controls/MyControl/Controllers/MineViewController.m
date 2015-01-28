@@ -98,6 +98,11 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IOS7DAOHANGLANBEIJING_PUSH] forBarMetrics:UIBarMetricsDefault];
+    UIColor * cc = [UIColor blackColor];
+    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
+    self.navigationController.navigationBar.titleTextAttributes = dict;
+    
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IOS7DAOHANGLANBEIJING_PUSH] forBarMetrics:UIBarMetricsDefault];
@@ -277,6 +282,8 @@
         headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [headerCell.userInfo_buttom addTarget:self action:@selector(clickToUserCenter:) forControlEvents:UIControlEventTouchUpInside];
+//        headerCell.userInfo_buttom.backgroundColor = [UIColor orangeColor];
+        headerCell.userInfo_buttom.width = DEVICE_WIDTH;
 
         if ([[NSUserDefaults standardUserDefaults]boolForKey:USER_IN]) {
             

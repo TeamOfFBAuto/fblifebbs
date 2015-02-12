@@ -345,6 +345,7 @@
 {
     SNMineViewController * mine = [[SNMineViewController alloc] init];
     mine.theUid = uid;
+    mine.hidesBottomBarWhenPushed = YES;
     [self PushControllerWith:mine WithAnimation:YES];
 }
 
@@ -418,6 +419,7 @@
     {
         people.theUid = info.ruid;
     }
+    people.hidesBottomBarWhenPushed = YES;
     
     [self PushControllerWith:people WithAnimation:YES];
 }

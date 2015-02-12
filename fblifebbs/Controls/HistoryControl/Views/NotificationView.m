@@ -400,8 +400,8 @@
             [((UIViewController*)_delegate).navigationController pushViewController:images animated:YES];
         }else if (type==9)
         {//加好友
-            NewMineViewController * people = [[NewMineViewController alloc] init];
-            people.uid = string_tid;
+            SNMineViewController * people = [[SNMineViewController alloc] init];
+            people.theUid = string_tid;
             [((UIViewController*)_delegate).navigationController pushViewController:people animated:YES];
         }else if (type==4||type==5)
         {//微博
@@ -882,8 +882,8 @@
             [((UIViewController*)_delegate).navigationController pushViewController:images animated:YES];
         }else if (type==9)
         {//加好友
-            NewMineViewController * people = [[NewMineViewController alloc] init];
-            people.uid = string_tid;
+            SNMineViewController * people = [[SNMineViewController alloc] init];
+            people.theUid = string_tid;
             [((UIViewController*)_delegate).navigationController pushViewController:people animated:YES];
         }else if (type==4||type==5)
         {//微博

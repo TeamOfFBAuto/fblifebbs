@@ -340,8 +340,8 @@
                 
                 //                [self.leveyTabBarController hidesTabBar:YES animated:YES];
                 
-                NewMineViewController * mine = [[NewMineViewController alloc] init];
-                mine.uid = info.uid;
+                SNMineViewController * mine = [[SNMineViewController alloc] init];
+                mine.theUid = info.uid;
                 //                    mine.isPop = YES;
                 if ([[NSUserDefaults standardUserDefaults] boolForKey:USER_IN])
                 {
@@ -913,9 +913,9 @@
         [self LogIn];
     }else
     {
-        NewMineViewController * mine = [[NewMineViewController alloc] init];
+        SNMineViewController * mine = [[SNMineViewController alloc] init];
         
-        mine.uid = uid;
+        mine.theUid = uid;
         
         [self.navigationController pushViewController:mine animated:YES];
     }
@@ -1013,17 +1013,17 @@
         [self LogIn];
     }else
     {
-        NewMineViewController * people = [[NewMineViewController alloc] init];
+        SNMineViewController * people = [[SNMineViewController alloc] init];
         
         if ([theUrl rangeOfString:@"fb://PhotoDetail/id="].length)
         {
-            people.uid = [theUrl stringByReplacingOccurrencesOfString:@"fb://PhotoDetail/id=" withString:@""];
+            people.theUid = [theUrl stringByReplacingOccurrencesOfString:@"fb://PhotoDetail/id=" withString:@""];
         }else if([theUrl rangeOfString:@"fb://atSomeone@/"].length)
         {
-            people.uid = [theUrl stringByReplacingOccurrencesOfString:@"fb://atSomeone@/" withString:@""];
+            people.theUid = [theUrl stringByReplacingOccurrencesOfString:@"fb://atSomeone@/" withString:@""];
         }else
         {
-            people.uid = info.ruid;
+            people.theUid = info.ruid;
         }
         
         [self.navigationController pushViewController:people animated:YES];

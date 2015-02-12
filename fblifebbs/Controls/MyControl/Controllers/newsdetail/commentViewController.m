@@ -30,7 +30,7 @@
     detailcommentViewController *detai_comment;
     
     NSString *string_106;//发送评论的评论
-    NewMineViewController *_people;
+    SNMineViewController *_people;
     
     CustomInputView *inputV;//这个是新换的条
     
@@ -1369,8 +1369,8 @@
     {
         
         UIView *imv__=sender.view;
-        _people =[[NewMineViewController alloc]init];
-        _people.uid=[NSString stringWithFormat:@"%@",[array_peopleid objectAtIndex:imv__.tag-100-2]];
+        _people =[[SNMineViewController alloc]init];
+        _people.theUid=[NSString stringWithFormat:@"%@",[array_peopleid objectAtIndex:imv__.tag-100-2]];
         [self.navigationController pushViewController:_people animated:YES];
     }else{
         LogInViewController *login=[LogInViewController sharedManager];

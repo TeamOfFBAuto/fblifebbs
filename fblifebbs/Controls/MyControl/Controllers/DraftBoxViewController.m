@@ -624,7 +624,7 @@
             NSString *imgurl=[NSString stringWithFormat:@"%@",[ImageArray objectAtIndex:i]];
             
             if ([imgurl isEqualToString:@""]) {
-                [self presentModalViewController:_fatie animated:YES];
+                [self presentViewController:_fatie animated:YES completion:nil];
                 
             }else{
                 
@@ -635,7 +635,7 @@
                     
                     
                     
-            [self presentModalViewController:_fatie animated:YES];
+                    [self presentViewController:_fatie animated:YES completion:nil];
 
                 }
 
@@ -669,8 +669,7 @@
             NSString *imgurl=[NSString stringWithFormat:@"%@",[ImageArray objectAtIndex:i]];
             
             if ([imgurl isEqualToString:@""]) {
-                [self presentModalViewController:_comment animated:YES];
-                
+                [self presentViewController:_comment animated:YES completion:nil];
             }else{
                 
                 
@@ -679,8 +678,7 @@
                 if (i == ImageArray.count-1){
                     
                     
-                    
-                    [self presentModalViewController:_comment animated:YES];
+                    [self presentViewController:_comment animated:YES completion:nil];
                     
                 }
                 
@@ -717,8 +715,7 @@
             NSString *imgurl=[NSString stringWithFormat:@"%@",[ImageArray objectAtIndex:i]];
             
             if ([imgurl isEqualToString:@""]) {
-                [self presentModalViewController:_comment animated:YES];
-                
+                [self presentViewController:_comment animated:YES completion:nil];
             }else{
                 
                 
@@ -727,8 +724,7 @@
                 if (i == ImageArray.count-1){
                     
                     
-                    
-                    [self presentModalViewController:_comment animated:YES];
+                    [self presentViewController:_comment animated:YES completion:nil];
                     
                 }
                 
@@ -798,8 +794,7 @@
         
         comment.zhuanfa = data_.huifubbsfid;
         
-        [self presentModalViewController:comment animated:YES];
-        
+        [self presentViewController:comment animated:YES completion:nil];
         
         
     }else if([data_.type isEqualToString:@"微博转发"])
@@ -820,8 +815,7 @@
         
         forward.zhuanfa = data_.title;
         
-        
-        [self presentModalViewController:forward animated:YES];
+        [self presentViewController:forward animated:YES completion:nil];
         
         
     }

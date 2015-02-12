@@ -299,15 +299,54 @@
     [pwNameField resignFirstResponder];
     
     
-    tool1=[[downloadtool alloc]init];
-    [tool1 setUrl_string:[NSString stringWithFormat:LOGIN_URL,[userNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[pwNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN]]];
-    tool1.tag=101;
+//    tool1=[[downloadtool alloc]init];
+//    [tool1 setUrl_string:[NSString stringWithFormat:LOGIN_URL,[userNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[pwNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN]]];
+//    tool1.tag=101;
+//    
+//    NSLog(@"登录请求的url:%@",[NSString stringWithFormat:LOGIN_URL,[userNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[pwNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN]]);
+//    
+//    tool1.delegate=self;
+//    [tool1 start];
     
-    NSLog(@"登录请求的url:%@",[NSString stringWithFormat:LOGIN_URL,[userNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[pwNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN]]);
     
-    tool1.delegate=self;
-    [tool1 start];
     
+    ASIFormDataRequest * login_request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://bbs.fblife.com/bbsapinew/login.php?formattype=json"]];
+    
+    [login_request setPostValue:userNameField.text forKey:@"username"];
+    [login_request setPostValue:pwNameField.text forKey:@"password"];
+    [login_request setPostValue:[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN] forKey:@"token"];
+    
+    
+    __weak typeof(self)bself = self;
+    __weak typeof(login_request)request = login_request;
+    
+    [login_request setCompletionBlock:^{
+        
+        dictionary= [request.responseString objectFromJSONString];
+        NSLog(@"登录论坛 -=-=  %@",dictionary);
+        
+        
+        if ([[dictionary objectForKey:@"errcode"] integerValue]==0)
+        {
+            [bself kaitongfb:[dictionary objectForKey:@"bbsinfo"]];
+            
+        }else
+        {
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:USER_IN];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            UIAlertView *alert_=[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名或密码不正确" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            [alert_ show];
+        }
+
+        
+    }];
+    
+    [login_request setFailedBlock:^{
+        [hud hide:YES];
+        [[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"登录失败,请重新登录" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil] show];
+    }];
+    
+    [login_request startAsynchronous];
 }
 
 
@@ -382,26 +421,29 @@
             
             if ([[dic_ objectForKey:@"errcode"] intValue] == 1)
             {
-                //登陆成功保存用户信息
-//                [[NSUserDefaults standardUserDefaults] setObject:userNameField.text forKey:USER_NAME] ;
-                [[NSUserDefaults standardUserDefaults] setObject:pwNameField.text forKey:USER_PW] ;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"LogIn" object:nil];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_IN];
                 [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"bbsinfo"] forKey:USER_AUTHOD] ;
                 [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"uid"] forKey:USER_UID] ;
-                [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"username"] forKey:USER_NAME] ;
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_IN];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:USER_AUTHOD object:[dictionary objectForKey:@"bbsinfo"]];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGIN_SUCCESS object:nil];
-                
-                [self.delegate successToLogIn];
-                pwNameField.text = @"";
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"LogIn" object:nil];
-                
+
                 [self loadDown];
                 
-                [self dismissViewControllerAnimated:YES completion:NULL];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    //登陆成功保存用户信息
+                    //                [[NSUserDefaults standardUserDefaults] setObject:userNameField.text forKey:USER_NAME] ;
+                    [[NSUserDefaults standardUserDefaults] setObject:pwNameField.text forKey:USER_PW] ;
+                    [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"username"] forKey:USER_NAME] ;
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:USER_AUTHOD object:[dictionary objectForKey:@"bbsinfo"]];
+                    
+                    [self.delegate successToLogIn];
+                    pwNameField.text = @"";
+                    
+                    
+                    
+                }];
                 
             }else
             {
@@ -420,27 +462,29 @@
             if ([[dic objectForKey:@"errcode"] intValue] == 1)
             {
                 NSLog(@"开通成功");
-                
-                //登陆成功保存用户信息
-                //                [[NSUserDefaults standardUserDefaults] setObject:userNameField.text forKey:USER_NAME] ;
-                [[NSUserDefaults standardUserDefaults] setObject:pwNameField.text forKey:USER_PW] ;
                 [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"bbsinfo"] forKey:USER_AUTHOD] ;
-                [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"uid"] forKey:USER_UID] ;
-                [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"username"] forKey:USER_NAME] ;
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_IN];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:USER_AUTHOD object:[dictionary objectForKey:@"bbsinfo"]];
-                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGIN_SUCCESS object:nil];
-                
-                [self.delegate successToLogIn];
-                pwNameField.text = @"";
-                
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"LogIn" object:nil];
-                
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_IN];
+                [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"uid"] forKey:USER_UID] ;
+
                 [self loadDown];
+
                 
-                [self dismissViewControllerAnimated:YES completion:NULL];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    //登陆成功保存用户信息
+                    //                [[NSUserDefaults standardUserDefaults] setObject:userNameField.text forKey:USER_NAME] ;
+                    [[NSUserDefaults standardUserDefaults] setObject:pwNameField.text forKey:USER_PW] ;
+                    [[NSUserDefaults standardUserDefaults] setObject:[dictionary objectForKey:@"username"] forKey:USER_NAME] ;
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:USER_AUTHOD object:[dictionary objectForKey:@"bbsinfo"]];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGIN_SUCCESS object:nil];
+                    
+                    [self.delegate successToLogIn];
+                    pwNameField.text = @"";
+                    
+                    
+                }];
             }else
             {
                 NSLog(@"开通时候的dic=%@",dic);
@@ -559,6 +603,11 @@
     }
     
     return YES;
+}
+
+-(void)dealloc
+{
+    NSLog(@"login dealloc");
 }
 
 - (void)didReceiveMemoryWarning

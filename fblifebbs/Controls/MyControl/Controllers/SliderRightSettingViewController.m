@@ -99,7 +99,7 @@
 
 -(void)successLogIn
 {
-    [_myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:8 inSection:0],nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [_myTableView reloadData];
 }
 
 

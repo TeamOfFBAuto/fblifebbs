@@ -13,8 +13,9 @@
 #import "NotificationView.h"
 #import "NewMessageViewController.h"
 #import "MyChatViewController.h"
+#import "AppDelegate.h"
 
-@interface MessageViewController ()<MessageTableViewDelegate,NewMessageViewControllerDelegate,NotificationViewDelegate>
+@interface MessageViewController ()<MessageTableViewDelegate,NewMessageViewControllerDelegate,NotificationViewDelegate,LogInViewControllerDelegate>
 {
     ///顶部选择视图
     SliderBBSTitleView * _seg_view;
@@ -31,7 +32,26 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = NO;
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults boolForKey:USER_IN]) {
+        
+        LogInViewController *login = [[LogInViewController alloc] init];
+        
+        login.delegate = self;
+        
+        UITabBarController *root = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+        
+        [root presentViewController:login animated:YES completion:^{
+            
+            int index = [[defaults objectForKey:@"lastVC"]integerValue];
+            
+            root.selectedIndex = 0;
+        }];
+        
+    }else
+    {
+        self.tabBarController.tabBar.hidden = NO;
+    }
 }
 
 -(BOOL)isLogIn
@@ -44,6 +64,12 @@
     }
     
     return isLogin;
+}
+#pragma mark - 登陆成功代理
+-(void)successToLogIn
+{
+    UITabBarController *root = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+    root.selectedIndex = 3;
 }
 
 - (void)viewDidLoad

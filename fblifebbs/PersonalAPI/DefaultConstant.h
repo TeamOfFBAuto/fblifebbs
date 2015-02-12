@@ -474,8 +474,13 @@ alpha:(a)]
 #pragma mark - 论坛精选推荐幻灯数据接口
 #define GET_BBS_SLIDESHOW_URL @"http://cmsweb.fblife.com/ajax.php?c=newstwo&a=newsslide&classname=appbbs&type=json"
 
+#pragma mark - 上传个人背景图片地址
+#define UPLOAD_USER_BANNAR_URL @"http://ucache.fblife.com/getImage.php"
+
+#pragma mark - 获取用户信息接口
+#define BBS_GET_USER_INFOMATION_URL @"http://ucache.fblife.com/getuserinfo.php?uid=%@&type=json"
 
 
-
-
+#pragma mark - 获取某人发表的所有帖子
+#define BBS_GET_POSTS_URL @"http://bbs1.fblife.com/bbsapinew/getappmythread.php?uid=%@&page=%d&pagesize=10"
 

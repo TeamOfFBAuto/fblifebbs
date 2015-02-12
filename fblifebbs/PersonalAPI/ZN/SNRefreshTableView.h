@@ -23,6 +23,9 @@
 @end
 
 @interface SNRefreshTableView : UITableView<L_EGORefreshTableDelegate,UITableViewDataSource,UITableViewDelegate>
+{
+    CGFloat contentOffSetY;
+}
 
 
 @property (nonatomic,retain)LRefreshTableHeaderView * refreshHeaderView;

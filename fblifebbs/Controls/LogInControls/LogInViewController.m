@@ -299,15 +299,54 @@
     [pwNameField resignFirstResponder];
     
     
-    tool1=[[downloadtool alloc]init];
-    [tool1 setUrl_string:[NSString stringWithFormat:LOGIN_URL,[userNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[pwNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN]]];
-    tool1.tag=101;
+//    tool1=[[downloadtool alloc]init];
+//    [tool1 setUrl_string:[NSString stringWithFormat:LOGIN_URL,[userNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[pwNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN]]];
+//    tool1.tag=101;
+//    
+//    NSLog(@"登录请求的url:%@",[NSString stringWithFormat:LOGIN_URL,[userNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[pwNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN]]);
+//    
+//    tool1.delegate=self;
+//    [tool1 start];
     
-    NSLog(@"登录请求的url:%@",[NSString stringWithFormat:LOGIN_URL,[userNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[pwNameField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN]]);
     
-    tool1.delegate=self;
-    [tool1 start];
     
+    ASIFormDataRequest * login_request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://bbs.fblife.com/bbsapinew/login.php?formattype=json"]];
+    
+    [login_request setPostValue:userNameField.text forKey:@"username"];
+    [login_request setPostValue:pwNameField.text forKey:@"password"];
+    [login_request setPostValue:[[NSUserDefaults standardUserDefaults]objectForKey:DEVICETOKEN] forKey:@"token"];
+    
+    
+    __weak typeof(self)bself = self;
+    __weak typeof(login_request)request = login_request;
+    
+    [login_request setCompletionBlock:^{
+        
+        dictionary= [request.responseString objectFromJSONString];
+        NSLog(@"登录论坛 -=-=  %@",dictionary);
+        
+        
+        if ([[dictionary objectForKey:@"errcode"] integerValue]==0)
+        {
+            [bself kaitongfb:[dictionary objectForKey:@"bbsinfo"]];
+            
+        }else
+        {
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:USER_IN];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            UIAlertView *alert_=[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名或密码不正确" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            [alert_ show];
+        }
+
+        
+    }];
+    
+    [login_request setFailedBlock:^{
+        [hud hide:YES];
+        [[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"登录失败,请重新登录" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil] show];
+    }];
+    
+    [login_request startAsynchronous];
 }
 
 

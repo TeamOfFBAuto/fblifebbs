@@ -244,7 +244,9 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
+    [detail_request cancel];
+    detail_request.delegate = nil;
+    detail_request = nil;
     [MobClick endEvent:@"NewWeiBoDetailViewController"];
 }
 

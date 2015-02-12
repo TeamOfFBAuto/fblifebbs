@@ -874,6 +874,7 @@
 		564757491A6F46F30011F3C4 /* SNMineBBSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 564757471A6F46F30011F3C4 /* SNMineBBSCell.m */; };
 		5647574A1A6F46F30011F3C4 /* SNMineBBSCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 564757481A6F46F30011F3C4 /* SNMineBBSCell.xib */; };
 		56498DE71A6DF0F2009BCA09 /* SNMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56498DE61A6DF0F2009BCA09 /* SNMineViewController.m */; };
+		56505EAE1A8768B8003A4493 /* MLImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 56505EAD1A8768B8003A4493 /* MLImageCrop.m */; };
 		5655CCA21A528AB500482034 /* RecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5655CCA11A528AB500482034 /* RecommendView.m */; };
 		5655CCA41A52954100482034 /* root_jingxuan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5655CCA31A52954100482034 /* root_jingxuan@2x.png */; };
 		5658D1E81A11FF0A00F777C4 /* BBSRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658D1E71A11FF0A00F777C4 /* BBSRecommendViewController.m */; };
@@ -951,6 +952,8 @@
 		5668E27619EBC14B0091A4B0 /* guanzhu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E24F19EBC14B0091A4B0 /* guanzhu@2x.png */; };
 		5668E27719EBC14B0091A4B0 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E25019EBC14B0091A4B0 /* line@2x.png */; };
 		5668E27919EBC14B0091A4B0 /* yiguanzhu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5668E25219EBC14B0091A4B0 /* yiguanzhu@2x.png */; };
+		5669013F1A835C5A00973841 /* GcustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5669013E1A835C5A00973841 /* GcustomActionSheet.m */; };
+		5685D5F71A88B53900549550 /* BBSInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5685D5F61A88B53900549550 /* BBSInfoModel.m */; };
 		5691409519ED17D800625501 /* NotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691409419ED17D800625501 /* NotificationView.m */; };
 		5691409919ED21E400625501 /* NotificationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691409719ED21E400625501 /* NotificationTableViewCell.m */; };
 		5691409A19ED21E400625501 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5691409819ED21E400625501 /* NotificationTableViewCell.xib */; };
@@ -2121,6 +2124,8 @@
 		564757481A6F46F30011F3C4 /* SNMineBBSCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNMineBBSCell.xib; sourceTree = "<group>"; };
 		56498DE51A6DF0F2009BCA09 /* SNMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMineViewController.h; sourceTree = "<group>"; };
 		56498DE61A6DF0F2009BCA09 /* SNMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMineViewController.m; sourceTree = "<group>"; };
+		56505EAC1A8768B8003A4493 /* MLImageCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLImageCrop.h; sourceTree = "<group>"; };
+		56505EAD1A8768B8003A4493 /* MLImageCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLImageCrop.m; sourceTree = "<group>"; };
 		5655CCA01A528AB500482034 /* RecommendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendView.h; sourceTree = "<group>"; };
 		5655CCA11A528AB500482034 /* RecommendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendView.m; sourceTree = "<group>"; };
 		5655CCA31A52954100482034 /* root_jingxuan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "root_jingxuan@2x.png"; sourceTree = "<group>"; };
@@ -2222,6 +2227,10 @@
 		5668E24F19EBC14B0091A4B0 /* guanzhu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guanzhu@2x.png"; sourceTree = "<group>"; };
 		5668E25019EBC14B0091A4B0 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
 		5668E25219EBC14B0091A4B0 /* yiguanzhu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yiguanzhu@2x.png"; sourceTree = "<group>"; };
+		5669013D1A835C5A00973841 /* GcustomActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcustomActionSheet.h; sourceTree = "<group>"; };
+		5669013E1A835C5A00973841 /* GcustomActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcustomActionSheet.m; sourceTree = "<group>"; };
+		5685D5F51A88B53900549550 /* BBSInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSInfoModel.h; sourceTree = "<group>"; };
+		5685D5F61A88B53900549550 /* BBSInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSInfoModel.m; sourceTree = "<group>"; };
 		5691409319ED17D800625501 /* NotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationView.h; sourceTree = "<group>"; };
 		5691409419ED17D800625501 /* NotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationView.m; sourceTree = "<group>"; };
 		5691409619ED21E400625501 /* NotificationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableViewCell.h; sourceTree = "<group>"; };
@@ -2510,6 +2519,8 @@
 				13D42C3F19ED1C4900261D69 /* BaseModel.m */,
 				13D42C3B19ED1B6500261D69 /* UserModel.h */,
 				13D42C3C19ED1B6500261D69 /* UserModel.m */,
+				5685D5F51A88B53900549550 /* BBSInfoModel.h */,
+				5685D5F61A88B53900549550 /* BBSInfoModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -4276,6 +4287,10 @@
 				56D3E6511A6E403E00AE4792 /* WeiBoCustomSegmentView.m */,
 				569881971A70FE8C00A15987 /* SNRefreshTableView.h */,
 				569881981A70FE8C00A15987 /* SNRefreshTableView.m */,
+				5669013D1A835C5A00973841 /* GcustomActionSheet.h */,
+				5669013E1A835C5A00973841 /* GcustomActionSheet.m */,
+				56505EAC1A8768B8003A4493 /* MLImageCrop.h */,
+				56505EAD1A8768B8003A4493 /* MLImageCrop.m */,
 			);
 			path = ZN;
 			sourceTree = "<group>";
@@ -4589,6 +4604,7 @@
 					};
 					19FF0E3719E7D28500D5DC6A = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = 96PFYKQ596;
 						TestTargetID = 19FF0E1B19E7D28400D5DC6A;
 					};
 				};
@@ -5518,6 +5534,7 @@
 				13D42D2D19ED2AA500261D69 /* DraftDatabase.m in Sources */,
 				13D42D8919ED2F4200261D69 /* ForwardingViewController.m in Sources */,
 				130C24E219EBDCBD00044F51 /* SCGIFImageView.m in Sources */,
+				5685D5F71A88B53900549550 /* BBSInfoModel.m in Sources */,
 				13D42CD119ED289200261D69 /* ATMSoundFX.m in Sources */,
 				13D42C4319ED23FF00261D69 /* ShoucangViewController.m in Sources */,
 				130C24ED19EBE0E400044F51 /* MineViewController.m in Sources */,
@@ -5565,6 +5582,7 @@
 				13D42D0519ED297F00261D69 /* QBImagePickerGroupCell.m in Sources */,
 				13D42E2F19ED314600261D69 /* BBSfenduiViewController.m in Sources */,
 				13D42E2319ED30DA00261D69 /* UIView+AnimationOptionsForCurve.m in Sources */,
+				5669013F1A835C5A00973841 /* GcustomActionSheet.m in Sources */,
 				5646FC3D19E7E64F00AA35E0 /* SliderBBSTitleView.m in Sources */,
 				1315146D19EE7E4E00F31595 /* UMTableViewCell.m in Sources */,
 				1386258B19EE059100E3563B /* FinalshoucangView.m in Sources */,
@@ -5582,6 +5600,7 @@
 				13D42EA119ED32D400261D69 /* SSWBViewController.m in Sources */,
 				1315144F19EE687900F31595 /* MyViewController.m in Sources */,
 				13D42DF019ED30DA00261D69 /* JSMessageInputView.m in Sources */,
+				56505EAE1A8768B8003A4493 /* MLImageCrop.m in Sources */,
 				1386258E19EE05D500E3563B /* NewshoucangTableViewCell.m in Sources */,
 				13D42CB519ED27BB00261D69 /* SDWebImageManager.m in Sources */,
 				13D42D1319ED29E500261D69 /* DraftBoxView.m in Sources */,
@@ -5689,8 +5708,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhong Kun Shi (6NH6VCUU57)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhong Kun Shi (6NH6VCUU57)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5717,7 +5736,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PROVISIONING_PROFILE = "0c1b68b6-94ba-43b9-b1d3-dea4d4ca3175";
+				PROVISIONING_PROFILE = "a347ea01-7db6-4547-9d4c-587c400de43e";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5739,8 +5758,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhong Kun Shi (6NH6VCUU57)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhong Kun Shi (6NH6VCUU57)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5761,7 +5780,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PROVISIONING_PROFILE = "0c1b68b6-94ba-43b9-b1d3-dea4d4ca3175";
+				PROVISIONING_PROFILE = "a347ea01-7db6-4547-9d4c-587c400de43e";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5774,8 +5793,8 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhong Kun Shi (6NH6VCUU57)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhong Kun Shi (6NH6VCUU57)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Framework",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -5803,8 +5822,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "62774b15-cf37-4fc8-953c-6464d6d11d7d";
-				PROVISIONING_PROFILE = "0c1b68b6-94ba-43b9-b1d3-dea4d4ca3175";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -5818,8 +5836,8 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhong Kun Shi (6NH6VCUU57)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhong Kun Shi (6NH6VCUU57)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Framework",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -5847,8 +5865,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "62774b15-cf37-4fc8-953c-6464d6d11d7d";
-				PROVISIONING_PROFILE = "0c1b68b6-94ba-43b9-b1d3-dea4d4ca3175";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -5859,6 +5876,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -5870,6 +5889,7 @@
 				INFOPLIST_FILE = fblifebbsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fblifebbs.app/fblifebbs";
 			};
 			name = Debug;
@@ -5878,6 +5898,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -5885,6 +5907,7 @@
 				INFOPLIST_FILE = fblifebbsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fblifebbs.app/fblifebbs";
 			};
 			name = Release;

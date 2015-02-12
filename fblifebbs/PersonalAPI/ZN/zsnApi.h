@@ -26,7 +26,9 @@
 +(NSString *)timechange1:(NSString *)placetime;
 
 +(NSString *)timeFromDate:(NSDate *)date;
-
+///输入的日期字符串形如：@"1992-05-21 13:08:08" adate:时间戳
+#pragma mark - 输入日期字符串如："1992-05-21 13:08:08" 返回输入的时间格式
++(NSString *)dateFromString:(NSString *)dateString WithDate:(NSString *)aDate;
 /// 输入日期字符串如："1992-05-21 13:08:08" 返回NSDate
 +(NSDate *)dateFromString:(NSString *)dateString;
 ///返回时间 年、月、日、时、分、秒

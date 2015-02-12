@@ -24,8 +24,12 @@
 #import "MyChatViewController.h"
 #import "SNMineBBSCell.h"
 #import "SNRefreshTableView.h"
+#import "GcustomActionSheet.h"
+#import "MLImageCrop.h"
+#import "BBSInfoModel.h"
+#import "SDImageCache.h"
 
-@interface SNMineViewController ()<UITableViewDataSource,SNRefreshDelegate,WeiBoCustomSegmentViewDelegate,NewWeiBoCustomCellDelegate,ForwardingViewControllerDelegate,NewWeiBoCommentViewControllerDelegate,MWPhotoBrowserDelegate>
+@interface SNMineViewController ()<UITableViewDataSource,SNRefreshDelegate,WeiBoCustomSegmentViewDelegate,NewWeiBoCustomCellDelegate,ForwardingViewControllerDelegate,NewWeiBoCommentViewControllerDelegate,MWPhotoBrowserDelegate,GcustomActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate>
 {
     UIImageView * navigation_view;
     UIView * firstSectionView;
@@ -55,9 +59,12 @@
     
     ///简介数据
     NSArray * jianjie_array;
+    NSArray * key_array;
     
     ///记录每个的偏移量
     float contentOffSetY[3];
+    
+    NSDictionary * content_dictionary;
 }
 
 @property(nonatomic,strong)PersonInfo * per_info;
@@ -68,6 +75,10 @@
 @property(nonatomic,strong)NSMutableArray * array_tiezi;
 ///图片
 @property(nonatomic,strong)NSMutableArray * photos;
+///保存选取到的图片
+@property(nonatomic,strong)UIImage * userUpBannerImage;
+///个人信息
+@property(nonatomic,strong)BBSInfoModel * bbs_info_model;
 
 @end
 
@@ -86,6 +97,7 @@
     self.navigationController.navigationBarHidden = NO;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+//    [_myTableView removeObserver:self forKeyPath:@"contentOffSetY"];
 }
 
 - (void)viewDidLoad {
@@ -95,12 +107,17 @@
     
     _array_tiezi = [NSMutableArray array];
     _array_weibo = [NSMutableArray array];
+    content_dictionary = [NSDictionary dictionary];
     weibo_page = 1;
     tiezi_page = 1;
-    jianjie_array = [NSArray arrayWithObjects:@"",@"用户名",@"用户组",@"注册日期",@"积分",@"上次访问",@"帖子",@"最后发表",@"精华",@"在线时间",@"经验",@"浏览页数",@"威望",@"日均发帖",@"金钱",@"阅读权限",@"魅力",@"发帖级别",@"",@"性别",@"生日",@"电话",@"来自",@"婚姻",@"职业",@"性格",@"爱好",nil];
+    jianjie_array = [NSArray arrayWithObjects:@"",@"用户名",@"用户组",@"注册日期",@"积分",@"上次访问",@"帖子",@"最后发表",@"精华",@"在线时间",@"经验",@"浏览页数",@"威望",@"日均发帖",@"金钱",@"阅读权限",@"魅力",@"发帖级别",@"介绍",@"",@"性别",@"生日",@"电话",@"来自",@"婚姻",@"职业",@"性格",@"爱好",nil];
+    
+    key_array = [NSArray arrayWithObjects:@"",@"username",@"grouptitle",@"regdate",@"credits",@"lastvisit",@"posts",@"lastpost",@"digestposts",@"oltime",@"extcredits1",@"pageviews",@"extcredits2",@"日均发帖",@"extcredits3",@"readaccess",@"extcredits4",@"ranktitle",@"bio",@"",@"gender",@"bday",@"field_5",@"location",@"field_4",@"field_3",@"field_9",@"field_10",nil];
+    
     
     _myTableView = [[SNRefreshTableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT) showLoadMore:YES];
-//    [_myTableView removeHeaderView];
+    [_myTableView removeHeaderView];
+    [_myTableView addObserver:self forKeyPath:@"contentOffSetY" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
     _myTableView.dataSource = self;
     _myTableView.refreshDelegate = self;
     [self.view addSubview:_myTableView];
@@ -112,10 +129,10 @@
         [_myTableView setLayoutMargins:UIEdgeInsetsZero];
     }
     
-    [self networkGetUserInfo];
+    [self networkGetUserInfomation];
     [self networkGetBBSData];
     [self createFirstSectionView];
-    
+    [self networkGetUserInfo];
     [self setNavgationView];
 }
 
@@ -136,6 +153,7 @@
 #pragma mark - 返回
 -(void)back:(UIButton *)button
 {
+    [_myTableView removeObserver:self forKeyPath:@"contentOffSetY"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -176,7 +194,7 @@
 #pragma mark - 获取帖子数据
 -(void)networkGetBBSData
 {
-    NSString * fullUrl = [NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getappmythread.php?authcode=%@&page=%d&pagesize=10",AUTHKEY,tiezi_page];
+    NSString * fullUrl = [NSString stringWithFormat:BBS_GET_POSTS_URL,_theUid,tiezi_page];
     NSLog(@"请求帖子数据接口 ---   %@",fullUrl);
     AFHTTPRequestOperation * request = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:fullUrl]]];
     __weak typeof(self)bself = self;
@@ -198,23 +216,24 @@
                 }else
                 {
                     bself.myTableView.hiddenLoadMore = NO;
+                    bself.myTableView.isHaveMoreData = YES;
                 }
             }else
             {
                 if (array.count == 0)
                 {
-                    bself.myTableView.hiddenLoadMore = NO;
+                    bself.myTableView.isHaveMoreData = NO;
                 }else
                 {
-                    bself.myTableView.isHaveMoreData = NO;
+                    bself.myTableView.isHaveMoreData = YES;
                 }
             }
             
             
-            if ([array isKindOfClass:[NSArray class]] && array.count > 0)
+            if (selectedView == 0)
             {
-                bself.array_tiezi = [NSMutableArray arrayWithArray:array];
-                [bself.myTableView reloadData];
+                [bself.array_tiezi addObjectsFromArray:array];
+                [bself.myTableView finishReloadigData];
             }
         }
         
@@ -251,24 +270,30 @@
                 {
                     if ([weiboinfo isEqual:[NSNull null]])
                     {
+                        bself.myTableView.isHaveMoreData = NO;
                         return;
                     }
                 }else
                 {
+                    bself.myTableView.isHaveMoreData = YES;
                     [bself.array_weibo removeAllObjects];
                 }
                 
                 
                 if ([weiboinfo isEqual:[NSNull null]])
                 {
+                    bself.myTableView.isHaveMoreData = NO;
 //                    loadview.normalLabel.text = @"没有更多了";
                     //如果没有微博的话
                     NSLog(@"------------没有微博信息---------------");
                 }else
                 {
+                    bself.myTableView.isHaveMoreData = YES;
                     [bself.array_weibo addObjectsFromArray:[zsnApi conversionFBContent:weiboinfo isSave:NO WithType:0]];
                     
-                    [bself.myTableView reloadData];
+                    if (selectedView == 1) {
+                        [bself.myTableView finishReloadigData];
+                    }
                 }
             }else
             {
@@ -285,6 +310,54 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [hud hide:YES];
         [zsnApi showAutoHiddenMBProgressWithText:@"加载失败，请检查您当前网络" addToView:self.view];
+    }];
+    
+    [request start];
+}
+
+#pragma mark - 获取个人数据
+-(void)networkGetUserInfomation
+{
+//    ASIFormDataRequest * request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:BBS_GET_USER_INFOMATION_URL]];
+//    
+//    [request setPostValue:@"json" forKey:@"type"];
+//    [request setPostValue:USER_UID forKey:@"uid"];
+//    
+//    __weak typeof(self)bself = self;
+//    __weak typeof(request)brequest = request;
+//    
+//    [request setCompletionBlock:^{
+//        NSDictionary * dic = [brequest.responseString objectFromJSONString];
+//        
+//        NSLog(@"获取用户信息数据 ----   %@",dic);
+//        
+//    }];
+//    
+//    [request setFailedBlock:^{
+//        
+//    }];
+//    
+//    [request startAsynchronous];
+    
+    
+    AFHTTPRequestOperation * request = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:BBS_GET_USER_INFOMATION_URL,_theUid]]]];
+    
+    __weak typeof(self)bself = self;
+    [request setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary * allDic = [operation.responseString objectFromJSONString];
+        
+        NSLog(@"allDic -----  %@",allDic);
+        
+        if ([allDic isKindOfClass:[NSDictionary class]]) {
+//            content_dictionary = allDic;
+            bself.bbs_info_model = [[BBSInfoModel alloc] initWithDictionary:allDic];
+        }
+        
+        [bself.myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
     }];
     
     [request start];
@@ -355,6 +428,42 @@
      */
 }
 
+#define TT_CACHE_EXPIRATION_AGE_NEVER     (1.0 / 0.0)
+-(void)networkUploadBanner
+{
+    ASIFormDataRequest * _request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:UPLOAD_USER_BANNAR_URL]];
+    
+    NSData * imageData = UIImageJPEGRepresentation(self.userUpBannerImage,1.0);// UIImagePNGRepresentation(self.userUpBannerImage);
+    
+    [_request setPostValue:AUTHKEY forKey:@"authkey"];
+    
+    [_request addRequestHeader:@"filename" value:[NSString stringWithFormat:@"%d", [imageData length]]];
+    //设置http body
+    [_request addData:imageData withFileName:[NSString stringWithFormat:@"boris.png"] andContentType:@"image/JPEG" forKey:[NSString stringWithFormat:@"filename"]];
+    
+    [_request setRequestMethod:@"POST"];
+    _request.cachePolicy = TT_CACHE_EXPIRATION_AGE_NEVER;
+    _request.cacheStoragePolicy = ASICacheForSessionDurationCacheStoragePolicy;
+    [_request startAsynchronous];
+    
+    
+    __weak typeof(_request)brequest = _request;
+    __weak typeof(self) bself = self;
+    [_request setCompletionBlock:^{
+        
+        NSDictionary * dic = [brequest.responseString objectFromJSONString];
+        
+        NSLog(@"上传图片结果 ----  %@",dic);
+        
+        [[SDImageCache sharedImageCache] removeImageForKey:bself.bbs_info_model.backImg_o];
+        banner_imageView.image = bself.userUpBannerImage;
+    }];
+    
+    [_request setFailedBlock:^{
+        
+    }];
+
+}
 
 
 #pragma mark - 视图加载 ----------------------
@@ -367,8 +476,15 @@
         firstSectionView.backgroundColor = [UIColor whiteColor];
         ///背景图
         banner_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_WIDTH*210/320)];
-        banner_imageView.contentMode = UIViewContentModeScaleAspectFill;
+//        banner_imageView.contentMode = UIViewContentModeScaleAspectFill;
         [firstSectionView addSubview:banner_imageView];
+        
+        banner_imageView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userBannerClicked:)];
+        [banner_imageView addGestureRecognizer:tap];
+        
+        
         //头像
         header_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,130/2.0,130/2.0)];
         header_imageView.center = CGPointMake(DEVICE_WIDTH/2.0,banner_imageView.height/2.0);
@@ -416,11 +532,11 @@
     }
     
 
-    [banner_imageView setImageWithURL:[NSURL URLWithString:[self returnBannerUrlWithUID:_theUid]] placeholderImage:[UIImage imageNamed:@"underPageBackGround.png"]];
-    [header_imageView setImageWithURL:[NSURL URLWithString:_per_info.face_original] placeholderImage:[UIImage imageNamed:@"touxiang.png"]];
-    userName_label.text = _per_info.username;
+    [banner_imageView setImageWithURL:[NSURL URLWithString:_bbs_info_model.backImg_o] placeholderImage:[UIImage imageNamed:@"underPageBackGround.png"]];
+    [header_imageView setImageWithURL:[NSURL URLWithString:[zsnApi returnUrl:_theUid]] placeholderImage:[UIImage imageNamed:@"touxiang.png"]];
+    userName_label.text = _bbs_info_model.username;
     
-    if (_per_info)
+    if (_bbs_info_model)
     {
         [self setTiezi:_per_info.topic_count Guanzhu:_per_info.follow_count Fensi:_per_info.fans_count];
     }
@@ -460,9 +576,9 @@
     UILabel * guanzhu_label = (UILabel *)[firstSectionView viewWithTag:101];
     UILabel * fensi_label = (UILabel *)[firstSectionView viewWithTag:102];
     
-    tiezi_label.text = [NSString stringWithFormat:@"%@帖子",tiezi];
-    guanzhu_label.text = [NSString stringWithFormat:@"%@关注",guanzhu];
-    fensi_label.text = [NSString stringWithFormat:@"%@粉丝",fensi];
+    tiezi_label.text = [NSString stringWithFormat:@"%@帖子",_bbs_info_model.topic_count];
+    guanzhu_label.text = [NSString stringWithFormat:@"%@关注",_bbs_info_model.follow_count];
+    fensi_label.text = [NSString stringWithFormat:@"%@粉丝",_bbs_info_model.fans_count];
 }
 
 #pragma mark - 私信
@@ -477,6 +593,34 @@
     MyChatViewController * chat = [[MyChatViewController alloc] init];
     chat.info = info;
     [self.navigationController pushViewController:chat animated:YES];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    
+    CGFloat contentY = [[change objectForKey:@"new"] floatValue];
+    
+    contentOffSetY[selectedView] = contentY;
+    
+    if (contentY > 0)
+    {
+        if (contentY > 100) {
+            [self setNavigationBarHidden:YES];
+        }else
+        {
+            [self setNavigationBarHidden:NO];
+        }
+        return;
+    }
+    
+    BOOL ismySelf = [_theUid isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USER_UID]];
+    ///宽高比
+    float kuanggaobi = DEVICE_WIDTH/(firstSectionView.height-(ismySelf?0:72));
+    
+    banner_imageView.top = contentY-10;
+    banner_imageView.height = abs(contentY) + 10 + (firstSectionView.height-(ismySelf?0:72));
+    banner_imageView.width = banner_imageView.height*kuanggaobi;
+    banner_imageView.center = CGPointMake(DEVICE_WIDTH/2,banner_imageView.center.y);
 }
 
 
@@ -579,6 +723,7 @@
         if (cell == nil)
         {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         for (UIView * view in cell.contentView.subviews) {
@@ -603,8 +748,35 @@
             title_label.font = [UIFont systemFontOfSize:16];
             [cell.contentView addSubview:title_label];
             
-            UILabel * sub_label = [[UILabel alloc] initWithFrame:CGRectMake(120,0,DEVICE_WIDTH-200,44)];
-            sub_label.text = @"--";
+            NSString * sub_string;
+            NSString * keys = [key_array objectAtIndex:indexPath.row];
+            if (keys.length == 0)
+            {
+                sub_string = @"--";
+            }else
+            {
+                if ([keys isEqualToString:@"日均发帖"])
+                {
+                    if (_bbs_info_model.regdate.length == 0)
+                    {
+                        sub_string = @"--";
+                    }else
+                    {
+                        int days = [self returnDaysWithFromDate:[self dateFromString:_bbs_info_model.regdate] ToDate:[self dateFromString:_bbs_info_model.lastpost]];
+                        
+                        sub_string = [NSString stringWithFormat:@"%.2f",[_bbs_info_model.posts floatValue]/days];
+                    }
+                }else
+                {
+                    sub_string = [_bbs_info_model valueForKey:keys];
+                    if (sub_string.length == 0) {
+                        sub_string = @"--";
+                    }
+                }
+            }
+            
+            UILabel * sub_label = [[UILabel alloc] initWithFrame:CGRectMake(120,0,DEVICE_WIDTH-150,44)];
+            sub_label.text = sub_string;
             sub_label.textAlignment = NSTextAlignmentLeft;
             sub_label.textColor = RGBCOLOR(3,3,3);
             sub_label.font = [UIFont systemFontOfSize:16];
@@ -646,18 +818,62 @@
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
 }
-
+-(void)loadDataWithIsNew:(BOOL)isNew
+{
+    if (selectedView == 0)
+    {
+        if (isNew) {
+            tiezi_page = 1;
+        }else
+        {
+            tiezi_page++;
+        }
+        [self networkGetBBSData];
+    }else if (selectedView == 1)
+    {
+        if (isNew) {
+            weibo_page = 1;
+        }else
+        {
+            weibo_page++;
+        }
+        [self networkGetWeiBoData];
+    }else
+    {
+        if (!_bbs_info_model)
+        {
+            [self networkGetUserInfomation];
+        }
+    }
+}
 #pragma mark - Refresh tableview delegate
 - (void)loadNewData
 {
-    
+    [self loadDataWithIsNew:YES];
 }
 - (void)loadMoreData
 {
-    
+    [self loadDataWithIsNew:NO];
 }
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (selectedView == 0)//帖子
+    {
+        NSDictionary * dic = [_array_tiezi objectAtIndex:indexPath.row];
+
+        bbsdetailViewController * bbsdetail = [[bbsdetailViewController alloc] init];
+        bbsdetail.bbsdetail_tid = [dic objectForKey:@"tid"];
+        [self.navigationController pushViewController:bbsdetail animated:YES];
+        
+    }else if (selectedView == 1)//微博
+    {
+        FbFeed * info = [self.array_weibo objectAtIndex:indexPath.row];
+
+        NewWeiBoDetailViewController * detail = [[NewWeiBoDetailViewController alloc] init];
+        
+        detail.info = info;
+        [self.navigationController pushViewController:detail animated:YES];
+    }
     
 }
 - (CGFloat)heightForRowIndexPath:(NSIndexPath *)indexPath
@@ -738,14 +954,110 @@
     banner_imageView.center = CGPointMake(DEVICE_WIDTH/2,banner_imageView.center.y);
 }
 
+#pragma mark - ====== 点击更换封面图 =======
+-(void)userBannerClicked:(UITapGestureRecognizer *)sender
+{
+    GcustomActionSheet *aaa = [[GcustomActionSheet alloc]initWithTitle:nil
+                                                          buttonTitles:@[@"更换相册封面"]
+                                                     buttonTitlesColor:[UIColor blackColor]
+                                                           buttonColor:[UIColor whiteColor]
+                                                           CancelTitle:@"取消"
+                                                      cancelTitelColor:[UIColor whiteColor]
+                                                           CancelColor:RGBCOLOR(253, 144, 39)
+                                                       actionBackColor:RGBCOLOR(236, 236, 236)];
+    
+    
+    aaa.tag = 90;
+    aaa.delegate = self;
+    [aaa showInView:self.view WithAnimation:YES];
+
+}
+
+-(void)gActionSheet:(GcustomActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    NSLog(@"actionsheet.tag = %d, buttonIndex = %d",actionSheet.tag,buttonIndex);
+    
+    if (buttonIndex == 1) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        [self presentViewController:picker animated:YES completion:^{
+            
+        }];
+    }
+}
+
+#pragma mark - UIImagePickerControllerDelegate 拍照选择照片协议方法
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    if ([mediaType isEqualToString:@"public.image"]) {
+        
+        //压缩图片 不展示原图
+        UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
+        //按比例缩放
+        UIImage *scaleImage = [self scaleImage:originImage toScale:0.7];
+        
+        //将图片传递给截取界面进行截取并设置回调方法（协议）
+        MLImageCrop *imageCrop = [[MLImageCrop alloc]init];
+        imageCrop.delegate = self;
+        
+        //按像素缩放
+        imageCrop.ratioOfWidthAndHeight = 750.0f/560.0f;//设置缩放比例
+        imageCrop.image = scaleImage;
+        picker.navigationBar.hidden = YES;
+        [picker pushViewController:imageCrop animated:YES];
+    }
+}
+#pragma mark- 缩放图片
+//按比例缩放
+-(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
+{
+    UIGraphicsBeginImageContext(CGSizeMake(image.size.width*scaleSize,image.size.height*scaleSize));
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height *scaleSize)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
+}
+
+//按像素缩放
+-(UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size{
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    UIGraphicsBeginImageContext(size);
+    // 绘制改变大小的图片
+    [img drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    // 返回新的改变大小后的图片
+    return scaledImage;
+}
+#pragma mark - crop delegate
+#pragma mark - 图片回传协议方法
+- (void)cropImage:(UIImage*)cropImage forOriginalImage:(UIImage*)originalImage
+{
+    //用户需要上传的剪裁后的image
+    self.userUpBannerImage = cropImage;
+    NSLog(@"在此设置用户上传的头像");
+    
+    //ASI上传
+    [self networkUploadBanner];
+    
+//    [_tableView reloadData];
+    
+}
 
 #pragma mark - WeiBo segment delegate
 -(void)ClickWeiBoCustomSegmentWithIndex:(int)index
 {
+    _myTableView.tableFooterView.hidden = NO;
     contentOffSetY[selectedView] = _myTableView.contentOffset.y;
    
     selectedView = index;
-    [self.myTableView reloadData];
+    [self.myTableView finishReloadigData];
     
     _myTableView.contentOffset = CGPointMake(0,contentOffSetY[index]);
     
@@ -768,7 +1080,7 @@
             break;
         case 2:
         {
-            
+            _myTableView.tableFooterView.hidden = YES;
         }
             break;
         default:
@@ -1192,6 +1504,28 @@
     } completion:^(BOOL finished) {
         
     }];
+}
+
+
+#pragma mark - 计算已知两个日期相差在天数
+-(int)returnDaysWithFromDate:(NSDate *)fromDate ToDate:(NSDate *)toDate
+{
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *startDate = fromDate;
+    NSDate *endDate = toDate;
+    unsigned int unitFlags = NSDayCalendarUnit;
+    NSDateComponents *comps = [gregorian components:unitFlags fromDate:startDate toDate:endDate options:0];
+    int days = [comps day];
+    return days;
+}
+
+-(NSDate *)dateFromString:(NSString *)dateString{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm"];
+    NSDate *destDate= [dateFormatter dateFromString:dateString];
+    dateFormatter = nil;
+    return destDate;
 }
 
 

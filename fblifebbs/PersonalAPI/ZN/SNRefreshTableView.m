@@ -57,7 +57,7 @@
         self.delegate = self;
         [self createHeaderView];
         if (show) {
-            
+            _isHaveMoreData = YES;
             [self createFooterView];
         }
     }
@@ -249,6 +249,8 @@
     if (_refreshHeaderView) {
         [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     }
+    
+    [self setValue:[NSString stringWithFormat:@"%f",scrollView.contentOffset.y] forKey:@"contentOffSetY"];
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
@@ -424,7 +426,9 @@
 
 -(void)setHiddenLoadMore:(BOOL)hiddenLoadMore
 {
-    
+    _loadingIndicator.hidden = hiddenLoadMore;
+    _loadingLabel.hidden = hiddenLoadMore;
+    _normalLabel.hidden = hiddenLoadMore;
 }
 
 

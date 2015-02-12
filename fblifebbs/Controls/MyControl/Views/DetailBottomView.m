@@ -16,9 +16,12 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,frame.size.width,0.5)];
+        UIView * line_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0.5)];
+        
         line_view.backgroundColor = RGBCOLOR(145,148,153);
+        
         [self addSubview:line_view];
+        
         
         NSArray * array1 = [NSArray arrayWithObjects:@"刷新",@"转发",@"评论",nil];
         
@@ -34,7 +37,7 @@
             
             button.titleLabel.font = [UIFont systemFontOfSize:15];
             
-            button.frame = CGRectMake(5+118*i,0,80,44);
+            button.frame = CGRectMake(5+((DEVICE_WIDTH-240-10)/2 + 80)*i,0,80,44);
             
             [button setTitle:[array1 objectAtIndex:i] forState:UIControlStateNormal];
             

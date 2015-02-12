@@ -110,9 +110,6 @@
     _isloadingIv=[[loadingimview alloc]initWithFrame:CGRectMake(100, 200, 150, 100) labelString:@"正在加载"];
     [[UIApplication sharedApplication].keyWindow
      addSubview:_isloadingIv];
-    
-    
-    
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(sendrequest) name:@"refreshmydata" object:nil];
     //
     isadvertisingImghiden=YES;
@@ -133,10 +130,50 @@
     //  self.navigationItem.leftBarButtonItem=back_item;
     
     
- 
+    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME?5:15, (44-43/2)/2, 24, 43/2)];
+    
+    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+    // [button_back setBackgroundImage:[UIImage imageNamed:@"ios7_back.png"] forState:UIControlStateNormal];
+    
+    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    
+    UIButton *backview=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME?-10:-10, 0, 40, 44)];
+    backview.backgroundColor=[UIColor clearColor];
+    [backview addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+    [backview addSubview:button_back];
     
     
-    [self setSNViewControllerLeftButtonType:SNViewControllerLeftbuttonTypeBack WithRightButtonType:SNViewControllerRightbuttonTypeNull];
+    
+    UIButton *view_left=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
+    //  view_left.backgroundColor=[UIColor redColor];
+    //  [view_left addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+    [view_left addSubview:backview];
+    
+    button_more=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? 26+2:22+5, (44-16)/2, 43/2, 32/2)];
+    
+    [button_more addTarget:self action:@selector(salestate) forControlEvents:UIControlEventTouchUpInside];
+    [button_more setBackgroundImage:[UIImage imageNamed:@"ios7_more43_32.png"] forState:UIControlStateNormal];
+    [view_left addSubview:button_more];
+    button_more.hidden=YES;
+    
+    
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:view_left];
+    
+    
+    
+    
+    //    UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    //    spaceButton.width = MY_MACRO_NAME?-8:5;
+    //
+    //
+    //    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,8,30,44)];
+    //    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+    //    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    //    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
+    //    self.navigationItem.leftBarButtonItems=@[spaceButton,back_item];
+    
+    
+    
     
     button_collect=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?15:10, (44-21)/2, 22, 21)];
     button_collect.tag=999;
@@ -197,6 +234,7 @@
     _titleLabel.font = [UIFont systemFontOfSize:20];
     _titleLabel.textColor = [UIColor blackColor];
     [topView addSubview:_titleLabel];
+    
     //导航栏上的小箭头
     UIImageView * tipView = [[UIImageView alloc] initWithImage:[personal getImageWithName:@"arrow"]];
     tipView.center = CGPointMake(100,22);
@@ -222,11 +260,11 @@
     right_spaceButton.width = MY_MACRO_NAME?-15:5;
     self.navigationItem.rightBarButtonItems=@[right_spaceButton,[[UIBarButtonItem alloc]initWithCustomView:view_right]];
     
-//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
-//        //iOS 5 new UINavigationBar custom background
-//        
-//        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
-//    }
+    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
+        //iOS 5 new UINavigationBar custom background
+        
+        [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
+    }
     
     
     
@@ -292,23 +330,20 @@
     
     //下拉刷新view
     if (_refreshHeaderView == nil) {
-		
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - tab_.bounds.size.height, self.view.frame.size.width, tab_.bounds.size.height)];
-		view.delegate = self;
+        
+        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - tab_.bounds.size.height, self.view.frame.size.width, tab_.bounds.size.height)];
+        view.delegate = self;
         // view.backgroundColor=[UIColor redColor];
-		//[tab_pinglunliebiao addSubview:view];
-		_refreshHeaderView = view;
-	}
+        //[tab_pinglunliebiao addSubview:view];
+        _refreshHeaderView = view;
+    }
     //上拉加载view
     loadview=[[LoadingIndicatorView alloc]initWithFrame:CGRectMake(0, 900, DEVICE_WIDTH, 40)];
     loadview.backgroundColor=[UIColor clearColor];
     
-	[_refreshHeaderView refreshLastUpdatedDate];
+    [_refreshHeaderView refreshLastUpdatedDate];
     
-    
-    //568-20-40-40
-    
-    tab_=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT - 20 - 40 - 40 +37)];
+    tab_=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT - 64)];
     tab_.delegate=self;
     //    tab_.separatorColor=[UIColor clearColor];
     // tab_.backgroundColor=[UIColor redColor];
@@ -323,12 +358,13 @@
     if (!hud)
     {
         hud = [[ATMHud alloc] initWithDelegate:self];
-        [self.navigationController.view addSubview:hud.view];
+        [self.view addSubview:hud.view];
     }
     
     tab_.tableHeaderView = _refreshHeaderView;
-    [self.navigationController.view addSubview:xialaView];
-//    [[UIApplication sharedApplication].keyWindow addSubview:xialaView];
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:xialaView];
+    
     _replaceAlertView=[[AlertRePlaceView alloc]initWithFrame:CGRectMake(100, 200, 150, 100) labelString:@"您的网络不给力哦，请检查网络"];
     _replaceAlertView.delegate=self;
     _replaceAlertView.hidden=YES;
@@ -338,13 +374,15 @@
     //显示广告
     
     if (!advImgV) {
-        advImgV=[[AdvertisingimageView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 50) ];
+        advImgV=[[AdvertisingimageView alloc]initWithFrame:CGRectMake(0, 0, 320, 50) ];
         
     }
     advImgV.delegate=self;
     
-//    [self testguanggao];
+    [self testguanggao];
     [self sendrequest];
+    
+
     
     
     
@@ -353,17 +391,24 @@
 #pragma mark-下拉的view
 -(void)showPopoverView:(UIButton *)button
 {
+    
+    
+    
+    
     isHidden = !isHidden;
     
-    UIImageView * xiala = (UIImageView *)[self.navigationController.view viewWithTag:111];
+//    UIImageView * xiala = (UIImageView *)[self.navigationController.view viewWithTag:111];
     
     UIImageView * tipView = (UIImageView *)[self.navigationItem.titleView viewWithTag:102];
+    
+    
+    
     
     [UIView animateWithDuration:0.3 animations:^{
         
         tipView.image = [personal getImageWithName:isHidden?@"arrow":@"arrow_up"];
         
-        xiala.alpha = isHidden?0:1;
+        xialaView.alpha = isHidden?0:1;
         
     }completion:^(BOOL finished)
      {
@@ -432,7 +477,7 @@
 #pragma mark-出售状态的实现
 -(void)salestate{
     NSLog(@"zounihaha");
-    _salestate=[[SelectsalestateView alloc]initWithFrame:CGRectMake(0,iPhone5? 260+40:171+40, 320, 200+20) receiveSalestateArray:array_salestate locationarray:array_location];
+    _salestate=[[SelectsalestateView alloc]initWithFrame:CGRectMake(0, DEVICE_HEIGHT-280, DEVICE_WIDTH, 200+20) receiveSalestateArray:array_salestate locationarray:array_location];
     _salestate.delegate=self;
     [_salestate ShowPick];
     [self.view addSubview:_salestate];
@@ -1138,17 +1183,23 @@
         NSString *string_location=[NSString stringWithFormat:@"%@",[dic objectForKey:@"areaidinfo"]];
         NSString *string_trasaction=[NSString stringWithFormat:@"%@",[dic objectForKey:@"typestate"]];
         if ([string_trasaction isEqualToString:@"出售"]) {
+            
+            
             trasactionstatelabel.textColor=[UIColor orangeColor];
             
         }else if([string_trasaction isEqualToString:@"求购"]||[string_trasaction isEqualToString:@"已售"])
         {
+            
+            
             trasactionstatelabel.textColor=[UIColor colorWithRed:0 green:128/255.f blue:0 alpha:1];
             
         }else{
+            
+            
             trasactionstatelabel.textColor=[UIColor clearColor];
             
-            locationlabel.frame = CGRectMake(8, 3, 50, 20);
-            titleLabel.frame = CGRectMake(titleLabel.frame.origin.x-56,titleLabel.frame.origin.y, titleLabel.frame.size.width,titleLabel.frame.size.height);
+            locationlabel.frame = CGRectMake(8, 12, 50, 20);
+            titleLabel.frame = CGRectMake(titleLabel.frame.origin.x,titleLabel.frame.origin.y, titleLabel.frame.size.width,titleLabel.frame.size.height);
             
             titleLabel.text=[NSString stringWithFormat:@"           %@",[zsnApi ddecodeSpecialCharactersStringWith:[dic objectForKey:@"title"]]];
             
@@ -1349,6 +1400,28 @@
         
         [cLabel setAttributedText:attributedString1];
         [cLabel sizeToFit];
+        
+        NSString *string_trasaction=[NSString stringWithFormat:@"%@",[dic objectForKey:@"typestate"]];
+        
+        if ([string_trasaction isEqualToString:@"出售"]||[string_trasaction isEqualToString:@"求购"]||[string_trasaction isEqualToString:@"已售"]) {
+            
+            
+            
+        }else{
+        
+            NSMutableAttributedString * attributedString1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"           %@",[dic objectForKey:@"title"]]];
+            NSMutableParagraphStyle * paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+            [paragraphStyle1 setLineSpacing:LINESPACEINGS];
+            [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [[NSString stringWithFormat:@"           %@",[dic objectForKey:@"title"]] length])];
+            
+            [cLabel setAttributedText:attributedString1];
+            [cLabel sizeToFit];
+        
+        }
+            
+
+        
+       
         
         
         

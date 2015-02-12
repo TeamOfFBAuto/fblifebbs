@@ -74,7 +74,7 @@
 
 -(void)ShowPick{
     
-    _ToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    _ToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, 44)];
    // [_ToolBar setBackgroundImage:[UIImage imageNamed:@"selectbbs.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault ];
     _ToolBar.backgroundColor=RGBCOLOR(252, 252, 252);
     // _ToolBar.barStyle = UIBarStyleBlackOpaque;
@@ -94,7 +94,7 @@
     
     
     
-    UIButton *DoneButton=[[UIButton alloc]initWithFrame:CGRectMake(260, 8, 50, 28)];
+    UIButton *DoneButton=[[UIButton alloc]initWithFrame:CGRectMake(DEVICE_WIDTH-70, 8, 50, 28)];
    // [DoneButton setBackgroundImage:[UIImage imageNamed:@"turn5028.png"] forState:UIControlStateNormal];
     
     [DoneButton setTitle:@"完成" forState:UIControlStateNormal];
@@ -112,7 +112,7 @@
     
     [self addSubview:_ToolBar];
     
-    _Pick=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 44, 320, 160)];
+    _Pick=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 44, DEVICE_WIDTH, 160)];
     _Pick.delegate=self;
     _Pick.dataSource=self;
     _Pick.showsSelectionIndicator = YES;

@@ -1265,7 +1265,8 @@
 
 -(void)deleteSomeWeiBoContent:(NewWeiBoCustomCell *)cell
 {
-    [self deleteing];
+    MBProgressHUD * delete_hud = [zsnApi showMBProgressWithText:@"正在删除..." addToView:self.view];
+    delete_hud.mode = MBProgressHUDModeIndeterminate;
     
     NSIndexPath * indexPath = [_myTableView indexPathForCell:cell];
     
@@ -1287,7 +1288,7 @@
     [_request setCompletionBlock:^{
         
         @try {
-            [hud hide];
+            [delete_hud hide:YES];
             
             NSDictionary * dic = [request1.responseData objectFromJSONData];
             
@@ -1295,17 +1296,19 @@
             
             if ([[dic objectForKey:@"errcode"] intValue] !=0)
             {
+                [zsnApi showAutoHiddenMBProgressWithText:@"删除失败" addToView:self.view];
                 _replaceAlertView.hidden=NO;
                 [_replaceAlertView hide];
             }else
             {
+                [zsnApi showAutoHiddenMBProgressWithText:@"删除成功" addToView:self.view];
                 [self.data_array removeObjectAtIndex:show_shangjia_jianjie?indexPath.row-1:indexPath.row];
                 
                 NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
                 
                 [_myTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath1] withRowAnimation:UITableViewRowAnimationRight];
                 
-                [_myTableView reloadData];
+//                [_myTableView reloadData];
             }
         }
         @catch (NSException *exception)
@@ -1319,7 +1322,7 @@
     
     
     [_request setFailedBlock:^{
-        [hud hide];
+        [zsnApi showAutoHiddenMBProgressWithText:@"删除失败" addToView:self.view];
         _replaceAlertView.hidden=NO;
         [_replaceAlertView hide];
     }];

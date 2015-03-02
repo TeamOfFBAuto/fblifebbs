@@ -82,7 +82,7 @@
     
     
     
-    UIView * back_view = [[UIView alloc] initWithFrame:CGRectMake(23/2,38,296,42)];
+    UIView * back_view = [[UIView alloc] initWithFrame:CGRectMake(23/2,38,DEVICE_WIDTH-23,42)];
     
     back_view.backgroundColor = [UIColor whiteColor];
     
@@ -91,7 +91,7 @@
     
     
     
-    verification_tf = [[UITextField alloc] initWithFrame:CGRectMake(10,0,276,42)];
+    verification_tf = [[UITextField alloc] initWithFrame:CGRectMake(10,0,DEVICE_WIDTH-23-20,42)];
     
     verification_tf.clearButtonMode = UITextFieldViewModeWhileEditing;
     
@@ -113,7 +113,7 @@
     
     UIButton * next_button = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    next_button.frame = CGRectMake(23/2,80+23/2,297,43);
+    next_button.frame = CGRectMake(23/2,80+23/2,DEVICE_WIDTH-23,43);
     
     next_button.backgroundColor = RGBCOLOR(101,102,104);
     
@@ -129,7 +129,7 @@
     
     ReSendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    ReSendButton.frame = CGRectMake(94,200,132,43.5);
+    ReSendButton.frame = CGRectMake((DEVICE_WIDTH-132)/2,200,132,43.5);
     
     ReSendButton.hidden = YES;
     
@@ -147,7 +147,7 @@
     
     time_number = 60;
     
-    time_label = [[UILabel alloc] initWithFrame:CGRectMake(70,200,180,43.5)];
+    time_label = [[UILabel alloc] initWithFrame:CGRectMake((DEVICE_WIDTH-180)/2,200,180,43.5)];
     
     time_label.text = [NSString stringWithFormat:@"接收短信大约需要%d秒钟",time_number];
     

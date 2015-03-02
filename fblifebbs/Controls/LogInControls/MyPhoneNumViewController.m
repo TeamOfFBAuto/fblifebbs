@@ -87,7 +87,7 @@
     self.leftImageName = @"logIn_close.png";
     
     
-    UIImageView * backGround_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(23/2,23/2,594/2,87/2)];
+    UIImageView * backGround_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(23/2,23/2,DEVICE_WIDTH-23,87/2)];
     
     backGround_imageView.userInteractionEnabled = YES;
     
@@ -112,7 +112,7 @@
     
     
     
-    phone_textField = [[UITextField alloc] initWithFrame:CGRectMake(83.5,5,200,33.5)];
+    phone_textField = [[UITextField alloc] initWithFrame:CGRectMake(83.5,5,DEVICE_WIDTH-23-85,33.5)];
     
     phone_textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 
@@ -129,7 +129,7 @@
     
     UIButton * next_button = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    next_button.frame = CGRectMake(23/2,backGround_imageView.frame.origin.y+backGround_imageView.frame.size.height+23/2,297,43);
+    next_button.frame = CGRectMake(23/2,backGround_imageView.frame.origin.y+backGround_imageView.frame.size.height+23/2,DEVICE_WIDTH-23,43);
     
     next_button.backgroundColor = RGBCOLOR(101,102,104);
     
@@ -152,7 +152,7 @@
     
     UIButton * xieyi_button = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    xieyi_button.frame = CGRectMake(29,123,280,20);
+    xieyi_button.frame = CGRectMake(30,123,280,20);
     
     xieyi_button.titleLabel.font = [UIFont systemFontOfSize:16];
     
@@ -176,7 +176,7 @@
 
 
 -(void)nextStep:(UIButton *)sender
-{
+{    
     if (phone_textField.text.length != 11)
     {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];

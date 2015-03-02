@@ -83,6 +83,12 @@
 @property(nonatomic,strong)NSString * ranktitle;
 ///阅读权限
 @property(nonatomic,strong)NSString * readaccess;
+///头像小
+@property(nonatomic,strong)NSString * avatar_small;
+///头像中
+@property(nonatomic,strong)NSString * avatar_middle;
+///头像大
+@property(nonatomic,strong)NSString * avatar_big;
 
 
 -(void)setLastpost:(NSString *)lastpost;

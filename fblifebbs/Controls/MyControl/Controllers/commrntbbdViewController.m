@@ -640,7 +640,7 @@
     
 }
 -(void)downloadtoolError{
-    
+    [hud hide];
     [self saveMydataAndhideHud];
 }
 

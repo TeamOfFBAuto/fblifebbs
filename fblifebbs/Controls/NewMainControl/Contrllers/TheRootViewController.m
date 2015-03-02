@@ -142,9 +142,6 @@
     
     GuanggaoViewController *_guanggaoVC=[[GuanggaoViewController alloc]init];
     
-    
-    GuanggaoViewController *_sguanggaoVC=[[GuanggaoViewController alloc]init];
-
     __weak typeof(self)wself=self;
     
     _guanggaoVC.view.frame=self.view.frame;
@@ -470,6 +467,17 @@
 -(void)doActionButton:(UIButton *)sender{
     
     NSLog(@"sendertag===%d=====pretag===%d",sender.tag,preTag);
+    
+    if (sender.tag == 9002) {
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:USER_IN])
+        {
+            LogInViewController * loginVC = [LogInViewController sharedManager];
+            [self presentViewController:loginVC animated:YES completion:nil];
+            
+            return;
+        }
+    }
+    
     
     UIButton *preButton=(UIButton *)[self.view viewWithTag:preTag];
     preButton.selected=NO;

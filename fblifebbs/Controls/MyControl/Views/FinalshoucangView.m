@@ -322,7 +322,8 @@
             break;
         case FinalshoucangViewTypeMyWrite:{
             
-            str_search=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getappmythread.php?authcode=%@&page=%d&pagesize=10",string_code,numberofpage];
+//            str_search=[NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/getappmythread.php?authcode=%@&page=%d&pagesize=10",string_code,numberofpage];
+            str_search = [NSString stringWithFormat:BBS_GET_POSTS_URL,[[NSUserDefaults standardUserDefaults] objectForKey:USER_UID],numberofpage];
         }
             
             break;
@@ -346,6 +347,11 @@
     [loaddata SeturlStr:str_search mytest:^(NSDictionary *dicinfo, int errcode) {
         
         isloadsuccess=YES;
+        
+//        if (numberofpage == 1)
+//        {
+//            loaddata.mydicinfo = nil;
+//        }
         
         [[self viewWithTag:234] removeFromSuperview];
         
@@ -852,7 +858,7 @@
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
     
     if (scrollView == tab_) {
-        if(scrollView.contentOffset.y > ((scrollView.contentSize.height - scrollView.frame.size.height-40))&&isloadsuccess==YES&&_mytype!=2) {
+        if(scrollView.contentOffset.y > ((scrollView.contentSize.height - scrollView.frame.size.height-40))&&isloadsuccess==YES&&_mytype!=2 && scrollView.contentOffset.y > 0) {
             
             
             [loadview startLoading];

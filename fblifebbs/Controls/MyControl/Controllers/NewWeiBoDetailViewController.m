@@ -622,7 +622,7 @@
     SNMineViewController * mine = [[SNMineViewController alloc] init];
     
     mine.theUid = self.info.uid;
-    
+    mine.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:mine animated:YES];
 }
 

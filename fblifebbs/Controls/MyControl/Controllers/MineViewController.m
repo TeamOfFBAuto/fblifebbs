@@ -30,6 +30,7 @@
 #import "ScanHistoyViewController.h"
 #import "SNMineViewController.h"
 #import "AppDelegate.h"
+#import "BBSInfoModel.h"
 
 #define CURRENT_USER_HEADIMAGE @"HEADIMAGE"//头像
 
@@ -76,7 +77,7 @@
         
         NSDictionary *dic = [LTools cacheForKey:@"userInfo"];
         
-        UserModel *user = [[UserModel alloc]initWithDictionary:dic];
+        BBSInfoModel *user = [[BBSInfoModel alloc]initWithDictionary:dic];
         
         [self getDataWithUserModel:user];
     }
@@ -143,7 +144,7 @@
     
     NSDictionary *dic = [LTools cacheForKey:@"userInfo"];
     
-    UserModel *user = [[UserModel alloc]initWithDictionary:dic];
+    BBSInfoModel *user = [[BBSInfoModel alloc]initWithDictionary:dic];
     
     [self getDataWithUserModel:user];
 }
@@ -159,6 +160,7 @@
 
 - (void)getUserInfo
 {
+    /*
     NSString *url = [NSString stringWithFormat:URL_USERMESSAGE,[personal getMyUid],[personal getMyAuthkey]];
     LTools *tool = [[LTools alloc]initWithUrl:url isPost:NO postData:nil];
     
@@ -181,6 +183,30 @@
         
         
     }];
+     */
+    NSString *url = [NSString stringWithFormat:BBS_GET_USER_INFOMATION_URL,[personal getMyUid]];
+    LTools *tool = [[LTools alloc]initWithUrl:url isPost:NO postData:nil];
+    
+    [tool requestSpecialCompletion:^(NSDictionary *result, NSError *erro) {
+        
+//        NSDictionary *data = [result objectForKey:@"data"];
+//        NSDictionary *dic = [data objectForKey:[personal getMyUid]];
+        if ([result isKindOfClass:[NSDictionary class]]) {
+            
+            [LTools cache:result ForKey:@"userInfo"];
+            
+            BBSInfoModel *user = [[BBSInfoModel alloc]initWithDictionary:result];
+            
+            [self getDataWithUserModel:user];
+            
+        }
+        
+        
+    } failBlock:^(NSDictionary *failDic, NSError *erro) {
+        
+        
+    }];
+    
 }
 
 #pragma mark - 点击事件
@@ -201,10 +227,10 @@
 
 #pragma mark - 数据处理
 
-- (void)getDataWithUserModel:(UserModel *)user
+- (void)getDataWithUserModel:(BBSInfoModel *)user
 {
  
-    [headerCell.headImage setImageWithURL:[NSURL URLWithString:user.face_small] placeholderImage:[UIImage imageNamed:@"touxiang.png"]];
+    [headerCell.headImage setImageWithURL:[NSURL URLWithString:user.avatar_middle] placeholderImage:[UIImage imageNamed:@"touxiang.png"]];
     
     headerCell.nameLabel.text = user.username;
     
@@ -215,14 +241,14 @@
     
     headerCell.genderImage.hidden = NO;
     
-    if ([user.gender integerValue] == 1) {
+    if ([user.gender isEqualToString:@"男"]) {
         NSLog(@"man");
         
 //        headerCell.genderImage.hidden = NO;
         
         headerCell.genderImage.selected = NO;
         
-    }else if([user.gender integerValue] == 0)
+    }else if([user.gender isEqualToString:@"女"])
     {
         NSLog(@"women");
         
@@ -237,9 +263,9 @@
     
     headerCell.genderImage.left = headerCell.nameLabel.right + 10;
     
-    NSString *des = [NSString stringWithFormat:@"简介:%@",user.aboutme.length ? user.aboutme : @"无"];
+    NSString *des = [NSString stringWithFormat:@"简介:%@",user.bio.length ? user.bio : @"无"];
     headerCell.descriptionLabel.text = des;
-    headerCell.tiezi_num_label.text = user.topic_count;
+    headerCell.tiezi_num_label.text = user.posts;
     headerCell.fans_num_label.text = user.fans_count;
     headerCell.guanzhu_num_label.text =  user.follow_count;
     
@@ -289,7 +315,7 @@
             
             NSDictionary *dic = [LTools cacheForKey:@"userInfo"];
             
-            UserModel *user = [[UserModel alloc]initWithDictionary:dic];
+            BBSInfoModel *user = [[BBSInfoModel alloc]initWithDictionary:dic];
             
             [self getDataWithUserModel:user];
         }

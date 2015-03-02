@@ -464,17 +464,11 @@
     [myTextView resignFirstResponder];
     pageControl.hidden = YES;
     
-    
-    
-    
-    NSString * _forwardId = self.info.rtid;
-    if (![_forwardId isEqual:[NSNull null]]&&![_forwardId isEqualToString:@"(null)"]) {
         
-    }else
-    {
+    NSString * _forwardId = self.info.rtid;
+    if ([_forwardId isEqual:[NSNull null]]||[_forwardId isEqualToString:@"(null)"]||_forwardId.length == 0) {
         _forwardId = self.info.tid;
     }
-    
     
     NSString * fullUrl = [NSString stringWithFormat:URL_FORWARD,[myTextView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],self.info.tid,_forwardId,isZhuanFa?@"both":@"forward",AUTHKEY];
     

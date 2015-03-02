@@ -29,7 +29,7 @@
 #import "BBSInfoModel.h"
 #import "SDImageCache.h"
 
-@interface SNMineViewController ()<UITableViewDataSource,SNRefreshDelegate,WeiBoCustomSegmentViewDelegate,NewWeiBoCustomCellDelegate,ForwardingViewControllerDelegate,NewWeiBoCommentViewControllerDelegate,MWPhotoBrowserDelegate,GcustomActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,UIAlertViewDelegate>
+@interface SNMineViewController ()<UITableViewDataSource,SNRefreshDelegate,WeiBoCustomSegmentViewDelegate,NewWeiBoCustomCellDelegate,ForwardingViewControllerDelegate,NewWeiBoCommentViewControllerDelegate,MWPhotoBrowserDelegate,GcustomActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate>
 {
     UIImageView * navigation_view;
     UIView * firstSectionView;
@@ -455,19 +455,12 @@
         
         NSLog(@"上传图片结果 ----  %@",dic);
         
-        if ([[dic objectForKey:@"errcode"] intValue] == 0) {
-            [zsnApi showAutoHiddenMBProgressWithText:@"图片上传成功" addToView:self.view];
-            [[SDImageCache sharedImageCache] removeImageForKey:bself.bbs_info_model.backImg_small];
-            banner_imageView.image = bself.userUpBannerImage;
-        }else
-        {
-            bself.userUpBannerImage = nil;
-            [zsnApi showAutoHiddenMBProgressWithText:[dic objectForKey:@"errinfo"] addToView:self.view];
-        }
+        [[SDImageCache sharedImageCache] removeImageForKey:bself.bbs_info_model.backImg_o];
+        banner_imageView.image = bself.userUpBannerImage;
     }];
     
     [_request setFailedBlock:^{
-        bself.userUpBannerImage = nil;
+        
     }];
 
 }
@@ -488,8 +481,7 @@
         
         banner_imageView.userInteractionEnabled = YES;
         
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userBannerClicked:)];
-        [banner_imageView addGestureRecognizer:tap];
+        
         
         
         //头像
@@ -523,7 +515,6 @@
         
         if (!isMySelf)
         {
-            [banner_imageView removeGestureRecognizer:tap];
             message_button = [UIButton buttonWithType:UIButtonTypeCustom];
             message_button.frame = CGRectMake((DEVICE_WIDTH-200-8)/2.0f,banner_imageView.bottom + 20,100,33);
             [message_button setImage:[UIImage imageNamed:@"sixin"] forState:UIControlStateNormal];
@@ -536,16 +527,15 @@
             [attention_button setImage:[UIImage imageNamed:@"cancelguanzhu"] forState:UIControlStateSelected];
             [attention_button addTarget:self action:@selector(attentionTap:) forControlEvents:UIControlEventTouchUpInside];
             [firstSectionView addSubview:attention_button];
+        }else
+        {
+            UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userBannerClicked:)];
+            [banner_imageView addGestureRecognizer:tap];
         }
     }
     
-    if (self.userUpBannerImage) {
-        banner_imageView.image = self.userUpBannerImage;
-    }else
-    {
-        [banner_imageView setImageWithURL:[NSURL URLWithString:_bbs_info_model.backImg_small] placeholderImage:[UIImage imageNamed:@"underPageBackGround.png"]];
-    }
-    
+
+    [banner_imageView setImageWithURL:[NSURL URLWithString:_bbs_info_model.backImg_o] placeholderImage:[UIImage imageNamed:@"underPageBackGround.png"]];
     [header_imageView setImageWithURL:[NSURL URLWithString:[zsnApi returnUrl:_theUid]] placeholderImage:[UIImage imageNamed:@"touxiang.png"]];
     userName_label.text = _bbs_info_model.username;
     
@@ -589,7 +579,7 @@
     UILabel * guanzhu_label = (UILabel *)[firstSectionView viewWithTag:101];
     UILabel * fensi_label = (UILabel *)[firstSectionView viewWithTag:102];
     
-    tiezi_label.text = [NSString stringWithFormat:@"%@帖子",_bbs_info_model.posts];
+    tiezi_label.text = [NSString stringWithFormat:@"%@帖子",_bbs_info_model.topic_count];
     guanzhu_label.text = [NSString stringWithFormat:@"%@关注",_bbs_info_model.follow_count];
     fensi_label.text = [NSString stringWithFormat:@"%@粉丝",_bbs_info_model.fans_count];
 }
@@ -970,7 +960,6 @@
 #pragma mark - ====== 点击更换封面图 =======
 -(void)userBannerClicked:(UITapGestureRecognizer *)sender
 {
-    
     GcustomActionSheet *aaa = [[GcustomActionSheet alloc]initWithTitle:nil
                                                           buttonTitles:@[@"更换相册封面"]
                                                      buttonTitlesColor:[UIColor blackColor]
@@ -1062,14 +1051,6 @@
     
 //    [_tableView reloadData];
     
-}
-
-#pragma mark - UIAlertView Delegate
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == 111111) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
 }
 
 #pragma mark - WeiBo segment delegate
@@ -1226,10 +1207,6 @@
 
 -(void)deleteSomeWeiBoContent:(NewWeiBoCustomCell *)cell
 {
-    MBProgressHUD * delete_hud = [zsnApi showMBProgressWithText:@"正在删除..." addToView:self.view];
-    delete_hud.mode = MBProgressHUDModeIndeterminate;
-
-    
     NSIndexPath * indexPath = [_myTableView indexPathForCell:cell];
     
     FbFeed * fbfeed = [self.array_weibo objectAtIndex:indexPath.row];
@@ -1250,26 +1227,23 @@
     [_request setCompletionBlock:^{
         
         @try {
-            [delete_hud hide:YES];
             NSDictionary * dic = [request1.responseData objectFromJSONData];
             
             NSLog(@"删除内容 -----  %@",dic);
             
             if ([[dic objectForKey:@"errcode"] intValue] !=0)
             {
-                [zsnApi showAutoHiddenMBProgressWithText:@"删除失败" addToView:self.view];
 //                _replaceAlertView.hidden=NO;
 //                [_replaceAlertView hide];
             }else
             {
-                [zsnApi showAutoHiddenMBProgressWithText:@"删除成功" addToView:self.view];
                 [bself.array_weibo removeObjectAtIndex:indexPath.row];
                 
-                NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
+                NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
                 
                 [_myTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath1] withRowAnimation:UITableViewRowAnimationRight];
                 
-//                [_myTableView reloadData];
+                [_myTableView reloadData];
             }
         }
         @catch (NSException *exception)
@@ -1283,7 +1257,6 @@
     
     
     [_request setFailedBlock:^{
-        [zsnApi showAutoHiddenMBProgressWithText:@"删除失败" addToView:self.view];
 //        [hud hide];
 //        _replaceAlertView.hidden=NO;
 //        [_replaceAlertView hide];

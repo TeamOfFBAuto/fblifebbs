@@ -1,7 +1,7 @@
 //
 //  AppDelegate.m
 //  fblifebbs
-//
+//xasxasxa
 //  Created by szk on 14-10-10.
 //  Copyright (c) 2014年 szk. All rights reserved.
 //s

@@ -408,6 +408,7 @@
         
         tipView.image = [personal getImageWithName:isHidden?@"arrow":@"arrow_up"];
         
+        
         xialaView.alpha = isHidden?0:1;
         
     }completion:^(BOOL finished)
